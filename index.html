@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="roomApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<title>Kallayi admin</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body ng-controller="roomController">
+  <div id="wrapper" ng-class="menuStatus ? '' :'toggled'">
+  	<aside id="sidebar-wrapper" class="side-bar">
+	    <ul class="sidebar-nav hide">
+	        <li class="sidebar-brand"><a href="#">Start Bootstrap</a></li>
+	        <li><a href="#">Dashboard</a></li>
+	        <li><a href="#">Shortcuts</a></li>
+	        <li><a href="#">Overview</a></li>
+	        <li><a href="#">Events</a></li>
+	        <li><a href="#">About</a></li>
+	        <li><a href="#">Services</a></li>
+	        <li><a href="#">Contact</a></li>
+	    </ul>
+		  <nav class="side-nav sidebar-nav">
+		    <figure id="profile">
+		      <a href="#"><img class="img-circle" src="img/me.jpg" width="130" height="130" alt="Maanu Manjeri"></a>
+		      <figcaption>
+		        <h3>maanu manjeri</h3>
+		      </figcaption>
+		    </figure>
+		    <ul class="nav nav-pills nav-stacked">
+		      <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+		      <li><a href="#"><i class="fa fa-shopping-cart"></i> Expenses</a></li>
+		      <li><a href="#"><i class="fa fa-file-text-o"></i> Invoice</a></li>
+		      <li><a href="#"><i class="fa fa-comments"></i> Message Board</a></li>
+		      <li><a href="#"><i class="fa fa-retweet"> </i> Reccurring Bills</a></li>
+		      <li><a href="#"><i class="fa fa-user"></i> My Profile</a></li>
+		      <li><a href="#"><i class="fa fa-cogs"></i> Settings</a></li>
+		    </ul>
+		  </nav>
+		</aside>
+	  <div id="page-content-wrapper">
+	    <div class="container-fluid">
+				<header class="row">
+				  <div class="col-md-12">
+				    <a id="menu-toggle" class="btn btn-primary pull-left toggle-button" ng-click="toggleMenu();"><i class="fa fa-bars fa-lg"></i></a>
+				    <div id="login-menu" class="dropdown pull-right">
+				      <a data-toggle="dropdown" href="#"> 
+				        <img class="img-circle" src="img/me.jpg" width="30" height="30" alt="Maanu Manjeri">
+				        മാനു കോനു <span class="caret"></span></a>
+				      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+				        <li><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+				        <li><a href="settings.html"><i class="fa fa-gear"></i> Settings</a></li>
+				        <li class="divider"></li>
+				        <li><a href="logout.html"><i class="fa fa-power-off"></i> Logout</a></li>
+				      </ul>
+				    </div>
+				  </div>
+				</header>
+				<div class="row">
+				  <div class="col-md-8">
+				    <!-- <h1 style="margin-top:0;"><i class="fa fa-dashboard"></i> Dashboard</h1> -->
+				    <h2><i class="fa fa-dashboard"></i> Dashboard</h2>
+				  </div>
+				  <div class="col-md-3 pull-right hidden-xs hidden-sm">
+				    <div id="today" class="row">
+				      <div id="date" class="col-md-7">
+				        <!-- <p><?php echo date("l"); ?></p> -->
+				        <p>Thursday</p>
+				        <h1><!--<?php echo date("j"); ?>--> 6 <small> <!-- <?php echo date("M"); ?> --> Mar</small></h1>
+				      </div>
+				      <div id="time" class="col-md-5">
+				        <span class="text-right"><!--<?php echo date("A"); ?>--> PM</span>
+				        <h1><!--<?php echo date("g:i"); ?>--> 12:30</h1>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<div class="row">
+				  <div class="col-sm-6 col-md-3">
+				    <div id="mess-info" class="box quick-info">
+				      <h2>{{lastspend | currency:"£"}}</h2>
+				      <h5>This month bill so far</h5>
+				      <span><i class="fa fa-arrow-circle-o-down"></i>
+				        7% Less than last month</span>
+				      <div class="info-icon">
+				        <i class="fa fa-shopping-cart fa-3x"></i>
+				      </div>
+				    </div>
+				  </div>
+				  <div class="col-sm-6 col-md-3">
+				    <div id="buy-info" class="box quick-info">
+				      <h2 ng-repeat="user in users" ng-if="user.id === currentuser">{{ user.spent | currency:"£"}}</h2>
+				      <h5>Contribution in this month</h5>
+				      <span><i class="fa fa-arrow-circle-o-up"></i>
+				        3% Higher than last month</span>
+				      <div class="info-icon">
+				        <i class="fa fa-gbp fa-3x"></i>
+				      </div>
+				    </div>
+				  </div>
+				  <div class="col-sm-6 col-md-3">
+				    <div id="average-info" class="box quick-info">
+				      <h2>{{totalamount/users.length | currency:"£"}}</h2>
+				      <h5>Average bill could be</h5>
+				      <span><i class="fa fa-arrow-circle-o-right"></i>
+				        same amount as last month</span>
+				      <div class="info-icon">
+				        <i class="fa fa-user fa-3x"></i>
+				      </div>
+				    </div>
+				  </div>
+				  <div class="col-sm-6 col-md-3">
+				    <div id="total-info" class="box quick-info">
+				      <h2>{{totalamount | currency:"£"}}</h2>
+				      <h5>Total bill for all</h5>
+				      <span><i class="fa fa-arrow-circle-o-up"></i>
+				        3% Higher than last month</span>
+				      <div class="info-icon">
+				        <i class="fa fa-bar-chart-o fa-3x"></i>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<div class="row">
+				  <div class="col-md-4">
+				    <div class="panel panel-default">
+				      <div class="panel-heading">
+				        <h3 class="panel-title">Add Expense</h3>
+				      </div>
+				      <div class="panel-body">
+				        <form role="form" ng-submit="addtolist()">
+				          <div class="form-group">
+				            <label for="Product">Item Name</label>
+				            <input type="text" class="form-control" id="Product" placeholder="Eg: Sugar" ng-model="newitem.name">
+				          </div>
+				          <div class="form-group">
+				            <div class="row">
+				              <div class="col-md-6">
+				                <label for="product-value">Price</label>
+				                <div class="input-group">
+				                  <span class="input-group-addon">£</span>
+				                  <input type="number" class="form-control" placeholder="0.00" ng-model="newitem.price">
+				                </div>
+				              </div>
+				              <div class="col-md-6">
+				                <label for="prchase-date">Who paid ?</label>
+				                <select ng-model="user.lastname" ng-options="user.lastname for user in users">
+				                  <option value="">-- choose name --</option>
+				                </select>
+				              </div>
+				            </div>
+				          </div>
+				          <button type="submit" class="btn btn-primary pull-right">
+				            <i class="fa fa-plus"></i> Add to mess</button>
+				        </form>
+				      </div>
+				    </div>
+				  </div>
+				  <div class="col-md-4">
+				    <ul id="to-do" class="list-group checkbox-list">
+				      <a class="list-group-item active"><i class="fa fa-lg fa-list-alt"></i> To Do List</a>
+				      <li class="list-group-item checkbox" ng-repeat=" todo in todolist">
+				        <label>
+				          <input type="checkbox" class="hide" ng-model="todo.done">
+				          <i class="fa fa-lg" ng-class="{true:'fa-check-square-o', false:'fa-square-o'}[todo.done]"></i>
+				          <span class="todo-task">{{todo.task}}</span>
+				        </label>
+				        <span class="label label-default pull-right" ng-repeat="info in users" ng-if="info.id === todo.asignedto">{{info.firstname}}</span>
+				      </li>
+				      <li class="list-group-item" style="border:none; padding:0;">
+				        <form ng-submit="addtodo(newtodo)" class="input-group">
+				          <input type="text" class="form-control" ng-model="newtodo">
+				          <span class="input-group-btn">
+				            <button class="btn btn-primary" type="submit">
+				              <i class="fa fa-plus"></i>
+				            </button>
+				          </span>
+				        </form>
+				        <hr>
+				        <p>{{newtodo}}</p>
+				      </li>
+				    </ul>
+				  </div>
+				  <div class="col-md-4">
+				    <ul class="nav nav-tabs nav-justified">
+				      <li class="active"><a href="#"><strong><i class="fa fa-clock-o fa-lg"></i> This month</strong></a></li>
+				      <li><a href="#"><strong><i class="fa fa-hand-o-left fa-lg"></i> Last month</strong></a></li>
+				    </ul>
+				    <ul id="last-pay" class="list-group">
+
+				      <li class="list-group-item" ng-repeat="user in users">
+				        <span class="badge progress-bar-warning">{{percentage(user.spent, totalamount)}}%</span>
+				        <!-- <img src="img/me.jpg" alt="member" height="40" width="40" class="img-circle pull-left"> -->
+				        <img ng-src="{{user.image}}" alt="{{user.firstname}} {{user.lastname}}" height="40" width="40" class="img-circle pull-left">
+				        {{user.firstname}} {{user.lastname}}
+				        <div class="progress">
+				          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{percentage(user.spent, totalamount)}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percentage(user.spent, totalamount)}}%">
+				            <span class="sr-only">{{percentage(user.spent, totalamount)}}% Complete (warning)</span>
+				          </div>
+				        </div>
+				      </li>
+				    </ul>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- AngularJS -->
+    <script src="js/angular.min.js"></script>
+    <script src="js/angularscript.js"></script>
+  </body>
+</html>
