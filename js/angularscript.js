@@ -6,7 +6,7 @@ var app = angular.module('roomApp',['ngRoute']);
         $routeProvider
             .when('/', {
                 templateUrl: 'dashboard.html',
-                controller: 'dashboardController'
+                controller: 'homecontroller'
             })
             .when('/dashboard', {
                 templateUrl: 'dashboard.html',
@@ -28,10 +28,6 @@ var app = angular.module('roomApp',['ngRoute']);
                 templateUrl: 'recur.html',
                 controller: 'recurController'
             })
-            .when('/cv', {
-                templateUrl: 'cv.html',
-                controller: 'cvController'
-            })
             .when('/profile', {
                 templateUrl: 'profile.html',
                 controller: 'profileController'
@@ -45,8 +41,6 @@ var app = angular.module('roomApp',['ngRoute']);
             });
     });
 	app.controller('homecontroller', function($scope){
-		// $scope.newtodo = "";
-
 		// Toggle sede menu
 		$scope.menuStatus = true;
 		$scope.toggleMenu = function(){
@@ -61,20 +55,7 @@ var app = angular.module('roomApp',['ngRoute']);
 		];
 		$scope.currentuser = 1;
 		$scope.lastspend = 1320.90;
-		$scope.todolist = [
-			{ id: 1, task: 'Some thing to do', asignedto: 1, done: false},
-			{ id: 2, task: 'Nothing to do', asignedto: 3, done: true},
-			{ id: 3, task: 'Meeting at 9 PM', asignedto: 1, done: false},
-			{ id: 4, task: 'Whole cleaning home', asignedto: 5, done: true},
-			{ id: 5, task: 'Verude oru rasam', asignedto: 2, done: false}
-		];
-		$scope.addtodo = function (newToDo) {
-			alert(newToDo);
-		    $scope.todolist.push({id: 3, task: newToDo, asignedto: $scope.currentuser, done: false});
-		    // $scope.todolist.push({id: 3, task: $scope.newtodo, asignedto: $scope.currentuser, done: false});
-		    // $scope.newtodo = '';
-		    console.log(newToDo);
-		};
+
 		$scope.items = [
 		    { product: '1 Lorem ipsum', date: '12-March-2013', rate: 12.35, member: 1, status: 'approved' },
 		    { product: '2 dolor sit', date: '1-January-2011', rate: 60.54, member: 3, status: 'pending'},
@@ -197,6 +178,25 @@ var app = angular.module('roomApp',['ngRoute']);
 			$scope.addrecur.amount = '';
 			$scope.addrecur.due = '';
 		};
+	});
+	app.controller('dashboardController', function($scope){
+		$scope.todolist = [
+			{ id: 1, task: 'Some thing to do', asignedto: 1, done: false},
+			{ id: 2, task: 'Nothing to do', asignedto: 3, done: true},
+			{ id: 3, task: 'Meeting at 9 PM', asignedto: 1, done: false},
+			{ id: 4, task: 'Whole cleaning home', asignedto: 5, done: true},
+			{ id: 5, task: 'Verude oru rasam', asignedto: 2, done: false}
+		];
+		$scope.addtodo = function (newToDo) {
+			alert(newToDo);
+		    $scope.todolist.push({id: 3, task: newToDo, asignedto: $scope.currentuser, done: false});
+		    // $scope.todolist.push({id: 3, task: $scope.newtodo, asignedto: $scope.currentuser, done: false});
+		    // $scope.newtodo = '';
+		    console.log(newToDo);
+		};
+	});
+	app.controller('expenseController', function($scope){});
+	app.controller('invoiceController', function($scope){
 		$scope.invoicebill = {
 			id: 12, invoicefrom: '10-November-2014', invoicedate: '12-December-2014', status:'pending', rent: '1200',
 			invoiceprice:[
@@ -209,6 +209,9 @@ var app = angular.module('roomApp',['ngRoute']);
 			contribution: 148.62
 		};
 	});
+	app.controller('recurController', function($scope){});
+	app.controller('profileController', function($scope){});
+	app.controller('settingsController', function($scope){});
 	app.filter('percentage', ['$filter', function ($filter) {
 		return function (input, decimals) {
 			return $filter('number')(input * 100, decimals) + '%';
