@@ -1,6 +1,6 @@
 (function(){
 // Angular
-var app = angular.module('roomApp',['ngRoute']);
+var app = angular.module('app', ['ngRoute']);
     app.config(function($routeProvider, $locationProvider) {
         // $locationProvider.html5Mode(true);
         $routeProvider
@@ -36,10 +36,15 @@ var app = angular.module('roomApp',['ngRoute']);
                 templateUrl: 'settings.html',
                 controller: 'settingsController'
             })
+            .when('/login', {
+                templateUrl: 'login.html',
+                controller: 'loginController'
+            })
             .otherwise({
                 redirectTo: '/'
             });
     });
+	app.controller('loginController', function($scope){});
 	app.controller('homecontroller', function($scope){
 		// Toggle sede menu
 		$scope.menuStatus = true;
@@ -188,10 +193,10 @@ var app = angular.module('roomApp',['ngRoute']);
 			{ id: 5, task: 'Verude oru rasam', asignedto: 2, done: false}
 		];
 		$scope.addtodo = function (newToDo) {
-			alert(newToDo);
+			// alert(newToDo);
 		    $scope.todolist.push({id: 3, task: newToDo, asignedto: $scope.currentuser, done: false});
 		    // $scope.todolist.push({id: 3, task: $scope.newtodo, asignedto: $scope.currentuser, done: false});
-		    // $scope.newtodo = '';
+		    $scope.newtodo = '';
 		    console.log(newToDo);
 		};
 	});

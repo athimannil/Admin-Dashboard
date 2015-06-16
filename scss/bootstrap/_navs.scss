@@ -21,9 +21,14 @@
       display: block;
       padding: $nav-link-padding;
       &:hover,
-      &:focus {
+      &:focus,
+      &.active {
         text-decoration: none;
+        color: $white;
         background-color: darken($nav-link-hover-bg, 5%);
+        i{
+          color: $brand-primary;
+        }
       }
     }
 

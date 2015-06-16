@@ -16,9 +16,16 @@
 
   // Prevent floats from breaking the navbar
   @include clearfix;
-
-  @media (min-width: $grid-float-breakpoint) {
-    border-radius: $navbar-border-radius;
+  .btn-primary{
+    border-color: $brand-primary;
+    border-radius: 0;
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active{
+      border-color: #e5412d;
+    }
   }
 }
 

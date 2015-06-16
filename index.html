@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="roomApp">
+<html lang="en" ng-app="app">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,45 +22,62 @@
   </head>
 <body ng-controller="homecontroller">
   <div id="wrapper" ng-class="menuStatus ? '' :'toggled'">
-  	<aside id="sidebar-wrapper" class="side-bar">
-		  <nav class="side-nav sidebar-nav">
-		    <figure id="profile">
-		      <a href="#"><img class="img-circle" src="img/me.jpg" width="130" height="130" alt="Maanu Manjeri"></a>
-		      <figcaption>
-		        <h3>maanu manjeri</h3>
-		      </figcaption>
-		    </figure>
-		    <ul class="nav nav-pills nav-stacked">
-		      <li><a href="/#/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-		      <li><a href="/#/ui"><i class="fa fa-dashboard"></i> UI</a></li>
-		      <li><a href="/#/expense"><i class="fa fa-shopping-cart"></i> Expenses</a></li>
-		      <li><a href="/#/invoice"><i class="fa fa-file-text-o"></i> Invoice</a></li>
-		      <li><a href="/#/message"><i class="fa fa-comments"></i> Message Board</a></li>
-		      <li><a href="/#/recur"><i class="fa fa-retweet"> </i> Reccurring Bills</a></li>
-		      <li><a href="/#/profile"><i class="fa fa-user"></i> My Profile</a></li>
-		      <li><a href="/#/settings"><i class="fa fa-cogs"></i> Settings</a></li>
-		    </ul>
-		  </nav>
-		</aside>
-	  <div id="page-content-wrapper">
-	    <div class="container-fluid">
-				<header class="row">
-				  <div class="col-md-12">
-				    <a id="menu-toggle" class="btn btn-primary pull-left toggle-button" ng-click="toggleMenu();"><i class="fa fa-bars fa-lg"></i></a>
-				    <div id="login-menu" class="dropdown pull-right">
-				      <a data-toggle="dropdown" href="#"> 
-				        <img class="img-circle" src="img/me.jpg" width="30" height="30" alt="Maanu Manjeri">
-				        മാനു കോനു <span class="caret"></span></a>
-				      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-				        <li><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
-				        <li><a href="settings.html"><i class="fa fa-gear"></i> Settings</a></li>
-				        <li class="divider"></li>
-				        <li><a href="logout.html"><i class="fa fa-power-off"></i> Logout</a></li>
-				      </ul>
-				    </div>
-				  </div>
-				</header>
-				<ng-view></ng-view>
+	<aside id="sidebar-wrapper" class="side-bar">
+	  <nav class="side-nav sidebar-nav">
+	    <figure id="profile">
+	      <a href="#"><img class="img-circle" src="img/me.jpg" width="130" height="130" alt="Maanu Manjeri"></a>
+	      <figcaption>
+	        <h3>maanu manjeri</h3>
+	      </figcaption>
+	    </figure>
+
+		<ul class="nav nav-pills nav-stacked" ng-init="tab = 1">
+		  <li><a href="/#/dashboard" ng-class="{active: tab === 1}" ng-click="tab = 1"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+		  <li><a href="/#/ui" ng-class="{active: tab === 2}" ng-click="tab = 2"><i class="fa fa-dashboard"></i> UI</a></li>
+		  <li><a href="/#/expense" ng-class="{active: tab === 3}" ng-click="tab = 3"><i class="fa fa-shopping-cart"></i> Expenses</a></li>
+		  <li><a href="/#/invoice" ng-class="{active: tab === 4}" ng-click="tab = 4"><i class="fa fa-file-text-o"></i> Invoice</a></li>
+		  <li><a href="/#/message" ng-class="{active: tab === 5}" ng-click="tab = 5"><i class="fa fa-comments"></i> Message Board</a></li>
+		  <li><a href="/#/recur" ng-class="{active: tab === 6}" ng-click="tab = 6"><i class="fa fa-retweet"> </i> Reccurring Bills</a></li>
+		  <li><a href="/#/profile" ng-class="{active: tab === 7}" ng-click="tab = 7"><i class="fa fa-user"></i> My Profile</a></li>
+		  <li><a href="/#/settings" ng-class="{active: tab === 8}" ng-click="tab = 8"><i class="fa fa-cogs"></i> Settings</a></li>
+		  <li><a href="/#/login" ng-class="{active: tab === 8}" ng-click="tab = 8"><i class="fa fa-cogs"></i> Login</a></li>
+		</ul>
+	  </nav>
+	</aside>
+	<div id="page-content-wrapper">
+		<!-- Header nav -->
+		<nav class="navbar bg-primary">
+		    <div class="container-fluid">
+				<a id="menu-toggle" class="btn btn-primary pull-left toggle-button" ng-click="toggleMenu();"><i class="fa fa-bars fa-lg"></i></a>
+				<div id="login-menu" class="dropdown pull-right hide">
+				  <a data-toggle="dropdown" href="#"> 
+				    <img class="img-circle" src="img/me.jpg" width="30" height="30" alt="Maanu Manjeri">
+				    മാനു കോനു <span class="caret"></span></a>
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+				    <li><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+				    <li><a href="settings.html"><i class="fa fa-gear"></i> Settings</a></li>
+				    <li class="divider"></li>
+				    <li><a href="logout.html"><i class="fa fa-power-off"></i> Logout</a></li>
+				  </ul>
+				</div>
+				<!-- User dropdown -->
+				<div class="dropdown pull-right">
+				  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-expanded="true">
+				    <img class="img-circle" src="img/me.jpg" width="30" height="30" alt="Maanu Manjeri"> മാനു കോനു
+				    <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-user"></i> Profile</a></li>
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-gear"></i> Settings</a></li>
+					<li role="presentation" class="divider"></li>
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-power-off"></i> Log out</a></li>
+				  </ul>
+				</div>
+			</div>
+		</nav>
+		<!-- Content -->
+		<div class="container-fluid">
+			<ng-view></ng-view>
 		</div>
 	</div>
 </div>
