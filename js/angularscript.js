@@ -40,6 +40,10 @@ var app = angular.module('app', ['ngRoute']);
                 templateUrl: 'login.html',
                 controller: 'loginController'
             })
+            .when('/phonebook', {
+                templateUrl: 'phonebook.html',
+                controller: 'loginController'
+            })
             .otherwise({
                 redirectTo: '/'
             });
@@ -233,6 +237,107 @@ var app = angular.module('app', ['ngRoute']);
 	            return a + b[prop];
 	        }, 0);
 	    };
+	});
+	app.controller('phonebookController', function($scope, $http){
+		$scope.contactMode = {
+			activeList : 0,
+			editMode : false,
+			newMode: false,
+			titleList : ['Mr','Mrs','Dr']
+		};
+
+		$scope.dynamicField = function(buttonStatus, inputIndex){
+			if (!buttonStatus) {
+				$scope.currentContact.contacts.push({"phone": ""});
+			}else{
+				$scope.currentContact.contacts.splice(inputIndex,1);
+			}
+		};
+		$scope.removeField = function (argument) {
+			$scope.inputs.splice(inputIndex,1);
+		};
+
+		$scope.currentContact = {};
+		$scope.phoneContacts = {};
+
+		$http.get("js/phonebook.json")
+			.success(function(response) {
+				console.log(response);
+				$scope.phoneContacts = response.phonebook;
+				// $scope.contactMode.activeList = 0;
+				// take first list item to table
+				$scope.initialContact(0);
+			});
+
+		$scope.initialContact = function (contactIndex) {
+			if (!contactIndex) {
+				contactIndex = 0;
+			}
+			// alert($scope.contactMode.activeList);
+			$scope.selectedContact = {};
+			// $scope.selectedContact = $scope.phoneContacts[$scope.contactMode.activeList];
+			$scope.selectedContact = $scope.phoneContacts[contactIndex];
+			$scope.contactMode.activeList = contactIndex;
+			$scope.contactMode.editMode = false;
+			$scope.contactMode.newMode = false;
+		};
+
+		// Take clicked item to the table
+		// TODO show item from the json list intead of making new json
+		$scope.getDeatils = function (detailsIndex){
+			$scope.contactMode.editMode = false;
+			$scope.selectedContact = $scope.phoneContacts[detailsIndex];
+			$scope.contactMode.activeList = detailsIndex;
+		};
+
+		$scope.newContact = function (argument) {
+			$scope.contactMode.editMode = true;
+			$scope.contactMode.newMode = true;
+			// Clear selected JSON list
+			console.log($scope.currentContact);
+			$scope.currentContact = {};
+			$scope.currentContact = { "contacts" : [{"phone": ""}]};
+			// Clear current add JSON lsit 
+			// $scope.currentContact = {};
+		};
+		$scope.editContact = function () {
+			var currentPersonId = $scope.contactMode.activeList;
+			// alert(currentPersonId);
+			$scope.contactMode.editMode = true;
+			$scope.contactMode.newMode = false;
+			// $scope.master= angular.copy(user);
+			$scope.currentContact = angular.copy($scope.phoneContacts[currentPersonId]);
+
+			// $scope.currentContact = $scope.phoneContacts[currentPersonId];
+			console.log($scope.currentContact);
+		};
+		$scope.deleteContact = function (argument) {
+			var currentPersonId = $scope.contactMode.activeList;
+			console.log(currentPersonId);
+			var confirmDelete = confirm("Do you really need to delete " + $scope.phoneContacts[currentPersonId].firstname + " " + $scope.phoneContacts[currentPersonId].lastname);
+			if (confirmDelete) {
+				$scope.phoneContacts.splice(currentPersonId, 1);
+				$scope.initialContact(0);
+			}
+		};
+
+		$scope.addContact = function (argument) {
+			if ($scope.contactMode.newMode){
+				$scope.phoneContacts.push($scope.currentContact);
+				$scope.initialContact($scope.phoneContacts.length - 1);
+			}else{
+				$scope.phoneContacts[$scope.contactMode.activeList] = angular.copy($scope.currentContact);
+				$scope.initialContact($scope.contactMode.activeList);
+			}
+		};
+
+		$scope.checkIndex = function (totalCount, indexCount) {
+			indexCount++;
+			// alert(indexCount);
+			if (totalCount === indexCount) {
+				alert("last one");
+			}
+		};
 	});
 
 })();

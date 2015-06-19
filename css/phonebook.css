@@ -1,0 +1,56 @@
+
+
+/* Phonebook */
+.phonebook-box {
+  height: 500px;
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden; }
+
+.contact-box form, .contact-box .phonebook-box {
+  margin-right: -6px; }
+.contact-box .phonebook-box {
+  height: 466px;
+  max-height: 466px; }
+
+.shrink-box {
+  margin: -10px; }
+  .shrink-box .contact-list:first-child {
+    border-top: 1px solid #ddd; }
+
+.contact-list {
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-top: none; }
+  .contact-list:first-child {
+    border-top: 1px solid #ddd; }
+  .contact-list:hover {
+    background-color: #f7f7f7; }
+  .contact-list.active {
+    border-right: none; }
+  .contact-list .img-thumbnail {
+    width: 60px;
+    margin-right: 10px; }
+  .contact-list .list-unstyled {
+    overflow: hidden;
+    margin-bottom: 0; }
+
+.contact-edit, .contact-table {
+  background-color: #FFF;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-left: none; }
+  .contact-edit .control-label, .contact-table .control-label {
+    text-align: left; }
+
+.contact-table table > tr {
+  background-color: #ff0; }
+  .contact-table table > tr:first-child td {
+    border-top: none; }
+.contact-table table > tbody > tr > th,
+.contact-table table > tbody > tr > td {
+  border-top: none;
+  border-bottom: 1px solid #ddd; }
+
+/*# sourceMappingURL=style.css.map */

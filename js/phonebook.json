@@ -1,0 +1,26 @@
+{
+    "phonebook": [
+        {
+            "title": "Mr",
+            "firstname": "Muhammed",
+            "lastname": "Athmannil",
+            "primaryemail": "athimannil@hotmail.com",
+            "secondaryemail": "hello@athimannil.com",
+            "contacts": [
+                {"phone": "07875 506 426"},
+                {"phone": "+91 9895 319991"},
+                {"phone": "+44 7875 506 426"}
+            ]
+        },{
+            "title": "Mr",
+            "firstname": "Maanu",
+            "lastname": "Konu",
+            "primaryemail": "maanu@konu.com",
+            "secondaryemail": "konu@maanu.com",
+            "contacts": [
+                {"phone": "+447875506426"}
+            ]
+
+        }
+    ]
+}
