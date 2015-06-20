@@ -21,7 +21,7 @@
   <div class="row">
     <div class="col-sm-6 col-md-3">
       <div id="mess-info" class="box quick-info">
-        <h2>{{lastspend | currency:"£"}}</h2>
+        <h2>{{lastspend | currency:"₹"}}</h2>
         <h5>This month bill so far</h5>
         <span><i class="fa fa-arrow-circle-o-down"></i>
           7% Less than last month</span>
@@ -32,7 +32,7 @@
     </div>
     <div class="col-sm-6 col-md-3">
       <div id="buy-info" class="box quick-info">
-        <h2 ng-repeat="user in users" ng-if="user.id === currentuser">{{ user.spent | currency:"£"}}</h2>
+        <h2 ng-repeat="user in users" ng-if="user.id === currentuser">{{ user.spent | currency:"₹"}}</h2>
         <h5>Contribution in this month</h5>
         <span><i class="fa fa-arrow-circle-o-up"></i>
           3% Higher than last month</span>
@@ -43,7 +43,7 @@
     </div>
     <div class="col-sm-6 col-md-3">
       <div id="average-info" class="box quick-info">
-        <h2>{{totalamount/users.length | currency:"£"}}</h2>
+        <h2>{{totalamount/users.length | currency:"₹"}}</h2>
         <h5>Average bill could be</h5>
         <span><i class="fa fa-arrow-circle-o-right"></i>
           same amount as last month</span>
@@ -54,7 +54,7 @@
     </div>
     <div class="col-sm-6 col-md-3">
       <div id="total-info" class="box quick-info">
-        <h2>{{totalamount | currency:"£"}}</h2>
+        <h2>{{totalamount | currency:"₹"}}</h2>
         <h5>Total bill for all</h5>
         <span><i class="fa fa-arrow-circle-o-up"></i>
           3% Higher than last month</span>
@@ -81,7 +81,7 @@
                 <div class="col-md-6">
                   <label for="product-value">Price</label>
                   <div class="input-group">
-                    <span class="input-group-addon">£</span>
+                    <span class="input-group-addon">₹</span>
                     <input type="number" class="form-control" placeholder="0.00" ng-model="newitem.price">
                   </div>
                 </div>

@@ -39,7 +39,7 @@
                 <tr ng-repeat="invoiceprice in invoicebill.invoiceprice">
                   <td>{{$index+1}}</td>
                   <td>{{invoiceprice.item}}</td>
-                  <td class="text-right">{{invoiceprice.price | currency:"£"}}</td>
+                  <td class="text-right">{{invoiceprice.price | currency:"₹"}}</td>
                 </tr>
               </tbody>
             </table>
@@ -55,15 +55,15 @@
             <table class="table table-bordered">
               <tr class="">
                 <td>Sub total</td>
-                <td align="right">{{invoicebill.invoiceprice | sum:'price' | currency:"£"}}</td>
+                <td align="right">{{invoicebill.invoiceprice | sum:'price' | currency:"₹"}}</td>
               </tr>
               <tr class="success">
                 <td>Your contribution</td>
-                <td align="right">{{invoicebill.contribution | currency:"£"}}</td>
+                <td align="right">{{invoicebill.contribution | currency:"₹"}}</td>
               </tr>
               <tr class="">
                 <td><strong>Total</strong></td>
-                <td align="right"><strong>{{(invoicebill.invoiceprice | sum:'price') - invoicebill.contribution | currency:"£"}}</strong></td>
+                <td align="right"><strong>{{(invoicebill.invoiceprice | sum:'price') - invoicebill.contribution | currency:"₹"}}</strong></td>
               </tr>
             </table>
           </div>

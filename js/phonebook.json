@@ -2,10 +2,10 @@
     "phonebook": [
         {
             "title": "Mr",
-            "firstname": "Muhammed",
+            "firstname": "Basheer",
             "lastname": "Athmannil",
-            "primaryemail": "athimannil@hotmail.com",
-            "secondaryemail": "hello@athimannil.com",
+            "primaryemail": "Basheer@hotmail.com",
+            "secondaryemail": "hello@Basheer.com",
             "contacts": [
                 {"phone": "07875 506 426"},
                 {"phone": "+91 9895 319991"},
@@ -13,10 +13,10 @@
             ]
         },{
             "title": "Mr",
-            "firstname": "Maanu",
+            "firstname": "Kallayi",
             "lastname": "Konu",
-            "primaryemail": "maanu@konu.com",
-            "secondaryemail": "konu@maanu.com",
+            "primaryemail": "Kallayi@konu.com",
+            "secondaryemail": "konu@Kallayi.com",
             "contacts": [
                 {"phone": "+447875506426"}
             ]
