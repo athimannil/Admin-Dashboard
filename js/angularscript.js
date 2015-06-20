@@ -1,6 +1,6 @@
 (function(){
 // Angular
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('myApp', ['ngRoute']);
     app.config(function($routeProvider, $locationProvider) {
         // $locationProvider.html5Mode(true);
         $routeProvider
@@ -219,7 +219,15 @@ var app = angular.module('app', ['ngRoute']);
 		};
 	});
 	app.controller('recurController', function($scope){});
-	app.controller('profileController', function($scope){});
+	app.controller('profileController', function($scope){
+		// $scope.tabMenu = {profile};
+		$scope.menuItems = ["settings-profile","edit-profile","settings-purchase","settings-payment","settings-password"];
+		$scope.selectedTab = $scope.menuItems[0];
+		$scope.currentTab = function(switchTab){
+			// alert(switchTab);
+			$scope.selectedTab = switchTab;
+		};
+	});
 	app.controller('settingsController', function($scope){});
 	app.filter('percentage', ['$filter', function ($filter) {
 		return function (input, decimals) {
@@ -247,7 +255,7 @@ var app = angular.module('app', ['ngRoute']);
 		};
 
 		$scope.dynamicField = function(buttonStatus, inputIndex){
-			if (!buttonStatus) {
+			if (buttonStatus) {
 				$scope.currentContact.contacts.push({"phone": ""});
 			}else{
 				$scope.currentContact.contacts.splice(inputIndex,1);
@@ -264,8 +272,6 @@ var app = angular.module('app', ['ngRoute']);
 			.success(function(response) {
 				console.log(response);
 				$scope.phoneContacts = response.phonebook;
-				// $scope.contactMode.activeList = 0;
-				// take first list item to table
 				$scope.initialContact(0);
 			});
 
@@ -273,9 +279,7 @@ var app = angular.module('app', ['ngRoute']);
 			if (!contactIndex) {
 				contactIndex = 0;
 			}
-			// alert($scope.contactMode.activeList);
 			$scope.selectedContact = {};
-			// $scope.selectedContact = $scope.phoneContacts[$scope.contactMode.activeList];
 			$scope.selectedContact = $scope.phoneContacts[contactIndex];
 			$scope.contactMode.activeList = contactIndex;
 			$scope.contactMode.editMode = false;
@@ -294,7 +298,7 @@ var app = angular.module('app', ['ngRoute']);
 			$scope.contactMode.editMode = true;
 			$scope.contactMode.newMode = true;
 			// Clear selected JSON list
-			console.log($scope.currentContact);
+			// console.log($scope.currentContact);
 			$scope.currentContact = {};
 			$scope.currentContact = { "contacts" : [{"phone": ""}]};
 			// Clear current add JSON lsit 
@@ -309,7 +313,7 @@ var app = angular.module('app', ['ngRoute']);
 			$scope.currentContact = angular.copy($scope.phoneContacts[currentPersonId]);
 
 			// $scope.currentContact = $scope.phoneContacts[currentPersonId];
-			console.log($scope.currentContact);
+			// console.log($scope.currentContact);
 		};
 		$scope.deleteContact = function (argument) {
 			var currentPersonId = $scope.contactMode.activeList;
@@ -328,14 +332,6 @@ var app = angular.module('app', ['ngRoute']);
 			}else{
 				$scope.phoneContacts[$scope.contactMode.activeList] = angular.copy($scope.currentContact);
 				$scope.initialContact($scope.contactMode.activeList);
-			}
-		};
-
-		$scope.checkIndex = function (totalCount, indexCount) {
-			indexCount++;
-			// alert(indexCount);
-			if (totalCount === indexCount) {
-				alert("last one");
 			}
 		};
 	});

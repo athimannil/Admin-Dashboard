@@ -1,12 +1,8 @@
 <div class="container-fluid" ng-controller="phonebookController">
 	<div class="row" ng-controller="phonebookController">
 		<div class="col-md-12 box">
+			<h2>Phonebook</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, nisi, ipsum? Officiis, repellat facilis commodi. Animi aut quisquam nostrum et, deleniti aliquam, fugit, vero minus error ex, exercitationem est suscipit.</p>
-			<!-- 				<hr>
-							{{contactMode.editMode}}
-							<hr>
-							{{currentContact.title ? currentContact.title : contactMode.titleList[0]}}
-			 -->			
 		</div>
 		<div class="col-md-3 contact-box">
 			<form>
@@ -16,7 +12,6 @@
 		    </div>
 			</form>
 			<div class="phonebook-box">
-					<!-- <div class="contact-list" ng-repeat="phoneContact in phoneContacts | filter:searchContact" ng-class="{active:contactMode.activeList === $index}"> -->
 					<div class="contact-list" ng-repeat="phoneContact in phoneContacts | filter:searchContact">
 						<figure class="pull-left">
 							<a ng-click="getDeatils($index)">
@@ -32,7 +27,6 @@
 			</div>		
 		</div>
 		<div class="col-md-9 contact-table phonebook-box" ng-hide="contactMode.editMode">
-
 			<div class="btn-group pull-right">
 				<button class="btn btn-primary" type="button" ng-click="newContact();"><i class="fa fa-plus"></i> Add</button>
 				<!-- <button class="btn btn-primary" type="button" ng-click="contactMode.editMode = !contactMode.editMode"><i class="fa fa-plus"></i> Add</button> -->
@@ -46,7 +40,6 @@
 				  <li><a ng-click="deleteContact();"><i class="fa fa-trash-o"></i> Delete</a></li>
 				</ul>
 			</div>
-
 			<table class="table table-hover">
 				<tr>
 					<th>Title</th>
@@ -72,19 +65,16 @@
 					<th>ontact number {{$index + 1 }}</th>
 					<td>{{contact.phone}}</td>
 				</tr>
+				<tr>
 			</table>
 		</div>
 		<div class="col-md-9 contact-edit phonebook-box" ng-show="contactMode.editMode">
-			<!-- <pre> -->
-			{{currentContact.contacts}}
-			<!-- </pre> -->
-			<hr>
-			{{currentContact}}
+			<h2 ng-show="contactMode.newMode">New contact</h2>
+			<h2 ng-hide="contactMode.newMode">{{selectedContact.firstname + " " + selectedContact.lastname}}</h2>
 			<form class="form-horizontal" ng-submit="addContact();">
 			  <div class="form-group">
 			    <label for="title" class="col-sm-3 control-label">Title</label>
 			    <div class="col-sm-9">
-				    <!-- <select name="title" id="title" class="form-control" ng-model="currentContact.title ? currentContact.title : contactMode.titleList[0]" ng-options="title for title in contactMode.titleList"></select> -->
 				    <select name="title" id="title" class="form-control" ng-model="currentContact.title" ng-options="title for title in contactMode.titleList"></select>
 			    </div>
 		    </div>
@@ -112,72 +102,28 @@
 				  	<input type="email" class="form-control" id="secondary-email" placeholder="Secondary email" ng-model="currentContact.secondaryemail">
 				  </div>
 				</div>
-				<!-- <div class="form-group">
-				  <label for="contact-number1" class="col-sm-3 control-label">Contact number 1</label>
-				  <div class="col-sm-9">
-				  	<input type="tel" class="form-control" id="contact-number1" placeholder="Contact number 1" ng-model="currentContact.phone" required>
-				  </div>
-				</div>
-				<div class="form-group">
-				  <label for="contact-number2" class="col-sm-3 control-label">Contact number 2</label>
-				  <div class="col-sm-9">
-				  	<input type="tel" class="form-control" id="contact-number1" placeholder="Contact number 2" ng-model="currentContact.phone1">
-				  </div>
-				</div> -->
-
-				<tr ng-repeat="contact in selectedContact.contacts">
-				<th>Contact number {{$index + 1 }}</th>
-				<td>{{currentContact.contacts.phone}}</td>
-				</tr>
-
-				<!-- <div class="form-group" ng-repeat="input in inputs"> -->
-				<div class="form-group" ng-repeat="contact in currentContact.contacts" ng-init="checkIndex(currentContact.contacts.length);">
+				<div class="form-group" ng-repeat="contact in currentContact.contacts">
 				  <label for="contact-number3" class="col-sm-3 control-label">Contact number {{$index + 1 }}</label>
 				  <div class="col-sm-9">
 				  	<div class="input-group">
 							<input type="tel" class="form-control" placeholder="Contact number {{$index + 1 }}" ng-model="contact.phone">
 							<span class="input-group-btn">
-							  <button class="btn btn-default" type="button" ng-init="plusSign = true;" 
-							  	ng-click="plusSign = !plusSign; dynamicField(plusSign, $index);">
-								  <i class="fa" ng-class="plusSign ? 'fa-plus' : 'fa-minus'"></i>
-								  <!-- {{plusSign}} -->
+							  <button class="btn btn-default" type="button" ng-init="plusSign = true" ng-click="plusSign = !plusSign; dynamicField($last, $index);">
+								  <i class="fa" ng-class="$last ? 'fa-plus' : 'fa-minus'"></i>
 							  </button>
 							</span>
 						</div>
 					</div>
 				</div>
-				<!-- <div class="form-group" ng-repeat="input in inputs">
-				  <label for="contact-number3" class="col-sm-3 control-label">Contact number {{$index+2}}</label>
-				  <div class="col-sm-9">
-				  	<div class="input-group">
-							<input type="tel" class="form-control" placeholder="Search contact" ng-model="searchContact">
-							<span class="input-group-btn">
-							  <button class="btn btn-default" type="button" ng-init="plusSign = true" 
-							  	ng-click="plusSign = !plusSign; dynamicField(plusSign, $index);">
-								  <i class="fa" ng-class="plusSign ? 'fa-plus' : 'fa-minus'"></i>
-								  {{plusSign}}
-							  </button>
-							</span>
-						</div>
-					</div>
-				</div> -->
-
-
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-primary pull-right">
+					<div class="col-sm-12 text-right">
+						<button type="button" class="btn btn-default" ng-click="initialContact();">Cancel</button>
+						<button type="submit" class="btn btn-primary">
 							{{contactMode.newMode ? "Add new contact" : "Update contact"}}
 						</button>
 					</div>
 				</div>
 			</form>
-		</div>
-		<div class="col-md-12 box">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi ea, molestias temporibus atque a sed doloribus sit perspiciatis natus voluptatibus suscipit magni deleniti vero aspernatur facilis eligendi, officiis, neque delectus.</p>
-			<hr>
-			<a ng-click="isReplyFormOpen = !isReplyFormOpen">Reply</a>
-			<hr>
-			<div ng-show="isReplyFormOpen" id="replyForm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ab, maiores velit corrupti, molestias perferendis. Fuga commodi aperiam dolor quae reiciendis, eius, quasi similique repellendus in doloremque suscipit? Numquam, impedit!</div>
 		</div>
 	</div>
 </div>

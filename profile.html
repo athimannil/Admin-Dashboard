@@ -38,15 +38,22 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <ul class="nav nav-tabs">
+        <!-- <ul class="nav nav-tabs">
           <li class="active"><a href="#settings-profile" data-toggle="tab"><i class="fa fa-user"></i> Profile</a></li>
           <li><a href="#edit-profile" data-toggle="tab"><i class="fa fa-pencil"></i> Edit Profile</a></li>
           <li><a href="#settings-purchase" data-toggle="tab"><i class="fa fa-shopping-cart"></i> Purchase</a></li>
           <li><a href="#settings-payment" data-toggle="tab"><i class="fa fa-credit-card"></i> Payment</a></li>
           <li><a href="#settings-password" data-toggle="tab"><i class="fa fa-key"></i> Password</a></li>
+        </ul> -->
+        <ul class="nav nav-tabs">
+          <li class="active"><a ng-click="currentTab('settings-profile')" data-toggle="tab"><i class="fa fa-user"></i> Profile</a></li>
+          <li><a ng-click="currentTab('edit-profile')" data-toggle="tab"><i class="fa fa-pencil"></i> Edit Profile</a></li>
+          <li><a ng-click="currentTab('settings-purchase')" data-toggle="tab"><i class="fa fa-shopping-cart"></i> Purchase</a></li>
+          <li><a ng-click="currentTab('settings-payment')" data-toggle="tab"><i class="fa fa-credit-card"></i> Payment</a></li>
+          <li><a ng-click="currentTab('settings-password')" data-toggle="tab"><i class="fa fa-key"></i> Password</a></li>
         </ul>
         <div class="tab-content">
-          <div id="settings-profile" class="box tab-pane">
+          <div ng-class="{active: selectedTab === 'settings-profile'}" class="box tab-pane">
             <div class="row">
               <div class="col-md-4 hide">
                 <strong>My details</strong>
@@ -87,7 +94,7 @@
               </div>
             </div>
           </div>
-          <div id="edit-profile" class="box tab-pane">
+          <div ng-class="{active: selectedTab === 'edit-profile'}" class="box tab-pane">
             <form class="form-horizontal" role="form">
             <div class="row">
               <div class="col-md-3">
@@ -185,7 +192,7 @@
               <p>.form-group>label.col-sm-2.control-label+.col-sm-6>input.form-control</p>
             </form>
           </div>
-          <div id="settings-purchase" class="box tab-pane">
+          <div ng-class="{active: selectedTab === 'settings-purchase'}" class="box tab-pane">
             <div class="row">
               <div class="col-md-12">
                 <div id="mess-table">
@@ -349,7 +356,7 @@
               </div>
             </div>
           </div>
-          <div id="settings-payment" class="box tab-pane active">
+          <div ng-class="{active: selectedTab === 'settings-payment'}" class="box tab-pane">
             <h4>Payment & Billing Information</h4>
             <div class="row">
               <div class="col-md-9">
@@ -501,7 +508,7 @@
               </div>
             </div>
           </div>
-          <div id="settings-password" class="box tab-pane">
+          <div ng-class="{active: selectedTab === 'settings-password'}" class="box tab-pane">
             <h4>Change your password</h4>
             <form class="form-horizontal" role="form">
               <div class="form-group">

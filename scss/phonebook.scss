@@ -1,0 +1,68 @@
+//
+// Phonebook page
+// --------------------------------------------------
+
+
+// Phonebook
+.contact-box{
+  form{
+    margin-right: -6px;
+  }
+  .phonebook-box{
+    @extend form;
+  }
+}
+.contact-list{
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid $primary-border;
+  border-top: none;
+  &:first-child{
+    border-top: 1px solid $primary-border;
+  }
+  &:hover{
+    background-color: #f7f7f7;
+  }
+  &.active{
+    border-right: none;
+  }
+  .img-thumbnail{
+    width: 60px;
+    margin-right: 10px;
+  }
+  .list-unstyled{
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+}
+.contact-edit{
+  background-color: #FFF;
+  padding: 20px;
+  border: 1px solid $primary-border;
+  border-left: none;
+  .control-label{
+    text-align: left;
+  }
+}
+.contact-table{
+  @extend .contact-edit;
+  table{
+    > tr{
+      background-color: #ff0;
+      &:first-child{
+        td{
+          border-top: none;
+        }
+      }
+    }
+    > tbody{
+      > tr{
+        > th,
+        > td{
+          border-top: none;
+          border-bottom: 1px solid $primary-border;
+        }
+      }
+    }
+  }
+}
