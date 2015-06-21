@@ -229,6 +229,9 @@
 .tab-content {
   > .tab-pane {
     display: none;
+    > .box{
+      border-top: none;
+    }
   }
   > .active {
     display: block;
@@ -237,7 +240,6 @@
     border-top: none;
   }
 }
-
 
 // Dropdowns
 // -------------------------

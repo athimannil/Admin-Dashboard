@@ -122,25 +122,33 @@
         </li>
       </ul>
     </div>
-    <div class="col-md-4">
-      <ul class="nav nav-tabs nav-justified">
-        <li class="active"><a href="#"><strong><i class="fa fa-clock-o fa-lg"></i> This month</strong></a></li>
-        <li><a href="#"><strong><i class="fa fa-hand-o-left fa-lg"></i> Last month</strong></a></li>
-      </ul>
-      <ul id="last-pay" class="list-group">
-
-        <li class="list-group-item" ng-repeat="user in users">
-          <span class="badge progress-bar-warning">{{percentage(user.spent, totalamount)}}%</span>
-          <!-- <img src="img/me.jpg" alt="member" height="40" width="40" class="img-circle pull-left"> -->
-          <img ng-src="{{user.image}}" alt="{{user.firstname}} {{user.lastname}}" height="40" width="40" class="img-circle pull-left">
-          {{user.firstname}} {{user.lastname}}
-          <div class="progress">
-            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{percentage(user.spent, totalamount)}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percentage(user.spent, totalamount)}}%">
-              <span class="sr-only">{{percentage(user.spent, totalamount)}}% Complete (warning)</span>
+    <tabset justified="true" class="col-md-4">
+      <tab>
+        <tab-heading>
+          <strong><i class="fa fa-clock-o fa-lg"></i> This month</strong>
+        </tab-heading>
+        <ul id="last-pay" class="list-group">
+          <li class="list-group-item" ng-repeat="user in users">
+            <span class="badge progress-bar-warning">{{percentage(user.spent, totalamount)}}%</span>
+            <!-- <img src="img/me.jpg" alt="member" height="40" width="40" class="img-circle pull-left"> -->
+            <img ng-src="{{user.image}}" alt="{{user.firstname}} {{user.lastname}}" height="40" width="40" class="img-circle pull-left">
+            {{user.firstname}} {{user.lastname}}
+            <div class="progress">
+              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{percentage(user.spent, totalamount)}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percentage(user.spent, totalamount)}}%">
+                <span class="sr-only">{{percentage(user.spent, totalamount)}}% Complete (warning)</span>
+              </div>
             </div>
-          </div>
-        </li>
-      </ul>
-    </div>
+          </li>
+        </ul>
+      </tab>
+      <tab>
+        <tab-heading>
+          <strong><i class="fa fa-hand-o-left fa-lg"></i> Last month</strong>
+        </tab-heading>
+        <div class="box">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum vitae omnis enim culpa, eaque quam totam magni officiis atque, laudantium molestiae voluptates tempore error quisquam est placeat corrupti qui sequi!</p>
+        </div>
+      </tab>
+    </tabset>
   </div>
 </div>

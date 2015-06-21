@@ -3573,6 +3573,8 @@ tbody.collapse.in {
 
 .tab-content > .tab-pane {
   display: none; }
+  .tab-content > .tab-pane > .box {
+    border-top: none; }
 .tab-content > .active {
   display: block; }
 .tab-content > .box {
