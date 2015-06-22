@@ -68,7 +68,44 @@
     <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Add Expense</h3>
+          <h3 class="panel-title">Add remainder</h3>
+        </div>
+        <div class="panel-bodys">
+          <form role="form" ng-submit="addtolist()">
+            <div class="form-group">
+              <!-- <label for="Product">Item Name</label> -->
+              <input type="text" class="form-control" id="Product" placeholder="New remainder" ng-model="newitem.name">
+            </div>
+            <div class="form-group">
+              <textarea name="" id="" cols="30" rows="10"></textarea>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="product-value">Price</label>
+                  <div class="input-group">
+                    <span class="input-group-addon">₹</span>
+                    <input type="number" class="form-control" placeholder="0.00" ng-model="newitem.price">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="prchase-date">Who paid ?</label>
+                  <select ng-model="user.lastname" ng-options="user.lastname for user in users">
+                    <option value="">-- choose name --</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary pull-right">
+              <i class="fa fa-plus"></i> Add to mess</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 hide ">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Add remainder</h3>
         </div>
         <div class="panel-body">
           <form role="form" ng-submit="addtolist()">
@@ -101,7 +138,7 @@
     </div>
     <div class="col-md-4">
       <ul id="to-do" class="list-group checkbox-list">
-        <a class="list-group-item active"><i class="fa fa-lg fa-list-alt"></i> To Do List</a>
+        <a class="list-group-item active"><i class="fa fa-lg fa-list-alt"></i> Remainders</a>
         <li class="list-group-item checkbox" ng-repeat=" todo in todolist">
           <label>
             <input type="checkbox" class="hide" ng-model="todo.done">
@@ -112,7 +149,7 @@
         </li>
         <li class="list-group-item" style="border:none; padding:0;">
           <form ng-submit="addtodo(newtodo)" class="input-group">
-            <input type="text" class="form-control" ng-model="newtodo">
+            <input type="text" class="form-control" ng-model="newtodo" placeholder="New reminder">
             <span class="input-group-btn">
               <button class="btn btn-primary" type="submit">
                 <i class="fa fa-plus"></i>
