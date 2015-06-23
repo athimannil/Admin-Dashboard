@@ -2,7 +2,6 @@
 // Phonebook page
 // --------------------------------------------------
 
-
 // Phonebook
 .contact-box{
   form{
@@ -40,6 +39,10 @@
   padding: 20px;
   border: 1px solid $primary-border;
   border-left: none;
+  h2{
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
   .control-label{
     text-align: left;
   }
