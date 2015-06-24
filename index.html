@@ -23,11 +23,13 @@
 	    <figure id="profile">
 	      <a href="#"><img class="img-circle" src="img/me.jpg" width="130" height="130" alt="Kallayi"></a>
 	      <figcaption>
-	        <h3>Kallayi</h3>
+	        <h3>{{user.firstname + " " + user.lastname}}</h3>
 	      </figcaption>
 	    </figure>
-
-		<ul class="nav nav-pills nav-stacked" ng-init="tab = 1">
+		<ul class="nav">
+			<li ng-repeat="menu in user.menu"><a href="#{{menu.page}}" ng-class="{active: }"><i class="fa fa-{{menu.icon}}"></i> {{menu.title}}</a></li>
+		</ul>
+		<ul class="nav nav-pills nav-stacked hide" ng-init="tab = 1">
 		  <li><a href="/#/dashboard" ng-class="{active: tab === 1}" ng-click="tab = 1"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 		  <li><a href="/#/ui" ng-class="{active: tab === 2}" ng-click="tab = 2"><i class="fa fa-dashboard"></i> UI</a></li>
 		  <li><a href="/#/expense" ng-class="{active: tab === 3}" ng-click="tab = 3"><i class="fa fa-shopping-cart"></i> Expenses</a></li>
