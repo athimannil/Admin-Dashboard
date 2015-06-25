@@ -5833,8 +5833,7 @@ header {
 .quick-info {
   color: #FFF;
   padding: 20px;
-  margin-bottom: 15px h2;
-  margin-bottom-margin-top: 0; }
+  margin-bottom: 15px; }
 
 .quick-info .info-icon {
   position: absolute;
@@ -6078,6 +6077,27 @@ header {
   #wrapper.toggled #page-content-wrapper {
     position: relative;
     margin-right: 0; } }
+.delete-task {
+  position: absolute;
+  right: 10px;
+  top: 10px; }
+
+.task-checkbox + i {
+  width: 20px;
+  cursor: pointer; }
+
+.complete-true {
+  text-decoration: line-through; }
+  .complete-true:not(a) {
+    color: #bebebe; }
+
+.task-date {
+  display: block;
+  padding-left: 25px; }
+
+.task-detail {
+  margin-top: 10px; }
+
 .contact-box form, .contact-box .phonebook-box {
   margin-right: -6px; }
 

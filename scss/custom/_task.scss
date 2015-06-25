@@ -1,0 +1,22 @@
+.delete-task{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.task-checkbox + i{
+  width: 20px;
+  cursor: pointer;
+}
+.complete-true{
+  text-decoration: line-through;
+  &:not(a){
+    color: #bebebe;
+  }
+}
+.task-date{
+  display: block;
+  padding-left: 25px;
+}
+.task-detail{
+  margin-top: 10px;
+}

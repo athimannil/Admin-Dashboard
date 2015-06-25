@@ -210,6 +210,30 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 	});
 	app.controller('dashboardController', function($scope){
+		$scope.newTask = {};
+		$scope.tasks = [
+			{'name': 'I have to do this', 'detail': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere asperiores at magni! Officia vero sunt, rerum tempore, deserunt illo expedita iure blanditiis deleniti doloremque molestias fuga quod nemo perferendis ipsam. ipsum dolor sit amet kili paari poyi', 'date': '2015-05-18T18:30:00.000Z', 'done': true},
+			{'name': 'I have to do that', 'detail': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum corporis commodi voluptate suscipit ratione, ipsa sapiente vitae dolores, veritatis magnam modi reiciendis ullam, officiis inventore facere mollitia ipsam error quam? ipsum dolor sit amet kili paari poyi', 'date': '2014-06-24T18:30:00.000Z', 'done': false},
+			{'name': 'He has to do those', 'detail': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati dolorum fugit, dolore inventore minus, labore, voluptas blanditiis corrupti perspiciatis illum velit excepturi voluptates delectus odio assumenda earum maxime molestias minima. ipsum dolor sit amet kili paari poyi', 'date': '2015-07-12T18:30:00.000Z', 'done': true}
+		];
+		// New task
+		$scope.addTask = function(){
+		    $scope.tasks.push({
+		        name: $scope.newTask.name,
+		        detail: $scope.newTask.detail,
+		        date: $scope.newTask.date,
+		        done: false
+		    });
+		    $scope.newTask = {};
+		};
+		// Delete task
+		$scope.deleteTastk = function (taskIndex) {
+			var confirmDelete = confirm("Do you really need to delete the task");
+			if (confirmDelete) {
+				$scope.tasks.splice(taskIndex, 1);
+			}
+		};
+
 		$scope.todolist = [
 			{ id: 1, task: 'Some thing to do', asignedto: 1, done: false},
 			{ id: 2, task: 'Nothing to do', asignedto: 3, done: true},

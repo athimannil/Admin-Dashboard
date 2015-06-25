@@ -84,7 +84,7 @@
               <div class="row">
                 <div class="col-md-8">
                   <label>Date</label>
-                  <input type="date" class="form-control" ng-model="newTask.date" placeholder="Date" required>
+                  <input type="date" class="form-control" ng-model="newTask.date" placeholder="Date" required value="11/08/2012" >
                 </div>
                 <div class="col-md-4">
                   <label for="">&nbsp;</label>
@@ -97,27 +97,24 @@
       </div>
     </div>
     <div class="col-md-4">
-      <ul id="to-do" class="list-group checkbox-list">
-        <li class="list-group-item active"><i class="fa fa-lg fa-list-alt"></i> Tasks</li>
-        <li class="list-group-item checkbox" ng-repeat=" todo in todolist">
+      <div class="list-group">
+        <div class="list-group-item active"> 
+          <i class="fa fa-lg fa-tasks"> </i> Tasks 
+        </div>
+        <div class="list-group-item" ng-repeat="task in tasks | orderBy: date">
+        <!-- <div class="list-group-item" ng-repeat="task in tasks"> -->
+          <a href class="delete-task" ng-click="deleteTastk($index)">
+            <span class="fa  fa-trash-o"></span>
+          </a>
           <label>
-            <input type="checkbox" class="hide" ng-model="todo.done">
-            <i class="fa fa-lg" ng-class="{true:'fa-check-square-o', false:'fa-square-o'}[todo.done]"></i>
-            <span class="todo-task">{{todo.task}}</span>
+            <input type="checkbox" class="hide task-checkbox" ng-model="task.done">
+            <i class="fa fa-lg" ng-class="task.done ? 'fa-check-square-o  text-muted' : 'fa-square-o'"></i> 
           </label>
-          <span class="label label-default pull-right" ng-repeat="info in users" ng-if="info.id === todo.asignedto">{{info.firstname}}</span>
-        </li>
-        <li class="list-group-item" style="border:none; padding:0;">
-          <form ng-submit="addtodo(newtodo)" class="input-group">
-            <input type="text" class="form-control" ng-model="newtodo" placeholder="What needs to be done?">
-            <span class="input-group-btn">
-              <button class="btn btn-primary" type="submit">
-                <i class="fa fa-plus"></i>
-              </button>
-            </span>
-          </form>
-        </li>
-      </ul>
+          <a href class="complete-{{task.done}}" ng-init="readItem = false" ng-click="readItem = !readItem;">{{task.name}}</a>
+          <div class="task-date text-muted"><i class="fa fa-calendar"></i> <span class="complete-{{task.done}}">{{task.date | date : 'fullDate'}}</span></div>
+          <p class="task-detail complete-{{task.done}}" ng-show="readItem">{{task.detail}}</p>
+        </div>
+      </div>
     </div>
     <div class="col-md-4 hide">
       <ul id="to-do" class="list-group checkbox-list">
