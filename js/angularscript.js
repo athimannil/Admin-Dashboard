@@ -64,14 +64,13 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				{page: "dashboard", title: "Dashboard", icon: "dashboard"},
 				{page: "banks", title: "Banks", icon: "bank"},
 				{page: "phonebook", title: "Phone book", icon: "book"},
-
 				{page: "expense", title: "Expenses", icon: "shopping-cart"},
 				{page: "invoice", title: "Invoice", icon: "file-text-o"},
 				{page: "recur", title: "Reccurring Bills", icon: "dashboard"},
 				{page: "profile", title: "My Profile", icon: "user"},
 				{page: "settings", title: "Settings", icon: "cogs"},
 				{page: "login", title: "Login", icon: "lock"},
-				{page: "ui", title: "UI", icon: "bookmark-o"},
+				{page: "ui", title: "UI", icon: "bookmark-o"}
 			]
 		};
 		/* End menu */
