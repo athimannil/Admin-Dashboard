@@ -6,69 +6,75 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
         // $locationProvider.html5Mode(true);
         $routeProvider
             .when('/', {
-                templateUrl: 'dashboard.html',
+                templateUrl: 'template/dashboard.html',
                 controller: 'homecontroller'
             })
             .when('/dashboard', {
-                templateUrl: 'dashboard.html',
+                templateUrl: 'template/dashboard.html',
                 controller: 'dashboardController'
             })
             .when('/ui', {
-                templateUrl: 'ui.html',
+                templateUrl: 'template/ui.html',
                 controller: 'uiController'
             })
             .when('/expense', {
-                templateUrl: 'expense.html',
+                templateUrl: 'template/expense.html',
                 controller: 'expenseController'
             })
             .when('/invoice', {
-                templateUrl: 'invoice.html',
+                templateUrl: 'template/invoice.html',
                 controller: 'invoiceController'
             })
             .when('/recur', {
-                templateUrl: 'recur.html',
+                templateUrl: 'template/recur.html',
                 controller: 'recurController'
             })
             .when('/profile', {
-                templateUrl: 'profile.html',
+                templateUrl: 'template/profile.html',
                 controller: 'profileController'
             })
             .when('/settings', {
-                templateUrl: 'settings.html',
+                templateUrl: 'template/settings.html',
                 controller: 'settingsController'
             })
             .when('/login', {
-                templateUrl: 'login.html',
+                templateUrl: 'template/login.html',
                 controller: 'loginController'
+            })
+            .when('/banks', {
+                templateUrl: 'template/banks.html',
+                controller: 'bankController'
             })
             .when('/phonebook', {
-                templateUrl: 'phonebook.html',
-                controller: 'loginController'
+                templateUrl: 'template/phonebook.html',
+                controller: 'phonebookController'
             })
             .otherwise({
-                redirectTo: '/'
+            	redirectTo: 'template/dashboard.html'
             });
     });
 	app.controller('loginController', function($scope){});
 	app.controller('homecontroller', function($scope){
-
-		// User details
+		/* Nav menu */
 		$scope.user = {
 			firstname: "Basheer",
 			lastname: "Shah",
 			image: "img/basher.png",
 			menu:[
 				{page: "dashboard", title: "Dashboard", icon: "dashboard"},
+				{page: "banks", title: "Banks", icon: "bank"},
+				{page: "phonebook", title: "Phone book", icon: "book"},
+
 				{page: "expense", title: "Expenses", icon: "shopping-cart"},
 				{page: "invoice", title: "Invoice", icon: "file-text-o"},
 				{page: "recur", title: "Reccurring Bills", icon: "dashboard"},
 				{page: "profile", title: "My Profile", icon: "user"},
 				{page: "settings", title: "Settings", icon: "cogs"},
 				{page: "login", title: "Login", icon: "lock"},
-				{page: "phonebook", title: "Phone book", icon: "book"},
 				{page: "ui", title: "UI", icon: "bookmark-o"},
 			]
 		};
+		/* End menu */
 
 
 		// Toggle sede menu
@@ -171,7 +177,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.addtolist = function () {
 			$scope.items.push({product: $scope.newitem.name, date: '03-Dec-2014', rate: $scope.newitem.price, member: $scope.currentuser, status: 'pending' });
 			$scope.newitem = '';
-			console.log(items);
 		};
 		// alternative for sum
 	    $scope.sum = function(items, prop){
@@ -210,6 +215,32 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 	});
 	app.controller('dashboardController', function($scope){
+		/* Task widget */
+		$scope.newTask = {};
+		$scope.tasks = [
+			{'name': 'I have to do this', 'detail': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere asperiores at magni! Officia vero sunt, rerum tempore, deserunt illo expedita iure blanditiis deleniti doloremque molestias fuga quod nemo perferendis ipsam. ipsum dolor sit amet kili paari poyi', 'date': '2015-05-18T18:30:00.000Z', 'done': true},
+			{'name': 'I have to do that', 'detail': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum corporis commodi voluptate suscipit ratione, ipsa sapiente vitae dolores, veritatis magnam modi reiciendis ullam, officiis inventore facere mollitia ipsam error quam? ipsum dolor sit amet kili paari poyi', 'date': '2014-06-24T18:30:00.000Z', 'done': false},
+			{'name': 'He has to do those', 'detail': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati dolorum fugit, dolore inventore minus, labore, voluptas blanditiis corrupti perspiciatis illum velit excepturi voluptates delectus odio assumenda earum maxime molestias minima. ipsum dolor sit amet kili paari poyi', 'date': '2015-07-12T18:30:00.000Z', 'done': true}
+		];
+		// New task
+		$scope.addTask = function(){
+		    $scope.tasks.push({
+		        name: $scope.newTask.name,
+		        detail: $scope.newTask.detail,
+		        date: $scope.newTask.date,
+		        done: false
+		    });
+		    $scope.newTask = {};
+		};
+		// Delete task
+		$scope.deleteTastk = function (taskIndex) {
+			var confirmDelete = confirm("Do you really need to delete the task");
+			if (confirmDelete) {
+				$scope.tasks.splice(taskIndex, 1);
+			}
+		};
+		/* End task */
+
 		$scope.todolist = [
 			{ id: 1, task: 'Some thing to do', asignedto: 1, done: false},
 			{ id: 2, task: 'Nothing to do', asignedto: 3, done: true},
@@ -222,7 +253,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		    $scope.todolist.push({id: 3, task: newToDo, asignedto: $scope.currentuser, done: false});
 		    // $scope.todolist.push({id: 3, task: $scope.newtodo, asignedto: $scope.currentuser, done: false});
 		    $scope.newtodo = '';
-		    console.log(newToDo);
 		};
 	});
 	app.controller('expenseController', function($scope){});
@@ -267,6 +297,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	        }, 0);
 	    };
 	});
+	
 	app.controller('phonebookController', function($scope, $http){
 		$scope.contactMode = {
 			activeList : 0,
@@ -289,9 +320,8 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.currentContact = {};
 		$scope.phoneContacts = {};
 
-		$http.get("js/phonebook.json")
+		$http.get("./js/phonebook.json")
 			.success(function(response) {
-				console.log(response);
 				$scope.phoneContacts = response.phonebook;
 				$scope.initialContact(0);
 			});
@@ -319,7 +349,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.contactMode.editMode = true;
 			$scope.contactMode.newMode = true;
 			// Clear selected JSON list
-			// console.log($scope.currentContact);
 			$scope.currentContact = {};
 			$scope.currentContact = { "contacts" : [{"phone": ""}]};
 			// Clear current add JSON lsit 
@@ -332,13 +361,9 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.contactMode.newMode = false;
 			// $scope.master= angular.copy(user);
 			$scope.currentContact = angular.copy($scope.phoneContacts[currentPersonId]);
-
-			// $scope.currentContact = $scope.phoneContacts[currentPersonId];
-			// console.log($scope.currentContact);
 		};
 		$scope.deleteContact = function (argument) {
 			var currentPersonId = $scope.contactMode.activeList;
-			console.log(currentPersonId);
 			var confirmDelete = confirm("Do you really need to delete " + $scope.phoneContacts[currentPersonId].firstname + " " + $scope.phoneContacts[currentPersonId].lastname);
 			if (confirmDelete) {
 				$scope.phoneContacts.splice(currentPersonId, 1);
@@ -356,5 +381,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			}
 		};
 	});
+	app.controller('bankController', function($scope, $http){});
 
 })();

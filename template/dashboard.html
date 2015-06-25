@@ -67,76 +67,56 @@
   <div class="row">
     <div class="col-md-4">
       <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Add remainder</h3>
-        </div>
-        <div class="panel-bodys">
-          <form role="form" ng-submit="addtolist()">
-            <div class="form-group">
-              <!-- <label for="Product">Item Name</label> -->
-              <input type="text" class="form-control" id="Product" placeholder="What needs to be done ?" ng-model="newitem.name">
-            </div>
-            <div class="form-group">
-              <textarea name="" id="" cols="30" rows="10"></textarea>
-            </div>
-            <div class="form-group">
-              <div class="row">
-                <div class="col-md-6">
-                  <label for="product-value">Price</label>
-                  <div class="input-group">
-                    <span class="input-group-addon">₹</span>
-                    <input type="number" class="form-control" placeholder="0.00" ng-model="newitem.price">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <label for="prchase-date">Who paid ?</label>
-                  <select ng-model="user.lastname" ng-options="user.lastname for user in users">
-                    <option value="">-- choose name --</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary pull-right">
-              <i class="fa fa-plus"></i> Add to mess</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 hide ">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Add remainder</h3>
+        <div class="panel-heading"> 
+          <h3 class="panel-title"><i class="fa fa-lg fa-tasks"></i> New task</h3>
         </div>
         <div class="panel-body">
-          <form role="form" ng-submit="addtolist()">
+          <form ng-submit="addTask();">
             <div class="form-group">
-              <label for="Product">Item Name</label>
-              <input type="text" class="form-control" id="Product" placeholder="Eg: Sugar" ng-model="newitem.name">
+              <label>Task</label>
+              <input type="text" class="form-control" placeholder="What you need to do ?" ng-model="newTask.name" required>
+            </div>
+            <div class="form-group">
+              <label for="">Description</label>
+              <textarea class="form-control" placeholder="Details" ng-model="newTask.detail"></textarea>
             </div>
             <div class="form-group">
               <div class="row">
-                <div class="col-md-6">
-                  <label for="product-value">Price</label>
-                  <div class="input-group">
-                    <span class="input-group-addon">₹</span>
-                    <input type="number" class="form-control" placeholder="0.00" ng-model="newitem.price">
-                  </div>
+                <div class="col-md-8">
+                  <label>Date</label>
+                  <input type="date" class="form-control" ng-model="newTask.date" placeholder="Date" required value="11/08/2012" >
                 </div>
-                <div class="col-md-6">
-                  <label for="prchase-date">Who paid ?</label>
-                  <select ng-model="user.lastname" ng-options="user.lastname for user in users">
-                    <option value="">-- choose name --</option>
-                  </select>
+                <div class="col-md-4">
+                  <label for="">&nbsp;</label>
+                  <input type="submit" class="btn btn-primary btn-block" value="New task">
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary pull-right">
-              <i class="fa fa-plus"></i> Add to mess</button>
           </form>
         </div>
       </div>
     </div>
     <div class="col-md-4">
+      <div class="list-group">
+        <div class="list-group-item active"> 
+          <i class="fa fa-lg fa-tasks"> </i> Tasks 
+        </div>
+        <div class="list-group-item" ng-repeat="task in tasks | orderBy: date">
+        <!-- <div class="list-group-item" ng-repeat="task in tasks"> -->
+          <a href class="delete-task" ng-click="deleteTastk($index)">
+            <span class="fa  fa-trash-o"></span>
+          </a>
+          <label>
+            <input type="checkbox" class="hide task-checkbox" ng-model="task.done">
+            <i class="fa fa-lg" ng-class="task.done ? 'fa-check-square-o  text-muted' : 'fa-square-o'"></i> 
+          </label>
+          <a href class="complete-{{task.done}}" ng-init="readItem = false" ng-click="readItem = !readItem;">{{task.name}}</a>
+          <div class="task-date text-muted"><i class="fa fa-calendar"></i> <span class="complete-{{task.done}}">{{task.date | date : 'fullDate'}}</span></div>
+          <p class="task-detail complete-{{task.done}}" ng-show="readItem">{{task.detail}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 hide">
       <ul id="to-do" class="list-group checkbox-list">
         <a class="list-group-item active"><i class="fa fa-lg fa-list-alt"></i> Remainders</a>
         <li class="list-group-item checkbox" ng-repeat=" todo in todolist">
