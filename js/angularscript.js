@@ -380,6 +380,35 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			}
 		};
 	});
-	app.controller('bankController', function($scope, $http){});
+	app.controller('bankController', function($scope, $http){
+
+		$scope.status = {
+			isFirstOpen: true,
+			oneAtATime: true
+		};
+
+		$scope.accounts = [
+			{
+				"title": "Account number 1",
+				"details": [
+					{"acnumber": 11223344},
+					{"cardnumber": 1234567890123456},
+					{"cardname": "Basheer Shah"},
+					{"cardexpiry": "12-12-2015"}
+				]
+			},{
+				"title": "Account number 2",
+				"details": [
+					{"acnumber": 11223344},
+					{"cardnumber": 1234567890123456},
+					{"cardname": "Basheer Shah"},
+					{"cardexpiry": "12-12-2015"}
+				]
+			}
+		];
+
+
+
+	});
 
 })();

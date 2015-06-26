@@ -7,8 +7,46 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="box">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis deserunt sequi obcaecati voluptatum dignissimos accusantium, repellat tenetur nesciunt quas laudantium inventore omnis, excepturi animi architecto. Soluta non, eveniet fugit totam.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis deserunt sequi obcaecati voluptatum dignissimos accusantium, repellat tenetur nesciunt quas laudantium inventore omnis, excepturi animi architecto. Soluta non, eveniet fugit totam.</p>
+
+
+
+	<p>
+		<button class="btn btn-default btn-sm" ng-click="status.open = !status.open">Toggle last panel</button>
+		<button class="btn btn-default btn-sm" ng-click="status.isFirstDisabled = ! status.isFirstDisabled">Enable / Disable first panel</button>
+	</p>
+
+  <accordion close-others="status.oneAtATime">
+
+    <accordion-group ng-repeat="account in accounts">
+		<accordion-heading><i class="fa fa-credit-card"></i> {{account.title}}</accordion-heading>
+		{{account.details}}
+		<hr>
+		{{account.details[0].acnumber}} <br>
+		{{account.details[1].cardnumber}} <br>
+		{{account.details[0].cardname}} <br>
+		{{account.details[0].cardexpiry}} <br>
+    </accordion-group>
+
+    <accordion-group heading="Static Header, initially expanded" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+      This content is straight in the template.
+    </accordion-group>
+    
+    <accordion-group heading="Dynamic Body Content">
+      <p>The body of the accordion group grows to fit the contents</p>
+        <button class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
+        <div ng-repeat="item in items">{{item}}</div>
+    </accordion-group>
+    <accordion-group is-open="status.open">
+        <accordion-heading>
+            I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+        </accordion-heading>
+        This is just some content to illustrate fancy headings.
+    </accordion-group>
+  </accordion>
+
+
+
+
 			</div>
 		</div>
 		<div class="col-md-6">
