@@ -419,21 +419,19 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		];
 		$scope.accounts = [
 			{
-				"title": "Account number 1",
-				"details": [
-					{"acnumber": 11223344},
-					{"cardnumber": 1234567890123456},
-					{"cardname": "Basheer Shah"},
-					{"cardexpiry": "12-12-2015"}
-				]
+				"name": "Basheer Shah",
+				"acnumber": 11223344,
+				"type": "Savings account",
+				"iban": 1236548769,
+				"issuedate": "12-05-1986",
+				"balance": "695.20"
 			},{
-				"title": "Account number 2",
-				"details": [
-					{"acnumber": 11223344},
-					{"cardnumber": 1234567890123456},
-					{"cardname": "Basheer Shah"},
-					{"cardexpiry": "12-12-2015"}
-				]
+				"name": "Shah Basheer",
+				"acnumber": 11223344,
+				"type": "Current account",
+				"iban": 1236548769,
+				"issuedate": "12-05-1986",
+				"balance": "695.20"
 			}
 		];
 
