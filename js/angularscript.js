@@ -2,57 +2,57 @@
 // Angular
 // var app = angular.module('myApp', ['ngRoute']);
 var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
-    app.config(function($routeProvider, $locationProvider) {
-        // $locationProvider.html5Mode(true);
-        $routeProvider
-            .when('/', {
-                templateUrl: 'template/dashboard.html',
-                controller: 'homecontroller'
-            })
-            .when('/dashboard', {
-                templateUrl: 'template/dashboard.html',
-                controller: 'dashboardController'
-            })
-            .when('/ui', {
-                templateUrl: 'template/ui.html',
-                controller: 'uiController'
-            })
-            .when('/expense', {
-                templateUrl: 'template/expense.html',
-                controller: 'expenseController'
-            })
-            .when('/invoice', {
-                templateUrl: 'template/invoice.html',
-                controller: 'invoiceController'
-            })
-            .when('/recur', {
-                templateUrl: 'template/recur.html',
-                controller: 'recurController'
-            })
-            .when('/profile', {
-                templateUrl: 'template/profile.html',
-                controller: 'profileController'
-            })
-            .when('/settings', {
-                templateUrl: 'template/settings.html',
-                controller: 'settingsController'
-            })
-            .when('/login', {
-                templateUrl: 'template/login.html',
-                controller: 'loginController'
-            })
-            .when('/banks', {
-                templateUrl: 'template/banks.html',
-                controller: 'bankController'
-            })
-            .when('/phonebook', {
-                templateUrl: 'template/phonebook.html',
-                controller: 'phonebookController'
-            })
-            .otherwise({
-            	redirectTo: 'template/dashboard.html'
-            });
-    });
+	app.config(function($routeProvider, $locationProvider) {
+		// $locationProvider.html5Mode(true);
+		$routeProvider
+			.when('/', {
+				templateUrl: 'template/dashboard.html',
+				controller: 'homecontroller'
+			})
+			.when('/dashboard', {
+				templateUrl: 'template/dashboard.html',
+				controller: 'dashboardController'
+			})
+			.when('/ui', {
+				templateUrl: 'template/ui.html',
+				controller: 'uiController'
+			})
+			.when('/expense', {
+				templateUrl: 'template/expense.html',
+				controller: 'expenseController'
+			})
+			.when('/invoice', {
+				templateUrl: 'template/invoice.html',
+				controller: 'invoiceController'
+			})
+			.when('/recur', {
+				templateUrl: 'template/recur.html',
+				controller: 'recurController'
+			})
+			.when('/profile', {
+				templateUrl: 'template/profile.html',
+				controller: 'profileController'
+			})
+			.when('/settings', {
+				templateUrl: 'template/settings.html',
+				controller: 'settingsController'
+			})
+			.when('/login', {
+				templateUrl: 'template/login.html',
+				controller: 'loginController'
+			})
+			.when('/banks', {
+				templateUrl: 'template/banks.html',
+				controller: 'bankController'
+			})
+			.when('/phonebook', {
+				templateUrl: 'template/phonebook.html',
+				controller: 'phonebookController'
+			})
+			.otherwise({
+				redirectTo: 'template/dashboard.html'
+			});
+	});
 	app.controller('loginController', function($scope){});
 	app.controller('homecontroller', function($scope){
 		/* Nav menu */
@@ -92,71 +92,71 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.lastspend = 1320.90;
 
 		$scope.items = [
-		    { product: '1 Lorem ipsum', date: '12-March-2013', rate: 12.35, member: 1, status: 'approved' },
-		    { product: '2 dolor sit', date: '1-January-2011', rate: 60.54, member: 3, status: 'pending'},
-		    { product: '3 consectetur', date: '12-December-2014', rate: 12.56, member: 1, status: 'pending'},
-		    { product: '4 adipisicing', date: '14-November-2014', rate: 0.99, member: 1, status: 'pending'},
-		    { product: '5 do eiusmod', date: '2-November-2014', rate: 4.00, member: 2, status: 'approved'},
-		    { product: '6 magna aliqua', date: '16-February-2014', rate: 6.54, member: 2, status: 'approved'},
-		    { product: '7 exercitation', date: '30-November-2014', rate: 60.32, member: 2, status: 'pending'},
-		    { product: '8 consequat', date: '5-May-2014', rate: 5.12, member: 1, status: 'denied'},
-		    { product: '9 reprehenderit', date: '12-April-2014', rate: 8.99, member: 5, status: 'approved'},
-		    { product: '10 voluptate', date: '18-November-2014', rate: 34.54, member: 4, status: 'approved'},
-		    { product: '10 ugiat nulla', date: '28-June-2014', rate: 55.12, member: 1, status: 'pending'},
-		    { product: '11 occaecat cupidatat', date: '21-June-2014', rate: 99.54, member: 3, status: 'pending'},
-		    { product: '12 proident', date: '31-December-2014', rate: 15.50, member: 2, status: 'denied'},
-		    { product: '13 culpa qui', date: '1-November-2014', rate: 34.05, member: 1, status: 'pending'},	    
-		    { product: '14 Lorem ipsum', date: '12-March-2013', rate: 12.35, member: 1, status: 'approved' },
-		    { product: '15 dolor sit', date: '1-January-2011', rate: 60.54, member: 3, status: 'pending'},
-		    { product: '16 consectetur', date: '12-December-2014', rate: 12.56, member: 1, status: 'pending'},
-		    { product: '17 adipisicing', date: '14-November-2014', rate: 0.99, member: 1, status: 'denied'},
-		    { product: '18 do eiusmod', date: '2-November-2014', rate: 4.00, member: 2, status: 'approved'},
-		    { product: '19 magna aliqua', date: '16-February-2014', rate: 6.54, member: 2, status: 'approved'},
-		    { product: '20 exercitation', date: '30-November-2014', rate: 60.32, member: 2, status: 'pending'},
-		    { product: '21 consequat', date: '5-May-2014', rate: 5.12, member: 1, status: 'denied'},
-		    { product: '22 reprehenderit', date: '12-April-2014', rate: 8.99, member: 5, status: 'approved'},
-		    { product: '23 voluptate', date: '18-November-2014', rate: 34.54, member: 4, status: 'approved'},
-		    { product: '24 ugiat nulla', date: '28-June-2014', rate: 55.12, member: 1, status: 'pending'},
-		    { product: '25 occaecat cupidatat', date: '21-June-2014', rate: 99.54, member: 3, status: 'pending'},
-		    { product: '26 proident', date: '31-December-2014', rate: 15.50, member: 2, status: 'denied'},
-		    { product: '27 culpa qui', date: '1-November-2014', rate: 34.05, member: 1, status: 'pending'},	    
-		    { product: '28 Lorem ipsum', date: '12-March-2013', rate: 12.35, member: 1, status: 'approved' },
-		    { product: '29 dolor sit', date: '1-January-2011', rate: 60.54, member: 3, status: 'pending'},
-		    { product: '30 consectetur', date: '12-December-2014', rate: 12.56, member: 1, status: 'pending'},
-		    { product: '31 adipisicing', date: '14-November-2014', rate: 0.99, member: 1, status: 'approved'},
-		    { product: '32 do eiusmod', date: '2-November-2014', rate: 4.00, member: 2, status: 'approved'},
-		    { product: '33 magna aliqua', date: '16-February-2014', rate: 6.54, member: 2, status: 'denied'},
-		    { product: '34 exercitation', date: '30-November-2014', rate: 60.32, member: 2, status: 'pending'},
-		    { product: '35 consequat', date: '5-May-2014', rate: 5.12, member: 1, status: 'denied'},
-		    { product: '36 reprehenderit', date: '12-April-2014', rate: 8.99, member: 5, status: 'approved'},
-		    { product: '37 voluptate', date: '18-November-2014', rate: 34.54, member: 4, status: 'approved'},
-		    { product: '38 ugiat nulla', date: '28-June-2014', rate: 55.12, member: 1, status: 'pending'},
-		    { product: '39 occaecat cupidatat', date: '21-June-2014', rate: 99.54, member: 3, status: 'pending'},
-		    { product: '40 proident', date: '31-December-2014', rate: 15.50, member: 2, status: 'denied'},
-		    { product: '42 culpa qui', date: '1-November-2014', rate: 34.05, member: 1, status: 'pending'},
-		    { product: '43 culpa qui', date: '1-November-2014', rate: 34.05, member: 1, status: 'denied'},
-		    { product: '44 mollit anim', date: '3-November-2014', rate: 45.00, member: 4, status: 'approved'}
+			{ product: '1 Lorem ipsum', date: '12-March-2013', rate: 12.35, member: 1, status: 'approved' },
+			{ product: '2 dolor sit', date: '1-January-2011', rate: 60.54, member: 3, status: 'pending'},
+			{ product: '3 consectetur', date: '12-December-2014', rate: 12.56, member: 1, status: 'pending'},
+			{ product: '4 adipisicing', date: '14-November-2014', rate: 0.99, member: 1, status: 'pending'},
+			{ product: '5 do eiusmod', date: '2-November-2014', rate: 4.00, member: 2, status: 'approved'},
+			{ product: '6 magna aliqua', date: '16-February-2014', rate: 6.54, member: 2, status: 'approved'},
+			{ product: '7 exercitation', date: '30-November-2014', rate: 60.32, member: 2, status: 'pending'},
+			{ product: '8 consequat', date: '5-May-2014', rate: 5.12, member: 1, status: 'denied'},
+			{ product: '9 reprehenderit', date: '12-April-2014', rate: 8.99, member: 5, status: 'approved'},
+			{ product: '10 voluptate', date: '18-November-2014', rate: 34.54, member: 4, status: 'approved'},
+			{ product: '10 ugiat nulla', date: '28-June-2014', rate: 55.12, member: 1, status: 'pending'},
+			{ product: '11 occaecat cupidatat', date: '21-June-2014', rate: 99.54, member: 3, status: 'pending'},
+			{ product: '12 proident', date: '31-December-2014', rate: 15.50, member: 2, status: 'denied'},
+			{ product: '13 culpa qui', date: '1-November-2014', rate: 34.05, member: 1, status: 'pending'},     
+			{ product: '14 Lorem ipsum', date: '12-March-2013', rate: 12.35, member: 1, status: 'approved' },
+			{ product: '15 dolor sit', date: '1-January-2011', rate: 60.54, member: 3, status: 'pending'},
+			{ product: '16 consectetur', date: '12-December-2014', rate: 12.56, member: 1, status: 'pending'},
+			{ product: '17 adipisicing', date: '14-November-2014', rate: 0.99, member: 1, status: 'denied'},
+			{ product: '18 do eiusmod', date: '2-November-2014', rate: 4.00, member: 2, status: 'approved'},
+			{ product: '19 magna aliqua', date: '16-February-2014', rate: 6.54, member: 2, status: 'approved'},
+			{ product: '20 exercitation', date: '30-November-2014', rate: 60.32, member: 2, status: 'pending'},
+			{ product: '21 consequat', date: '5-May-2014', rate: 5.12, member: 1, status: 'denied'},
+			{ product: '22 reprehenderit', date: '12-April-2014', rate: 8.99, member: 5, status: 'approved'},
+			{ product: '23 voluptate', date: '18-November-2014', rate: 34.54, member: 4, status: 'approved'},
+			{ product: '24 ugiat nulla', date: '28-June-2014', rate: 55.12, member: 1, status: 'pending'},
+			{ product: '25 occaecat cupidatat', date: '21-June-2014', rate: 99.54, member: 3, status: 'pending'},
+			{ product: '26 proident', date: '31-December-2014', rate: 15.50, member: 2, status: 'denied'},
+			{ product: '27 culpa qui', date: '1-November-2014', rate: 34.05, member: 1, status: 'pending'},     
+			{ product: '28 Lorem ipsum', date: '12-March-2013', rate: 12.35, member: 1, status: 'approved' },
+			{ product: '29 dolor sit', date: '1-January-2011', rate: 60.54, member: 3, status: 'pending'},
+			{ product: '30 consectetur', date: '12-December-2014', rate: 12.56, member: 1, status: 'pending'},
+			{ product: '31 adipisicing', date: '14-November-2014', rate: 0.99, member: 1, status: 'approved'},
+			{ product: '32 do eiusmod', date: '2-November-2014', rate: 4.00, member: 2, status: 'approved'},
+			{ product: '33 magna aliqua', date: '16-February-2014', rate: 6.54, member: 2, status: 'denied'},
+			{ product: '34 exercitation', date: '30-November-2014', rate: 60.32, member: 2, status: 'pending'},
+			{ product: '35 consequat', date: '5-May-2014', rate: 5.12, member: 1, status: 'denied'},
+			{ product: '36 reprehenderit', date: '12-April-2014', rate: 8.99, member: 5, status: 'approved'},
+			{ product: '37 voluptate', date: '18-November-2014', rate: 34.54, member: 4, status: 'approved'},
+			{ product: '38 ugiat nulla', date: '28-June-2014', rate: 55.12, member: 1, status: 'pending'},
+			{ product: '39 occaecat cupidatat', date: '21-June-2014', rate: 99.54, member: 3, status: 'pending'},
+			{ product: '40 proident', date: '31-December-2014', rate: 15.50, member: 2, status: 'denied'},
+			{ product: '42 culpa qui', date: '1-November-2014', rate: 34.05, member: 1, status: 'pending'},
+			{ product: '43 culpa qui', date: '1-November-2014', rate: 34.05, member: 1, status: 'denied'},
+			{ product: '44 mollit anim', date: '3-November-2014', rate: 45.00, member: 4, status: 'approved'}
 		];
 		$scope.editmode = false;
 		$scope.deleteitem = function (delItem) {
-		    $scope.items.splice(delItem, 1);
+			$scope.items.splice(delItem, 1);
 			// alert(delItem);
 		};
 		// limit page items
-	    $scope.currentpage = 0;
-	    $scope.pageSize = 10;
-	    $scope.pagelist = function (start, end) {
-	        var ret = [];
-	    	start = $scope.totalpages();
-	        if (!end) {
-	            end = start;
-	            start = 0;
-	        }
-	        for (var i = start; i < end; i++) {
-	            ret.push(i);
-	        }
-	        return ret;
-	    };
+		$scope.currentpage = 0;
+		$scope.pageSize = 10;
+		$scope.pagelist = function (start, end) {
+			var ret = [];
+			start = $scope.totalpages();
+			if (!end) {
+				end = start;
+				start = 0;
+			}
+			for (var i = start; i < end; i++) {
+				ret.push(i);
+			}
+			return ret;
+		};
 		$scope.prevlist = function () {
 			if ($scope.currentpage > 0) {
 				$scope.currentpage--;
@@ -178,16 +178,16 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newitem = '';
 		};
 		// alternative for sum
-	    $scope.sum = function(items, prop){
-	        return items.reduce(function(a, b){
-	            return a + b[prop];
-	        }, 0);
-	    };
-	    // alternative for percentage
-	    $scope.percentage = function (num1, num2) {
-	    	var num = num1 / num2 * 100;
-	    	return num.toFixed(2);
-	    };
+		$scope.sum = function(items, prop){
+			return items.reduce(function(a, b){
+				return a + b[prop];
+			}, 0);
+		};
+		// alternative for percentage
+		$scope.percentage = function (num1, num2) {
+			var num = num1 / num2 * 100;
+			return num.toFixed(2);
+		};
 		$scope.totalamount = $scope.sum($scope.users, 'spent');
 		$scope.addrecur = {fixed: true,
 			recuringterm:[
@@ -223,13 +223,13 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		];
 		// New task
 		$scope.addTask = function(){
-		    $scope.tasks.push({
-		        name: $scope.newTask.name,
-		        detail: $scope.newTask.detail,
-		        date: $scope.newTask.date,
-		        done: false
-		    });
-		    $scope.newTask = {};
+			$scope.tasks.push({
+				name: $scope.newTask.name,
+				detail: $scope.newTask.detail,
+				date: $scope.newTask.date,
+				done: false
+			});
+			$scope.newTask = {};
 		};
 		// Delete task
 		$scope.deleteTastk = function (taskIndex) {
@@ -249,9 +249,9 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		];
 		$scope.addtodo = function (newToDo) {
 			// alert(newToDo);
-		    $scope.todolist.push({id: 3, task: newToDo, asignedto: $scope.currentuser, done: false});
-		    // $scope.todolist.push({id: 3, task: $scope.newtodo, asignedto: $scope.currentuser, done: false});
-		    $scope.newtodo = '';
+			$scope.todolist.push({id: 3, task: newToDo, asignedto: $scope.currentuser, done: false});
+			// $scope.todolist.push({id: 3, task: $scope.newtodo, asignedto: $scope.currentuser, done: false});
+			$scope.newtodo = '';
 		};
 	});
 	app.controller('expenseController', function($scope){});
@@ -260,10 +260,10 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			id: 12, invoicefrom: '10-November-2014', invoicedate: '12-December-2014', status:'pending', rent: '1200',
 			invoiceprice:[
 				{item: 'Rent', price: 1200},
-			    {item: 'Mess', price: 50.56},
-			    {item: 'Broadband', price: 25.00},
-			    {item: 'Electricity', price: 65.87},
-			    {item: 'Gas', price: 55.80}
+				{item: 'Mess', price: 50.56},
+				{item: 'Broadband', price: 25.00},
+				{item: 'Electricity', price: 65.87},
+				{item: 'Gas', price: 55.80}
 			],
 			contribution: 148.62
 		};
@@ -285,16 +285,16 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 	}]);
 	app.filter('startFrom', function () {
-	    return function (input, start) {
-	        return input.slice(start);
-	    };
+		return function (input, start) {
+			return input.slice(start);
+		};
 	});
 	app.filter('sum', function(){
 		return function(items, prop){
-	        return items.reduce(function(a, b){
-	            return a + b[prop];
-	        }, 0);
-	    };
+			return items.reduce(function(a, b){
+				return a + b[prop];
+			}, 0);
+		};
 	});
 	
 	app.controller('phonebookController', function($scope, $http){
@@ -387,6 +387,36 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			oneAtATime: true
 		};
 
+		$scope.banks =[ 
+		  { 
+				"name":"PNB",
+				"branchcode": "13-35-96",
+				"ifsc": 989525621542,
+				"micr": 1324586468,
+				"swift": 99944422258,
+				"contact": "0483-569821",
+				"branch": 'Manjeri',
+				"address": ["bank addres line 1", "Banks address line 2"]
+		  },{ 
+				"name":"ICICI Banks",
+				"ifsc": 989525621542,
+				"branchcode": "13-35-96",
+				"micr": 1324586468,
+				"swift": 99944422258,
+				"contact": "0483-569821",
+				"branch": 'Calicut',
+				"address": ["bank addres line 1", "Banks address line 2"]
+		  },{ 
+				"name":"SBT",
+				"ifsc": 989525621542,
+				"branchcode": "13-35-96",
+				"micr": 1324586468,
+				"swift": 99944422258,
+				"contact": "0483-569821",
+				"branch": 'Pandikkad',
+				"address": ["bank addres line 1", "Banks address line 2"]
+		  }
+		];
 		$scope.accounts = [
 			{
 				"title": "Account number 1",

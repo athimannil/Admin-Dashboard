@@ -5,9 +5,58 @@
 		</div>
 	</div>
 	<div class="row">
+	<div class="col-md-12">
+		<div class="box">
+			<button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add bank</button>
+			<table>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Bank name</th>
+							<th>Branch code</th>
+							<th>IFSC</th>
+							<th>MICR</th>
+							<th>Swift</th>
+							<th>Contact</th>
+							<th>Branch</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="bank in banks">
+							<td>
+								<a href title="{{bank.name}}">{{bank.name}}</a>
+							</td>
+							<td>{{bank.branchcode}}</td>
+							<td>{{bank.ifsc}}</td>
+							<td>{{bank.micr}}</td>
+							<td>{{bank.swift}}</td>
+							<td><i class="fa fa-phone"></i> <a href="tel:{{bank.contact}}" title="Contact bank">{{bank.contact}}</a></td>
+							<td>{{bank.branch}}</td>
+							<td>
+								<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+									<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editmode = !editmode">
+										<i class="fa fa-pencil"></i>
+									</button>
+									<button type="button" class="btn btn-default" ng-hide="editmode">
+										<i class="fa fa-trash-o"></i>
+									</button>
+									<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
+										<i class="fa fa-save"></i>
+									</button>
+									<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
+										<i class="fa fa-times"></i>
+									</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</table>			
+		</div>
+	</div>
 		<div class="col-md-6">
 			<div class="box">
-
 
 
 	<p>
