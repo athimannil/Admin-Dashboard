@@ -388,7 +388,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 
 		$scope.banks =[ 
-		  { 
+			{
 				"name":"PNB",
 				"branchcode": "13-35-96",
 				"ifsc": 989525621542,
@@ -432,6 +432,79 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"iban": 1236548769,
 				"issuedate": "12-05-1986",
 				"balance": "695.20"
+			},{
+				"name": "Basheer Shah",
+				"acnumber": 11223344,
+				"type": "Business account",
+				"iban": 1236548769,
+				"issuedate": "12-05-1986",
+				"balance": "695.20"
+			}
+		];
+		$scope.cards = [
+			{
+				"id": 1,
+				"bankid": 999999,
+				"type": "visa",
+				"no": "1234 5678 9012 3456",
+				"from": "01/06",
+				"expiry": "05/18",
+				"cvv": 345,
+				"name": "Kallayi Basheer Shah"
+			},{
+				"id": 2,
+				"bankid": 888888,
+				"type": "Master",
+				"no": "3456 7890 1234 5678",
+				"from": "06/12",
+				"expiry": "07/16",
+				"cvv": 678,
+				"name": "Shah Basheer"
+			},{
+				"id": 3,
+				"bankid": 777777,
+				"type": "visa",
+				"no": "9012 3456 1234 5678",
+				"from": "03/10",
+				"expiry": "08/17",
+				"cvv": 123,
+				"name": "Basheer Shah Kallayi"
+			}
+		];
+		$scope.cheques = [
+			{
+				"id": 1,
+				"accoutid": 87867867,
+				"issuedate": "20-May-2015",
+				"from": "15-May-2015",
+				"to": "22-May-2015"
+			},{
+				"id": 2,
+				"accoutid": 1232343434,
+				"issuedate": "12-June-2015",
+				"from": "10-June-2015",
+				"to": "20-June-2015"
+			}
+		];
+		$scope.chequerecord = [
+			{
+				"id": 1,
+				"chequeno": 1234343,
+				"number": 2222222,
+				"date": "21-Feb-2015",
+				"favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+				"amount": 12000,
+				"deposit": "Est sequi commodi libero eos nemo praesentium sint ut voluptate rem.",
+				"balance": 56980
+			},{
+				"id": 2,
+				"chequeno": 222222,
+				"number": 33333,
+				"date": "22-March-2015",
+				"favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+				"amount": 6000,
+				"deposit": "Est sequi commodi libero eos nemo praesentium sint ut voluptate rem.",
+				"balance": 48000
 			}
 		];
 
