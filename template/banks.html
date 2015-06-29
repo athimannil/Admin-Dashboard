@@ -7,7 +7,7 @@
 	<div class="row">
 	<div class="col-md-12">
 		<div class="box">
-			<button type="button" class="btn btn-primary pull-right" ng-hide="status.bankedit" ng-click="status.bankedit = true;"><i class="fa fa-plus"></i> Add bank</button>
+			<button type="button" class="btn btn-primary pull-right" ng-hide="status.bankedit" ng-click="status.bankedit = true; newBank();"><i class="fa fa-plus"></i> Add bank</button>
 			<form class="form-horizontal" ng-submit="addBank()" ng-show="status.bankedit">
 				<h3>New Bank Account</h3><br>
 			  <div class="form-group">
@@ -65,7 +65,6 @@
 				<hr>
 			</form>
 			<h3>Banks and details</h3>
-			<!-- <pre>{{banks | json}}</pre> -->
 			<table class="table table-hover table-responsive">
 				<thead>
 					<tr>
@@ -93,7 +92,6 @@
 						<td>
 							<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
 								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editBank(bank.id);">
-								<!-- <button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editmode = !editmode"> -->
 									<i class="fa fa-pencil"></i>
 								</button>
 								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="deleteBank(bank.id); editmode = !editmode">
@@ -114,8 +112,42 @@
 	</div>
 	<div class="col-md-12">
 		<div class="box">
-			<h3 class="pull-left">Accounts and details</h3>
-			<button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add bank</button>
+			<button type="button" class="btn btn-primary pull-right" ng-click="status.accountedit = true; newAccount();"><i class="fa fa-plus"></i> Add bank</button>
+			<form class="form-horizontal" ng-submit="addAccount()" ng-show="status.accountedit">
+				<h3>New Bank Account</h3><br>
+			  <div class="form-group">
+					<label class="col-sm-2 control-label">Name</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" ng-model="newaccount.name" placeholder="Name">
+					</div>
+				  <label class="col-sm-2 control-label">Account Type</label>
+				  <div class="col-sm-3">
+				    <input type="text" class="form-control" ng-model="newaccount.type" placeholder="Account Type">
+				  </div>
+			  </div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label">Account Number</label>
+				  <div class="col-sm-2">
+				    <input type="text" class="form-control" ng-model="newaccount.acnumber" placeholder="Account Number">
+				  </div>
+				  <label class="col-sm-1 control-label">IBAN</label>
+				  <div class="col-sm-3">
+				    <input type="text" class="form-control" ng-model="newaccount.iban" placeholder="IBAN">
+				  </div>
+				  <label class="col-sm-1 control-label">Issue date</label>
+				  <div class="col-sm-3">
+				    <input type="text" class="form-control" ng-model="newaccount.issuedate" placeholder="Isues date">
+				  </div>
+				</div>
+				<div class="form-group">
+				  <div class="col-md-12 text-right">
+				  	<button type="button" class="btn btn-default" ng-click="status.accountedit = false;">Cancel</button>
+					  <button type="submit" class="btn btn-primary">Save</button>
+				  </div>
+				</div>
+				<hr>
+			</form>
+			<h3>Accounts and details</h3>
 			<table class="table table-hover table-responsive">
 				<thead>
 					<tr>
@@ -138,14 +170,14 @@
 						<td><i class="fa fa-inr"></i> {{account.balance}}</td>
 						<td>
 							<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editmode = !editmode">
+								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editAccount(account.id);">
 									<i class="fa fa-pencil"></i>
 								</button>
-								<button type="button" class="btn btn-default" ng-hide="editmode">
+								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editmode = !editmode; deleteAccount(account.id);">
 									<i class="fa fa-trash-o"></i>
 								</button>
 								<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
-									<i class="fa fa-save"></i>
+									<i class="fa fa-check"></i>
 								</button>
 								<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
 									<i class="fa fa-times"></i>

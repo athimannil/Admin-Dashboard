@@ -1,5 +1,5 @@
 (function(){
-// Angular
+// dropdown for Types of visa & Types of accounts
 // var app = angular.module('myApp', ['ngRoute']);
 var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	app.config(function($routeProvider, $locationProvider) {
@@ -422,12 +422,15 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"address": {"line1": "bank addres line 1", "line2": "Banks address line 2"}
 		  }
 		];
+		$scope.newBank = function () {
+			$scope.newbank = {};
+		};
+		// TODO unique ID for new contact
 		$scope.addBank = function(){
-			if ($scope.newbank.id === null) {
+			console.log($scope.newbank.id);
+			if ($scope.newbank.id == null) {
 				$scope.newbank.id = $scope.banks.length+1;
 				$scope.banks.push($scope.newbank);
-				$scope.newbank = {};
-				$scope.status.bankedit = false;
 			}else{
 				for (var i = 0; i < $scope.banks.length; i++) {
 					if ($scope.banks[i].id == $scope.newbank.id) {
@@ -435,13 +438,12 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 					}
 				}
 			}
-		};
-		$scope.newbank = function () {
 			$scope.newbank = {};
+			$scope.status.bankedit = false;
 		};
     $scope.editBank = function(id) {
     	$scope.status.bankedit = true;
-      for (i in $scope.banks) {
+      for (var i = 0; i < $scope.banks.length; i++) {
         if ($scope.banks[i].id == id) {
           $scope.newbank = angular.copy($scope.banks[i]);
         }
@@ -457,9 +459,10 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			  }
 			}
     };
-
+    $scope.newaccount = {};
 		$scope.accounts = [
 			{
+				"id": 1,
 				"name": "Basheer Shah",
 				"acnumber": 11223344,
 				"type": "Savings account",
@@ -467,6 +470,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"issuedate": "12-05-1986",
 				"balance": "695.20"
 			},{
+				"id": 2,
 				"name": "Shah Basheer",
 				"acnumber": 11223344,
 				"type": "Current account",
@@ -474,6 +478,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"issuedate": "12-05-1986",
 				"balance": "695.20"
 			},{
+				"id": 3,
 				"name": "Basheer Shah",
 				"acnumber": 11223344,
 				"type": "Business account",
@@ -482,6 +487,43 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"balance": "695.20"
 			}
 		];
+		$scope.newAccount = function(){
+			$scope.newaccount = {};
+		};
+		// TODO unique ID for new Account
+		$scope.addAccount = function(){
+			console.log($scope.newaccount.id);
+			if ($scope.newaccount.id == null) {
+				$scope.newaccount.id = $scope.accounts.length+1;
+				$scope.accounts.push($scope.newaccount);
+			}else{
+				for (var i = 0; i < $scope.accounts.length; i++) {
+					if ($scope.accounts[i].id == $scope.newaccount.id) {
+					  $scope.accounts[i] = $scope.newaccount;
+					}
+				}
+			}
+			$scope.newaccount = {};
+			$scope.status.accountedit = false;
+		};
+    $scope.editAccount = function(id) {
+    	$scope.status.accountedit = true;
+      for (var i = 0; i < $scope.accounts.length; i++) {
+        if ($scope.accounts[i].id == id) {
+          $scope.newaccount = angular.copy($scope.accounts[i]);
+        }
+      }
+    };
+		$scope.deleteAccount = function(id){
+			for (var i = 0; i < $scope.accounts.length; i++) {
+				if ($scope.accounts[i].id == id) {
+					var confirmDelete = confirm("Do you really need to delete " + $scope.accounts[i].acnumber + "?");
+					if (confirmDelete) {
+						$scope.accounts.splice(i, 1);
+					}
+			  }
+			}
+		};
 		$scope.cards = [
 			{
 				"id": 1,
