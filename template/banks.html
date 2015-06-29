@@ -65,6 +65,7 @@
 				<hr>
 			</form>
 			<h3>Banks and details</h3>
+			<!-- <pre>{{banks | json}}</pre> -->
 			<table class="table table-hover table-responsive">
 				<thead>
 					<tr>
@@ -91,15 +92,15 @@
 						<td>{{bank.branch}}</td>
 						<td>
 							<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editBank(bank.id)">
+								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editBank(bank.id);">
 								<!-- <button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editmode = !editmode"> -->
 									<i class="fa fa-pencil"></i>
 								</button>
-								<button type="button" class="btn btn-default" ng-hide="editmode">
+								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="deleteBank(bank.id); editmode = !editmode">
 									<i class="fa fa-trash-o"></i>
 								</button>
 								<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
-									<i class="fa fa-save"></i>
+									<i class="fa fa-check"></i>
 								</button>
 								<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
 									<i class="fa fa-times"></i>

@@ -423,10 +423,21 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		  }
 		];
 		$scope.addBank = function(){
+			if ($scope.newbank.id === null) {
 				$scope.newbank.id = $scope.banks.length+1;
 				$scope.banks.push($scope.newbank);
 				$scope.newbank = {};
 				$scope.status.bankedit = false;
+			}else{
+				for (var i = 0; i < $scope.banks.length; i++) {
+					if ($scope.banks[i].id == $scope.newbank.id) {
+					  $scope.banks[i] = $scope.newbank;
+					}
+				}
+			}
+		};
+		$scope.newbank = function () {
+			$scope.newbank = {};
 		};
     $scope.editBank = function(id) {
     	$scope.status.bankedit = true;
@@ -436,8 +447,15 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
         }
       }
     };
-    $scope.deleteBank = function(){
-    	alert("kooy");
+    $scope.deleteBank = function(id){
+			for (var i = 0; i < $scope.banks.length; i++) {
+				if ($scope.banks[i].id == id) {
+					var confirmDelete = confirm("Do you really need to delete " + $scope.banks[i].name + "?");
+					if (confirmDelete) {
+						$scope.banks.splice(i, 1);
+					}
+			  }
+			}
     };
 
 		$scope.accounts = [
