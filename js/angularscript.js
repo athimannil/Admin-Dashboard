@@ -384,7 +384,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 
 		$scope.status = {
 			isFirstOpen: true,
-			oneAtATime: true
+			oneAtATime: true,
 		};
 
 		$scope.banks =[ 
@@ -445,7 +445,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			{
 				"id": 1,
 				"bankid": 999999,
-				"type": "visa",
+				"type": "VISA",
 				"no": "1234 5678 9012 3456",
 				"from": "01/06",
 				"expiry": "05/18",
@@ -463,7 +463,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			},{
 				"id": 3,
 				"bankid": 777777,
-				"type": "visa",
+				"type": "VISA",
 				"no": "9012 3456 1234 5678",
 				"from": "03/10",
 				"expiry": "08/17",
@@ -508,6 +508,19 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			}
 		];
 
+$scope.newCard = [
+	{
+		"type": "VISA",
+		"no": "1234 5678 9012 3456",
+		"from": "01/06",
+		"expiry": "05/18",
+		"cvv": 345,
+		"name": "Kallayi Basheer Shah"
+	}
+];
+		$scope.addCard = function(){
+			
+		};
 
 
 	});
