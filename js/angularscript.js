@@ -381,7 +381,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 	});
 	app.controller('bankController', function($scope, $http){
-
+		// Accordion
 		$scope.status = {
 			isFirstOpen: true,
 			oneAtATime: true,
@@ -507,22 +507,42 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"balance": 48000
 			}
 		];
-
-$scope.newCard = [
-	{
-		"type": "VISA",
-		"no": "1234 5678 9012 3456",
-		"from": "01/06",
-		"expiry": "05/18",
-		"cvv": 345,
-		"name": "Kallayi Basheer Shah"
-	}
-];
 		$scope.addCard = function(){
-			
+			alert();
 		};
 
 
+
+  $scope.items = ['item1', 'item2', 'item3'];
+
+  $scope.animationsEnabled = true;
+
+  $scope.open = function (size) {
+
+    var modalInstance = $modal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'myModalContent.html',
+      controller: 'ModalInstanceCtrl',
+      size: size,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+
+  $scope.toggleAnimation = function () {
+    $scope.animationsEnabled = !$scope.animationsEnabled;
+  };
+
+		
 	});
 
 })();

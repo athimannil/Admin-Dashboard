@@ -5,273 +5,277 @@
 		</div>
 	</div>
 	<div class="row">
-	<div class="col-md-12">
-		<div class="box">
-			<button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add bank</button>
-			<h3 class="pull-left">Banks and details</h3>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>Bank name</th>
-						<th>Branch code</th>
-						<th>IFSC</th>
-						<th>MICR</th>
-						<th>Swift</th>
-						<th>Contact</th>
-						<th>Branch</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="bank in banks">
-						<td>
-							<a href title="{{bank.name}}">{{bank.name}}</a>
-						</td>
-						<td>{{bank.branchcode}}</td>
-						<td>{{bank.ifsc}}</td>
-						<td>{{bank.micr}}</td>
-						<td>{{bank.swift}}</td>
-						<td><i class="fa fa-phone"></i> <a href="tel:{{bank.contact}}" title="Contact bank">{{bank.contact}}</a></td>
-						<td>{{bank.branch}}</td>
-						<td>
-							<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editmode = !editmode">
-									<i class="fa fa-pencil"></i>
-								</button>
-								<button type="button" class="btn btn-default" ng-hide="editmode">
-									<i class="fa fa-trash-o"></i>
-								</button>
-								<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
-									<i class="fa fa-save"></i>
-								</button>
-								<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
-									<i class="fa fa-times"></i>
-								</button>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+	
+
+		<div class="col-md-12">
+			<div class="box">
+
+
+
+
+
+
+
+
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Iam a modal!</h3>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="item in items">
+                    <a ng-click="selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <button class="btn btn-default" ng-click="open()">Open me!</button>
+    <button class="btn btn-default" ng-click="open('lg')">Large modal</button>
+    <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
+    <button class="btn btn-default" ng-click="toggleAnimation()">Toggle Animation ({{ animationsEnabled }})</button>
+    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
+			</div>
 		</div>
-	</div>
-	<div class="col-md-12">
-		<div class="box">
-			<h3 class="pull-left">Accounts and details</h3>
-			<button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add bank</button>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Number</th>
-						<th>Type</th>
-						<th>IBAN</th>
-						<th>Issue date</th>
-						<th>Balance</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="account in accounts">
-						<td><a href>{{account.name}}</a></td>
-						<td>{{account.acnumber}}</td>
-						<td>{{account.type}}</td>
-						<td>{{account.iban}}</td>
-						<td>{{account.issuedate}}</td>
-						<td><i class="fa fa-inr"></i> {{account.balance}}</td>
-						<td>
-							<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editmode = !editmode">
-									<i class="fa fa-pencil"></i>
-								</button>
-								<button type="button" class="btn btn-default" ng-hide="editmode">
-									<i class="fa fa-trash-o"></i>
-								</button>
-								<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
-									<i class="fa fa-save"></i>
-								</button>
-								<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
-									<i class="fa fa-times"></i>
-								</button>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<tabset class="col-md-12">
-		<tab>
-			<tab-heading><i class="fa fa-credit-card"></i> Cards</a></tab-heading>
-			<div class="row box">
-				<accordion close-others="status.oneAtATime">
-					<accordion-group ng-repeat="card in cards">
-						<accordion-heading><i class="fa fa-credit-card"></i> {{card.no}}</accordion-heading>
-						<div class="row">
-							<div class="col-sm-12">
-								Name on card: {{card.name}} <br>
-								Card type: {{card.type}}
-							</div>
-						</div>
-					</accordion-group>
-					<accordion-group class="panel panel-primary" is-open="true">
-						<accordion-heading><i class="fa fa-credit-card"></i> Add new card</accordion-heading>
-						<form class="form-horizontal" ng-submit="addCard();">
-						  <div class="form-group">
-								<label for="nameon-card" class="col-md-2 control-label">Cardholder Name</label>
-								<div class="col-md-10">
-								  <input type="text" class="form-control" id="nameon-card" placeholder="Name on card" required>
+
+
+		<div class="col-md-12">
+			<div class="box">
+				<button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add bank</button>
+				<h3 class="pull-left">Banks and details</h3>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Bank name</th>
+							<th>Branch code</th>
+							<th>IFSC</th>
+							<th>MICR</th>
+							<th>Swift</th>
+							<th>Contact</th>
+							<th>Branch</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="bank in banks">
+							<td>
+								<a href title="{{bank.name}}">{{bank.name}}</a>
+							</td>
+							<td>{{bank.branchcode}}</td>
+							<td>{{bank.ifsc}}</td>
+							<td>{{bank.micr}}</td>
+							<td>{{bank.swift}}</td>
+							<td><i class="fa fa-phone"></i> <a href="tel:{{bank.contact}}" title="Contact bank">{{bank.contact}}</a></td>
+							<td>{{bank.branch}}</td>
+							<td>
+								<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+									<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editmode = !editmode">
+										<i class="fa fa-pencil"></i>
+									</button>
+									<button type="button" class="btn btn-default" ng-hide="editmode">
+										<i class="fa fa-trash-o"></i>
+									</button>
+									<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
+										<i class="fa fa-save"></i>
+									</button>
+									<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
+										<i class="fa fa-times"></i>
+									</button>
 								</div>
-						  </div>
-						  <div class="form-group">
-								<div class="row">
-								  <div class="col-md-8">
-										<label for="card-number" class="col-md-3 control-label">Card number</label>
-										<div class="col-md-9">
-										  <input type="text" class="form-control" id="card-number" placeholder="Card number" maxlength="16" required>
-										</div>
-								  </div>
-								  <div class="col-md-4">
-										<label for="card-type" class="col-md-2 control-label">Type</label>
-										<div class="col-md-10">
-											<select name="card-type" id="card-type" class="form-control" required>
-												<option value="visa">VISA</option>
-												<option value="master">Master</option>
-											</select>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="box">
+				<h3 class="pull-left">Accounts and details</h3>
+				<button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add bank</button>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Number</th>
+							<th>Type</th>
+							<th>IBAN</th>
+							<th>Issue date</th>
+							<th>Balance</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="account in accounts">
+							<td><a href>{{account.name}}</a></td>
+							<td>{{account.acnumber}}</td>
+							<td>{{account.type}}</td>
+							<td>{{account.iban}}</td>
+							<td>{{account.issuedate}}</td>
+							<td><i class="fa fa-inr"></i> {{account.balance}}</td>
+							<td>
+								<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+									<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editmode = !editmode">
+										<i class="fa fa-pencil"></i>
+									</button>
+									<button type="button" class="btn btn-default" ng-hide="editmode">
+										<i class="fa fa-trash-o"></i>
+									</button>
+									<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
+										<i class="fa fa-save"></i>
+									</button>
+									<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
+										<i class="fa fa-times"></i>
+									</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<tabset class="col-md-12">
+			<tab>
+				<tab-heading><i class="fa fa-credit-card"></i> Cards</a></tab-heading>
+				<div class="row box">
+					<accordion close-others="status.oneAtATime">
+						<accordion-group ng-repeat="card in cards">
+							<accordion-heading><i class="fa fa-credit-card"></i> {{card.no}}</accordion-heading>
+							<div class="row">
+								<div class="col-sm-12">
+									Name on card: {{card.name}} <br>
+									Card type: {{card.type}}
+								</div>
+							</div>
+						</accordion-group>
+						<accordion-group class="panel panel-primary" is-open="true">
+							<accordion-heading><i class="fa fa-credit-card"></i> Add new card</accordion-heading>
+							<form class="form-horizontal" ng-submit="addCard();">
+							  <div class="form-group">
+									<label for="nameon-card" class="col-md-2 control-label">Cardholder Name</label>
+									<div class="col-md-10">
+									  <input type="text" class="form-control" id="nameon-card" placeholder="Name on card" required>
+									</div>
+							  </div>
+							  <div class="form-group">
+									<div class="row">
+									  <div class="col-md-8">
+											<label for="card-number" class="col-md-3 control-label">Card number</label>
+											<div class="col-md-9">
+											  <input type="text" class="form-control" id="card-number" placeholder="Card number" maxlength="16" required>
+											</div>
+									  </div>
+									  <div class="col-md-4">
+											<label for="card-type" class="col-md-2 control-label">Type</label>
+											<div class="col-md-10">
+												<select name="card-type" id="card-type" class="form-control" required>
+													<option value="visa">VISA</option>
+													<option value="master">Master</option>
+												</select>
+											</div>
 										</div>
 									</div>
-								</div>
-						  </div>
-						  <div class="form-group">
-								<div class="row">
-									<div class="col-md-4">
-										<label class="col-md-6 control-label">Card from</label>
-										<div class="col-md-3">
-												<select name="day" class="form-control">
-													<option value="01">01</option>
-													<option value="02">02</option>
-													<option value="03">03</option>
-													<option value="04">04</option>
-													<option value="05">05</option>
-													<option value="06">06</option>
-													<option value="07">07</option>
-													<option value="08">08</option>
-													<option value="09">09</option>
-													<option value="10">10</option>
-													<option value="11">11</option>
-													<option value="12">12</option>
-												</select>
-										</div>
-										<div class="col-md-3">
-										  <input type="text" class="form-control" placeholder="year" maxlength="2">
-										</div>
-								  </div>
-									<div class="col-md-4">
-										<label class="col-md-4 control-label">Expiry</label>
-										<div class="col-md-4">
-										  <select name="day" class="form-control" required>
-											<option value="01">01</option>
-											<option value="02">02</option>
-											<option value="03">03</option>
-											<option value="04">04</option>
-											<option value="05">05</option>
-											<option value="06">06</option>
-											<option value="07">07</option>
-											<option value="08">08</option>
-											<option value="09">09</option>
-											<option value="10">10</option>
-											<option value="11">11</option>
-											<option value="12">12</option>
-										  </select>
-										</div>
-										<div class="col-md-4">
-										  <input type="text" class="form-control" placeholder="year" maxlength="2" required>
-										</div>
-								  </div>
-									<div class="col-md-3">
-										<label class="col-md-6 control-label">Security Code</label>
-										<div class="col-md-6">
-										  <input type="text" class="form-control" placeholder="CCV" maxlength="3" required>
-										</div>
-								  </div>
-								</div>
-							</div>
-						  <div class="form-group">
-						  	<div class="col-md-12">
-								  <button type="submit" class="btn btn-primary pull-right">Submit new card</button>
 							  </div>
-						  </div>
-						</form>
-					</accordion-group>
-				</accordion>
-			</div>
-		</tab>
-		<tab>
-			<tab-heading>Cheque</a></tab-heading>
-			<div class="row box">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
-			</div>
-		</tab>
-		<tab>
-			<tab-heading> Loan</a></tab-heading>
-			<div class="row box">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
-			</div>
-		</tab>
-	</tabset>
-
-
-
-
-		<div class="col-md-6">
-			<div class="box">
-
-
-	<p>
-		<button class="btn btn-default btn-sm" ng-click="status.open = !status.open">Toggle last panel</button>
-		<button class="btn btn-default btn-sm" ng-click="status.isFirstDisabled = ! status.isFirstDisabled">Enable / Disable first panel</button>
-	</p>
-
-  <accordion close-others="status.oneAtATime">
-
-	<accordion-group ng-repeat="account in accounts" is-open="status.isItemOpen[$index]">
-		<accordion-heading><i class="fa fa-credit-card"></i> {{account.title}}</accordion-heading>
-		{{account.details}}
-		<hr>
-		{{account.details[0].acnumber}} <br>
-		{{account.details[1].cardnumber}} <br>
-		{{account.details[0].cardname}} <br>
-		{{account.details[0].cardexpiry}} <br>
-	</accordion-group>
-
-	<accordion-group heading="Static Header, initially expanded" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-	  This content is straight in the template.
-	</accordion-group>
-	
-	<accordion-group heading="Dynamic Body Content">
-	  <p>The body of the accordion group grows to fit the contents</p>
-		<button class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
-		<div ng-repeat="item in items">{{item}}</div>
-	</accordion-group>
-	<accordion-group is-open="status.open">
-		<accordion-heading>
-			I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-		</accordion-heading>
-		This is just some content to illustrate fancy headings.
-	</accordion-group>
-  </accordion>
-
-
-
-
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="box">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex voluptatibus adipisci excepturi inventore, quidem ullam magnam officiis, quod beatae quam aut eos rem deleniti explicabo tempore, sed aliquid itaque veniam.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex voluptatibus adipisci excepturi inventore, quidem ullam magnam officiis, quod beatae quam aut eos rem deleniti explicabo tempore, sed aliquid itaque veniam.</p>
-			</div>
-		</div>
+							  <div class="form-group">
+									<div class="row">
+										<div class="col-md-4">
+											<label class="col-md-6 control-label">Card from</label>
+											<div class="col-md-3">
+													<select name="day" class="form-control">
+														<option value="01">01</option>
+														<option value="02">02</option>
+														<option value="03">03</option>
+														<option value="04">04</option>
+														<option value="05">05</option>
+														<option value="06">06</option>
+														<option value="07">07</option>
+														<option value="08">08</option>
+														<option value="09">09</option>
+														<option value="10">10</option>
+														<option value="11">11</option>
+														<option value="12">12</option>
+													</select>
+											</div>
+											<div class="col-md-3">
+											  <input type="text" class="form-control" placeholder="year" maxlength="2">
+											</div>
+									  </div>
+										<div class="col-md-4">
+											<label class="col-md-4 control-label">Expiry</label>
+											<div class="col-md-4">
+											  <select name="day" class="form-control" required>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+											  </select>
+											</div>
+											<div class="col-md-4">
+											  <input type="text" class="form-control" placeholder="year" maxlength="2" required>
+											</div>
+									  </div>
+										<div class="col-md-3">
+											<label class="col-md-6 control-label">Security Code</label>
+											<div class="col-md-6">
+											  <input type="text" class="form-control" placeholder="CCV" maxlength="3" required>
+											</div>
+									  </div>
+									</div>
+								</div>
+							  <div class="form-group">
+							  	<div class="col-md-12">
+									  <button type="submit" class="btn btn-primary pull-right">Submit new card</button>
+								  </div>
+							  </div>
+							</form>
+						</accordion-group>
+					</accordion>
+				</div>
+			</tab>
+			<tab>
+				<tab-heading>Cheque</a></tab-heading>
+				<div class="row box">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
+				</div>
+			</tab>
+			<tab>
+				<tab-heading> Loan</a></tab-heading>
+				<div class="row box">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
+				</div>
+			</tab>
+		</tabset>
 	</div>
 </div>
