@@ -385,10 +385,13 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.status = {
 			isFirstOpen: true,
 			oneAtATime: true,
+			bankedit: false, 
+			accountedit: false
 		};
-
+		$scope.newbank = {};
 		$scope.banks =[ 
 			{
+				"id": 1,
 				"name":"PNB",
 				"branchcode": "13-35-96",
 				"ifsc": 989525621542,
@@ -396,8 +399,9 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"swift": 99944422258,
 				"contact": "0483-569821",
 				"branch": 'Manjeri',
-				"address": ["bank addres line 1", "Banks address line 2"]
+				"address": {"line1": "bank addres line 1", "line2": "Banks address line 2"}
 		  },{ 
+				"id": 2,
 				"name":"ICICI Banks",
 				"ifsc": 989525621542,
 				"branchcode": "13-35-96",
@@ -405,8 +409,9 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"swift": 99944422258,
 				"contact": "0483-569821",
 				"branch": 'Calicut',
-				"address": ["bank addres line 1", "Banks address line 2"]
+				"address": {"line1": "bank addres line 1", "line2": "Banks address line 2"}
 		  },{ 
+				"id": 3,
 				"name":"SBT",
 				"ifsc": 989525621542,
 				"branchcode": "13-35-96",
@@ -414,9 +419,27 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"swift": 99944422258,
 				"contact": "0483-569821",
 				"branch": 'Pandikkad',
-				"address": ["bank addres line 1", "Banks address line 2"]
+				"address": {"line1": "bank addres line 1", "line2": "Banks address line 2"}
 		  }
 		];
+		$scope.addBank = function(){
+				$scope.newbank.id = $scope.banks.length+1;
+				$scope.banks.push($scope.newbank);
+				$scope.newbank = {};
+				$scope.status.bankedit = false;
+		};
+    $scope.editBank = function(id) {
+    	$scope.status.bankedit = true;
+      for (i in $scope.banks) {
+        if ($scope.banks[i].id == id) {
+          $scope.newbank = angular.copy($scope.banks[i]);
+        }
+      }
+    };
+    $scope.deleteBank = function(){
+    	alert("kooy");
+    };
+
 		$scope.accounts = [
 			{
 				"name": "Basheer Shah",

@@ -7,9 +7,65 @@
 	<div class="row">
 	<div class="col-md-12">
 		<div class="box">
-			<button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add bank</button>
-			<h3 class="pull-left">Banks and details</h3>
-			<table class="table table-hover">
+			<button type="button" class="btn btn-primary pull-right" ng-hide="status.bankedit" ng-click="status.bankedit = true;"><i class="fa fa-plus"></i> Add bank</button>
+			<form class="form-horizontal" ng-submit="addBank()" ng-show="status.bankedit">
+				<h3>New Bank Account</h3><br>
+			  <div class="form-group">
+					<label class="col-sm-2 control-label">Bank Name</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" ng-model="newbank.name" placeholder="Bank Name">
+					</div>
+			  </div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label">Branch Code</label>
+				  <div class="col-sm-2">
+				    <input type="text" class="form-control" ng-model="newbank.branchcode" placeholder="Branch Code">
+				  </div>
+				  <label class="col-sm-1 control-label">IFSC Code</label>
+				  <div class="col-sm-3">
+				    <input type="text" class="form-control" ng-model="newbank.ifsc" placeholder="IFSC Code">
+				  </div>
+				  <label class="col-sm-1 control-label">MICR</label>
+				  <div class="col-sm-3">
+				    <input type="text" class="form-control" ng-model="newbank.micr" placeholder="MICR">
+				  </div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Swift</label>
+					<div class="col-sm-2">
+					  <input type="text" class="form-control" ng-model="newbank.swift" placeholder="Swift">
+					</div>
+				  <label class="col-sm-1 control-label">Contact</label>
+				  <div class="col-sm-3">
+				    <input type="text" class="form-control" ng-model="newbank.contact" placeholder="Contact Number">
+				  </div>
+				  <label class="col-sm-1 control-label">Branch</label>
+				  <div class="col-sm-3">
+				    <input type="text" class="form-control" ng-model="newbank.branch" placeholder="Branch">
+				  </div>
+				</div>
+			  <div class="form-group">
+					<label class="col-sm-2 control-label">Address Line 1</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" ng-model="newbank.address['line1']" placeholder="Address Line 1">
+					</div>
+			  </div>
+			  <div class="form-group">
+					<label class="col-sm-2 control-label">Address Line 2</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" ng-model="newbank.address['line2']" placeholder="Address Line 2">
+					</div>
+			  </div>
+				<div class="form-group">
+				  <div class="col-md-12 text-right">
+				  	<button type="button" class="btn btn-default" ng-click="status.bankedit = false;">Cancel</button>
+					  <button type="submit" class="btn btn-primary">Save</button>
+				  </div>
+				</div>
+				<hr>
+			</form>
+			<h3>Banks and details</h3>
+			<table class="table table-hover table-responsive">
 				<thead>
 					<tr>
 						<th>Bank name</th>
@@ -35,7 +91,8 @@
 						<td>{{bank.branch}}</td>
 						<td>
 							<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editmode = !editmode">
+								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editBank(bank.id)">
+								<!-- <button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editmode = !editmode"> -->
 									<i class="fa fa-pencil"></i>
 								</button>
 								<button type="button" class="btn btn-default" ng-hide="editmode">
@@ -58,7 +115,7 @@
 		<div class="box">
 			<h3 class="pull-left">Accounts and details</h3>
 			<button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add bank</button>
-			<table class="table table-hover">
+			<table class="table table-hover table-responsive">
 				<thead>
 					<tr>
 						<th>Name</th>
