@@ -1,5 +1,5 @@
 (function(){
-// Angular
+// dropdown for Types of visa & Types of accounts
 // var app = angular.module('myApp', ['ngRoute']);
 var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	app.config(function($routeProvider, $locationProvider) {
@@ -77,7 +77,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 
 
 		// Toggle sede menu
-		$scope.menuStatus = true;
+		$scope.menuStatus = false;
 		$scope.toggleMenu = function(){
 			$scope.menuStatus = $scope.menuStatus === false ? true : false;
 		};
@@ -380,15 +380,18 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			}
 		};
 	});
-	app.controller('bankController', function($scope, $http){
+	app.controller('bankController', function($scope, $http, $log){
 		// Accordion
 		$scope.status = {
 			isFirstOpen: true,
 			oneAtATime: true,
+			bankedit: false, 
+			accountedit: false
 		};
-
+		$scope.newbank = {};
 		$scope.banks =[ 
 			{
+				"id": 1,
 				"name":"PNB",
 				"branchcode": "13-35-96",
 				"ifsc": 989525621542,
@@ -396,8 +399,9 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"swift": 99944422258,
 				"contact": "0483-569821",
 				"branch": 'Manjeri',
-				"address": ["bank addres line 1", "Banks address line 2"]
+				"address": {"line1": "bank addres line 1", "line2": "Banks address line 2"}
 		  },{ 
+				"id": 2,
 				"name":"ICICI Banks",
 				"ifsc": 989525621542,
 				"branchcode": "13-35-96",
@@ -405,8 +409,9 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"swift": 99944422258,
 				"contact": "0483-569821",
 				"branch": 'Calicut',
-				"address": ["bank addres line 1", "Banks address line 2"]
+				"address": {"line1": "bank addres line 1", "line2": "Banks address line 2"}
 		  },{ 
+				"id": 3,
 				"name":"SBT",
 				"ifsc": 989525621542,
 				"branchcode": "13-35-96",
@@ -414,11 +419,50 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"swift": 99944422258,
 				"contact": "0483-569821",
 				"branch": 'Pandikkad',
-				"address": ["bank addres line 1", "Banks address line 2"]
+				"address": {"line1": "bank addres line 1", "line2": "Banks address line 2"}
 		  }
 		];
+		$scope.newBank = function () {
+			$scope.newbank = {};
+		};
+		// TODO unique ID for new contact
+		$scope.addBank = function(){
+			console.log($scope.newbank.id);
+			if ($scope.newbank.id == null) {
+				$scope.newbank.id = $scope.banks.length+1;
+				$scope.banks.push($scope.newbank);
+			}else{
+				for (var i = 0; i < $scope.banks.length; i++) {
+					if ($scope.banks[i].id == $scope.newbank.id) {
+					  $scope.banks[i] = $scope.newbank;
+					}
+				}
+			}
+			$scope.newbank = {};
+			$scope.status.bankedit = false;
+		};
+    $scope.editBank = function(id) {
+    	$scope.status.bankedit = true;
+      for (var i = 0; i < $scope.banks.length; i++) {
+        if ($scope.banks[i].id == id) {
+          $scope.newbank = angular.copy($scope.banks[i]);
+        }
+      }
+    };
+    $scope.deleteBank = function(id){
+			for (var i = 0; i < $scope.banks.length; i++) {
+				if ($scope.banks[i].id == id) {
+					var confirmDelete = confirm("Do you really need to delete " + $scope.banks[i].name + "?");
+					if (confirmDelete) {
+						$scope.banks.splice(i, 1);
+					}
+			  }
+			}
+    };
+    $scope.newaccount = {};
 		$scope.accounts = [
 			{
+				"id": 1,
 				"name": "Basheer Shah",
 				"acnumber": 11223344,
 				"type": "Savings account",
@@ -426,6 +470,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"issuedate": "12-05-1986",
 				"balance": "695.20"
 			},{
+				"id": 2,
 				"name": "Shah Basheer",
 				"acnumber": 11223344,
 				"type": "Current account",
@@ -433,6 +478,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"issuedate": "12-05-1986",
 				"balance": "695.20"
 			},{
+				"id": 3,
 				"name": "Basheer Shah",
 				"acnumber": 11223344,
 				"type": "Business account",
@@ -441,6 +487,43 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"balance": "695.20"
 			}
 		];
+		$scope.newAccount = function(){
+			$scope.newaccount = {};
+		};
+		// TODO unique ID for new Account
+		$scope.addAccount = function(){
+			console.log($scope.newaccount.id);
+			if ($scope.newaccount.id == null) {
+				$scope.newaccount.id = $scope.accounts.length+1;
+				$scope.accounts.push($scope.newaccount);
+			}else{
+				for (var i = 0; i < $scope.accounts.length; i++) {
+					if ($scope.accounts[i].id == $scope.newaccount.id) {
+					  $scope.accounts[i] = $scope.newaccount;
+					}
+				}
+			}
+			$scope.newaccount = {};
+			$scope.status.accountedit = false;
+		};
+    $scope.editAccount = function(id) {
+    	$scope.status.accountedit = true;
+      for (var i = 0; i < $scope.accounts.length; i++) {
+        if ($scope.accounts[i].id == id) {
+          $scope.newaccount = angular.copy($scope.accounts[i]);
+        }
+      }
+    };
+		$scope.deleteAccount = function(id){
+			for (var i = 0; i < $scope.accounts.length; i++) {
+				if ($scope.accounts[i].id == id) {
+					var confirmDelete = confirm("Do you really need to delete " + $scope.accounts[i].acnumber + "?");
+					if (confirmDelete) {
+						$scope.accounts.splice(i, 1);
+					}
+			  }
+			}
+		};
 		$scope.cards = [
 			{
 				"id": 1,
@@ -471,76 +554,384 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"name": "Basheer Shah Kallayi"
 			}
 		];
-		$scope.cheques = [
+		$scope.cheques =  [
 			{
-				"id": 1,
-				"accoutid": 87867867,
-				"issuedate": "20-May-2015",
-				"from": "15-May-2015",
-				"to": "22-May-2015"
-			},{
-				"id": 2,
-				"accoutid": 1232343434,
-				"issuedate": "12-June-2015",
-				"from": "10-June-2015",
-				"to": "20-June-2015"
+			    "id": 1,
+			    "accountno": 87867867,
+			    "issuedate": "20-May-2015",
+			    "from": 123456,
+			    "to": 1234654,
+			    "chequerecords": [
+				    {
+						    "id": 1,
+						    "cheque_id": 2,
+						    "number": 2222222,
+						    "date": "21-Feb-2015",
+						    "favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+						    "amount": 12000,
+						    "deposit": 98521,
+						    "balance": 56980
+						}, {
+						    "id": 2,
+						    "cheque_id": 2,
+						    "number": 44444444,
+						    "date": "22-March-2015",
+						    "favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+						    "amount": 6000,
+						    "deposit": 1520,
+						    "balance": 48000
+						}, {
+						    "id": 3,
+						    "cheque_id": 2,
+						    "number": 66666666,
+						    "date": "22-March-2015",
+						    "favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+						    "amount": 6000,
+						    "deposit": 1520,
+						    "balance": 48000
+						}, {
+						    "id": 4,
+						    "cheque_id": 2,
+						    "number": 88888888,
+						    "date": "22-March-2015",
+						    "favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+						    "amount": 6000,
+						    "deposit": 1520,
+						    "balance": 48000
+						}
+					]
+			}, {
+			    "id": 2,
+			    "accountno": 87867867,
+			    "issuedate": "12-June-2015",
+			    "from": 123657,
+			    "to": 1234752,
+			    "chequerecords": [
+						{
+						    "id": 5,
+						    "cheque_id": 1,
+						    "number": 66666666,
+						    "date": "22-March-2015",
+						    "favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+						    "amount": 6000,
+						    "deposit": 1520,
+						    "balance": 48000
+						}, {
+						    "id": 6,
+						    "cheque_id": 1,
+						    "number": 88888888,
+						    "date": "22-March-2015",
+						    "favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+						    "amount": 6000,
+						    "deposit": 1520,
+						    "balance": 48000
+						}
+					]
 			}
 		];
-		$scope.chequerecord = [
+		$scope.particulars = [
 			{
 				"id": 1,
-				"chequeno": 1234343,
-				"number": 2222222,
-				"date": "21-Feb-2015",
-				"favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-				"amount": 12000,
-				"deposit": "Est sequi commodi libero eos nemo praesentium sint ut voluptate rem.",
-				"balance": 56980
+				"date": "12-Jan-2015",
+				"cheque_no": 11111,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
 			},{
 				"id": 2,
-				"chequeno": 222222,
-				"number": 33333,
-				"date": "22-March-2015",
-				"favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-				"amount": 6000,
-				"deposit": "Est sequi commodi libero eos nemo praesentium sint ut voluptate rem.",
-				"balance": 48000
+				"date": "22-February-2015",
+				"cheque_no": 222222,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 3,
+				"date": "14-March-2015",
+				"cheque_no": 33333,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 4,
+				"date": "16-April-2015",
+				"cheque_no": 44444,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 5,
+				"date": "30-May-2015",
+				"cheque_no": 55555,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 6,
+				"date": "22-February-2015",
+				"cheque_no": 222222,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 7,
+				"date": "14-March-2015",
+				"cheque_no": 33333,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 8,
+				"date": "16-April-2015",
+				"cheque_no": 44444,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 9,
+				"date": "30-May-2015",
+				"cheque_no": 55555,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 10,
+				"date": "22-February-2015",
+				"cheque_no": 222222,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 11,
+				"date": "14-March-2015",
+				"cheque_no": 33333,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 12,
+				"date": "16-April-2015",
+				"cheque_no": 44444,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 13,
+				"date": "30-May-2015",
+				"cheque_no": 55555,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 14,
+				"date": "22-February-2015",
+				"cheque_no": 222222,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 15,
+				"date": "14-March-2015",
+				"cheque_no": 33333,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 16,
+				"date": "16-April-2015",
+				"cheque_no": 44444,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 17,
+				"date": "30-May-2015",
+				"cheque_no": 55555,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 18,
+				"date": "22-February-2015",
+				"cheque_no": 222222,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 19,
+				"date": "14-March-2015",
+				"cheque_no": 33333,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 20,
+				"date": "16-April-2015",
+				"cheque_no": 44444,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 21,
+				"date": "30-May-2015",
+				"cheque_no": 55555,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 22,
+				"date": "22-February-2015",
+				"cheque_no": 222222,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 23,
+				"date": "14-March-2015",
+				"cheque_no": 33333,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 24,
+				"date": "16-April-2015",
+				"cheque_no": 44444,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 25,
+				"date": "30-May-2015",
+				"cheque_no": 55555,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 26,
+				"date": "30-May-2015",
+				"cheque_no": 55555,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 27,
+				"date": "22-February-2015",
+				"cheque_no": 222222,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 28,
+				"date": "14-March-2015",
+				"cheque_no": 33333,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 29,
+				"date": "16-April-2015",
+				"cheque_no": 44444,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 30,
+				"date": "30-May-2015",
+				"cheque_no": 55555,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 31,
+				"date": "30-May-2015",
+				"cheque_no": 55555,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 32,
+				"date": "22-February-2015",
+				"cheque_no": 222222,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 33,
+				"date": "14-March-2015",
+				"cheque_no": 33333,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 34,
+				"date": "16-April-2015",
+				"cheque_no": 44444,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 35,
+				"date": "30-May-2015",
+				"cheque_no": 55555,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 36,
+				"date": "30-May-2015",
+				"cheque_no": 55555,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 37,
+				"date": "22-February-2015",
+				"cheque_no": 222222,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 38,
+				"date": "14-March-2015",
+				"cheque_no": 33333,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 39,
+				"date": "16-April-2015",
+				"cheque_no": 44444,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
+			},{
+				"id": 40,
+				"date": "30-May-2015",
+				"cheque_no": 55555,
+				"withdraw": 126.01,
+				"deposit": 236.00,
+				"balance": 953.00
 			}
 		];
+		$scope.filterList = [];
 		$scope.addCard = function(){
-			alert();
+			alert("Hello mate");
 		};
 
 
-
-  $scope.items = ['item1', 'item2', 'item3'];
-
-  $scope.animationsEnabled = true;
-
-  $scope.open = function (size) {
-
-    var modalInstance = $modal.open({
-      animation: $scope.animationsEnabled,
-      templateUrl: 'myModalContent.html',
-      controller: 'ModalInstanceCtrl',
-      size: size,
-      resolve: {
-        items: function () {
-          return $scope.items;
-        }
-      }
-    });
-
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-    }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
-    });
+  $scope.pageChanged = function() {
+    $log.log('Page changed to: ' + $scope.currentPage);
   };
+  $scope.bigCurrentPage = 1;
 
-  $scope.toggleAnimation = function () {
-    $scope.animationsEnabled = !$scope.animationsEnabled;
-  };
+  $scope.filteredTodos = [];
+  $scope.currentPage = 1; 
+  $scope.numPerPage = 10; 
+  $scope.maxSize = 5;
+  $scope.$watch('currentPage + numPerPage', function() {
+    var begin = (($scope.currentPage - 1) * $scope.numPerPage),
+      end = begin + $scope.numPerPage;
+    $scope.filteredTodos = $scope.particulars.slice(begin, end);
+  });
 
 		
 	});
