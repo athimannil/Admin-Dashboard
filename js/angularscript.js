@@ -45,8 +45,12 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				templateUrl: 'template/banks.html',
 				controller: 'bankController'
 			})
-			.when('/phonebook', {
-				templateUrl: 'template/phonebook.html',
+			.when('/loan', {
+				templateUrl: 'template/loan.html',
+				controller: 'loanController'
+			})
+			.when('/addressbook', {
+				templateUrl: 'template/addressbook.html',
 				controller: 'phonebookController'
 			})
 			.otherwise({
@@ -63,7 +67,8 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			menu:[
 				{page: "dashboard", title: "Dashboard", icon: "dashboard"},
 				{page: "banks", title: "Banks", icon: "bank"},
-				{page: "phonebook", title: "Phone book", icon: "book"},
+				{page: "loan", title: "Loan", icon: "tags"},
+				{page: "addressbook", title: "Address book", icon: "book"},
 				{page: "expense", title: "Expenses", icon: "shopping-cart"},
 				{page: "invoice", title: "Invoice", icon: "file-text-o"},
 				{page: "recur", title: "Reccurring Bills", icon: "dashboard"},
@@ -386,7 +391,8 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			isFirstOpen: true,
 			oneAtATime: true,
 			bankedit: false, 
-			accountedit: false
+			accountedit: false,
+			newLoan: false
 		};
 		$scope.newbank = {};
 		$scope.banks =[ 
@@ -918,22 +924,91 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 
 
-  $scope.pageChanged = function() {
-    $log.log('Page changed to: ' + $scope.currentPage);
-  };
-  $scope.bigCurrentPage = 1;
+		$scope.pageChanged = function() {
+		$log.log('Page changed to: ' + $scope.currentPage);
+		};
+		$scope.bigCurrentPage = 1;
 
-  $scope.filteredTodos = [];
-  $scope.currentPage = 1; 
-  $scope.numPerPage = 10; 
-  $scope.maxSize = 5;
-  $scope.$watch('currentPage + numPerPage', function() {
-    var begin = (($scope.currentPage - 1) * $scope.numPerPage),
-      end = begin + $scope.numPerPage;
-    $scope.filteredTodos = $scope.particulars.slice(begin, end);
-  });
-
-		
+		$scope.filteredTodos = [];
+		$scope.currentPage = 1; 
+		$scope.numPerPage = 10; 
+		$scope.maxSize = 5;
+		$scope.$watch('currentPage + numPerPage', function() {
+		var begin = (($scope.currentPage - 1) * $scope.numPerPage),
+		  end = begin + $scope.numPerPage;
+		$scope.filteredTodos = $scope.particulars.slice(begin, end);
+		});
+	});
+	app.controller('loanController', function($scope){
+		$scope.banks =[ 
+			{
+				"id": 1,
+				"name":"PNB",
+				"branchcode": "13-35-96",
+				"ifsc": 989525621542,
+				"micr": 1324586468,
+				"swift": 99944422258,
+				"contact": "0483-569821",
+				"branch": 'Manjeri',
+				"address": {"line1": "bank addres line 1", "line2": "Banks address line 2"}
+		  },{ 
+				"id": 2,
+				"name":"ICICI Banks",
+				"ifsc": 989525621542,
+				"branchcode": "13-35-96",
+				"micr": 1324586468,
+				"swift": 99944422258,
+				"contact": "0483-569821",
+				"branch": 'Calicut',
+				"address": {"line1": "bank addres line 1", "line2": "Banks address line 2"}
+		  },{ 
+				"id": 3,
+				"name":"SBT",
+				"ifsc": 989525621542,
+				"branchcode": "13-35-96",
+				"micr": 1324586468,
+				"swift": 99944422258,
+				"contact": "0483-569821",
+				"branch": 'Pandikkad',
+				"address": {"line1": "bank addres line 1", "line2": "Banks address line 2"}
+		  }
+		];
+		$scope.loans = [
+			{
+				"id": 1,
+				"banks_id": 1111111,
+				"name":"myname",
+				"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut dolores, aut itaque accusantium laborum sapiente.",
+				"amount": 10000,
+				"paid": 5000,
+				"balance": 5000,
+				"date": "12-May-2015",
+				"closedate":"20-March-2018",
+				"interest": "12%",
+			},{
+				"id": 2,
+				"banks_id": 2222222,
+				"name":"myname",
+				"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut dolores, aut itaque accusantium laborum sapiente.",
+				"amount": 7000,
+				"paid": 3000,
+				"balance": 4000,
+				"date": "12-May-2015",
+				"closedate":"20-March-2018",
+				"interest": "11%",
+			},{
+				"id": 3,
+				"banks_id": 3333333,
+				"name":"myname",
+				"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut dolores, aut itaque accusantium laborum sapiente.",
+				"amount": 50000,
+				"paid": 1200,
+				"balance": 38000,
+				"date": "12-May-2015",
+				"closedate":"20-March-2018",
+				"interest": "9.5%",
+			}
+		];
 	});
 
 })();

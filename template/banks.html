@@ -5,7 +5,7 @@
 		</div>
 	</div>
 	<div class="row">
-	<div class="col-md-12 hide">
+	<div class="col-md-12">
 		<div class="box">
 			<button type="button" class="btn btn-primary pull-right" ng-hide="status.bankedit" ng-click="status.bankedit = true; newBank();"><i class="fa fa-plus"></i> Add bank</button>
 			<form class="form-horizontal" ng-submit="addBank()" ng-show="status.bankedit">
@@ -110,7 +110,7 @@
 			</table>
 		</div>
 	</div>
-	<div class="col-md-12 hide">
+	<div class="col-md-12">
 		<div class="box">
 			<button type="button" class="btn btn-primary pull-right" ng-click="status.accountedit = true; newAccount();"><i class="fa fa-plus"></i> Add bank</button>
 			<form class="form-horizontal" ng-submit="addAccount()" ng-show="status.accountedit">
@@ -195,28 +195,28 @@
 			<div class="box">
 
 
-<div class="row">
-	<div class="col-md-12">
-
-<ul>
-  <li ng-repeat="mylist in filteredTodos">{{mylist.id}} + {{$index}}</li>
-</ul>
-	
-		<pagination 
-			boundary-links="true" 
-			total-items="particulars.length" 
-			ng-model="bigCurrentPage" 
-			items-per-page = "5"
-			max-size="5" 
-			class="pagination-sm" 
-			previous-text="&lsaquo;" 
-			next-text="&rsaquo;" 
-			first-text="&laquo;" 
-			last-text="&raquo;"
-		></pagination>
-    <!-- <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre> -->
-	</div>
-</div>
+				<div class="row">
+					<div class="col-md-12">
+						<h3>{{}}</h3>
+						<ul>
+						  <li ng-repeat="mylist in filteredTodos">{{mylist.id}} + {{$index}}</li>
+						</ul>
+							
+						<pagination 
+							boundary-links="true" 
+							total-items="particulars.length" 
+							ng-model="bigCurrentPage" 
+							items-per-page = "5"
+							max-size="5" 
+							class="pagination-sm" 
+							previous-text="&lsaquo;" 
+							next-text="&rsaquo;" 
+							first-text="&laquo;" 
+							last-text="&raquo;"
+						></pagination>
+				    <!-- <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre> -->
+					</div>
+				</div>
 
 
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto magnam eius quia, sint mollitia, ipsum error consequatur corrupti. Voluptas tenetur totam aut quo ea consequatur et illo optio, deleniti officia!</p>

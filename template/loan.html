@@ -1,0 +1,82 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="box">
+			<button type="button" class="btn btn-primary pull-right" ng-hide="status.loanedit" ng-click="status.loanedit = true; newLoan();">
+				<i class="fa fa-plus"></i> Add loan
+			</button>
+			<form class="form-horizontal" ng-submit="addBank()" ng-show="status.loanedit">
+				<h3>New Loan</h3><br>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label">Loan name</label>
+				  <div class="col-sm-5">
+				    <input type="text" class="form-control" ng-model="newloan.branchcode" placeholder="Branch Code">
+				  </div>
+				  <label class="col-sm-1 control-label">Bank</label>
+				  <div class="col-sm-2">
+						<select ng-model="blah" ng-options="bank.id as bank.name for bank in banks" class="form-control"></select>
+				  </div>
+				  <label class="col-sm-1 control-label">Interest</label>
+				  <div class="col-sm-1">
+						<input type="text" ng-model="interest" class="form-control">
+				  </div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Amount</label>
+					<div class="col-sm-2">
+					  <input type="text" class="form-control" ng-model="newloan.swift" placeholder="Amount">
+					</div>
+				  <label class="col-sm-1 control-label">Paid</label>
+				  <div class="col-sm-3">
+				    <input type="text" class="form-control" ng-model="newloan.contact" placeholder="Paid">
+				  </div>
+				  <label class="col-sm-1 control-label">Due</label>
+				  <div class="col-sm-3">
+				    <input type="text" class="form-control" ng-model="newloan.branch" placeholder="Due">
+				  </div>
+				</div>
+			  <div class="form-group">
+					<label class="col-sm-2 control-label">Description</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" ng-model="newloan.description" placeholder="Address Line 2">
+					</div>
+				  <label class="col-sm-1 control-label">Close date</label>
+				  <div class="col-sm-3">
+				    <input type="text" class="form-control" ng-model="newloan.branch" placeholder="Close date">
+				  </div>
+			  </div>
+				<div class="form-group">
+				  <div class="col-md-12 text-right">
+				  	<button type="button" class="btn btn-default" ng-click="status.loanedit = false;">Cancel</button>
+					  <button type="submit" class="btn btn-primary">Save</button>
+				  </div>
+				</div>
+				<hr>
+			</form>
+			<h3>Loans and details</h3>
+			<table class="table table-hover table-responsive">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Amount</th>
+						<th>Interest</th>
+						<th>Paid</th>
+						<th>Due</th>
+						<th>Date</th>
+						<th>Close date</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="loan in loans">
+						<td><a>{{loan.name}}</a></td>
+						<td>{{loan.amount}}</td>
+						<td>{{loan.interest}}</td>
+						<td>{{loan.paid}}</td>
+						<td>{{loan.balance}}</td>
+						<td>{{loan.date}}</td>
+						<td>{{loan.closedate}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
