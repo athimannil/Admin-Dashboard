@@ -1,52 +1,53 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="box">
-			<button type="button" class="btn btn-primary pull-right" ng-hide="status.loanedit" ng-click="status.loanedit = true; newLoan();">
+			<button type="button" class="btn btn-primary pull-right" ng-hide="loanedit" ng-click="loanedit = true; newLoan();">
 				<i class="fa fa-plus"></i> Add loan
 			</button>
-			<form class="form-horizontal" ng-submit="addBank()" ng-show="status.loanedit">
+			<!-- <pre>{{loans | json}}</pre> -->
+			<form class="form-horizontal" ng-submit="addLoan()" ng-show="loanedit">
 				<h3>New Loan</h3><br>
 				<div class="form-group">
 				  <label class="col-sm-2 control-label">Loan name</label>
 				  <div class="col-sm-5">
-				    <input type="text" class="form-control" ng-model="newloan.branchcode" placeholder="Branch Code">
+				    <input type="text" class="form-control" ng-model="newloan.name" placeholder="Loan name" required>
 				  </div>
 				  <label class="col-sm-1 control-label">Bank</label>
 				  <div class="col-sm-2">
-						<select ng-model="blah" ng-options="bank.id as bank.name for bank in banks" class="form-control"></select>
+						<select ng-model="newloan.bank_id" ng-options="bank.id as bank.name for bank in banks" class="form-control" required></select>
 				  </div>
 				  <label class="col-sm-1 control-label">Interest</label>
 				  <div class="col-sm-1">
-						<input type="text" ng-model="interest" class="form-control">
+						<input type="text" ng-model="newloan.interest" class="form-control">
 				  </div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Amount</label>
 					<div class="col-sm-2">
-					  <input type="text" class="form-control" ng-model="newloan.swift" placeholder="Amount">
+					  <input type="text" class="form-control" ng-model="newloan.amount" placeholder="Amount" required>
 					</div>
 				  <label class="col-sm-1 control-label">Paid</label>
 				  <div class="col-sm-3">
-				    <input type="text" class="form-control" ng-model="newloan.contact" placeholder="Paid">
+				    <input type="text" class="form-control" ng-model="newloan.paid" placeholder="Paid">
 				  </div>
 				  <label class="col-sm-1 control-label">Due</label>
 				  <div class="col-sm-3">
-				    <input type="text" class="form-control" ng-model="newloan.branch" placeholder="Due">
+				    <input type="text" class="form-control" ng-model="newloan.balance" placeholder="Due">
 				  </div>
 				</div>
 			  <div class="form-group">
 					<label class="col-sm-2 control-label">Description</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" ng-model="newloan.description" placeholder="Address Line 2">
+						<input type="text" class="form-control" ng-model="newloan.description" placeholder="Description">
 					</div>
 				  <label class="col-sm-1 control-label">Close date</label>
 				  <div class="col-sm-3">
-				    <input type="text" class="form-control" ng-model="newloan.branch" placeholder="Close date">
+				    <input type="text" class="form-control" ng-model="newloan.closedate" placeholder="Close date">
 				  </div>
 			  </div>
 				<div class="form-group">
 				  <div class="col-md-12 text-right">
-				  	<button type="button" class="btn btn-default" ng-click="status.loanedit = false;">Cancel</button>
+				  	<button type="button" class="btn btn-default" ng-click="loanedit = false;">Cancel</button>
 					  <button type="submit" class="btn btn-primary">Save</button>
 				  </div>
 				</div>
@@ -56,6 +57,7 @@
 			<table class="table table-hover table-responsive">
 				<thead>
 					<tr>
+						<th>&nbsp;</th>
 						<th>Name</th>
 						<th>Amount</th>
 						<th>Interest</th>
@@ -63,17 +65,35 @@
 						<th>Due</th>
 						<th>Date</th>
 						<th>Close date</th>
+						<th>Edit</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="loan in loans">
+						<td>{{$index+1}}</td>
 						<td><a>{{loan.name}}</a></td>
-						<td>{{loan.amount}}</td>
+						<td><i class="fa fa-inr"></i> {{loan.amount}}</td>
 						<td>{{loan.interest}}</td>
-						<td>{{loan.paid}}</td>
-						<td>{{loan.balance}}</td>
+						<td><i class="fa fa-inr"></i> {{loan.paid}}</td>
+						<td><i class="fa fa-inr"></i> {{loan.balance}}</td>
 						<td>{{loan.date}}</td>
 						<td>{{loan.closedate}}</td>
+						<td>
+							<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editLoan(loan.id);">
+									<i class="fa fa-pencil"></i>
+								</button>
+								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="deleteLoan(loan.id); editmode = !editmode">
+									<i class="fa fa-trash-o"></i>
+								</button>
+								<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
+									<i class="fa fa-check"></i>
+								</button>
+								<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
+									<i class="fa fa-times"></i>
+								</button>
+							</div>
+						</td>
 					</tr>
 				</tbody>
 			</table>

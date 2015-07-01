@@ -391,8 +391,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			isFirstOpen: true,
 			oneAtATime: true,
 			bankedit: false, 
-			accountedit: false,
-			newLoan: false
+			accountedit: false
 		};
 		$scope.newbank = {};
 		$scope.banks =[ 
@@ -433,7 +432,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 		// TODO unique ID for new contact
 		$scope.addBank = function(){
-			console.log($scope.newbank.id);
 			if ($scope.newbank.id == null) {
 				$scope.newbank.id = $scope.banks.length+1;
 				$scope.banks.push($scope.newbank);
@@ -498,7 +496,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 		// TODO unique ID for new Account
 		$scope.addAccount = function(){
-			console.log($scope.newaccount.id);
 			if ($scope.newaccount.id == null) {
 				$scope.newaccount.id = $scope.accounts.length+1;
 				$scope.accounts.push($scope.newaccount);
@@ -940,6 +937,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		});
 	});
 	app.controller('loanController', function($scope){
+		$scope.loanedit = false;
 		$scope.banks =[ 
 			{
 				"id": 1,
@@ -976,8 +974,8 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.loans = [
 			{
 				"id": 1,
-				"banks_id": 1111111,
-				"name":"myname",
+				"bank_id": 1,
+				"name":"Loan number 1",
 				"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut dolores, aut itaque accusantium laborum sapiente.",
 				"amount": 10000,
 				"paid": 5000,
@@ -987,8 +985,8 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"interest": "12%",
 			},{
 				"id": 2,
-				"banks_id": 2222222,
-				"name":"myname",
+				"bank_id": 3,
+				"name":"Loan number 2",
 				"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut dolores, aut itaque accusantium laborum sapiente.",
 				"amount": 7000,
 				"paid": 3000,
@@ -998,8 +996,8 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"interest": "11%",
 			},{
 				"id": 3,
-				"banks_id": 3333333,
-				"name":"myname",
+				"bank_id": 2,
+				"name":"Loan number 3",
 				"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut dolores, aut itaque accusantium laborum sapiente.",
 				"amount": 50000,
 				"paid": 1200,
@@ -1009,6 +1007,43 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"interest": "9.5%",
 			}
 		];
+		$scope.newaccount = {};
+		$scope.newLoan = function(){
+			$scope.newloan = {};
+		};
+		$scope.editLoan = function (id) {
+    	$scope.loanedit = true;
+      for (var i = 0; i < $scope.loans.length; i++) {
+        if ($scope.loans[i].id == id) {
+          $scope.newloan = angular.copy($scope.loans[i]);
+        }
+      }
+		};
+		// TODO unique ID for new loan
+		$scope.addLoan = function(){
+			if ($scope.newloan.id == null) {
+				$scope.newloan.id = $scope.loans.length+1;
+				$scope.loans.push($scope.newloan);
+			}else{
+				for (var i = 0; i < $scope.loans.length; i++) {
+					if ($scope.loans[i].id == $scope.newloan.id) {
+					  $scope.loans[i] = $scope.newloan;
+					}
+				}
+			}
+			$scope.newloan = {};
+			$scope.loanedit = false;
+		};
+		$scope.deleteLoan = function (id) {
+			for (var i = 0; i < $scope.loans.length; i++) {
+				if ($scope.loans[i].id == id) {
+					var confirmDelete = confirm("Do you really need to delete " + $scope.loans[i].name + "?");
+					if (confirmDelete) {
+						$scope.loans.splice(i, 1);
+					}
+			  }
+			}
+		};
 	});
 
 })();
