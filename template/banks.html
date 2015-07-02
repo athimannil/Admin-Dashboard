@@ -193,32 +193,6 @@
 		<tab>
 			<tab-heading><i class="fa fa-newspaper-o"></i> Statement</a></tab-heading>
 			<div class="box">
-
-
-				<div class="row">
-					<div class="col-md-12">
-						<h3>{{}}</h3>
-						<ul>
-						  <li ng-repeat="mylist in filteredTodos">{{mylist.id}} + {{$index}}</li>
-						</ul>
-							
-						<pagination 
-							boundary-links="true" 
-							total-items="particulars.length" 
-							ng-model="bigCurrentPage" 
-							items-per-page = "5"
-							max-size="5" 
-							class="pagination-sm" 
-							previous-text="&lsaquo;" 
-							next-text="&rsaquo;" 
-							first-text="&laquo;" 
-							last-text="&raquo;"
-						></pagination>
-				    <!-- <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre> -->
-					</div>
-				</div>
-
-
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto magnam eius quia, sint mollitia, ipsum error consequatur corrupti. Voluptas tenetur totam aut quo ea consequatur et illo optio, deleniti officia!</p>
 				<table class="table table-hover table-responsive">
 					<thead>
@@ -233,7 +207,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="particular in particulars">
+						<tr ng-repeat="particular in particulars | pagination: bigCurrentPage : numPerPage">
 							<td>{{$index+1}}</td>
 							<td>{{particular.cheque_no}}</td>
 							<td>{{particular.date}}</td>
@@ -244,6 +218,22 @@
 						</tr>
 					</tbody>
 				</table>
+					<div class="clearfix">
+						<pagination 
+							ng-model="bigCurrentPage" 
+							total-items="particulars.length" 
+							max-size="5" 
+							boundary-links="true" 
+							class="pagination-sm pull-right" 
+							previous-text="&lsaquo;" 
+							next-text="&rsaquo;" 
+							first-text="&laquo;" 
+							last-text="&raquo;"
+						></pagination>
+					</div>
+				    <!-- <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre> -->
+
+
 			</div>
 		</tab>
 		<tab>

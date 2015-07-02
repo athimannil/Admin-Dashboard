@@ -301,6 +301,15 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			}, 0);
 		};
 	});
+	app.filter('pagination', function() {
+	  return function(input, currentPage, pageSize) {
+	    if(angular.isArray(input)) {
+	      var start = (currentPage-1)*pageSize;
+	      var end = currentPage*pageSize;
+	      return input.slice(start, end);
+	    }
+	  };
+	});
 	
 	app.controller('phonebookController', function($scope, $http){
 		$scope.contactMode = {
