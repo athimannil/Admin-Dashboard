@@ -354,7 +354,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.contactMode.newMode = true;
 			// Clear selected JSON list
 			$scope.currentContact = {};
-			$scope.currentContact = { "contacts" : [{"phone": ""}]};
+			$scope.currentContact.contacts = [{"phone": ""}];
 			// Clear current add JSON lsit 
 			// $scope.currentContact = {};
 		};
@@ -925,7 +925,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$log.log('Page changed to: ' + $scope.currentPage);
 		};
 		$scope.bigCurrentPage = 1;
-
 		$scope.filteredTodos = [];
 		$scope.currentPage = 1; 
 		$scope.numPerPage = 10; 
@@ -933,11 +932,12 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.$watch('currentPage + numPerPage', function() {
 		var begin = (($scope.currentPage - 1) * $scope.numPerPage),
 		  end = begin + $scope.numPerPage;
-		$scope.filteredTodos = $scope.particulars.slice(begin, end);
+			$scope.filteredTodos = $scope.particulars.slice(begin, end);
 		});
 	});
 	app.controller('loanController', function($scope){
 		$scope.loanedit = false;
+		$scope.emiedit = false;
 		$scope.banks =[ 
 			{
 				"id": 1,
@@ -975,7 +975,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			{
 				"id": 1,
 				"bank_id": 1,
-				"name":"Loan number 1",
+				"name":"Bike Loan",
 				"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut dolores, aut itaque accusantium laborum sapiente.",
 				"amount": 10000,
 				"paid": 5000,
@@ -986,7 +986,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			},{
 				"id": 2,
 				"bank_id": 3,
-				"name":"Loan number 2",
+				"name":"Hosing loan",
 				"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut dolores, aut itaque accusantium laborum sapiente.",
 				"amount": 7000,
 				"paid": 3000,
@@ -997,7 +997,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			},{
 				"id": 3,
 				"bank_id": 2,
-				"name":"Loan number 3",
+				"name":"Vehicle Loan",
 				"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut dolores, aut itaque accusantium laborum sapiente.",
 				"amount": 50000,
 				"paid": 1200,
@@ -1044,6 +1044,206 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			  }
 			}
 		};
+		$scope.emis = [
+			{
+				"id": 1,
+				"loan_id": 1,
+				"amount": 4500,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla reprehenderit quisquam suscipit nesciunt exe",
+				"date": "12-March-1999"
+			},{
+				"id": 2,
+				"loan_id": 1,
+				"amount": 900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima dolores sapiente provident accusantium natu",
+				"date": "01-May-2015"
+			},{
+				"id": 3,
+				"loan_id": 2,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque laudantium iste quae deserunt itaque recusan",
+				"date": "03-February-2015"
+			},{
+				"id": 3,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus error odio autem, voluptatibus perferendi",
+				"date": "03-February-2015"
+			},{
+				"id": 4,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, laborum. Ipsum, facilis deleniti nam atque a",
+				"date": "03-February-2015"
+			},{
+				"id": 5,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum facere sapiente ex totam tenetur, aspernatur, ",
+				"date": "03-February-2015"
+			},{
+				"id": 6,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates recusandae veniam iure architecto exerc",
+				"date": "03-February-2015"
+			},{
+				"id": 7,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto harum qui ipsam inventore modi molestia",
+				"date": "03-February-2015"
+			},{
+				"id": 8,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo numquam, iure, perferendis ipsum ipsa odit asp",
+				"date": "03-February-2015"
+			},{
+				"id": 9,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo quam veniam ea nemo, nobis dignissimos. Molest",
+				"date": "03-February-2015"
+			},{
+				"id": 10,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem rem enim, architecto voluptate quidem ad dol",
+				"date": "03-February-2015"
+			},{
+				"id": 11,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima velit ad natus assumenda, at illo, nulla il",
+				"date": "03-February-2015"
+			},{
+				"id": 12,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, quibusdam minima quos exercitationem fugiat ",
+				"date": "03-February-2015"
+			},{
+				"id": 13,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure repudiandae adipisci officia vitae odit moles",
+				"date": "03-February-2015"
+			},{
+				"id": 14,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo nostrum perferendis repellat voluptates sapien",
+				"date": "03-February-2015"
+			},{
+				"id": 15,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia placeat, labore pariatur odio doloribus est n",
+				"date": "03-February-2015"
+			},{
+				"id": 16,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident inventore itaque beatae dicta eligendi n",
+				"date": "03-February-2015"
+			},{
+				"id": 17,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque magni quaerat provident rerum sapiente,",
+				"date": "03-February-2015"
+			},{
+				"id": 18,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, corrupti, laborum? Ipsa maiores labori",
+				"date": "03-February-2015"
+			},{
+				"id": 19,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo tempore, cum ad, dicta omnis dignissimos amet",
+				"date": "03-February-2015"
+			},{
+				"id": 20,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam accusamus esse, facere veniam. Non tenetur",
+				"date": "03-February-2015"
+			},{
+				"id": 21,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt laboriosam, eligendi, earum, minus et inc",
+				"date": "03-February-2015"
+			},{
+				"id": 22,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum voluptate totam dolor commodi ipsa ducimus",
+				"date": "03-February-2015"
+			},{
+				"id": 23,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim omnis dolorem voluptas minima neque impedit q",
+				"date": "03-February-2015"
+			},{
+				"id": 24,
+				"loan_id": 3,
+				"amount": 1900,
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere quisquam nihil repellendus officia error cu",
+				"date": "03-February-2015"
+			}
+		];
+		$scope.newEmi = function(){
+			$scope.newemi = {};
+		};
+		$scope.editEmi = function (id) {
+    	$scope.emiedit = true;
+      for (var i = 0; i < $scope.emis.length; i++) {
+        if ($scope.emis[i].id == id) {
+          $scope.newemi = angular.copy($scope.emis[i]);
+        }
+      }
+    	$scope.emibanks = $scope.newemi.bank_id;
+		};
+		// TODO unique ID for new loan
+		$scope.addEmi = function(){
+			if ($scope.newemi.id == null) {
+				$scope.newemi.id = $scope.emis.length+1;
+				$scope.emis.push($scope.newemi);
+			}else{
+				for (var i = 0; i < $scope.emis.length; i++) {
+					if ($scope.emis[i].id == $scope.newemi.id) {
+					  $scope.emis[i] = $scope.newemi;
+					}
+				}
+			}
+			$scope.newemi = {};
+			$scope.emiedit = false;
+		};
+		$scope.deleteEmi = function (id) {
+			for (var i = 0; i < $scope.emis.length; i++) {
+				if ($scope.emis[i].id == id) {
+					var confirmDelete = confirm("Do you really need to delete ?");
+					if (confirmDelete) {
+						$scope.emis.splice(i, 1);
+					}
+			  }
+			}
+		};
+
+		// Paggination for emi
+		$scope.filter_emi = [];
+		$scope.currentPage = 1;
+		$scope.numPerPage = 10;
+		$scope.maxSize = 5;
+		$scope.$watch('currentPage + numPerPage', function() {
+		  var begin = (($scope.currentPage - 1) * $scope.numPerPage), end = begin + $scope.numPerPage;
+		  $scope.filter_emi = $scope.emis.slice(begin, end);
+		});
 	});
 
 })();

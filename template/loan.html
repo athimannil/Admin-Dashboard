@@ -99,4 +99,80 @@
 			</table>
 		</div>
 	</div>
+	<div class="col-md-12">
+		<div class="box">
+			<button type="button" class="btn btn-primary pull-right" ng-hide="emiedit" ng-click="emiedit = true; newEmi();">
+				<i class="fa fa-plus"></i> Add EMI
+			</button>
+			<form class="form-horizontal" ng-submit="addEmi()" ng-show="emiedit">
+				<h3>New EMI</h3>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label">Loan name</label>
+				  <div class="col-sm-4">
+				    <input type="text" class="form-control" ng-model="newemi.amount" placeholder="Amount" required>
+				  </div>
+				  <label class="col-sm-1 control-label">Loan</label>
+				  <div class="col-sm-2">
+						<select ng-model="newemi.loan_id" ng-options="loan.id as loan.name for loan in loans" class="form-control" required></select>
+				  </div>
+				  <label class="col-sm-1 control-label">Date</label>
+				  <div class="col-sm-2">
+						<input type="text" ng-model="newemi.date" class="form-control">
+				  </div>
+				</div>
+			  <div class="form-group">
+					<label class="col-sm-2 control-label">Description</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" ng-model="newemi.description" placeholder="Description"></textarea>
+					</div>
+			  </div>
+				<div class="form-group">
+				  <div class="col-md-12 text-right">
+				  	<button type="button" class="btn btn-default" ng-click="emiedit = false;">Cancel</button>
+					  <button type="submit" class="btn btn-primary">Save</button>
+				  </div>
+				</div>
+				<hr>
+			</form>
+			<h3>Loan EMI</h3>
+			<table class="table table-hover table-responsive">
+				<thead>
+					<tr>
+						<th>&nbsp;</th>
+						<th>Description</th>
+						<th>Amount</th>
+						<th>Date</th>
+						<th>Edit</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="emi in filter_emi">
+						<td>{{emi.loan_id}}</td>
+						<td>{{emi.description}}</td>
+						<td><i class="fa fa-inr"></i> {{emi.amount}}</td>
+						<td>{{emi.date}}</td>
+						<td>
+							<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editEmi(emi.id);">
+									<i class="fa fa-pencil"></i>
+								</button>
+								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="deleteEmi(emi.id); editmode = !editmode">
+									<i class="fa fa-trash-o"></i>
+								</button>
+								<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
+									<i class="fa fa-check"></i>
+								</button>
+								<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
+									<i class="fa fa-times"></i>
+								</button>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="clearfix">
+				<pagination ng-model="currentPage" total-items="emis.length" max-size="5" boundary-links="true" class="pagination-sm pull-right" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+			</div>
+		</div>
+	</div>
 </div>
