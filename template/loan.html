@@ -57,8 +57,8 @@
 			<table class="table table-hover table-responsive">
 				<thead>
 					<tr>
-						<th>&nbsp;</th>
 						<th>Name</th>
+						<th>Description</th>
 						<th>Amount</th>
 						<th>Interest</th>
 						<th>Paid</th>
@@ -70,8 +70,8 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="loan in loans">
-						<td>{{$index+1}}</td>
 						<td><a>{{loan.name}}</a></td>
+						<td><p class="description" popover="{{loan.description}}" popover-trigger="mouseenter">{{loan.description}}</p></td>
 						<td><i class="fa fa-inr"></i> {{loan.amount}}</td>
 						<td>{{loan.interest}}</td>
 						<td><i class="fa fa-inr"></i> {{loan.paid}}</td>
@@ -139,18 +139,20 @@
 				<thead>
 					<tr>
 						<th>&nbsp;</th>
+						<th>Date</th>
 						<th>Description</th>
 						<th>Amount</th>
-						<th>Date</th>
 						<th>Edit</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="emi in filter_emi">
 						<td>{{emi.loan_id}}</td>
-						<td>{{emi.description}}</td>
-						<td><i class="fa fa-inr"></i> {{emi.amount}}</td>
 						<td>{{emi.date}}</td>
+						<td>
+							<p class="description" popover="{{emi.description}}" popover-trigger="mouseenter">{{emi.description}}</p>
+						</td>
+						<td><i class="fa fa-inr"></i> {{emi.amount}}</td>
 						<td>
 							<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
 								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editEmi(emi.id);">

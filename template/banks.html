@@ -5,7 +5,7 @@
 		</div>
 	</div>
 	<div class="row">
-	<div class="col-md-12 hide">
+	<div class="col-md-12">
 		<div class="box">
 			<button type="button" class="btn btn-primary pull-right" ng-hide="status.bankedit" ng-click="status.bankedit = true; newBank();"><i class="fa fa-plus"></i> Add bank</button>
 			<form class="form-horizontal" ng-submit="addBank()" ng-show="status.bankedit">
@@ -110,7 +110,7 @@
 			</table>
 		</div>
 	</div>
-	<div class="col-md-12 hide">
+	<div class="col-md-12">
 		<div class="box">
 			<button type="button" class="btn btn-primary pull-right" ng-click="status.accountedit = true; newAccount();"><i class="fa fa-plus"></i> Add bank</button>
 			<form class="form-horizontal" ng-submit="addAccount()" ng-show="status.accountedit">
@@ -250,7 +250,7 @@
 						<tr ng-repeat="particular in particulars | pagination: bigCurrentPage : numPerPage">
 							<td>{{$index+1}}</td>
 							<td>{{particular.date}}</td>
-							<td>{{particular.particuler}}</td>
+							<td><p class="description" popover="{{particular.particuler}}" popover-trigger="mouseenter">{{particular.particuler}}</p></td>
 							<td>{{particular.cheque_no}}</td>
 							<td><i class="fa fa-inr"></i> {{particular.withdraw}}</td>
 							<td><i class="fa fa-inr"></i> {{particular.deposit}}</td>
@@ -337,7 +337,7 @@
 										<td>{{$index+1}}</td>
 										<td>{{chequerecord.number}}</td>
 										<td>{{chequerecord.date}}</td>
-										<td>{{chequerecord.favor}}</td>
+										<td><p class="description" popover="{{chequerecord.favor}}" popover-trigger="mouseenter">{{chequerecord.favor}}</p></td>
 										<td><i class="fa fa-inr"></i> {{chequerecord.amount}}</td>
 										<td><i class="fa fa-inr"></i> {{chequerecord.deposit}}</td>
 										<td><i class="fa fa-inr"></i> {{chequerecord.balance}}</td>
