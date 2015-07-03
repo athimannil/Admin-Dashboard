@@ -400,7 +400,8 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			isFirstOpen: true,
 			oneAtATime: true,
 			bankedit: false, 
-			accountedit: false
+			accountedit: false,
+			particularedit: false
 		};
 		$scope.newbank = {};
 		$scope.banks =[ 
@@ -644,292 +645,381 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.particulars = [
 			{
 				"id": 1,
+				"account_id": 1,
 				"date": "12-Jan-2015",
+				"particuler": "Lorem ipsum dolor sit amet Quia dolorum tenetur recusandae quos, eos reiciendis unessitatibus illum? Quasi, accusamus.",
 				"cheque_no": 11111,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 2,
+				"account_id": 2,
 				"date": "22-February-2015",
+				"particuler": "Lorem ipsum dolor sit amet Adipisci aperiam, necessitatibus nesciunt a iste vitae tiis obcaecati quas saepe!",
 				"cheque_no": 222222,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 3,
+				"account_id": 1,
 				"date": "14-March-2015",
+				"particuler": "Lorem ipsum dolor sit amet Quo ut molestias recusandae odit nihil quisquam eum id ficiis corporis quidem.",
 				"cheque_no": 33333,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 4,
+				"account_id": 2,
 				"date": "16-April-2015",
+				"particuler": "Lorem ipsum dolor sit amet Dolore ullam, ut eum. Ut ea, error nemo. Totam cupiditaectus eaque?",
 				"cheque_no": 44444,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 5,
+				"account_id": 2,
 				"date": "30-May-2015",
+				"particuler": "Lorem ipsum dolor sit amet Ut magnam voluptates quis molestiae dolores odio, ipsa dem eos earum adipisci!",
 				"cheque_no": 55555,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 6,
+				"account_id": 2,
 				"date": "22-February-2015",
+				"particuler": "Lorem ipsum dolor sit amet Quae atque molestiae eos blanditiis harum est in quod eate omnis ducimus, vitae inventore.",
 				"cheque_no": 222222,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 7,
+				"account_id": 2,
 				"date": "14-March-2015",
+				"particuler": "Lorem ipsum dolor sit amet Blanditiis reprehenderit pariatur deserunt ullam sunt andis molestiae officiis. Labore recusandae corporis perspiciatis.",
 				"cheque_no": 33333,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 8,
+				"account_id": 2,
 				"date": "16-April-2015",
+				"particuler": "Lorem ipsum dolor sit amet Sapiente ducimus saepe fugit in, est inventore nulla ofm beatae voluptatibus debitis?",
 				"cheque_no": 44444,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 9,
+				"account_id": 2,
 				"date": "30-May-2015",
+				"particuler": "Lorem ipsum dolor sit amet Iste error ad iure quod, magni culpa similique placeat  at.",
 				"cheque_no": 55555,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 10,
+				"account_id": 2,
 				"date": "22-February-2015",
+				"particuler": "Lorem ipsum dolor sit amet Accusantium debitis eius, sapiente ducimus. Esse adipisuta, facilis amet minus dicta.",
 				"cheque_no": 222222,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 11,
+				"account_id": 2,
 				"date": "14-March-2015",
+				"particuler": "Lorem ipsum dolor sit amet Possimus esse cum quis magni, consequuntur, odit? Illum veniam!",
 				"cheque_no": 33333,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 12,
+				"account_id": 2,
 				"date": "16-April-2015",
+				"particuler": "Lorem ipsum dolor sit amet Suscipit voluptates magnam facere, consequatur inventortione obcaecati possimus, non quam dicta.",
 				"cheque_no": 44444,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 13,
+				"account_id": 2,
 				"date": "30-May-2015",
+				"particuler": "Lorem ipsum dolor sit amet Nostrum ea vero dolorum minima aut, nemo. Facilis quod ntore similique iste officia.",
 				"cheque_no": 55555,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 14,
+				"account_id": 2,
 				"date": "22-February-2015",
+				"particuler": "Lorem ipsum dolor sit amet Adipisci perspiciatis temporibus enim, quidem possimus llitia consequuntur necessitatibus blanditiis similique iure!",
 				"cheque_no": 222222,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 15,
+				"account_id": 2,
 				"date": "14-March-2015",
+				"particuler": "Lorem ipsum dolor sit amet Enim ducimus molestias ipsum numquam necessitatibus remuga doloremque officiis expedita officia sed?",
 				"cheque_no": 33333,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 16,
+				"account_id": 2,
 				"date": "16-April-2015",
+				"particuler": "Lorem ipsum dolor sit amet Ad obcaecati a rerum, distinctio repudiandae sed quidemetur, ipsa eligendi.",
 				"cheque_no": 44444,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 17,
+				"account_id": 2,
 				"date": "30-May-2015",
+				"particuler": "Lorem ipsum dolor sit amet Odit laboriosam eaque eveniet inventore dolore laudantiobis natus. Ratione, aspernatur.",
 				"cheque_no": 55555,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 18,
+				"account_id": 2,
 				"date": "22-February-2015",
+				"particuler": "Lorem ipsum dolor sit amet Officia, repellendus voluptates reprehenderit tempore mxcepturi dolorum obcaecati tenetur nobis minus!",
 				"cheque_no": 222222,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 19,
+				"account_id": 2,
 				"date": "14-March-2015",
+				"particuler": "Lorem ipsum dolor sit amet Animi consequatur numquam eligendi tenetur magni sunt eum architecto, quod!",
 				"cheque_no": 33333,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 20,
+				"account_id": 2,
 				"date": "16-April-2015",
+				"particuler": "Lorem ipsum dolor sit amet Consectetur harum voluptates illum quisquam, commodi qucupiditate laboriosam possimus distinctio harum atque.",
 				"cheque_no": 44444,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 21,
+				"account_id": 2,
 				"date": "30-May-2015",
+				"particuler": "Lorem ipsum dolor sit amet Incidunt nobis facilis accusantium dolor, corporis cumqollitia pariatur, fugiat omnis?",
 				"cheque_no": 55555,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 22,
+				"account_id": 2,
 				"date": "22-February-2015",
+				"particuler": "Lorem ipsum dolor sit amet Ipsum illum porro inventore possimus vel at libero assue quos, sint?",
 				"cheque_no": 222222,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 23,
+				"account_id": 2,
 				"date": "14-March-2015",
+				"particuler": "Lorem ipsum dolor sit amet Ducimus placeat reiciendis, molestias, quod veniam illorerum magni non saepe laboriosam dolor.",
 				"cheque_no": 33333,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 24,
+				"account_id": 2,
 				"date": "16-April-2015",
+				"particuler": "Lorem ipsum dolor sit amet Temporibus aperiam, fugiat eum ratione necessitatibus s ut nesciunt ducimus quod.",
 				"cheque_no": 44444,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 25,
+				"account_id": 2,
 				"date": "30-May-2015",
+				"particuler": "Lorem ipsum dolor sit amet Quam, a laborum provident hic! Ab, delectus iste officitore, neque, rerum?",
 				"cheque_no": 55555,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 26,
+				"account_id": 2,
 				"date": "30-May-2015",
+				"particuler": "Lorem ipsum dolor sit amet Assumenda repellat dicta odio nesciunt accusamus nulla ariatur!",
 				"cheque_no": 55555,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 27,
+				"account_id": 2,
 				"date": "22-February-2015",
+				"particuler": "Lorem ipsum dolor sit amet Dolores tempora hic omnis numquam maxime culpa, deserunumenda, voluptatibus sed consequatur?",
 				"cheque_no": 222222,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 28,
+				"account_id": 2,
 				"date": "14-March-2015",
+				"particuler": "Lorem ipsum dolor sit amet Error vero consectetur animi repellat enim aut assumendum vero quasi!",
 				"cheque_no": 33333,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 29,
+				"account_id": 2,
 				"date": "16-April-2015",
+				"particuler": "Lorem ipsum dolor sit amet Sapiente nemo cupiditate amet repellat, id inventore seTotam, est!",
 				"cheque_no": 44444,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 30,
+				"account_id": 2,
 				"date": "30-May-2015",
+				"particuler": "Lorem ipsum dolor sit amet Possimus asperiores hic magnam voluptate dolore error sgnam illo consequatur molestiae!",
 				"cheque_no": 55555,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 31,
+				"account_id": 2,
 				"date": "30-May-2015",
+				"particuler": "Lorem ipsum dolor sit amet Dolor nostrum doloribus rerum cupiditate architecto quoiet voluptate! Aut, culpa odit sit.",
 				"cheque_no": 55555,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 32,
+				"account_id": 2,
 				"date": "22-February-2015",
+				"particuler": "Lorem ipsum dolor sit amet Vel natus cum facilis facere eveniet dolorem. Tempora dstinctio est consequatur repudiandae!",
 				"cheque_no": 222222,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 33,
+				"account_id": 2,
 				"date": "14-March-2015",
+				"particuler": "Lorem ipsum dolor sit amet Quae eos eius, rem consequuntur voluptatem voluptas eumi, quas doloremque ipsum officia sed.",
 				"cheque_no": 33333,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 34,
+				"account_id": 3,
 				"date": "16-April-2015",
+				"particuler": "Lorem ipsum dolor sit amet Saepe quo voluptatum consequuntur quam ullam odio quod dunt molestias cupiditate accusamus tempore.",
 				"cheque_no": 44444,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 35,
+				"account_id": 2,
 				"date": "30-May-2015",
+				"particuler": "Lorem ipsum dolor sit amet Molestiae iste, nesciunt optio laudantium voluptatum, et unde incidunt consequatur earum vel.",
 				"cheque_no": 55555,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 36,
+				"account_id": 3,
 				"date": "30-May-2015",
+				"particuler": "Lorem ipsum dolor sit amet Alias modi, aliquid cum reiciendis architecto iure ipsu numquam voluptate!",
 				"cheque_no": 55555,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 37,
+				"account_id": 3,
 				"date": "22-February-2015",
+				"particuler": "Lorem ipsum dolor sit amet Possimus explicabo ipsum, tempore a quod asperiores, quat atque reiciendis? Dolor, non.",
 				"cheque_no": 222222,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 38,
+				"account_id": 2,
 				"date": "14-March-2015",
+				"particuler": "Lorem ipsum dolor sit amet Rerum totam voluptas nam ad fuga quisquam quae, sunt no",
 				"cheque_no": 33333,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 39,
+				"account_id": 2,
 				"date": "16-April-2015",
+				"particuler": "Lorem ipsum dolor sit amet Saepe, iure laudantium accusantium nihil minima porro aoptio laborum illum quasi iure.",
 				"cheque_no": 44444,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			},{
 				"id": 40,
+				"account_id": 2,
 				"date": "30-May-2015",
+				"particuler": "Lorem ipsum dolor sit amet Provident harum soluta rem rerum id vel fuga dolorum ni, vero.",
 				"cheque_no": 55555,
 				"withdraw": 126.01,
 				"deposit": 236.00,
 				"balance": 953.00
 			}
 		];
+		$scope.editParticular = function(){};
+		$scope.deleteParticular = function(id){
+			for (var i = 0; i < $scope.particulars.length; i++) {
+				if ($scope.particulars[i].id == id) {
+					var confirmDelete = confirm("Do you really need to delete ?");
+					if (confirmDelete) {
+						$scope.particulars.splice(i, 1);
+					}
+			  }
+			}
+		};
 		$scope.filterList = [];
 		$scope.addCard = function(){
 			alert("Hello mate");
 		};
-
-
 		$scope.pageChanged = function() {
 		$log.log('Page changed to: ' + $scope.currentPage);
 		};
