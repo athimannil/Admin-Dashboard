@@ -192,28 +192,84 @@
 		<tab>
 			<tab-heading><i class="fa fa-newspaper-o"></i> Statement</a></tab-heading>
 			<div class="box">
+				<button type="button" class="btn btn-primary pull-right" ng-hide="status.particularedit" ng-click="status.particularedit = true; newParticular();"><i class="fa fa-plus"></i> Add payment</button>
+				<form class="form-horizontal" ng-submit="addParticular()" ng-show="status.particularedit">
+					<h3>New Account Particular</h3><br>
+				  <div class="form-group">
+					  <label class="col-sm-1 control-label">Account</label>
+					  <div class="col-sm-2">
+							<p class="form-control-static">1234567890123456</p>
+					  </div>
+						<label class="col-sm-1 control-label">Date</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" ng-model="newparticular.date" placeholder="Date">
+						</div>
+						<label class="col-sm-2 control-label">Cheque No</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" ng-model="newparticular.cheque_no" placeholder="Cheque Number">
+						</div>
+				  </div>
+					<div class="form-group">
+					  <label class="col-sm-1 control-label">Withdraw</label>
+					  <div class="col-sm-3">
+					    <input type="text" class="form-control" ng-model="newparticular.withdraw" placeholder="Withdraw Amount">
+					  </div>
+					  <label class="col-sm-1 control-label">Deposit</label>
+					  <div class="col-sm-3">
+					    <input type="text" class="form-control" ng-model="newparticular.deposit" placeholder="Deposit Amount">
+					  </div>
+					  <label class="col-sm-1 control-label">Balance</label>
+					  <div class="col-sm-3">
+					    <input type="text" class="form-control" ng-model="newparticular.balance" placeholder="Balance Amount">
+					  </div>
+					</div>
+					<div class="form-group">
+					  <div class="col-md-12 text-right">
+					  	<button type="button" class="btn btn-default" ng-click="status.particularedit = false;">Cancel</button>
+						  <button type="submit" class="btn btn-primary">Save</button>
+					  </div>
+					</div>
+					<hr>
+				</form>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto magnam eius quia, sint mollitia, ipsum error consequatur corrupti. Voluptas tenetur totam aut quo ea consequatur et illo optio, deleniti officia!</p>
 				<table class="table table-hover table-responsive">
 					<thead>
 						<tr class="bg-primary">
 							<th>&nbsp;</th>
-							<th>Particulars</th>
 							<th>Date</th>
+							<th>Particulars</th>
 							<th>Cheque No</th>
 							<th>Withdrawals</th>
 							<th>Deposits</th>
 							<th>Balance</th>
+							<th>Edit</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat="particular in particulars | pagination: currentPage : numPerPage">
 							<td>{{$index+1}}</td>
-							<td>{{particular.cheque_no}}</td>
 							<td>{{particular.date}}</td>
+							<td><p class="description" popover="{{particular.particuler}}" popover-trigger="mouseenter">{{particular.particuler}}</p></td>
 							<td>{{particular.cheque_no}}</td>
 							<td><i class="fa fa-inr"></i> {{particular.withdraw}}</td>
 							<td><i class="fa fa-inr"></i> {{particular.deposit}}</td>
 							<td><i class="fa fa-inr"></i> {{particular.balance}}</td>
+							<td>
+								<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+									<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editParticular(particular.id);">
+										<i class="fa fa-pencil"></i>
+									</button>
+									<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editmode = !editmode; deleteParticular(particular.id);">
+										<i class="fa fa-trash-o"></i>
+									</button>
+									<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
+										<i class="fa fa-check"></i>
+									</button>
+									<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
+										<i class="fa fa-times"></i>
+									</button>
+								</div>
+							</td>
 						</tr>
 					</tbody>
 				</table>
@@ -277,7 +333,7 @@
 										<td>{{$index+1}}</td>
 										<td>{{chequerecord.number}}</td>
 										<td>{{chequerecord.date}}</td>
-										<td>{{chequerecord.favor}}</td>
+										<td><p class="description" popover="{{chequerecord.favor}}" popover-trigger="mouseenter">{{chequerecord.favor}}</p></td>
 										<td><i class="fa fa-inr"></i> {{chequerecord.amount}}</td>
 										<td><i class="fa fa-inr"></i> {{chequerecord.deposit}}</td>
 										<td><i class="fa fa-inr"></i> {{chequerecord.balance}}</td>
