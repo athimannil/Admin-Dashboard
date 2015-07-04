@@ -146,7 +146,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="emi in filter_emi">
+					<tr ng-repeat="emi in emis | pagination: currentPage : numPerPage">
 						<td>{{emi.loan_id}}</td>
 						<td>{{emi.description}}</td>
 						<td><i class="fa fa-inr"></i> {{emi.amount}}</td>
@@ -171,7 +171,18 @@
 				</tbody>
 			</table>
 			<div class="clearfix">
-				<pagination ng-model="currentPage" total-items="emis.length" max-size="5" boundary-links="true" class="pagination-sm pull-right" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+				<!-- <pagination ng-model="currentPage" total-items="emis.length" max-size="5" boundary-links="true" class="pagination-sm pull-right" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination> -->
+				<pagination 
+					ng-model="currentPage" 
+					total-items="emis.length" 
+					max-size="5" 
+					boundary-links="true" 
+					class="pagination-sm pull-right" 
+					previous-text="&lsaquo;" 
+					next-text="&rsaquo;" 
+					first-text="&laquo;" 
+					last-text="&raquo;"
+				></pagination>
 			</div>
 		</div>
 	</div>

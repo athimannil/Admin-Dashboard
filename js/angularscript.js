@@ -49,9 +49,13 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				templateUrl: 'template/loan.html',
 				controller: 'loanController'
 			})
-			.when('/addressbook', {
-				templateUrl: 'template/addressbook.html',
+			.when('/phonebook', {
+				templateUrl: 'template/phonebook.html',
 				controller: 'phonebookController'
+			})
+			.when('/note', {
+				templateUrl: 'template/note.html',
+				controller: 'NoteController'
 			})
 			.otherwise({
 				redirectTo: 'template/dashboard.html'
@@ -59,6 +63,10 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	});
 	app.controller('loginController', function($scope){});
 	app.controller('homecontroller', function($scope){
+		/* paggination */
+		$scope.currentPage = 1;
+		$scope.numPerPage = 10;
+		$scope.maxSize = 5;
 		/* Nav menu */
 		$scope.user = {
 			firstname: "Basheer",
@@ -68,7 +76,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				{page: "dashboard", title: "Dashboard", icon: "dashboard"},
 				{page: "banks", title: "Banks", icon: "bank"},
 				{page: "loan", title: "Loan", icon: "tags"},
-				{page: "addressbook", title: "Address book", icon: "book"},
+				{page: "phonebook", title: "Phone book", icon: "book"},
 				{page: "expense", title: "Expenses", icon: "shopping-cart"},
 				{page: "invoice", title: "Invoice", icon: "file-text-o"},
 				{page: "recur", title: "Reccurring Bills", icon: "dashboard"},
@@ -300,6 +308,15 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				return a + b[prop];
 			}, 0);
 		};
+	});
+	app.filter('pagination', function() {
+	  return function(input, currentPage, pageSize) {
+	    if(angular.isArray(input)) {
+	      var start = (currentPage-1)*pageSize;
+	      var end = currentPage*pageSize;
+	      return input.slice(start, end);
+	    }
+	  };
 	});
 	
 	app.controller('phonebookController', function($scope, $http){
@@ -921,8 +938,8 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 
 
-		$scope.pageChanged = function() {
-		$log.log('Page changed to: ' + $scope.currentPage);
+		/*$scope.pageChanged = function() {
+			$log.log('Page changed to: ' + $scope.currentPage);
 		};
 		$scope.bigCurrentPage = 1;
 		$scope.filteredTodos = [];
@@ -933,7 +950,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		var begin = (($scope.currentPage - 1) * $scope.numPerPage),
 		  end = begin + $scope.numPerPage;
 			$scope.filteredTodos = $scope.particulars.slice(begin, end);
-		});
+		});*/
 	});
 	app.controller('loanController', function($scope){
 		$scope.loanedit = false;
@@ -1236,14 +1253,14 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 
 		// Paggination for emi
-		$scope.filter_emi = [];
+		/*$scope.filter_emi = [];
 		$scope.currentPage = 1;
 		$scope.numPerPage = 10;
 		$scope.maxSize = 5;
 		$scope.$watch('currentPage + numPerPage', function() {
 		  var begin = (($scope.currentPage - 1) * $scope.numPerPage), end = begin + $scope.numPerPage;
 		  $scope.filter_emi = $scope.emis.slice(begin, end);
-		});
+		});*/
 	});
 
 })();
