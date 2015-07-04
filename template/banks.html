@@ -1,10 +1,17 @@
 <div class="row">
 	<div class="col-md-12">
-		<h2><i class="fa fa-bank"></i> Banks</h2>
+		<h2><i class="fa fa-bank"></i> Banks  {{openDiv}}</h2>
+		<!-- <select ng-model="selection" ng-options="item for item in items"> -->
+		<hr>
+		<ol class="breadcrumb">
+		  <li><a href ng-click="openBank()">Home</a></li>
+		  <li><a href ng-click="openAccount()">Library</a></li>
+		  <li class="active">Data</li>
+		</ol>
 	</div>
 </div>
-<div class="row">
-	<div class="col-md-12">
+<div class="row" ng-switch on="openDiv">
+	<div class="col-md-12" ng-switch-default>
 		<div class="box">
 			<button type="button" class="btn btn-primary pull-right" ng-hide="status.bankedit" ng-click="status.bankedit = true; newBank();"><i class="fa fa-plus"></i> Add bank</button>
 			<form class="form-horizontal" ng-submit="addBank()" ng-show="status.bankedit">
@@ -80,7 +87,7 @@
 				<tbody>
 					<tr ng-repeat="bank in banks">
 						<td>
-							<a href title="{{bank.name}}">{{bank.name}}</a>
+							<a href title="{{bank.name}}" ng-click="openAccount();">{{bank.name}}</a>
 						</td>
 						<td>{{bank.branchcode}}</td>
 						<td>{{bank.ifsc}}</td>
@@ -109,7 +116,7 @@
 			</table>
 		</div>
 	</div>
-	<div class="col-md-12">
+	<div class="col-md-12" ng-switch-when="accounts">
 		<div class="box">
 			<button type="button" class="btn btn-primary pull-right" ng-click="status.accountedit = true; newAccount();"><i class="fa fa-plus"></i> Add bank</button>
 			<form class="form-horizontal" ng-submit="addAccount()" ng-show="status.accountedit">
@@ -161,7 +168,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="account in accounts">
-						<td><a href>{{account.name}}</a></td>
+						<td><a href ng-click="openStatement();">{{account.name}}</a></td>
 						<td>{{account.acnumber}}</td>
 						<td>{{account.type}}</td>
 						<td>{{account.iban}}</td>
@@ -188,208 +195,232 @@
 			</table>
 		</div>
 	</div>
-	<tabset class="col-md-12">
-		<tab>
-			<tab-heading><i class="fa fa-newspaper-o"></i> Statement</a></tab-heading>
-			<div class="box">
-				<button type="button" class="btn btn-primary pull-right" ng-hide="status.particularedit" ng-click="status.particularedit = true; newParticular();"><i class="fa fa-plus"></i> Add payment</button>
-				<form class="form-horizontal" ng-submit="addParticular()" ng-show="status.particularedit">
-					<h3>New Account Particular</h3><br>
-				  <div class="form-group">
-					  <label class="col-sm-1 control-label">Account</label>
-					  <div class="col-sm-2">
-							<p class="form-control-static">1234567890123456</p>
+	<div ng-switch-when="selectedAcc">	
+		<tabset class="col-md-12">
+			<tab>
+				<tab-heading><i class="fa fa-newspaper-o"></i> Statement</a></tab-heading>
+				<div class="box">
+					<button type="button" class="btn btn-primary pull-right" ng-hide="status.particularedit" ng-click="status.particularedit = true; newParticular();"><i class="fa fa-plus"></i> Add payment</button>
+					<form class="form-horizontal" ng-submit="addParticular()" ng-show="status.particularedit">
+						<h3>New Account Particular</h3><br>
+					  <div class="form-group">
+						  <label class="col-sm-1 control-label">Account</label>
+						  <div class="col-sm-2">
+								<p class="form-control-static">1234567890123456</p>
+						  </div>
+							<label class="col-sm-1 control-label">Date</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" ng-model="newparticular.date" placeholder="Date">
+							</div>
+							<label class="col-sm-2 control-label">Cheque No</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" ng-model="newparticular.cheque_no" placeholder="Cheque Number">
+							</div>
 					  </div>
-						<label class="col-sm-1 control-label">Date</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" ng-model="newparticular.date" placeholder="Date">
+						<div class="form-group">
+						  <label class="col-sm-1 control-label">Withdraw</label>
+						  <div class="col-sm-3">
+						    <input type="text" class="form-control" ng-model="newparticular.withdraw" placeholder="Withdraw Amount">
+						  </div>
+						  <label class="col-sm-1 control-label">Deposit</label>
+						  <div class="col-sm-3">
+						    <input type="text" class="form-control" ng-model="newparticular.deposit" placeholder="Deposit Amount">
+						  </div>
+						  <label class="col-sm-1 control-label">Balance</label>
+						  <div class="col-sm-3">
+						    <input type="text" class="form-control" ng-model="newparticular.balance" placeholder="Balance Amount">
+						  </div>
 						</div>
-						<label class="col-sm-2 control-label">Cheque No</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" ng-model="newparticular.cheque_no" placeholder="Cheque Number">
+						<div class="form-group">
+						  <div class="col-md-12 text-right">
+						  	<button type="button" class="btn btn-default" ng-click="status.particularedit = false;">Cancel</button>
+							  <button type="submit" class="btn btn-primary">Save</button>
+						  </div>
 						</div>
-				  </div>
-					<div class="form-group">
-					  <label class="col-sm-1 control-label">Withdraw</label>
-					  <div class="col-sm-3">
-					    <input type="text" class="form-control" ng-model="newparticular.withdraw" placeholder="Withdraw Amount">
-					  </div>
-					  <label class="col-sm-1 control-label">Deposit</label>
-					  <div class="col-sm-3">
-					    <input type="text" class="form-control" ng-model="newparticular.deposit" placeholder="Deposit Amount">
-					  </div>
-					  <label class="col-sm-1 control-label">Balance</label>
-					  <div class="col-sm-3">
-					    <input type="text" class="form-control" ng-model="newparticular.balance" placeholder="Balance Amount">
-					  </div>
+						<hr>
+					</form>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto magnam eius quia, sint mollitia, ipsum error consequatur corrupti. Voluptas tenetur totam aut quo ea consequatur et illo optio, deleniti officia!</p>
+					<table class="table table-hover table-responsive">
+						<thead>
+							<tr class="bg-primary">
+								<th>&nbsp;</th>
+								<th>Date</th>
+								<th>Particulars</th>
+								<th>Cheque No</th>
+								<th>Withdrawals</th>
+								<th>Deposits</th>
+								<th>Balance</th>
+								<th>Edit</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="particular in particulars | pagination: currentPage : numPerPage">
+								<td>{{$index+1}}</td>
+								<td>{{particular.date}}</td>
+								<td><p class="description" popover="{{particular.particuler}}" popover-trigger="mouseenter">{{particular.particuler}}</p></td>
+								<td>{{particular.cheque_no}}</td>
+								<td><i class="fa fa-inr"></i> {{particular.withdraw}}</td>
+								<td><i class="fa fa-inr"></i> {{particular.deposit}}</td>
+								<td><i class="fa fa-inr"></i> {{particular.balance}}</td>
+								<td>
+									<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+										<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editParticular(particular.id);">
+											<i class="fa fa-pencil"></i>
+										</button>
+										<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editmode = !editmode; deleteParticular(particular.id);">
+											<i class="fa fa-trash-o"></i>
+										</button>
+										<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
+											<i class="fa fa-check"></i>
+										</button>
+										<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
+											<i class="fa fa-times"></i>
+										</button>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="clearfix">
+						<pagination 
+							ng-model="currentPage" 
+							total-items="particulars.length" 
+							max-size="5" 
+							boundary-links="true" 
+							class="pagination-sm pull-right" 
+							previous-text="&lsaquo;" 
+							next-text="&rsaquo;" 
+							first-text="&laquo;" 
+							last-text="&raquo;"
+						></pagination>
 					</div>
-					<div class="form-group">
-					  <div class="col-md-12 text-right">
-					  	<button type="button" class="btn btn-default" ng-click="status.particularedit = false;">Cancel</button>
-						  <button type="submit" class="btn btn-primary">Save</button>
-					  </div>
-					</div>
-					<hr>
-				</form>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto magnam eius quia, sint mollitia, ipsum error consequatur corrupti. Voluptas tenetur totam aut quo ea consequatur et illo optio, deleniti officia!</p>
-				<table class="table table-hover table-responsive">
-					<thead>
-						<tr class="bg-primary">
-							<th>&nbsp;</th>
-							<th>Date</th>
-							<th>Particulars</th>
-							<th>Cheque No</th>
-							<th>Withdrawals</th>
-							<th>Deposits</th>
-							<th>Balance</th>
-							<th>Edit</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="particular in particulars | pagination: currentPage : numPerPage">
-							<td>{{$index+1}}</td>
-							<td>{{particular.date}}</td>
-							<td><p class="description" popover="{{particular.particuler}}" popover-trigger="mouseenter">{{particular.particuler}}</p></td>
-							<td>{{particular.cheque_no}}</td>
-							<td><i class="fa fa-inr"></i> {{particular.withdraw}}</td>
-							<td><i class="fa fa-inr"></i> {{particular.deposit}}</td>
-							<td><i class="fa fa-inr"></i> {{particular.balance}}</td>
-							<td>
-								<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-									<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editParticular(particular.id);">
-										<i class="fa fa-pencil"></i>
-									</button>
-									<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editmode = !editmode; deleteParticular(particular.id);">
-										<i class="fa fa-trash-o"></i>
-									</button>
-									<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
-										<i class="fa fa-check"></i>
-									</button>
-									<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
-										<i class="fa fa-times"></i>
-									</button>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="clearfix">
-					<pagination 
-						ng-model="currentPage" 
-						total-items="particulars.length" 
-						max-size="5" 
-						boundary-links="true" 
-						class="pagination-sm pull-right" 
-						previous-text="&lsaquo;" 
-						next-text="&rsaquo;" 
-						first-text="&laquo;" 
-						last-text="&raquo;"
-					></pagination>
 				</div>
-			</div>
-		</tab>
-		<tab>
-			<tab-heading><i class="fa fa-bookmark-o"></i> Cheque</a></tab-heading>
-			<div class="row box">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius necessitatibus nam reprehenderit animi optio voluptas aspernatur alias dolore libero, atque cumque, inventore molestias nisi nihil modi quae, hic velit eos. ipsum dolor sit amet, consectetur adipisicing elit. Quam magni aperiam nisi eum explicabo consequatur veritatis, totam iure ipsum distinctio! Fugiat et optio molestias ut officiis impedit nam aliquam dignissimos. ipsum dolor sit amet, consectetur adipisicing elit. Dolore ducimus aut esse quidem. Ratione cumque, officia vero voluptate facere laborum accusantium velit consectetur nobis delectus, dolorem, illum commodi laudantium quaerat! ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
-				<accordion>
-				  <accordion-group ng-repeat="cheque in cheques" is-open="$first">
-				  	<accordion-heading><i class="fa fa-files-o"></i> From: {{cheque.from}} To:{{cheque.to}}</accordion-heading>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ducimus aut esse quidem. Ratione cumque, officia vero voluptate facere laborum accusantium velit consectetur nobis delectus, dolorem, illum commodi laudantium quaerat! ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
-							<form class="form-horizontal">
-								<div class="form-group">
-									<label for="nameon-card" class="col-md-1 control-label">Accoount No</label>
-									<div class="col-md-2">
-										<p class="form-control-static">{{cheque.accountno}}</p>
-									</div>
-									<label for="nameon-card" class="col-md-1 control-label">Issue Date</label>
-									<div class="col-md-2">
-										<p class="form-control-static">{{cheque.issuedate}}</p>
-									</div>
-									<label for="nameon-card" class="col-md-1 control-label">From</label>
-									<div class="col-md-2">
-										<p class="form-control-static">{{cheque.from}}</p>
-									</div>
-									<label for="nameon-card" class="col-md-1 control-label">To</label>
-									<div class="col-md-2">
-										<p class="form-control-static">{{cheque.from}}</p>
-									</div>
-								</div>
-							</form>
-							<table class="table table-hover table-responsive">
-								<thead>
-									<tr class="bg-primary">
-										<th>&nbsp;</th>
-										<th>Cheque Number</th>
-										<th>Date</th>
-										<th>Favour</th>
-										<th>Amount</th>
-										<th>Deposit</th>
-										<th>Balance</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr ng-repeat="chequerecord in cheque.chequerecords">
-										<td>{{$index+1}}</td>
-										<td>{{chequerecord.number}}</td>
-										<td>{{chequerecord.date}}</td>
-										<td><p class="description" popover="{{chequerecord.favor}}" popover-trigger="mouseenter">{{chequerecord.favor}}</p></td>
-										<td><i class="fa fa-inr"></i> {{chequerecord.amount}}</td>
-										<td><i class="fa fa-inr"></i> {{chequerecord.deposit}}</td>
-										<td><i class="fa fa-inr"></i> {{chequerecord.balance}}</td>
-									</tr>
-								</tbody>
-							</table>
-
-				  </accordion-group>
-				</accordion>
-			</div>
-		</tab>
-		<tab>
-			<tab-heading><i class="fa fa-credit-card"></i> Cards</a></tab-heading>
-			<div class="row box">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla totam natus voluptate nam dolore eveniet modi, tempora quis accusantium repellendus, similique, tenetur aliquam repellat eligendi incidunt maiores. Repudiandae, explicabo, consequatur.</p>
-				<accordion close-others="status.oneAtATime">
-					<accordion-group ng-repeat="card in cards" is-open="$first">
-						<accordion-heading><i class="fa fa-credit-card"></i> {{card.no}}</accordion-heading>
-						<div class="row">
-							<div class="col-sm-12">
-								<form class="form-horizontal" ng-submit="addCard();">
-								  <div class="form-group">
-										<label for="nameon-card" class="col-md-2 control-label">Cardholder Name</label>
-										<div class="col-md-10">
-											<p class="form-control-static">{{card.name}}</p>
-										  <!-- <input type="text" class="form-control" id="nameon-card" placeholder="Name on card" required> -->
+			</tab>
+			<tab>
+				<tab-heading><i class="fa fa-bookmark-o"></i> Cheque</a></tab-heading>
+				<div class="row box">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius necessitatibus nam reprehenderit animi optio voluptas aspernatur alias dolore libero, atque cumque, inventore molestias nisi nihil modi quae, hic velit eos. ipsum dolor sit amet, consectetur adipisicing elit. Quam magni aperiam nisi eum explicabo consequatur veritatis, totam iure ipsum distinctio! Fugiat et optio molestias ut officiis impedit nam aliquam dignissimos. ipsum dolor sit amet, consectetur adipisicing elit. Dolore ducimus aut esse quidem. Ratione cumque, officia vero voluptate facere laborum accusantium velit consectetur nobis delectus, dolorem, illum commodi laudantium quaerat! ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
+					<accordion>
+					  <accordion-group ng-repeat="cheque in cheques" is-open="$first">
+					  	<accordion-heading><i class="fa fa-files-o"></i> From: {{cheque.from}} To:{{cheque.to}}</accordion-heading>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ducimus aut esse quidem. Ratione cumque, officia vero voluptate facere laborum accusantium velit consectetur nobis delectus, dolorem, illum commodi laudantium quaerat! ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
+								<form class="form-horizontal">
+									<div class="form-group">
+										<label for="nameon-card" class="col-md-1 control-label">Accoount No</label>
+										<div class="col-md-2">
+											<p class="form-control-static">{{cheque.accountno}}</p>
 										</div>
-								  </div>
-								  <div class="form-group">
-										<div class="row">
-										  <div class="col-md-8">
-												<label for="card-number" class="col-md-3 control-label">Card number</label>
-												<div class="col-md-9">
-													<p class="form-control-static">{{card.no}}</p>
-												  <!-- <input type="text" class="form-control" id="card-number" placeholder="Card number" maxlength="16" required> -->
-												</div>
-										  </div>
-										  <div class="col-md-4">
-												<label for="card-type" class="col-md-2 control-label">Type</label>
-												<div class="col-md-10">
-													<p class="form-control-static">{{card.type}}</p>
-													<!-- <select name="card-type" id="card-type" class="form-control" required>
-														<option value="visa">VISA</option>
-														<option value="master">Master</option>
-													</select> -->
+										<label for="nameon-card" class="col-md-1 control-label">Issue Date</label>
+										<div class="col-md-2">
+											<p class="form-control-static">{{cheque.issuedate}}</p>
+										</div>
+										<label for="nameon-card" class="col-md-1 control-label">From</label>
+										<div class="col-md-2">
+											<p class="form-control-static">{{cheque.from}}</p>
+										</div>
+										<label for="nameon-card" class="col-md-1 control-label">To</label>
+										<div class="col-md-2">
+											<p class="form-control-static">{{cheque.from}}</p>
+										</div>
+									</div>
+								</form>
+								<table class="table table-hover table-responsive">
+									<thead>
+										<tr class="bg-primary">
+											<th>&nbsp;</th>
+											<th>Cheque Number</th>
+											<th>Date</th>
+											<th>Favour</th>
+											<th>Amount</th>
+											<th>Deposit</th>
+											<th>Balance</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="chequerecord in cheque.chequerecords">
+											<td>{{$index+1}}</td>
+											<td>{{chequerecord.number}}</td>
+											<td>{{chequerecord.date}}</td>
+											<td><p class="description" popover="{{chequerecord.favor}}" popover-trigger="mouseenter">{{chequerecord.favor}}</p></td>
+											<td><i class="fa fa-inr"></i> {{chequerecord.amount}}</td>
+											<td><i class="fa fa-inr"></i> {{chequerecord.deposit}}</td>
+											<td><i class="fa fa-inr"></i> {{chequerecord.balance}}</td>
+										</tr>
+									</tbody>
+								</table>
+
+					  </accordion-group>
+					</accordion>
+				</div>
+			</tab>
+			<tab>
+				<tab-heading><i class="fa fa-credit-card"></i> Cards</a></tab-heading>
+				<div class="row box">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla totam natus voluptate nam dolore eveniet modi, tempora quis accusantium repellendus, similique, tenetur aliquam repellat eligendi incidunt maiores. Repudiandae, explicabo, consequatur.</p>
+					<accordion close-others="status.oneAtATime">
+						<accordion-group ng-repeat="card in cards" is-open="$first">
+							<accordion-heading><i class="fa fa-credit-card"></i> {{card.no}}</accordion-heading>
+							<div class="row">
+								<div class="col-sm-12">
+									<form class="form-horizontal" ng-submit="addCard();">
+									  <div class="form-group">
+											<label for="nameon-card" class="col-md-2 control-label">Cardholder Name</label>
+											<div class="col-md-10">
+												<p class="form-control-static">{{card.name}}</p>
+											  <!-- <input type="text" class="form-control" id="nameon-card" placeholder="Name on card" required> -->
+											</div>
+									  </div>
+									  <div class="form-group">
+											<div class="row">
+											  <div class="col-md-8">
+													<label for="card-number" class="col-md-3 control-label">Card number</label>
+													<div class="col-md-9">
+														<p class="form-control-static">{{card.no}}</p>
+													  <!-- <input type="text" class="form-control" id="card-number" placeholder="Card number" maxlength="16" required> -->
+													</div>
+											  </div>
+											  <div class="col-md-4">
+													<label for="card-type" class="col-md-2 control-label">Type</label>
+													<div class="col-md-10">
+														<p class="form-control-static">{{card.type}}</p>
+														<!-- <select name="card-type" id="card-type" class="form-control" required>
+															<option value="visa">VISA</option>
+															<option value="master">Master</option>
+														</select> -->
+													</div>
 												</div>
 											</div>
-										</div>
-								  </div>
-								  <div class="form-group">
-										<div class="row">
-											<div class="col-md-4">
-												<label class="col-md-6 control-label">Card from</label>
-												<div class="col-md-3">
-													<p class="form-control-static">{{card.from}}</p>
-														<!-- <select name="day" class="form-control">
+									  </div>
+									  <div class="form-group">
+											<div class="row">
+												<div class="col-md-4">
+													<label class="col-md-6 control-label">Card from</label>
+													<div class="col-md-3">
+														<p class="form-control-static">{{card.from}}</p>
+															<!-- <select name="day" class="form-control">
+																<option value="01">01</option>
+																<option value="02">02</option>
+																<option value="03">03</option>
+																<option value="04">04</option>
+																<option value="05">05</option>
+																<option value="06">06</option>
+																<option value="07">07</option>
+																<option value="08">08</option>
+																<option value="09">09</option>
+																<option value="10">10</option>
+																<option value="11">11</option>
+																<option value="12">12</option>
+															</select>
+													</div>
+													<div class="col-md-3">
+													  <input type="text" class="form-control" placeholder="year" maxlength="2"> -->
+													</div>
+											  </div>
+												<div class="col-md-4">
+													<label class="col-md-4 control-label">Expiry</label>
+													<div class="col-md-4">
+														<p class="form-control-static">{{card.expiry}}</p>
+													  <!-- <select name="day" class="form-control" required>
 															<option value="01">01</option>
 															<option value="02">02</option>
 															<option value="03">03</option>
@@ -402,17 +433,64 @@
 															<option value="10">10</option>
 															<option value="11">11</option>
 															<option value="12">12</option>
-														</select>
-												</div>
+													  </select>
+													</div>
+													<div class="col-md-4">
+													  <input type="text" class="form-control" placeholder="year" maxlength="2" required> -->
+													</div>
+											  </div>
 												<div class="col-md-3">
-												  <input type="text" class="form-control" placeholder="year" maxlength="2"> -->
-												</div>
+													<label class="col-md-6 control-label">Security Code</label>
+													<div class="col-md-6">
+														<p class="form-control-static">{{card.cvv}}</p>
+													  <!-- <input type="text" class="form-control" placeholder="CCV" maxlength="3" required> -->
+													</div>
+											  </div>
+											</div>
+										</div>
+									  <div class="form-group">
+									  	<div class="col-md-12">
+											  <button type="submit" class="btn btn-primary pull-right">Edit card</button>
 										  </div>
-											<div class="col-md-4">
-												<label class="col-md-4 control-label">Expiry</label>
-												<div class="col-md-4">
-													<p class="form-control-static">{{card.expiry}}</p>
-												  <!-- <select name="day" class="form-control" required>
+									  </div>
+									</form>
+								</div>
+							</div>
+						</accordion-group>
+						<accordion-group class="panel panel-primary">
+							<accordion-heading><i class="fa fa-credit-card"></i> Add new card</accordion-heading>
+							<form class="form-horizontal" ng-submit="addCard();">
+							  <div class="form-group">
+									<label for="nameon-card" class="col-md-2 control-label">Cardholder Name</label>
+									<div class="col-md-10">
+									  <input type="text" class="form-control" id="nameon-card" placeholder="Name on card" required>
+									</div>
+							  </div>
+							  <div class="form-group">
+									<div class="row">
+									  <div class="col-md-8">
+											<label for="card-number" class="col-md-3 control-label">Card number</label>
+											<div class="col-md-9">
+											  <input type="text" class="form-control" id="card-number" placeholder="Card number" maxlength="16" required>
+											</div>
+									  </div>
+									  <div class="col-md-4">
+											<label for="card-type" class="col-md-2 control-label">Type</label>
+											<div class="col-md-10">
+												<select name="card-type" id="card-type" class="form-control" required>
+													<option value="visa">VISA</option>
+													<option value="master">Master</option>
+												</select>
+											</div>
+										</div>
+									</div>
+							  </div>
+							  <div class="form-group">
+									<div class="row">
+										<div class="col-md-4">
+											<label class="col-md-6 control-label">Card from</label>
+											<div class="col-md-3">
+													<select name="day" class="form-control">
 														<option value="01">01</option>
 														<option value="02">02</option>
 														<option value="03">03</option>
@@ -425,129 +503,60 @@
 														<option value="10">10</option>
 														<option value="11">11</option>
 														<option value="12">12</option>
-												  </select>
-												</div>
-												<div class="col-md-4">
-												  <input type="text" class="form-control" placeholder="year" maxlength="2" required> -->
-												</div>
-										  </div>
+													</select>
+											</div>
 											<div class="col-md-3">
-												<label class="col-md-6 control-label">Security Code</label>
-												<div class="col-md-6">
-													<p class="form-control-static">{{card.cvv}}</p>
-												  <!-- <input type="text" class="form-control" placeholder="CCV" maxlength="3" required> -->
-												</div>
-										  </div>
-										</div>
-									</div>
-								  <div class="form-group">
-								  	<div class="col-md-12">
-										  <button type="submit" class="btn btn-primary pull-right">Edit card</button>
+											  <input type="text" class="form-control" placeholder="year" maxlength="2">
+											</div>
 									  </div>
-								  </div>
-								</form>
-							</div>
-						</div>
-					</accordion-group>
-					<accordion-group class="panel panel-primary">
-						<accordion-heading><i class="fa fa-credit-card"></i> Add new card</accordion-heading>
-						<form class="form-horizontal" ng-submit="addCard();">
-						  <div class="form-group">
-								<label for="nameon-card" class="col-md-2 control-label">Cardholder Name</label>
-								<div class="col-md-10">
-								  <input type="text" class="form-control" id="nameon-card" placeholder="Name on card" required>
-								</div>
-						  </div>
-						  <div class="form-group">
-								<div class="row">
-								  <div class="col-md-8">
-										<label for="card-number" class="col-md-3 control-label">Card number</label>
-										<div class="col-md-9">
-										  <input type="text" class="form-control" id="card-number" placeholder="Card number" maxlength="16" required>
-										</div>
-								  </div>
-								  <div class="col-md-4">
-										<label for="card-type" class="col-md-2 control-label">Type</label>
-										<div class="col-md-10">
-											<select name="card-type" id="card-type" class="form-control" required>
-												<option value="visa">VISA</option>
-												<option value="master">Master</option>
-											</select>
-										</div>
+										<div class="col-md-4">
+											<label class="col-md-4 control-label">Expiry</label>
+											<div class="col-md-4">
+											  <select name="day" class="form-control" required>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+											  </select>
+											</div>
+											<div class="col-md-4">
+											  <input type="text" class="form-control" placeholder="year" maxlength="2" required>
+											</div>
+									  </div>
+										<div class="col-md-3">
+											<label class="col-md-6 control-label">Security Code</label>
+											<div class="col-md-6">
+											  <input type="text" class="form-control" placeholder="CCV" maxlength="3" required>
+											</div>
+									  </div>
 									</div>
 								</div>
-						  </div>
-						  <div class="form-group">
-								<div class="row">
-									<div class="col-md-4">
-										<label class="col-md-6 control-label">Card from</label>
-										<div class="col-md-3">
-												<select name="day" class="form-control">
-													<option value="01">01</option>
-													<option value="02">02</option>
-													<option value="03">03</option>
-													<option value="04">04</option>
-													<option value="05">05</option>
-													<option value="06">06</option>
-													<option value="07">07</option>
-													<option value="08">08</option>
-													<option value="09">09</option>
-													<option value="10">10</option>
-													<option value="11">11</option>
-													<option value="12">12</option>
-												</select>
-										</div>
-										<div class="col-md-3">
-										  <input type="text" class="form-control" placeholder="year" maxlength="2">
-										</div>
+							  <div class="form-group">
+							  	<div class="col-md-12">
+									  <button type="submit" class="btn btn-primary pull-right">Submit new card</button>
 								  </div>
-									<div class="col-md-4">
-										<label class="col-md-4 control-label">Expiry</label>
-										<div class="col-md-4">
-										  <select name="day" class="form-control" required>
-											<option value="01">01</option>
-											<option value="02">02</option>
-											<option value="03">03</option>
-											<option value="04">04</option>
-											<option value="05">05</option>
-											<option value="06">06</option>
-											<option value="07">07</option>
-											<option value="08">08</option>
-											<option value="09">09</option>
-											<option value="10">10</option>
-											<option value="11">11</option>
-											<option value="12">12</option>
-										  </select>
-										</div>
-										<div class="col-md-4">
-										  <input type="text" class="form-control" placeholder="year" maxlength="2" required>
-										</div>
-								  </div>
-									<div class="col-md-3">
-										<label class="col-md-6 control-label">Security Code</label>
-										<div class="col-md-6">
-										  <input type="text" class="form-control" placeholder="CCV" maxlength="3" required>
-										</div>
-								  </div>
-								</div>
-							</div>
-						  <div class="form-group">
-						  	<div class="col-md-12">
-								  <button type="submit" class="btn btn-primary pull-right">Submit new card</button>
 							  </div>
-						  </div>
-						</form>
-					</accordion-group>
-				</accordion>
-			</div>
-		</tab>
-		<tab>
-			<tab-heading> Loan</a></tab-heading>
-			<div class="row box">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
-			</div>
-		</tab>
-	</tabset>
+							</form>
+						</accordion-group>
+					</accordion>
+				</div>
+			</tab>
+			<tab>
+				<tab-heading> Loan</a></tab-heading>
+				<div class="row box">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
+				</div>
+			</tab>
+		</tabset>
+	</div>
 </div>

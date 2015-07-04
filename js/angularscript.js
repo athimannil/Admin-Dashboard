@@ -411,6 +411,17 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			accountedit: false,
 			particularedit: false
 		};
+		$scope.openDiv = 'banks';
+		$scope.openBank = function (){
+			$scope.openDiv ='banks';
+		};
+		$scope.openAccount = function (argument) {
+			$scope.openDiv = 'accounts';
+		};
+		$scope.openStatement = function (argument) {
+			$scope.openDiv = 'selectedAcc';
+		};
+
 		$scope.newbank = {};
 		$scope.banks =[ 
 			{
