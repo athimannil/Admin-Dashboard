@@ -4,9 +4,12 @@
 		<!-- <select ng-model="selection" ng-options="item for item in items"> -->
 		<hr>
 		<ol class="breadcrumb">
-		  <li><a href ng-click="openBank()">Home</a></li>
-		  <li><a href ng-click="openAccount()">Library</a></li>
-		  <li class="active">Data</li>
+		  <!-- <li><i class="fa fa-home"></i> <a href ng-click="openBank()">Home</a></li> -->
+			<!-- <li ng-repeat="breadCrumb in breadCrumbs">{{breadCrumb}}</li> -->
+			<li ng-repeat="breadCrumb in breadCrumbs" ng-class="{active: $last}">
+			    <a ng-if="!$last" href ng-click="switchDiv($element.target);" data-id="124">{{breadCrumb}}</a>
+			    <span ng-if="$last">{{breadCrumb}}</span>
+			</li>
 		</ol>
 	</div>
 </div>
@@ -87,7 +90,7 @@
 				<tbody>
 					<tr ng-repeat="bank in banks">
 						<td>
-							<a href title="{{bank.name}}" ng-click="openAccount();">{{bank.name}}</a>
+							<a href title="{{bank.name}}" ng-click="openAccount(bank.id);">{{bank.name}}</a>
 						</td>
 						<td>{{bank.branchcode}}</td>
 						<td>{{bank.ifsc}}</td>
@@ -168,7 +171,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="account in accounts">
-						<td><a href ng-click="openStatement();">{{account.name}}</a></td>
+						<td><a href ng-click="openStatement(account.id);">{{account.name}}</a></td>
 						<td>{{account.acnumber}}</td>
 						<td>{{account.type}}</td>
 						<td>{{account.iban}}</td>

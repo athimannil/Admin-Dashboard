@@ -411,15 +411,37 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			accountedit: false,
 			particularedit: false
 		};
+		$scope.breadCrumbs = [];
+		$scope.myBank = {};
 		$scope.openDiv = 'banks';
 		$scope.openBank = function (){
 			$scope.openDiv ='banks';
+			$scope.breadCrumbs = [];
+			$scope.myBank = {};
+			$scope.myAccount = {};
+			$scope.myStatement = {};
 		};
-		$scope.openAccount = function (argument) {
+		$scope.openAccount = function (openID) {
+			for (var i = 0; i < $scope.banks.length; i++) {
+				if ($scope.banks[i].id == openID) {
+					$scope.myBank = angular.copy($scope.banks[i]);
+					$scope.breadCrumbs.push($scope.banks[i].name);
+				}
+			}
+			console.log($scope.myBank);
 			$scope.openDiv = 'accounts';
 		};
-		$scope.openStatement = function (argument) {
+		$scope.openStatement = function (accountID) {
 			$scope.openDiv = 'selectedAcc';
+			for (var i = 0; i < $scope.accounts.length; i++) {
+				if($scope.accounts[i].id == accountID){
+					$scope.myAccount = angular.copy($scope.accounts[i]);
+					$scope.breadCrumbs.push($scope.accounts[i].name);
+				}
+			}
+		};
+		$scope.switchDiv = function (argument) {
+			console.log(argument); // Prints 'someCustomValue'
 		};
 
 		$scope.newbank = {};
