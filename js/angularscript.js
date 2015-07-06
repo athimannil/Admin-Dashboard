@@ -411,9 +411,16 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			accountedit: false,
 			particularedit: false
 		};
-		$scope.breadCrumbs = [];
-		$scope.myBank = {};
+		$scope.curBank = {};
+		$scope.curAccount = {};
+		$scope.curParticular= {};
+
 		$scope.openDiv = 'banks';
+		$scope.breadCrumbs = [];
+
+		$scope.myBank = {};
+		$scope.myAccount = {};
+		$scope.myStatement = {};
 		$scope.openBank = function (){
 			$scope.openDiv ='banks';
 			$scope.breadCrumbs = [];
@@ -421,29 +428,39 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.myAccount = {};
 			$scope.myStatement = {};
 		};
-		$scope.openAccount = function (openID) {
-			for (var i = 0; i < $scope.banks.length; i++) {
-				if ($scope.banks[i].id == openID) {
-					$scope.myBank = angular.copy($scope.banks[i]);
-					$scope.breadCrumbs.push($scope.banks[i].name);
-				}
+		$scope.openAccount = function (bank) {
+				$scope.myAccount = {};
+				$scope.openDiv = 'accounts';
+			if (bank) {
+				$scope.myBank = bank;
+				$scope.breadCrumbs.push(
+					{
+						"target": "home", 
+						"title": "Home"
+					},{
+						"target": "account",
+						"title": $scope.myBank.name
+					}
+				);
+			} else {
+				$scope.breadCrumbs.splice(2, 1);				
 			}
-			console.log($scope.myBank);
-			$scope.openDiv = 'accounts';
 		};
-		$scope.openStatement = function (accountID) {
+		$scope.openStatement = function (account) {
 			$scope.openDiv = 'selectedAcc';
-			for (var i = 0; i < $scope.accounts.length; i++) {
-				if($scope.accounts[i].id == accountID){
-					$scope.myAccount = angular.copy($scope.accounts[i]);
-					$scope.breadCrumbs.push($scope.accounts[i].name);
-				}
-			}
+			$scope.myAccount = account;
+			$scope.breadCrumbs.push({"title": $scope.myAccount.name});
 		};
 		$scope.switchDiv = function (argument) {
-			console.log(argument); // Prints 'someCustomValue'
+			var targetDiv = argument.target.attributes["data-target"].value;
+			if (targetDiv == "home") {
+				$scope.openBank();
+			} else if(targetDiv == "account"){
+				$scope.openAccount();
+			}
 		};
 
+		// Banks
 		$scope.newbank = {};
 		$scope.banks =[ 
 			{
@@ -455,7 +472,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"swift": 99944422258,
 				"contact": "0483-569821",
 				"branch": 'Manjeri',
-				"address": {"line1": "bank addres line 1", "line2": "Banks address line 2"}
+				"address": "bank addres line 1 line2 Banks address line 2"
 		  },{ 
 				"id": 2,
 				"name":"ICICI Banks",
@@ -464,8 +481,8 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"micr": 1324586468,
 				"swift": 99944422258,
 				"contact": "0483-569821",
-				"branch": 'Calicut',
-				"address": {"line1": "bank addres line 1", "line2": "Banks address line 2"}
+				"branch": "Calicut",
+				"address": "bank addres line 1 line2 Banks address line 2"
 		  },{ 
 				"id": 3,
 				"name":"SBT",
@@ -475,45 +492,42 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"swift": 99944422258,
 				"contact": "0483-569821",
 				"branch": 'Pandikkad',
-				"address": {"line1": "bank addres line 1", "line2": "Banks address line 2"}
+				"address": "bank addres line 1 line2 Banks address line 2"
 		  }
 		];
 		$scope.newBank = function () {
 			$scope.newbank = {};
+			$scope.status.bankedit = true;
 		};
-		// TODO unique ID for new contact
 		$scope.addBank = function(){
-			if ($scope.newbank.id == null) {
+			if ($scope.curBank.id) {
+				angular.extend($scope.curBank,$scope.curBank,$scope.newbank);
+				$scope.curBank = {};
+			}else{
 				$scope.newbank.id = $scope.banks.length+1;
 				$scope.banks.push($scope.newbank);
-			}else{
-				for (var i = 0; i < $scope.banks.length; i++) {
-					if ($scope.banks[i].id == $scope.newbank.id) {
-					  $scope.banks[i] = $scope.newbank;
-					}
-				}
 			}
 			$scope.newbank = {};
 			$scope.status.bankedit = false;
 		};
-    $scope.editBank = function(id) {
+    $scope.editBank = function(thisBank) {
     	$scope.status.bankedit = true;
-      for (var i = 0; i < $scope.banks.length; i++) {
-        if ($scope.banks[i].id == id) {
-          $scope.newbank = angular.copy($scope.banks[i]);
-        }
-      }
+    	$scope.curBank = thisBank;
+      $scope.newbank = angular.copy(thisBank);
     };
-    $scope.deleteBank = function(id){
-			for (var i = 0; i < $scope.banks.length; i++) {
-				if ($scope.banks[i].id == id) {
-					var confirmDelete = confirm("Do you really need to delete " + $scope.banks[i].name + "?");
-					if (confirmDelete) {
-						$scope.banks.splice(i, 1);
-					}
-			  }
+    $scope.deleteBank = function(item){
+			var confirmDelete = confirm("Do you really need to delete " + item.name + "?");
+			if (confirmDelete) {
+				var bank = $scope.banks.indexOf(item);
+				$scope.banks.splice(bank, 1);
 			}
     };
+    $scope.cancelBank = function () {
+			$scope.status.bankedit = false;
+			$scope.curBank = {};
+    };
+
+		// Accounts
     $scope.newaccount = {};
 		$scope.accounts = [
 			{
@@ -543,71 +557,38 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			}
 		];
 		$scope.newAccount = function(){
+			$scope.status.accountedit = true;
 			$scope.newaccount = {};
 		};
-		// TODO unique ID for new Account
 		$scope.addAccount = function(){
-			if ($scope.newaccount.id == null) {
+			if ($scope.curAccount.id) {
+				angular.extend($scope.curAccount,$scope.curAccount,$scope.newaccount);
+				$scope.curAccount = {};
+			}else{
 				$scope.newaccount.id = $scope.accounts.length+1;
 				$scope.accounts.push($scope.newaccount);
-			}else{
-				for (var i = 0; i < $scope.accounts.length; i++) {
-					if ($scope.accounts[i].id == $scope.newaccount.id) {
-					  $scope.accounts[i] = $scope.newaccount;
-					}
-				}
 			}
 			$scope.newaccount = {};
 			$scope.status.accountedit = false;
 		};
-    $scope.editAccount = function(id) {
-    	$scope.status.accountedit = true;
-      for (var i = 0; i < $scope.accounts.length; i++) {
-        if ($scope.accounts[i].id == id) {
-          $scope.newaccount = angular.copy($scope.accounts[i]);
-        }
-      }
+    $scope.editAccount = function(thisAccount) {
+			$scope.status.accountedit = true;
+			$scope.curAccount = thisAccount;
+			$scope.newaccount = angular.copy(thisAccount);
     };
-		$scope.deleteAccount = function(id){
-			for (var i = 0; i < $scope.accounts.length; i++) {
-				if ($scope.accounts[i].id == id) {
-					var confirmDelete = confirm("Do you really need to delete " + $scope.accounts[i].acnumber + "?");
-					if (confirmDelete) {
-						$scope.accounts.splice(i, 1);
-					}
-			  }
+		$scope.deleteAccount = function(item){
+			var confirmDelete = confirm("Do you really need to delete " + item.name + "?");
+			if (confirmDelete) {
+				var account = $scope.accounts.indexOf(item);
+				$scope.accounts.splice(account, 1);
 			}
 		};
-		$scope.cards = [
-			{
-				"id": 1,
-				"bankid": 999999,
-				"type": "VISA",
-				"no": "1234 5678 9012 3456",
-				"from": "01/06",
-				"expiry": "05/18",
-				"cvv": 345,
-				"name": "Kallayi Basheer Shah"
-			},{
-				"id": 2,
-				"bankid": 888888,
-				"type": "Master",
-				"no": "3456 7890 1234 5678",
-				"from": "06/12",
-				"expiry": "07/16",
-				"cvv": 678,
-				"name": "Shah Basheer"
-			},{
-				"id": 3,
-				"bankid": 777777,
-				"type": "VISA",
-				"no": "9012 3456 1234 5678",
-				"from": "03/10",
-				"expiry": "08/17",
-				"cvv": 123,
-				"name": "Basheer Shah Kallayi"
-			}
-		];
+    $scope.cancelAccount = function () {
+			$scope.status.accountedit = false;
+			$scope.curAccount = {};
+    };
+
+    // Chque
 		$scope.cheques =  [
 			{
 			    "id": 1,
@@ -683,6 +664,41 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 					]
 			}
 		];
+
+		// Card
+		$scope.cards = [
+			{
+				"id": 1,
+				"bankid": 999999,
+				"type": "VISA",
+				"no": "1234 5678 9012 3456",
+				"from": "01/06",
+				"expiry": "05/18",
+				"cvv": 345,
+				"name": "Kallayi Basheer Shah"
+			},{
+				"id": 2,
+				"bankid": 888888,
+				"type": "Master",
+				"no": "3456 7890 1234 5678",
+				"from": "06/12",
+				"expiry": "07/16",
+				"cvv": 678,
+				"name": "Shah Basheer"
+			},{
+				"id": 3,
+				"bankid": 777777,
+				"type": "VISA",
+				"no": "9012 3456 1234 5678",
+				"from": "03/10",
+				"expiry": "08/17",
+				"cvv": 123,
+				"name": "Basheer Shah Kallayi"
+			}
+		];
+
+		// Particulars
+		$scope.newparticular = {};
 		$scope.particulars = [
 			{
 				"id": 1,
@@ -1046,34 +1062,37 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"balance": 953.00
 			}
 		];
-		$scope.editParticular = function(){};
-		$scope.deleteParticular = function(id){
-			for (var i = 0; i < $scope.particulars.length; i++) {
-				if ($scope.particulars[i].id == id) {
-					var confirmDelete = confirm("Do you really need to delete ?");
-					if (confirmDelete) {
-						$scope.particulars.splice(i, 1);
-					}
-			  }
+		$scope.addParticular = function(){
+			if ($scope.curParticular.id) {
+				angular.extend($scope.curParticular,$scope.curParticular,$scope.newparticular);
+				$scope.curParticular = {};
+			}else{
+				$scope.newparticular.id = $scope.particulars.length+1;
+				$scope.particulars.push($scope.newparticular);
+			}
+			$scope.curParticular = {};
+			$scope.status.particularedit = false;
+		};
+		$scope.editParticular = function(thisParticular){
+			$scope.status.particularedit = true;
+			$scope.curParticular = thisParticular;
+			$scope.newparticular = angular.copy(thisParticular);
+		};
+		$scope.deleteParticular = function(item){
+			var confirmDelete = confirm("Do you really need to delete ?");
+			if (confirmDelete) {
+				var particular = $scope.particulars.indexOf(item);
+				$scope.particulars.splice(particular, 1);
 			}
 		};
-		$scope.filterList = [];
+		$scope.cancelParticular = function () {
+			$scope.status.particularedit = false;
+			$scope.curParticular = {};
+		};
+
 		$scope.addCard = function(){
 			alert("Hello mate");
 		};
-		/*$scope.pageChanged = function() {
-			$log.log('Page changed to: ' + $scope.currentPage);
-		};
-		$scope.bigCurrentPage = 1;
-		$scope.filteredTodos = [];
-		$scope.currentPage = 1; 
-		$scope.numPerPage = 10; 
-		$scope.maxSize = 5;
-		$scope.$watch('currentPage + numPerPage', function() {
-		var begin = (($scope.currentPage - 1) * $scope.numPerPage),
-		  end = begin + $scope.numPerPage;
-			$scope.filteredTodos = $scope.particulars.slice(begin, end);
-		});*/
 	});
 	app.controller('loanController', function($scope){
 		$scope.loanedit = false;

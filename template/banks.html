@@ -1,14 +1,10 @@
 <div class="row">
 	<div class="col-md-12">
-		<h2><i class="fa fa-bank"></i> Banks  {{openDiv}}</h2>
-		<!-- <select ng-model="selection" ng-options="item for item in items"> -->
-		<hr>
+		<h2><i class="fa fa-bank"></i> Banks</h2>
 		<ol class="breadcrumb">
-		  <!-- <li><i class="fa fa-home"></i> <a href ng-click="openBank()">Home</a></li> -->
-			<!-- <li ng-repeat="breadCrumb in breadCrumbs">{{breadCrumb}}</li> -->
 			<li ng-repeat="breadCrumb in breadCrumbs" ng-class="{active: $last}">
-			    <a ng-if="!$last" href ng-click="switchDiv($element.target);" data-id="124">{{breadCrumb}}</a>
-			    <span ng-if="$last">{{breadCrumb}}</span>
+				<a ng-if="!$last" href ng-click="switchDiv($event);" data-target="{{breadCrumb.target}}"><i class="fa fa-home" ng-show="$first"></i> {{breadCrumb.title}}</a>
+				<span ng-if="$last">{{breadCrumb.title}}</span>
 			</li>
 		</ol>
 	</div>
@@ -16,7 +12,7 @@
 <div class="row" ng-switch on="openDiv">
 	<div class="col-md-12" ng-switch-default>
 		<div class="box">
-			<button type="button" class="btn btn-primary pull-right" ng-hide="status.bankedit" ng-click="status.bankedit = true; newBank();"><i class="fa fa-plus"></i> Add bank</button>
+			<button type="button" class="btn btn-primary pull-right" ng-hide="status.bankedit" ng-click="newBank();"><i class="fa fa-plus"></i> Add bank</button>
 			<form class="form-horizontal" ng-submit="addBank()" ng-show="status.bankedit">
 				<h3>New Bank Account</h3><br>
 			  <div class="form-group">
@@ -54,20 +50,14 @@
 				  </div>
 				</div>
 			  <div class="form-group">
-					<label class="col-sm-2 control-label">Address Line 1</label>
+					<label class="col-sm-2 control-label">Address</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" ng-model="newbank.address['line1']" placeholder="Address Line 1">
-					</div>
-			  </div>
-			  <div class="form-group">
-					<label class="col-sm-2 control-label">Address Line 2</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" ng-model="newbank.address['line2']" placeholder="Address Line 2">
+						<textarea class="form-control" ng-model="newbank.address" placeholder="Address"></textarea>
 					</div>
 			  </div>
 				<div class="form-group">
 				  <div class="col-md-12 text-right">
-				  	<button type="button" class="btn btn-default" ng-click="status.bankedit = false;">Cancel</button>
+				  	<button type="button" class="btn btn-default" ng-click="cancelBank();">Cancel</button>
 					  <button type="submit" class="btn btn-primary">Save</button>
 				  </div>
 				</div>
@@ -90,7 +80,7 @@
 				<tbody>
 					<tr ng-repeat="bank in banks">
 						<td>
-							<a href title="{{bank.name}}" ng-click="openAccount(bank.id);">{{bank.name}}</a>
+							<a href title="{{bank.name}}" ng-click="openAccount(bank);">{{bank.name}}</a>
 						</td>
 						<td>{{bank.branchcode}}</td>
 						<td>{{bank.ifsc}}</td>
@@ -100,17 +90,11 @@
 						<td>{{bank.branch}}</td>
 						<td>
 							<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editBank(bank.id);">
+								<button type="button" class="btn btn-default" ng-click="editBank(bank);">
 									<i class="fa fa-pencil"></i>
 								</button>
-								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="deleteBank(bank.id); editmode = !editmode">
+								<button type="button" class="btn btn-default" ng-click="deleteBank(bank); editmode = !editmode">
 									<i class="fa fa-trash-o"></i>
-								</button>
-								<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
-									<i class="fa fa-check"></i>
-								</button>
-								<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
-									<i class="fa fa-times"></i>
 								</button>
 							</div>
 						</td>
@@ -121,20 +105,28 @@
 	</div>
 	<div class="col-md-12" ng-switch-when="accounts">
 		<div class="box">
-			<button type="button" class="btn btn-primary pull-right" ng-click="status.accountedit = true; newAccount();"><i class="fa fa-plus"></i> Add bank</button>
+			<button type="button" class="btn btn-primary pull-right" ng-hide="status.accountedit" ng-click="newAccount();"><i class="fa fa-plus"></i> Add bank</button>
 			<form class="form-horizontal" ng-submit="addAccount()" ng-show="status.accountedit">
 				<h3>New Bank Account</h3><br>
 			  <div class="form-group">
 					<label class="col-sm-2 control-label">Name</label>
-					<div class="col-sm-5">
+					<div class="col-sm-4">
 						<input type="text" class="form-control" ng-model="newaccount.name" placeholder="Name">
 					</div>
-				  <label class="col-sm-2 control-label">Account Type</label>
-				  <div class="col-sm-3">
-				    <input type="text" class="form-control" ng-model="newaccount.type" placeholder="Account Type">
-				  </div>
+					<label class="col-sm-1 control-label">Issue date</label>
+					<div class="col-sm-2">
+					  <input type="text" class="form-control" ng-model="newaccount.issuedate" placeholder="Isues date">
+					</div>
+					<label class="col-sm-1 control-label">Balance</label>
+					<div class="col-sm-2">
+					  <input type="text" class="form-control" ng-model="newaccount.balance" placeholder="Isues date">
+					</div>
 			  </div>
 				<div class="form-group">
+				  <label class="col-sm-2 control-label">Account Type</label>
+				  <div class="col-sm-2">
+				    <input type="text" class="form-control" ng-model="newaccount.type" placeholder="Account Type">
+				  </div>
 				  <label class="col-sm-2 control-label">Account Number</label>
 				  <div class="col-sm-2">
 				    <input type="text" class="form-control" ng-model="newaccount.acnumber" placeholder="Account Number">
@@ -143,14 +135,10 @@
 				  <div class="col-sm-3">
 				    <input type="text" class="form-control" ng-model="newaccount.iban" placeholder="IBAN">
 				  </div>
-				  <label class="col-sm-1 control-label">Issue date</label>
-				  <div class="col-sm-3">
-				    <input type="text" class="form-control" ng-model="newaccount.issuedate" placeholder="Isues date">
-				  </div>
 				</div>
 				<div class="form-group">
 				  <div class="col-md-12 text-right">
-				  	<button type="button" class="btn btn-default" ng-click="status.accountedit = false;">Cancel</button>
+				  	<button type="button" class="btn btn-default" ng-click="cancelAccount();">Cancel</button>
 					  <button type="submit" class="btn btn-primary">Save</button>
 				  </div>
 				</div>
@@ -171,25 +159,19 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="account in accounts">
-						<td><a href ng-click="openStatement(account.id);">{{account.name}}</a></td>
+						<td><a href ng-click="openStatement(account);">{{account.name}}</a></td>
 						<td>{{account.acnumber}}</td>
 						<td>{{account.type}}</td>
 						<td>{{account.iban}}</td>
 						<td>{{account.issuedate}}</td>
 						<td><i class="fa fa-inr"></i> {{account.balance}}</td>
 						<td>
-							<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editAccount(account.id);">
+							<div class="btn-group btn-group-xs" role="group">
+								<button type="button" class="btn btn-default" ng-click="editAccount(account);">
 									<i class="fa fa-pencil"></i>
 								</button>
-								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editmode = !editmode; deleteAccount(account.id);">
+								<button type="button" class="btn btn-default" ng-click="deleteAccount(account);">
 									<i class="fa fa-trash-o"></i>
-								</button>
-								<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
-									<i class="fa fa-check"></i>
-								</button>
-								<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
-									<i class="fa fa-times"></i>
 								</button>
 							</div>
 						</td>
@@ -207,11 +189,7 @@
 					<form class="form-horizontal" ng-submit="addParticular()" ng-show="status.particularedit">
 						<h3>New Account Particular</h3><br>
 					  <div class="form-group">
-						  <label class="col-sm-1 control-label">Account</label>
-						  <div class="col-sm-2">
-								<p class="form-control-static">1234567890123456</p>
-						  </div>
-							<label class="col-sm-1 control-label">Date</label>
+							<label class="col-sm-2 control-label">Date</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" ng-model="newparticular.date" placeholder="Date">
 							</div>
@@ -221,22 +199,28 @@
 							</div>
 					  </div>
 						<div class="form-group">
-						  <label class="col-sm-1 control-label">Withdraw</label>
-						  <div class="col-sm-3">
+						  <label class="col-sm-2 control-label">Withdraw</label>
+						  <div class="col-sm-2">
 						    <input type="text" class="form-control" ng-model="newparticular.withdraw" placeholder="Withdraw Amount">
 						  </div>
-						  <label class="col-sm-1 control-label">Deposit</label>
-						  <div class="col-sm-3">
+						  <label class="col-sm-2 control-label">Deposit</label>
+						  <div class="col-sm-2">
 						    <input type="text" class="form-control" ng-model="newparticular.deposit" placeholder="Deposit Amount">
 						  </div>
-						  <label class="col-sm-1 control-label">Balance</label>
-						  <div class="col-sm-3">
+						  <label class="col-sm-2 control-label">Balance</label>
+						  <div class="col-sm-2">
 						    <input type="text" class="form-control" ng-model="newparticular.balance" placeholder="Balance Amount">
 						  </div>
 						</div>
 						<div class="form-group">
+							<label class="col-sm-2 control-label">Description</label>
+							<div class="col-sm-10">
+							  <textarea class="form-control" ng-model="newparticular.particuler" placeholder="Description"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
 						  <div class="col-md-12 text-right">
-						  	<button type="button" class="btn btn-default" ng-click="status.particularedit = false;">Cancel</button>
+						  	<button type="button" class="btn btn-default" ng-click="cancelParticular();">Cancel</button>
 							  <button type="submit" class="btn btn-primary">Save</button>
 						  </div>
 						</div>
@@ -246,7 +230,6 @@
 					<table class="table table-hover table-responsive">
 						<thead>
 							<tr class="bg-primary">
-								<th>&nbsp;</th>
 								<th>Date</th>
 								<th>Particulars</th>
 								<th>Cheque No</th>
@@ -258,7 +241,6 @@
 						</thead>
 						<tbody>
 							<tr ng-repeat="particular in particulars | pagination: currentPage : numPerPage">
-								<td>{{$index+1}}</td>
 								<td>{{particular.date}}</td>
 								<td><p class="description" popover="{{particular.particuler}}" popover-trigger="mouseenter">{{particular.particuler}}</p></td>
 								<td>{{particular.cheque_no}}</td>
@@ -266,18 +248,12 @@
 								<td><i class="fa fa-inr"></i> {{particular.deposit}}</td>
 								<td><i class="fa fa-inr"></i> {{particular.balance}}</td>
 								<td>
-									<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-										<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editParticular(particular.id);">
+									<div class="btn-group btn-group-xs" role="group">
+										<button type="button" class="btn btn-default" ng-click="editParticular(particular);">
 											<i class="fa fa-pencil"></i>
 										</button>
-										<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editmode = !editmode; deleteParticular(particular.id);">
+										<button type="button" class="btn btn-default" ng-click="deleteParticular(particular);">
 											<i class="fa fa-trash-o"></i>
-										</button>
-										<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
-											<i class="fa fa-check"></i>
-										</button>
-										<button type="button" class="btn btn-default" ng-show="editmode" ng-click="editmode = !editmode">
-											<i class="fa fa-times"></i>
 										</button>
 									</div>
 								</td>
@@ -330,24 +306,33 @@
 								<table class="table table-hover table-responsive">
 									<thead>
 										<tr class="bg-primary">
-											<th>&nbsp;</th>
 											<th>Cheque Number</th>
 											<th>Date</th>
 											<th>Favour</th>
 											<th>Amount</th>
 											<th>Deposit</th>
 											<th>Balance</th>
+											<th>Edit</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr ng-repeat="chequerecord in cheque.chequerecords">
-											<td>{{$index+1}}</td>
 											<td>{{chequerecord.number}}</td>
 											<td>{{chequerecord.date}}</td>
 											<td><p class="description" popover="{{chequerecord.favor}}" popover-trigger="mouseenter">{{chequerecord.favor}}</p></td>
 											<td><i class="fa fa-inr"></i> {{chequerecord.amount}}</td>
 											<td><i class="fa fa-inr"></i> {{chequerecord.deposit}}</td>
 											<td><i class="fa fa-inr"></i> {{chequerecord.balance}}</td>
+											<td>
+												<div class="btn-group btn-group-xs" role="group">
+													<button type="button" class="btn btn-default" ng-click="editAccount(account);">
+														<i class="fa fa-pencil"></i>
+													</button>
+													<button type="button" class="btn btn-default" ng-click="deleteAccount(account);">
+														<i class="fa fa-trash-o"></i>
+													</button>
+												</div>
+											</td>
 										</tr>
 									</tbody>
 								</table>
