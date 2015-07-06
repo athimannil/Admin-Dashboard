@@ -429,8 +429,8 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.myStatement = {};
 		};
 		$scope.openAccount = function (bank) {
-				$scope.myAccount = {};
-				$scope.openDiv = 'accounts';
+			$scope.myAccount = {};
+			$scope.openDiv = 'accounts';
 			if (bank) {
 				$scope.myBank = bank;
 				$scope.breadCrumbs.push(
@@ -1097,6 +1097,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	app.controller('loanController', function($scope){
 		$scope.loanedit = false;
 		$scope.emiedit = false;
+		$scope.curloan = {};
 		$scope.banks =[ 
 			{
 				"id": 1,
@@ -1170,37 +1171,27 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.newLoan = function(){
 			$scope.newloan = {};
 		};
-		$scope.editLoan = function (id) {
+		$scope.editLoan = function (thisloan) {
     	$scope.loanedit = true;
-      for (var i = 0; i < $scope.loans.length; i++) {
-        if ($scope.loans[i].id == id) {
-          $scope.newloan = angular.copy($scope.loans[i]);
-        }
-      }
+    	$scope.curloan = thisloan;
+      $scope.newloan = angular.copy(thisloan);
 		};
-		// TODO unique ID for new loan
 		$scope.addLoan = function(){
-			if ($scope.newloan.id == null) {
+			if ($scope.curloan.id) {
+				angular.extend($scope.curloan,$scope.curloan,$scope.newloan);
+				$scope.curloan = {};
+			}else{
 				$scope.newloan.id = $scope.loans.length+1;
 				$scope.loans.push($scope.newloan);
-			}else{
-				for (var i = 0; i < $scope.loans.length; i++) {
-					if ($scope.loans[i].id == $scope.newloan.id) {
-					  $scope.loans[i] = $scope.newloan;
-					}
-				}
 			}
 			$scope.newloan = {};
 			$scope.loanedit = false;
 		};
-		$scope.deleteLoan = function (id) {
-			for (var i = 0; i < $scope.loans.length; i++) {
-				if ($scope.loans[i].id == id) {
-					var confirmDelete = confirm("Do you really need to delete " + $scope.loans[i].name + "?");
-					if (confirmDelete) {
-						$scope.loans.splice(i, 1);
-					}
-			  }
+		$scope.deleteLoan = function (item) {
+			var confirmDelete = confirm("Do you really need to delete " + item.name + "?");
+			if (confirmDelete) {
+				var bank = $scope.loans.indexOf(item);
+				$scope.loans.splice(bank, 1);
 			}
 		};
 		$scope.emis = [
