@@ -1,5 +1,16 @@
 <div class="row">
 	<div class="col-md-12">
+		<h2><i class="fa fa-tags"></i> Loan</h2>
+		<ol class="breadcrumb">
+			<li ng-repeat="breadCrumb in breadCrumbs" ng-class="{active: $last}">
+				<a ng-if="!$last" href ng-click="switchDiv($event);"><i class="fa fa-home" ng-show="$first"></i> {{breadCrumb}}</a>
+				<span ng-if="$last">{{breadCrumb}}</span>
+			</li>
+		</ol>
+	</div>
+</div>
+<div class="row" ng-switch on="openDiv">
+	<div class="col-md-12" ng-switch-default>
 		<div class="box">
 			<button type="button" class="btn btn-primary pull-right" ng-hide="loanedit" ng-click="loanedit = true; newLoan();">
 				<i class="fa fa-plus"></i> Add loan
@@ -75,7 +86,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="loan in loans">
-						<td><a>{{loan.name}}</a></td>
+						<td><a href ng-click="openEmi(loan);">{{loan.name}}</a></td>
 						<td><p class="description" popover="{{loan.description}}" popover-trigger="mouseenter">{{loan.description}}</p></td>
 						<td><i class="fa fa-inr"></i> {{loan.amount}}</td>
 						<td>{{loan.interest}}</td>
@@ -98,7 +109,7 @@
 			</table>
 		</div>
 	</div>
-	<div class="col-md-12">
+	<div class="col-md-12" ng-switch-when="emi">
 		<div class="box">
 			<button type="button" class="btn btn-primary pull-right" ng-hide="emiedit" ng-click="emiedit = true; newEmi();">
 				<i class="fa fa-plus"></i> Add EMI
@@ -137,7 +148,6 @@
 			<table class="table table-hover table-responsive">
 				<thead>
 					<tr>
-						<th>&nbsp;</th>
 						<th>Date</th>
 						<th>Description</th>
 						<th>Amount</th>
@@ -146,7 +156,6 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="emi in emis | pagination: currentPage : numPerPage">
-						<td>{{emi.loan_id}}</td>
 						<td>{{emi.date}}</td>
 						<td>
 							<p class="description" popover="{{emi.description}}" popover-trigger="mouseenter">{{emi.description}}</p>

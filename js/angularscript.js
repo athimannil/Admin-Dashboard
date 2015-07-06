@@ -1096,8 +1096,20 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	});
 	app.controller('loanController', function($scope){
 		$scope.loanedit = false;
-		$scope.emiedit = false;
 		$scope.curloan = {};
+		$scope.emiedit = false;
+		$scope.breadCrumbs = [];
+		$scope.openDiv = null;
+		$scope.openEmi = function (loan) {
+			$scope.myEmi = {};
+			$scope.openDiv = 'emi';
+			$scope.myLoan = loan;
+			$scope.breadCrumbs.push("home", $scope.myLoan.name);
+		};
+		$scope.switchDiv = function (argument) {
+			$scope.breadCrumbs = [];
+			$scope.openDiv = null;
+		};
 		$scope.banks =[ 
 			{
 				"id": 1,
