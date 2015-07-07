@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2><i class="fa fa-briefcase"> </i>  Projects</h2>
+  </div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="box">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic explicabo, molestiae recusandae ea blanditiis similique reiciendis at illum deleniti porro, rem illo, reprehenderit architecto aliquid nemo maxime cum quaerat totam.</p>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-3">
+		<div class="box" style="margin-bottom: 0; border-bottom: none;">
+			<h4 class="pull-left">Projects</h4>
+			<button class="btn btn-xs btn-primary pull-right"><i class="fa fa-plus"></i> Add project</button>
+			<div class="clearfix"></div>
+		</div>
+		<ul class="list-group">
+		  <li class="list-group-item" ng-repeat="project in projects">
+			  <button class="pull-right btn btn-primary btn-xs"><i class="fa fa-arrow-right"></i></button>
+		  	<p><strong>{{project.name}}</strong></p>
+		  	<ul class="list-unstyled">
+			  	<li>Budget: <i class="fa fa-inr"></i> {{project.approaxamount}}</li>
+			  	<li>Close Date: {{project.enddate}}</li>
+		  	</ul>
+		  </li>
+		</ul>
+		<div class="box">
+			<h4 class="pull-left">Projects</h4>
+			<button class="btn btn-xs btn-primary pull-right"><i class="fa fa-plus"></i> Add project</button>
+			<div class="clearfix"></div>
+			<ul class="list-group">
+			  <li class="list-group-item" ng-repeat="project in projects">Cras justo odio</li>
+		  </ul>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, aliquid porro tempore ad suscipit consectetur cumque doloribus! Nihil veritatis quibusdam sequi ea nostrum illo. Ad ex accusantium, illum officiis reprehenderit?</p>
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="box">
+			<h3>Project description</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, repellat quisquam, architecto dicta assumenda hic nisi illum quaerat distinctio aliquid officiis odit blanditiis. Reiciendis id officia quaerat vitae repudiandae cum.</p>
+		</div>
+	</div>
+</div>
+

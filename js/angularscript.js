@@ -53,9 +53,17 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				templateUrl: 'template/phonebook.html',
 				controller: 'phonebookController'
 			})
+			.when('/employee', {
+				templateUrl: 'template/employee.html',
+				controller: 'employeeController'
+			})
 			.when('/note', {
 				templateUrl: 'template/note.html',
-				controller: 'NoteController'
+				controller: 'noteController'
+			})
+			.when('/project', {
+				templateUrl: 'template/project.html',
+				controller: 'projectController'
 			})
 			.otherwise({
 				redirectTo: 'template/dashboard.html'
@@ -76,7 +84,9 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				{page: "dashboard", title: "Dashboard", icon: "dashboard"},
 				{page: "banks", title: "Banks", icon: "bank"},
 				{page: "loan", title: "Loan", icon: "tags"},
+				{page: "project", title: "Project", icon: "briefcase"},
 				{page: "phonebook", title: "Phone book", icon: "book"},
+				{page: "employee", title: "Employee", icon: "users"},
 				{page: "expense", title: "Expenses", icon: "shopping-cart"},
 				{page: "invoice", title: "Invoice", icon: "file-text-o"},
 				{page: "recur", title: "Reccurring Bills", icon: "dashboard"},
@@ -1401,5 +1411,46 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.curemi = {};
 		};
 	});
-
+	app.controller('noteController', function(){});
+	app.controller('employeeController', function(){});
+	app.controller('projectController', function($scope){
+		$scope.projects = [
+			{
+				"id": 1,
+				"name": "First project",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aliquam accusamus similique quos culpa, provident sequi blanditiis temporibus cupiditate voluptatem animi officia mollitia corrupti eum sed commodi alias rem facilis!",
+				"approaxamount": 99900,
+				"startdate": "12-Jan-1962",
+				"enddate": "31-March-2015"
+			},{
+				"id": 2,
+				"name": "Second project",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aliquam accusamus similique quos culpa, provident sequi blanditiis temporibus cupiditate voluptatem animi officia mollitia corrupti eum sed commodi alias rem facilis!",
+				"approaxamount": 12300,
+				"startdate": "12-Jan-1962",
+				"enddate": "31-Feb-2015"
+			},{
+				"id": 3,
+				"name": "Third project",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aliquam accusamus similique quos culpa, provident sequi blanditiis temporibus cupiditate voluptatem animi officia mollitia corrupti eum sed commodi alias rem facilis!",
+				"approaxamount": 6500,
+				"startdate": "12-July-1962",
+				"enddate": "31-Jun-2015"
+			},{
+				"id": 4,
+				"name": "Fourth project",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aliquam accusamus similique quos culpa, provident sequi blanditiis temporibus cupiditate voluptatem animi officia mollitia corrupti eum sed commodi alias rem facilis!",
+				"approaxamount": 10000,
+				"startdate": "12-Jan-1962",
+				"enddate": "31-Dec-2015"
+			},{
+				"id": 5,
+				"name": "Last project",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aliquam accusamus similique quos culpa, provident sequi blanditiis temporibus cupiditate voluptatem animi officia mollitia corrupti eum sed commodi alias rem facilis!",
+				"approaxamount": 9500,
+				"startdate": "12-Jan-1962",
+				"enddate": "31-Dec-2015"
+			}
+		];
+	});
 })();
