@@ -418,7 +418,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.openDiv = 'banks';
 		$scope.breadCrumbs = [];
 
-		$scope.myBank = {};
 		$scope.myAccount = {};
 		$scope.myStatement = {};
 		$scope.openBank = function (){
@@ -432,14 +431,14 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.myAccount = {};
 			$scope.openDiv = 'accounts';
 			if (bank) {
-				$scope.myBank = bank;
+				$scope.curBank = bank;
 				$scope.breadCrumbs.push(
 					{
 						"target": "home", 
 						"title": "Home"
 					},{
 						"target": "account",
-						"title": $scope.myBank.name
+						"title": $scope.curBank.name
 					}
 				);
 			} else {
@@ -589,6 +588,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
     };
 
     // Chque
+		// TODO edit, add & update
 		$scope.cheques =  [
 			{
 			    "id": 1,
@@ -665,7 +665,8 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			}
 		];
 
-		// Card
+		// Cards
+		// TODO edit, add & update
 		$scope.cards = [
 			{
 				"id": 1,
@@ -1098,6 +1099,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.loanedit = false;
 		$scope.curloan = {};
 		$scope.emiedit = false;
+		$scope.curemi = {};
 		$scope.breadCrumbs = [];
 		$scope.openDiv = null;
 		$scope.openEmi = function (loan) {
@@ -1106,7 +1108,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.myLoan = loan;
 			$scope.breadCrumbs.push("home", $scope.myLoan.name);
 		};
-		$scope.switchDiv = function (argument) {
+		$scope.switchDiv = function () {
 			$scope.breadCrumbs = [];
 			$scope.openDiv = null;
 		};
@@ -1143,6 +1145,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"address": {"line1": "bank addres line 1", "line2": "Banks address line 2"}
 		  }
 		];
+		// Loans
 		$scope.loans = [
 			{
 				"id": 1,
@@ -1179,8 +1182,9 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"interest": "9.5%",
 			}
 		];
-		$scope.newaccount = {};
+		$scope.newloan = {};
 		$scope.newLoan = function(){
+			$scope.loanedit = true;
 			$scope.newloan = {};
 		};
 		$scope.editLoan = function (thisloan) {
@@ -1206,6 +1210,11 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				$scope.loans.splice(bank, 1);
 			}
 		};
+		$scope.cancelLoan = function () {
+			$scope.loanedit = false;
+			$scope.curloan = {};
+		};
+		// EMI
 		$scope.emis = [
 			{
 				"id": 1,
@@ -1359,53 +1368,38 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"date": "03-February-2015"
 			}
 		];
+		$scope.newemi = {};
 		$scope.newEmi = function(){
+			$scope.emiedit = true;
 			$scope.newemi = {};
 		};
-		$scope.editEmi = function (id) {
+		$scope.editEmi = function (thisemi) {
     	$scope.emiedit = true;
-      for (var i = 0; i < $scope.emis.length; i++) {
-        if ($scope.emis[i].id == id) {
-          $scope.newemi = angular.copy($scope.emis[i]);
-        }
-      }
-    	$scope.emibanks = $scope.newemi.bank_id;
+    	$scope.curemi = thisemi;
+      $scope.newemi = angular.copy(thisemi);
 		};
-		// TODO unique ID for new loan
 		$scope.addEmi = function(){
-			if ($scope.newemi.id == null) {
+			if ($scope.curemi.id) {
+				angular.extend($scope.curemi,$scope.curemi,$scope.newemi);
+				$scope.curemi = {};
+			}else{
 				$scope.newemi.id = $scope.emis.length+1;
 				$scope.emis.push($scope.newemi);
-			}else{
-				for (var i = 0; i < $scope.emis.length; i++) {
-					if ($scope.emis[i].id == $scope.newemi.id) {
-					  $scope.emis[i] = $scope.newemi;
-					}
-				}
 			}
 			$scope.newemi = {};
 			$scope.emiedit = false;
 		};
-		$scope.deleteEmi = function (id) {
-			for (var i = 0; i < $scope.emis.length; i++) {
-				if ($scope.emis[i].id == id) {
-					var confirmDelete = confirm("Do you really need to delete ?");
-					if (confirmDelete) {
-						$scope.emis.splice(i, 1);
-					}
-			  }
+		$scope.deleteEmi = function (item) {
+			var confirmDelete = confirm("Do you really need to delete ?");
+			if (confirmDelete) {
+				var bank = $scope.emis.indexOf(item);
+				$scope.emis.splice(bank, 1);
 			}
 		};
-
-		// Paggination for emi
-		/*$scope.filter_emi = [];
-		$scope.currentPage = 1;
-		$scope.numPerPage = 10;
-		$scope.maxSize = 5;
-		$scope.$watch('currentPage + numPerPage', function() {
-		  var begin = (($scope.currentPage - 1) * $scope.numPerPage), end = begin + $scope.numPerPage;
-		  $scope.filter_emi = $scope.emis.slice(begin, end);
-		});*/
+		$scope.cancelEmi = function () {
+			$scope.emiedit = false;
+			$scope.curemi = {};
+		};
 	});
 
 })();

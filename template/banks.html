@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<h2><i class="fa fa-bank"></i> Banks</h2>
-		<ol class="breadcrumb">
+		<ol class="breadcrumb" ng-show="breadCrumbs.length">
 			<li ng-repeat="breadCrumb in breadCrumbs" ng-class="{active: $last}">
 				<a ng-if="!$last" href ng-click="switchDiv($event);" data-target="{{breadCrumb.target}}"><i class="fa fa-home" ng-show="$first"></i> {{breadCrumb.title}}</a>
 				<span ng-if="$last">{{breadCrumb.title}}</span>
