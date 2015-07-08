@@ -429,13 +429,13 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.breadCrumbs = [];
 
 		$scope.myAccount = {};
-		$scope.myStatement = {};
+		// $scope.myStatement = {};
 		$scope.openBank = function (){
 			$scope.openDiv ='banks';
 			$scope.breadCrumbs = [];
 			$scope.myBank = {};
 			$scope.myAccount = {};
-			$scope.myStatement = {};
+			// $scope.myStatement = {};
 		};
 		$scope.openAccount = function (bank) {
 			$scope.myAccount = {};
@@ -1414,6 +1414,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	app.controller('noteController', function(){});
 	app.controller('employeeController', function(){});
 	app.controller('projectController', function($scope){
+		$scope.projectedit = true;
 		$scope.projects = [
 			{
 				"id": 1,
@@ -1452,5 +1453,11 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"enddate": "31-Dec-2015"
 			}
 		];
+		$scope.newProject = function (argument) {
+			$scope.projectedit = true;
+		};
+		$scope.cancelProject = function () {
+			$scope.projectedit = false;
+		};
 	});
 })();
