@@ -1420,41 +1420,44 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"id": 1,
 				"name": "First project",
 				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aliquam accusamus similique quos culpa, provident sequi blanditiis temporibus cupiditate voluptatem animi officia mollitia corrupti eum sed commodi alias rem facilis!",
-				"approaxamount": 99900,
+				"approxamount": 99900,
 				"startdate": "12-Jan-1962",
 				"enddate": "31-March-2015"
 			},{
 				"id": 2,
 				"name": "Second project",
 				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aliquam accusamus similique quos culpa, provident sequi blanditiis temporibus cupiditate voluptatem animi officia mollitia corrupti eum sed commodi alias rem facilis!",
-				"approaxamount": 12300,
+				"approxamount": 12300,
 				"startdate": "12-Jan-1962",
 				"enddate": "31-Feb-2015"
 			},{
 				"id": 3,
 				"name": "Third project",
 				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aliquam accusamus similique quos culpa, provident sequi blanditiis temporibus cupiditate voluptatem animi officia mollitia corrupti eum sed commodi alias rem facilis!",
-				"approaxamount": 6500,
+				"approxamount": 6500,
 				"startdate": "12-July-1962",
 				"enddate": "31-Jun-2015"
 			},{
 				"id": 4,
 				"name": "Fourth project",
 				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aliquam accusamus similique quos culpa, provident sequi blanditiis temporibus cupiditate voluptatem animi officia mollitia corrupti eum sed commodi alias rem facilis!",
-				"approaxamount": 10000,
+				"approxamount": 10000,
 				"startdate": "12-Jan-1962",
 				"enddate": "31-Dec-2015"
 			},{
 				"id": 5,
 				"name": "Last project",
 				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aliquam accusamus similique quos culpa, provident sequi blanditiis temporibus cupiditate voluptatem animi officia mollitia corrupti eum sed commodi alias rem facilis!",
-				"approaxamount": 9500,
+				"approxamount": 9500,
 				"startdate": "12-Jan-1962",
 				"enddate": "31-Dec-2015"
 			}
 		];
 		$scope.newProject = function (argument) {
 			$scope.projectedit = true;
+		};
+		$scope.openProject = function(thisProject){
+			$scope.curProject = thisProject;
 		};
 		$scope.cancelProject = function () {
 			$scope.projectedit = false;

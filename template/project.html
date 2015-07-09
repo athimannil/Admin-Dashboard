@@ -20,42 +20,33 @@
 		</div>
 		<ul class="list-group">
 		  <li class="list-group-item" ng-repeat="project in projects">
-			  <button class="pull-right btn btn-primary btn-xs"><i class="fa fa-arrow-right"></i></button>
+			  <button class="pull-right btn btn-primary btn-xs" ng-click="openProject(project)"><i class="fa fa-arrow-right"></i></button>
 		  	<p><strong>{{project.name}}</strong></p>
 		  	<ul class="list-unstyled">
-			  	<li>Budget: <i class="fa fa-inr"></i> {{project.approaxamount}}</li>
+			  	<li>Budget: <i class="fa fa-inr"></i> {{project.approxamount}}</li>
 			  	<li>Close Date: {{project.enddate}}</li>
 		  	</ul>
 		  </li>
 		</ul>
-		<div class="box">
-			<h4 class="pull-left">Projects</h4>
-			<button class="btn btn-xs btn-primary pull-right"><i class="fa fa-plus"></i> Add project</button>
-			<div class="clearfix"></div>
-			<ul class="list-group">
-			  <li class="list-group-item" ng-repeat="project in projects">Cras justo odio</li>
-		  </ul>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, aliquid porro tempore ad suscipit consectetur cumque doloribus! Nihil veritatis quibusdam sequi ea nostrum illo. Ad ex accusantium, illum officiis reprehenderit?</p>
-		</div>
 	</div>
 	<div class="col-md-9">
 		<div class="box">
-			<h3>First Project</h3>
+			<h3>{{curProject.name}}</h3>
 			<div class="row" ng-hide="projectedit">
 				<div class="col-md-4">
 					<table class="table table-striped table-responsive">
 						<tbody>
 							<tr>
 								<td class="text-muted">Approximate Amount</td>
-								<td><i class="fa fa-inr"></i> 9990</td>
+								<td><i class="fa fa-inr"></i> {{curProject.approxamount}}</td>
 							</tr>
 							<tr>
 								<td class="text-muted">Start Date</td>
-								<td>12-Jan-1962</td>
+								<td>{{curProject.startdate}}</td>
 							</tr>
 							<tr>
 								<td class="text-muted">End Date</td>
-								<td>31-March-2015</td>
+								<td>{{curProject.startdate}}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -63,7 +54,7 @@
 				<div class="col-md-8">
 					<dl>
 					  <dt>Description</dt>
-					  <dd><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero id ducimus sequi distinctio, ad dolorem culpa possimus ea nam, ipsum veritatis eum nihil explicabo quod praesentium esse at quam excepturi.</p></dd>
+					  <dd><p>{{curProject.description}}</p></dd>
 					</dl>
 				</div>
 			</div>
