@@ -7481,6 +7481,13 @@ button.close {
   background: #FFF;
   margin: 0 0 10px; }
 
+.description {
+  max-width: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis; }
+
 .progress-mini {
   height: 10px; }
 
