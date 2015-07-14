@@ -1,1 +1,10 @@
-// CSS for project page 
+.project-list{
+	.active{
+		.btn-primary{
+			background-color: $white;
+			i{
+				color: $brand-primary;
+			}
+		}
+	}
+}

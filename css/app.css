@@ -7936,4 +7936,9 @@ header {
   border-top: none;
   border-bottom: 1px solid #ddd; }
 
+.project-list .active .btn-primary {
+  background-color: #fff; }
+  .project-list .active .btn-primary i {
+    color: #eb6a5a; }
+
 /*# sourceMappingURL=app.css.map */

@@ -1414,7 +1414,8 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	app.controller('noteController', function(){});
 	app.controller('employeeController', function(){});
 	app.controller('projectController', function($scope){
-		$scope.projectedit = true;
+		$scope.projectdetail = false;
+		$scope.projectedit = false;
 		$scope.projects = [
 			{
 				"id": 1,
@@ -1454,9 +1455,11 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			}
 		];
 		$scope.newProject = function (argument) {
+			$scope.projectdetail = true;
 			$scope.projectedit = true;
 		};
 		$scope.openProject = function(thisProject){
+			$scope.projectdetail = true;
 			$scope.curProject = thisProject;
 		};
 		$scope.cancelProject = function () {

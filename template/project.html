@@ -10,16 +10,15 @@
 		</div>
 	</div>
 </div>
-
 <div class="row">
-	<div class="col-md-3">
+	<div ng-class="projectdetail ? 'col-md-3' : 'col-md-12'">
 		<div class="box" style="margin-bottom: 0; border-bottom: none;">
 			<h4 class="pull-left">Projects</h4>
 			<button class="btn btn-xs btn-primary pull-right" ng-hide="projectedit" ng-click="newProject();"><i class="fa fa-plus"></i> Add project</button>
 			<div class="clearfix"></div>
 		</div>
-		<ul class="list-group">
-		  <li class="list-group-item" ng-repeat="project in projects">
+		<ul class="list-group project-list">
+		  <li class="list-group-item" ng-repeat="project in projects" ng-class="{active: project.id == curProject.id}">
 			  <button class="pull-right btn btn-primary btn-xs" ng-click="openProject(project)"><i class="fa fa-arrow-right"></i></button>
 		  	<p><strong>{{project.name}}</strong></p>
 		  	<ul class="list-unstyled">
@@ -29,7 +28,7 @@
 		  </li>
 		</ul>
 	</div>
-	<div class="col-md-9">
+	<div class="col-md-9" ng-if="projectdetail">
 		<div class="box">
 			<h3>{{curProject.name}}</h3>
 			<div class="row" ng-hide="projectedit">
