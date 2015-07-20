@@ -1515,7 +1515,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"approxamount": 12300,
 				"startdate": "12-Jan-1962",
 				"enddate": "31-Feb-2015",
-				"wage":[]
+				"wages":[]
 			},{
 				"id": 3,
 				"name": "Third project",
@@ -1523,7 +1523,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"approxamount": 6500,
 				"startdate": "12-July-1962",
 				"enddate": "31-Jun-2015",
-				"wage":[]
+				"wages":[]
 			},{
 				"id": 4,
 				"name": "Fourth project",
@@ -1531,7 +1531,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"approxamount": 10000,
 				"startdate": "12-Jan-1962",
 				"enddate": "31-Dec-2015",
-				"wage":[]
+				"wages":[]
 			},{
 				"id": 5,
 				"name": "Last project",
@@ -1539,7 +1539,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"approxamount": 9500,
 				"startdate": "12-Jan-1962",
 				"enddate": "31-Dec-2015",
-				"wage":[]
+				"wages":[]
 			}
 		];
 		$scope.openProject = function(thisProject){
@@ -1599,7 +1599,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				$scope.projects[curIndex].wages.push($scope.newwage);
 			}
 			$scope.newwage = {};
-			$scope.projectedit = false;
+			$scope.wageedit = false;
 		};
 		$scope.deleteWage = function (item) {
 			var curIndex = $scope.projects.indexOf($scope.curProject);
