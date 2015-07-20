@@ -1419,6 +1419,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.newproject = {};
 		$scope.wageedit = false;
 		$scope.curwage = {};
+		$scope.newwage = {};
 		$scope.projects = [
 			{
 				"id": 1,
@@ -1588,13 +1589,25 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newwage = angular.copy(thiswage);
 
 		};
+		$scope.addWage = function () {
+			var curIndex = $scope.projects.indexOf($scope.curProject);
+			if ($scope.curwage.id) {
+				angular.extend($scope.curwage,$scope.curwage,$scope.newwage);
+				$scope.curwage = {};
+			}else{
+				$scope.newwage.id = $scope.projects[curIndex].wages.length+1;
+				$scope.projects[curIndex].wages.push($scope.newwage);
+			}
+			$scope.newwage = {};
+			$scope.projectedit = false;
+		};
 		$scope.deleteWage = function (item) {
-			console.log(item);
-			/*var confirmDelete = confirm("Do you really need to delete the item ?");
+			var curIndex = $scope.projects.indexOf($scope.curProject);
+			var confirmDelete = confirm("Do you really need to delete the item ?");
 			if (confirmDelete) {
-				var wage = $scope.projects.wages.indexOf(item);
-				$scope.projects.wages.splice(wage, 1);
-			};*/
+				var wage = $scope.projects[curIndex].wages.indexOf(item);
+				$scope.projects[curIndex].wages.splice(wage, 1);
+			}
 		};
 		$scope.cancelWage = function () {
 			$scope.wageedit = false;
