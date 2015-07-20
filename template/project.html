@@ -11,7 +11,7 @@
 	</div>
 </div>
 <div class="row">
-	<div ng-class="projectdetail ? 'col-md-3' : 'col-md-12'">
+	<div class="col-md-3">
 		<div class="box" style="margin-bottom: 0; border-bottom: none;">
 			<h4 class="pull-left">Projects</h4>
 			<button class="btn btn-xs btn-primary pull-right" ng-hide="projectedit" ng-click="newProject();"><i class="fa fa-plus"></i> Add project</button>
@@ -28,10 +28,59 @@
 		  </li>
 		</ul>
 	</div>
-	<div class="col-md-9" ng-if="projectdetail">
+	<div class="col-md-9">
 		<div class="box">
-			<h3>{{curProject.name}}</h3>
+			<form class="form-horizontal" ng-submit="addProject();" ng-show="projectedit">
+				<h3>New Project</h3>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Project Name</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" ng-model="newproject.name" placeholder="Project Name">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Approximate Amount</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" ng-model="newproject.approxamount" placeholder="Amount">
+					</div>
+					<label class="col-sm-2 control-label">Start Date</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" ng-model="newproject.startdate" placeholder="Start Date">
+					</div>
+					<label class="col-sm-2 control-label">End Date</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" ng-model="newproject.enddate" placeholder="End Date">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Description</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" ng-model="newproject.description" placeholder="Description"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+				  <div class="col-sm-12 text-right">
+				  	<button type="button" class="btn btn-default" ng-click="cancelProject();">Cancel</button>
+					  <button type="submit" class="btn btn-primary">Save</button>
+				  </div>
+				</div>
+			</form>
 			<div class="row" ng-hide="projectedit">
+				<div class="col-md-12">
+					<div class="btn-group pull-right" dropdown>
+					  <button type="button" class="btn btn-primary" ng-click="newProject();"><i class="fa fa-plus"></i> Add</button>
+					  <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+					    <span class="caret"></span>
+					    <span class="sr-only">Split button!</span>
+					  </button>
+					  <ul class="dropdown-menu" role="menu">
+							<li><a href ng-click="editProject(curProject);"><i class="fa fa-edit"></i> Edit</a></li>
+							<li class="divider"></li>
+							<li><a href ng-click="deleteProject(curProject);"><i class="fa fa-trash-o"></i> Delete</a></li>
+					  </ul>
+					</div>
+					<h3>{{curProject.name}}</h3>
+				</div>
 				<div class="col-md-4">
 					<table class="table table-striped table-responsive">
 						<tbody>
@@ -57,40 +106,87 @@
 					</dl>
 				</div>
 			</div>
-			<form class="form-horizontal" ng-submit="addProject();" ng-show="projectedit">
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Project Name</label>
-					<div class="col-md-10">
-						<input type="text" class="form-control" ng-model="newproject.name" placeholder="Project Name">
-					</div>
+			<div class="row">
+				<div class="col-md-12">
+					<button ng-click="newWage();" ng-hide="wageedit" class="btn btn-primary pull-right" type="button"><i class="fa fa-plus"></i> Add Wage</button>
 				</div>
+			</div>
+			<form class="form-horizontal" ng-show="wageedit" ng-submit="addWage();">
+				<h3>New wage</h3><br>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">Approximate Amount</label>
-					<div class="col-md-2">
-						<input type="text" class="form-control" ng-model="newproject.approaxamount" placeholder="Amount">
+					<label for="" class="col-sm-2 control-label">Name</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" ng-model="newwage.name" placeholder="Name">
 					</div>
-					<label class="col-sm-2 control-label">Start Date</label>
-					<div class="col-md-2">
-						<input type="text" class="form-control" ng-model="newproject.approaxamount" placeholder="Start Date">
+					<label for="" class="col-sm-1 control-label">Amount</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" ng-model="newwage.amount" placeholder="Amount">
 					</div>
-					<label class="col-sm-2 control-label">End Date</label>
-					<div class="col-md-2">
-						<input type="text" class="form-control" ng-model="newproject.approaxamount" placeholder="End Date">
+					<label for="" class="col-sm-1 control-label">Date</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" ng-model="newwage.date" placeholder="Date">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Description</label>
-					<div class="col-md-10">
-						<textarea class="form-control" ng-model="newproject.name" placeholder="Description"></textarea>
+					<div class="col-sm-10">
+						<textarea class="form-control" ng-model="newwage.description" placeholder="Description"></textarea>
 					</div>
 				</div>
 				<div class="form-group">
-				  <div class="col-md-12 text-right">
-				  	<button type="button" class="btn btn-default" ng-click="cancelProject();">Cancel</button>
+				  <div class="col-sm-12 text-right">
+				  	<button type="button" class="btn btn-default" ng-click="cancelWage();">Cancel</button>
 					  <button type="submit" class="btn btn-primary">Save</button>
 				  </div>
 				</div>
+				<hr>
 			</form>
+			<div ng-if="curProject.wages.length">
+				<h3>Wage and details</h3>
+				<table class="table table-hover table-responsive">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Description</th>
+							<th>Amount</th>
+							<th>Date</th>
+							<th>Edit</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="wage in curProject.wages | pagination: currentPage : numPerPage">
+							<td>{{wage.name}}</td>
+							<td><p class="description" popover="{{wage.description}}" popover-trigger="mouseenter">{{wage.description}}</p></td>
+							<td><i class="fa fa-inr"></i> {{wage.amount}}</td>
+							<td>{{wage.date}}</td>
+							<td>
+								<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+									<button type="button" class="btn btn-default" ng-click="editWage(wage);">
+										<i class="fa fa-pencil"></i>
+									</button>
+									<button type="button" class="btn btn-default" ng-click="deleteWage(wage); editmode = !editmode">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="clearfix">
+					<pagination 
+						ng-model="currentPage" 
+						total-items="curProject.wages.length" 
+						max-size="5" 
+						boundary-links="true" 
+						class="pagination-sm pull-right" 
+						previous-text="&lsaquo;" 
+						next-text="&rsaquo;" 
+						first-text="&laquo;" 
+						last-text="&raquo;"
+					></pagination>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </div>

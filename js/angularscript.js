@@ -128,7 +128,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			{ product: '10 ugiat nulla', date: '28-June-2014', rate: 55.12, member: 1, status: 'pending'},
 			{ product: '11 occaecat cupidatat', date: '21-June-2014', rate: 99.54, member: 3, status: 'pending'},
 			{ product: '12 proident', date: '31-December-2014', rate: 15.50, member: 2, status: 'denied'},
-			{ product: '13 culpa qui', date: '1-November-2014', rate: 34.05, member: 1, status: 'pending'},     
+			{ product: '13 culpa qui', date: '1-November-2014', rate: 34.05, member: 1, status: 'pending'},
 			{ product: '14 Lorem ipsum', date: '12-March-2013', rate: 12.35, member: 1, status: 'approved' },
 			{ product: '15 dolor sit', date: '1-January-2011', rate: 60.54, member: 3, status: 'pending'},
 			{ product: '16 consectetur', date: '12-December-2014', rate: 12.56, member: 1, status: 'pending'},
@@ -142,7 +142,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			{ product: '24 ugiat nulla', date: '28-June-2014', rate: 55.12, member: 1, status: 'pending'},
 			{ product: '25 occaecat cupidatat', date: '21-June-2014', rate: 99.54, member: 3, status: 'pending'},
 			{ product: '26 proident', date: '31-December-2014', rate: 15.50, member: 2, status: 'denied'},
-			{ product: '27 culpa qui', date: '1-November-2014', rate: 34.05, member: 1, status: 'pending'},     
+			{ product: '27 culpa qui', date: '1-November-2014', rate: 34.05, member: 1, status: 'pending'},
 			{ product: '28 Lorem ipsum', date: '12-March-2013', rate: 12.35, member: 1, status: 'approved' },
 			{ product: '29 dolor sit', date: '1-January-2011', rate: 60.54, member: 3, status: 'pending'},
 			{ product: '30 consectetur', date: '12-December-2014', rate: 12.56, member: 1, status: 'pending'},
@@ -214,9 +214,9 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.totalamount = $scope.sum($scope.users, 'spent');
 		$scope.addrecur = {fixed: true,
 			recuringterm:[
-				{term: 'Daily'}, 
-				{term: 'Weekly'}, 
-				{term: 'Monthly'}, 
+				{term: 'Daily'},
+				{term: 'Weekly'},
+				{term: 'Monthly'},
 				{term: 'Yearly'}
 			]
 		};
@@ -328,7 +328,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	    }
 	  };
 	});
-	
+
 	app.controller('phonebookController', function($scope, $http){
 		$scope.contactMode = {
 			activeList : 0,
@@ -382,7 +382,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			// Clear selected JSON list
 			$scope.currentContact = {};
 			$scope.currentContact.contacts = [{"phone": ""}];
-			// Clear current add JSON lsit 
+			// Clear current add JSON lsit
 			// $scope.currentContact = {};
 		};
 		$scope.editContact = function () {
@@ -417,7 +417,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.status = {
 			isFirstOpen: true,
 			oneAtATime: true,
-			bankedit: false, 
+			bankedit: false,
 			accountedit: false,
 			particularedit: false
 		};
@@ -444,7 +444,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				$scope.curBank = bank;
 				$scope.breadCrumbs.push(
 					{
-						"target": "home", 
+						"target": "home",
 						"title": "Home"
 					},{
 						"target": "account",
@@ -452,7 +452,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 					}
 				);
 			} else {
-				$scope.breadCrumbs.splice(2, 1);				
+				$scope.breadCrumbs.splice(2, 1);
 			}
 		};
 		$scope.openStatement = function (account) {
@@ -471,7 +471,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 
 		// Banks
 		$scope.newbank = {};
-		$scope.banks =[ 
+		$scope.banks =[
 			{
 				"id": 1,
 				"name":"PNB",
@@ -482,7 +482,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"contact": "0483-569821",
 				"branch": 'Manjeri',
 				"address": "bank addres line 1 line2 Banks address line 2"
-		  },{ 
+		  },{
 				"id": 2,
 				"name":"ICICI Banks",
 				"ifsc": 989525621542,
@@ -492,7 +492,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"contact": "0483-569821",
 				"branch": "Calicut",
 				"address": "bank addres line 1 line2 Banks address line 2"
-		  },{ 
+		  },{
 				"id": 3,
 				"name":"SBT",
 				"ifsc": 989525621542,
@@ -1122,7 +1122,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.breadCrumbs = [];
 			$scope.openDiv = null;
 		};
-		$scope.banks =[ 
+		$scope.banks =[
 			{
 				"id": 1,
 				"name":"PNB",
@@ -1133,7 +1133,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"contact": "0483-569821",
 				"branch": 'Manjeri',
 				"address": {"line1": "bank addres line 1", "line2": "Banks address line 2"}
-		  },{ 
+		  },{
 				"id": 2,
 				"name":"ICICI Banks",
 				"ifsc": 989525621542,
@@ -1143,7 +1143,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"contact": "0483-569821",
 				"branch": 'Calicut',
 				"address": {"line1": "bank addres line 1", "line2": "Banks address line 2"}
-		  },{ 
+		  },{
 				"id": 3,
 				"name":"SBT",
 				"ifsc": 989525621542,
@@ -1414,8 +1414,11 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	app.controller('noteController', function(){});
 	app.controller('employeeController', function(){});
 	app.controller('projectController', function($scope){
-		$scope.projectdetail = false;
 		$scope.projectedit = false;
+		$scope.curProject = {};
+		$scope.newproject = {};
+		$scope.wageedit = false;
+		$scope.curwage = {};
 		$scope.projects = [
 			{
 				"id": 1,
@@ -1423,47 +1426,181 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aliquam accusamus similique quos culpa, provident sequi blanditiis temporibus cupiditate voluptatem animi officia mollitia corrupti eum sed commodi alias rem facilis!",
 				"approxamount": 99900,
 				"startdate": "12-Jan-1962",
-				"enddate": "31-March-2015"
+				"enddate": "31-March-2015",
+				"wages":[
+					{
+						"id": 1,
+						"name": "Basheer Shah",
+						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta delectus quod velit molestiae aliquam accusantium possimus corporis voluptatibus ratione deserunt, facilis, magnam veritatis libero. Doloremque quas voluptatibus laudantium, nisi alias.",
+						"amount": "852.00",
+						"date": "12-Jan-2015",
+						"employee_id": 124
+					},{
+						"id": 2,
+						"name": "Basheer Shah",
+						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate vero modi, deserunt sed vel voluptatibus laborum dolores ad ea inventore, iste harum. Consequatur iste aliquid, eos ipsa ea enim sapiente!",
+						"amount": "852.00",
+						"date": "12-Jan-2015",
+						"employee_id": 124
+					},{
+						"id": 3,
+						"name": "Basheer Shah",
+						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque doloribus dolor harum, odio odit iusto deserunt tempora et, atque, maxime a doloremque sequi praesentium provident laboriosam officia magnam error animi?",
+						"amount": "852.00",
+						"date": "12-Jan-2015",
+						"employee_id": 124
+					},{
+						"id": 4,
+						"name": "Basheer Shah",
+						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur veniam molestias ullam quas impedit dolore dolorum at, itaque repudiandae consequatur quod, nesciunt. Magnam esse numquam rerum alias iste, consequuntur? Hic!",
+						"amount": "852.00",
+						"date": "12-Jan-2015",
+						"employee_id": 124
+					},{
+						"id": 5,
+						"name": "Basheer Shah",
+						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At repudiandae quidem odio hic quasi molestiae eos explicabo illum, amet ipsam alias quae dolor veniam, quos sapiente nemo! Perspiciatis, voluptatum, incidunt.",
+						"amount": "852.00",
+						"date": "12-Jan-2015",
+						"employee_id": 124
+					},{
+						"id": 6,
+						"name": "Basheer Shah",
+						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus fugit sapiente quae totam voluptates nobis, culpa iste mollitia, quis sit tempore consectetur recusandae nesciunt magni optio ratione voluptate ab, quod.",
+						"amount": "852.00",
+						"date": "12-Jan-2015",
+						"employee_id": 124
+					},{
+						"id": 7,
+						"name": "Basheer Shah",
+						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente itaque, aspernatur ratione nihil accusantium placeat fugit odio beatae exercitationem quod, voluptate illo error magni ullam blanditiis, hic maxime reiciendis obcaecati!",
+						"amount": "852.00",
+						"date": "12-Jan-2015",
+						"employee_id": 124
+					},{
+						"id": 8,
+						"name": "Basheer Shah",
+						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus accusantium perferendis nam velit voluptas ut sapiente adipisci, sed et in voluptate aut autem repudiandae harum minima unde reiciendis fugit. Quia?",
+						"amount": "852.00",
+						"date": "12-Jan-2015",
+						"employee_id": 124
+					},{
+						"id": 9,
+						"name": "Basheer Shah",
+						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime nobis nulla sint itaque facilis fugit veniam nesciunt hic, quo dolorem necessitatibus ad, repellendus, tempore suscipit fugiat! Sapiente dignissimos sunt, officia.",
+						"amount": "852.00",
+						"date": "12-Jan-2015",
+						"employee_id": 124
+					},{
+						"id": 10,
+						"name": "Basheer Shah",
+						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam recusandae nesciunt molestiae necessitatibus quis veniam consectetur repudiandae, blanditiis quia natus unde est totam id at temporibus, porro deleniti suscipit ipsa.",
+						"amount": "852.00",
+						"date": "12-Jan-2015",
+						"employee_id": 124
+					},{
+						"id": 11,
+						"name": "Basheer Shah",
+						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quo tempora debitis reiciendis quasi illo voluptatibus. Nemo dolores, ea quam modi ut, mollitia ducimus minus recusandae veniam illum, asperiores, natus.",
+						"amount": "852.00",
+						"date": "12-Jan-2015",
+						"employee_id": 124
+					}
+				]
 			},{
 				"id": 2,
 				"name": "Second project",
 				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aliquam accusamus similique quos culpa, provident sequi blanditiis temporibus cupiditate voluptatem animi officia mollitia corrupti eum sed commodi alias rem facilis!",
 				"approxamount": 12300,
 				"startdate": "12-Jan-1962",
-				"enddate": "31-Feb-2015"
+				"enddate": "31-Feb-2015",
+				"wage":[]
 			},{
 				"id": 3,
 				"name": "Third project",
 				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aliquam accusamus similique quos culpa, provident sequi blanditiis temporibus cupiditate voluptatem animi officia mollitia corrupti eum sed commodi alias rem facilis!",
 				"approxamount": 6500,
 				"startdate": "12-July-1962",
-				"enddate": "31-Jun-2015"
+				"enddate": "31-Jun-2015",
+				"wage":[]
 			},{
 				"id": 4,
 				"name": "Fourth project",
 				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aliquam accusamus similique quos culpa, provident sequi blanditiis temporibus cupiditate voluptatem animi officia mollitia corrupti eum sed commodi alias rem facilis!",
 				"approxamount": 10000,
 				"startdate": "12-Jan-1962",
-				"enddate": "31-Dec-2015"
+				"enddate": "31-Dec-2015",
+				"wage":[]
 			},{
 				"id": 5,
 				"name": "Last project",
 				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aliquam accusamus similique quos culpa, provident sequi blanditiis temporibus cupiditate voluptatem animi officia mollitia corrupti eum sed commodi alias rem facilis!",
 				"approxamount": 9500,
 				"startdate": "12-Jan-1962",
-				"enddate": "31-Dec-2015"
+				"enddate": "31-Dec-2015",
+				"wage":[]
 			}
 		];
-		$scope.newProject = function (argument) {
-			$scope.projectdetail = true;
-			$scope.projectedit = true;
-		};
 		$scope.openProject = function(thisProject){
-			$scope.projectdetail = true;
 			$scope.curProject = thisProject;
+		};
+		$scope.newProject = function (argument) {
+			$scope.projectedit = true;
+			$scope.newproject = {};
+		};
+		$scope.editProject = function (thisproject) {
+			$scope.projectedit = true;
+			$scope.curProject = thisproject;
+			$scope.newproject = angular.copy(thisproject);
+		};
+		$scope.addProject = function () {
+			if ($scope.curProject.id) {
+				angular.extend($scope.curProject,$scope.curProject,$scope.newproject);
+				$scope.curProject = {};
+			}else{
+				$scope.newproject.id = $scope.projects.length+1;
+				$scope.projects.push($scope.newproject);
+			}
+			$scope.newproject = {};
+			$scope.projectedit = false;
+		};
+		$scope.deleteProject = function (item) {
+			var confirmDelete = confirm("Do you really need to delete the " + item.name + " ?");
+			if (confirmDelete) {
+				var wage = $scope.projects.indexOf(item);
+				$scope.projects.splice(wage, 1);
+			}
 		};
 		$scope.cancelProject = function () {
 			$scope.projectedit = false;
+			$scope.curProject = {};
 		};
+
+
+		// Wage part
+		$scope.newWage = function (argument) {
+			$scope.wageedit = true;
+			$scope.newwage = {};
+		};
+		$scope.editWage = function (thiswage) {
+			$scope.wageedit = true;
+			$scope.curwage = thiswage;
+			$scope.newwage = angular.copy(thiswage);
+
+		};
+		$scope.deleteWage = function (item) {
+			console.log(item);
+			/*var confirmDelete = confirm("Do you really need to delete the item ?");
+			if (confirmDelete) {
+				var wage = $scope.projects.wages.indexOf(item);
+				$scope.projects.wages.splice(wage, 1);
+			};*/
+		};
+		$scope.cancelWage = function () {
+			$scope.wageedit = false;
+			$scope.curwage = {};
+		};
+
+
 	});
 })();
