@@ -1737,6 +1737,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 	});
 	app.controller('insureController', function($scope){
+		$scope.insureedit = false;
 		$scope.insures = [
 			{
 				"id": 1,
@@ -1919,5 +1920,11 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"agentphone": "0342 128 3837"
 			}
 		];
+		$scope.newInsure = function (argument) {
+			$scope.insureedit = true;
+		};
+		$scope.cancelInsure = function (argument) {
+			$scope.insureedit = true;
+		};
 	});
 })();
