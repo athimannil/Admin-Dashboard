@@ -1435,77 +1435,82 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta delectus quod velit molestiae aliquam accusantium possimus corporis voluptatibus ratione deserunt, facilis, magnam veritatis libero. Doloremque quas voluptatibus laudantium, nisi alias.",
 						"amount": "852.00",
 						"date": "12-Jan-2015",
-						"employee_id": 124
+						"employee": {
+								"id":1,
+								"title":"Mr.",
+								"name":"maanu",
+								"description":"wiring"
+						}
 					},{
 						"id": 2,
 						"name": "Basheer Shah",
 						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate vero modi, deserunt sed vel voluptatibus laborum dolores ad ea inventore, iste harum. Consequatur iste aliquid, eos ipsa ea enim sapiente!",
 						"amount": "852.00",
 						"date": "12-Jan-2015",
-						"employee_id": 124
+						"employee_id": {}
 					},{
 						"id": 3,
 						"name": "Basheer Shah",
 						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque doloribus dolor harum, odio odit iusto deserunt tempora et, atque, maxime a doloremque sequi praesentium provident laboriosam officia magnam error animi?",
 						"amount": "852.00",
 						"date": "12-Jan-2015",
-						"employee_id": 124
+						"employee_id": {}
 					},{
 						"id": 4,
 						"name": "Basheer Shah",
 						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur veniam molestias ullam quas impedit dolore dolorum at, itaque repudiandae consequatur quod, nesciunt. Magnam esse numquam rerum alias iste, consequuntur? Hic!",
 						"amount": "852.00",
 						"date": "12-Jan-2015",
-						"employee_id": 124
+						"employee_id": {}
 					},{
 						"id": 5,
 						"name": "Basheer Shah",
 						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At repudiandae quidem odio hic quasi molestiae eos explicabo illum, amet ipsam alias quae dolor veniam, quos sapiente nemo! Perspiciatis, voluptatum, incidunt.",
 						"amount": "852.00",
 						"date": "12-Jan-2015",
-						"employee_id": 124
+						"employee_id": {}
 					},{
 						"id": 6,
 						"name": "Basheer Shah",
 						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus fugit sapiente quae totam voluptates nobis, culpa iste mollitia, quis sit tempore consectetur recusandae nesciunt magni optio ratione voluptate ab, quod.",
 						"amount": "852.00",
 						"date": "12-Jan-2015",
-						"employee_id": 124
+						"employee_id": {}
 					},{
 						"id": 7,
 						"name": "Basheer Shah",
 						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente itaque, aspernatur ratione nihil accusantium placeat fugit odio beatae exercitationem quod, voluptate illo error magni ullam blanditiis, hic maxime reiciendis obcaecati!",
 						"amount": "852.00",
 						"date": "12-Jan-2015",
-						"employee_id": 124
+						"employee_id": {}
 					},{
 						"id": 8,
 						"name": "Basheer Shah",
 						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus accusantium perferendis nam velit voluptas ut sapiente adipisci, sed et in voluptate aut autem repudiandae harum minima unde reiciendis fugit. Quia?",
 						"amount": "852.00",
 						"date": "12-Jan-2015",
-						"employee_id": 124
+						"employee_id": {}
 					},{
 						"id": 9,
 						"name": "Basheer Shah",
 						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime nobis nulla sint itaque facilis fugit veniam nesciunt hic, quo dolorem necessitatibus ad, repellendus, tempore suscipit fugiat! Sapiente dignissimos sunt, officia.",
 						"amount": "852.00",
 						"date": "12-Jan-2015",
-						"employee_id": 124
+						"employee_id": {}
 					},{
 						"id": 10,
 						"name": "Basheer Shah",
 						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam recusandae nesciunt molestiae necessitatibus quis veniam consectetur repudiandae, blanditiis quia natus unde est totam id at temporibus, porro deleniti suscipit ipsa.",
 						"amount": "852.00",
 						"date": "12-Jan-2015",
-						"employee_id": 124
+						"employee_id": {}
 					},{
 						"id": 11,
 						"name": "Basheer Shah",
 						"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quo tempora debitis reiciendis quasi illo voluptatibus. Nemo dolores, ea quam modi ut, mollitia ducimus minus recusandae veniam illum, asperiores, natus.",
 						"amount": "852.00",
 						"date": "12-Jan-2015",
-						"employee_id": 124
+						"employee_id": {}
 					}
 				]
 			},{
@@ -1542,25 +1547,154 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"wages":[]
 			}
 		];
+		$scope.employees = [
+			{
+				"id": 1,
+				"tite": "Interdum LLP",
+				"name": "Louis Serrano",
+				"description": "P.O. Box 781, 6782 Dui. St."
+			},
+			{
+				"id": 2,
+				"tite": "Consequat Corporation",
+				"name": "Charles Mercer",
+				"description": "Ap #680-660 Condimentum St."
+			},
+			{
+				"id": 3,
+				"tite": "Eu Euismod Industries",
+				"name": "Sean Carey",
+				"description": "P.O. Box 851, 3477 Nulla. Ave"
+			},
+			{
+				"id": 4,
+				"tite": "Id Blandit At Inc.",
+				"name": "Garth Durham",
+				"description": "Ap #895-1919 Et Av."
+			},
+			{
+				"id": 5,
+				"tite": "Elit Pede Malesuada Corporation",
+				"name": "Bevis Mcbride",
+				"description": "4143 Tincidunt Street"
+			},
+			{
+				"id": 6,
+				"tite": "Sodales Corporation",
+				"name": "Fitzgerald Lamb",
+				"description": "263 Quis Avenue"
+			},
+			{
+				"id": 7,
+				"tite": "Eu Sem Pellentesque Limited",
+				"name": "Cadman White",
+				"description": "Ap #407-4424 Elit, Road"
+			},
+			{
+				"id": 8,
+				"tite": "Non Luctus Foundation",
+				"name": "Declan Henson",
+				"description": "1892 A Av."
+			},
+			{
+				"id": 9,
+				"tite": "Dignissim Pharetra Nam Industries",
+				"name": "Tarik Rhodes",
+				"description": "1734 Ac Ave"
+			},
+			{
+				"id": 10,
+				"tite": "Nam Tempor Diam Associates",
+				"name": "Dorian Schneider",
+				"description": "976-5331 Molestie. Street"
+			},
+			{
+				"id": 11,
+				"tite": "Magna Nec Institute",
+				"name": "Hakeem Pierce",
+				"description": "806-3934 Sit St."
+			},
+			{
+				"id": 12,
+				"tite": "Conubia Associates",
+				"name": "Len York",
+				"description": "388-9283 In Avenue"
+			},
+			{
+				"id": 13,
+				"tite": "Vitae Diam Proin Consulting",
+				"name": "Marvin Mccarty",
+				"description": "Ap #973-1807 Nisi St."
+			},
+			{
+				"id": 14,
+				"tite": "Nibh Associates",
+				"name": "Reese Eaton",
+				"description": "528-2457 Amet Road"
+			},
+			{
+				"id": 15,
+				"tite": "Donec Tempus LLP",
+				"name": "Devin Marsh",
+				"description": "5115 In Av."
+			},
+			{
+				"id": 16,
+				"tite": "Enim LLC",
+				"name": "Colorado Haynes",
+				"description": "P.O. Box 244, 6431 Amet, St."
+			}
+		];
+		$scope.initialProject = function (projectIndex) {
+			// if (projectIndex) {
+			// 	projectIndex = 0;
+			// }
+			// $scope.projectedit = false;
+			// $scope.curProject = {};
+			// $scope.newproject = {};
+			// $scope.wageedit = false;
+			// $scope.curwage = {};
+			// $scope.newwage = {};
+
+			// if (!contactIndex) {
+			// 	contactIndex = 0;
+			// }
+			// $scope.selectedContact = {};
+			// $scope.selectedContact = $scope.phoneContacts[contactIndex];
+			// $scope.contactMode.activeList = contactIndex;
+			// $scope.contactMode.editMode = false;
+			// $scope.contactMode.newMode = false;
+			$scope.projectedit = false;
+			$scope.wageedit = false;
+			$scope.curProject = $scope.projects[projectIndex];
+		};
 		$scope.openProject = function(thisProject){
+			$scope.projectedit = false;
+			$scope.wageedit = false;
 			$scope.curProject = thisProject;
+			// initialProject($scope.projects.indexOf(thisProject));
 		};
 		$scope.newProject = function (argument) {
 			$scope.projectedit = true;
+			$scope.curProject = {};
 			$scope.newproject = {};
 		};
 		$scope.editProject = function (thisproject) {
 			$scope.projectedit = true;
 			$scope.curProject = thisproject;
 			$scope.newproject = angular.copy(thisproject);
+			// $scope
 		};
 		$scope.addProject = function () {
 			if ($scope.curProject.id) {
 				angular.extend($scope.curProject,$scope.curProject,$scope.newproject);
-				$scope.curProject = {};
+				// $scope.curProject = {};
+				$scope.initialProject($scope.projects.indexOf($scope.curProject));
+			// console.log($scope.projects.indexOf($scope.curProject));
 			}else{
 				$scope.newproject.id = $scope.projects.length+1;
 				$scope.projects.push($scope.newproject);
+				$scope.initialProject($scope.projects.indexOf($scope.newproject));
 			}
 			$scope.newproject = {};
 			$scope.projectedit = false;
@@ -1570,11 +1704,12 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			if (confirmDelete) {
 				var wage = $scope.projects.indexOf(item);
 				$scope.projects.splice(wage, 1);
+				$scope.initialProject(0);
 			}
 		};
 		$scope.cancelProject = function () {
 			$scope.projectedit = false;
-			$scope.curProject = {};
+			$scope.newproject = {};
 		};
 
 
