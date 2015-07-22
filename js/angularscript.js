@@ -1646,24 +1646,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			}
 		];
 		$scope.initialProject = function (projectIndex) {
-			// if (projectIndex) {
-			// 	projectIndex = 0;
-			// }
-			// $scope.projectedit = false;
-			// $scope.curProject = {};
-			// $scope.newproject = {};
-			// $scope.wageedit = false;
-			// $scope.curwage = {};
-			// $scope.newwage = {};
-
-			// if (!contactIndex) {
-			// 	contactIndex = 0;
-			// }
-			// $scope.selectedContact = {};
-			// $scope.selectedContact = $scope.phoneContacts[contactIndex];
-			// $scope.contactMode.activeList = contactIndex;
-			// $scope.contactMode.editMode = false;
-			// $scope.contactMode.newMode = false;
 			$scope.projectedit = false;
 			$scope.wageedit = false;
 			$scope.curProject = $scope.projects[projectIndex];
@@ -1672,25 +1654,23 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.projectedit = false;
 			$scope.wageedit = false;
 			$scope.curProject = thisProject;
-			// initialProject($scope.projects.indexOf(thisProject));
 		};
 		$scope.newProject = function (argument) {
 			$scope.projectedit = true;
+			$scope.wageedit = false;
 			$scope.curProject = {};
 			$scope.newproject = {};
 		};
 		$scope.editProject = function (thisproject) {
 			$scope.projectedit = true;
+			$scope.wageedit = false;
 			$scope.curProject = thisproject;
 			$scope.newproject = angular.copy(thisproject);
-			// $scope
 		};
 		$scope.addProject = function () {
 			if ($scope.curProject.id) {
 				angular.extend($scope.curProject,$scope.curProject,$scope.newproject);
-				// $scope.curProject = {};
 				$scope.initialProject($scope.projects.indexOf($scope.curProject));
-			// console.log($scope.projects.indexOf($scope.curProject));
 			}else{
 				$scope.newproject.id = $scope.projects.length+1;
 				$scope.projects.push($scope.newproject);
@@ -1710,6 +1690,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.cancelProject = function () {
 			$scope.projectedit = false;
 			$scope.newproject = {};
+			$scope.initialProject(0);
 		};
 
 
@@ -1719,6 +1700,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newwage = {};
 		};
 		$scope.editWage = function (thiswage) {
+			$scope.projectedit = false;
 			$scope.wageedit = true;
 			$scope.curwage = thiswage;
 			$scope.newwage = angular.copy(thiswage);
@@ -1748,7 +1730,5 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.wageedit = false;
 			$scope.curwage = {};
 		};
-
-
 	});
 })();

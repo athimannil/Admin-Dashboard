@@ -142,53 +142,50 @@
 				</div>
 				<hr>
 			</form>
-				<button ng-click="newWage();" ng-hide="wageedit" class="btn btn-xs btn-primary pull-right" type="button"><i class="fa fa-plus"></i> Add Wage</button>
-				<h3>Wage and details</h3>
-				<table class="table table-hover table-responsive" ng-if="curProject.wages.length">
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Description</th>
-							<th>Amount</th>
-							<th>Date</th>
-							<th>Edit</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="wage in curProject.wages | pagination: currentPage : numPerPage">
-							<td>{{wage.name}}</td>
-							<td><p class="description" popover="{{wage.description}}" popover-trigger="mouseenter">{{wage.description}}</p></td>
-							<td><i class="fa fa-inr"></i> {{wage.amount}}</td>
-							<td>{{wage.date}}</td>
-							<td>
-								<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-									<button type="button" class="btn btn-default" ng-click="editWage(wage);">
-										<i class="fa fa-pencil"></i>
-									</button>
-									<button type="button" class="btn btn-default" ng-click="deleteWage(wage); editmode = !editmode">
-										<i class="fa fa-trash-o"></i>
-									</button>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="clearfix" ng-show="curProject.wages.length > numPerPage">
-					<pagination 
-						ng-model="currentPage" 
-						total-items="curProject.wages.length" 
-						max-size="5" 
-						boundary-links="true" 
-						class="pagination-sm pull-right" 
-						previous-text="&lsaquo;" 
-						next-text="&rsaquo;" 
-						first-text="&laquo;" 
-						last-text="&raquo;"
-					></pagination>
-				</div>
+			<button ng-click="newWage();" ng-hide="wageedit"  ng-if="!projectedit" class="btn btn-xs btn-primary pull-right" type="button"><i class="fa fa-plus"></i> Add Wage</button>
+			<h3 ng-hide="projectedit">Wage and details</h3>
+			<table class="table table-hover table-responsive" ng-if="curProject.wages.length">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Amount</th>
+						<th>Date</th>
+						<th>Edit</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="wage in curProject.wages | pagination: currentPage : numPerPage">
+						<td>{{wage.name}}</td>
+						<td><p class="description" popover="{{wage.description}}" popover-trigger="mouseenter">{{wage.description}}</p></td>
+						<td><i class="fa fa-inr"></i> {{wage.amount}}</td>
+						<td>{{wage.date}}</td>
+						<td>
+							<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+								<button type="button" class="btn btn-default" ng-click="editWage(wage);">
+									<i class="fa fa-pencil"></i>
+								</button>
+								<button type="button" class="btn btn-default" ng-click="deleteWage(wage); editmode = !editmode">
+									<i class="fa fa-trash-o"></i>
+								</button>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="clearfix" ng-show="curProject.wages.length > numPerPage">
+				<pagination 
+					ng-model="currentPage" 
+					total-items="curProject.wages.length" 
+					max-size="5" 
+					boundary-links="true" 
+					class="pagination-sm pull-right" 
+					previous-text="&lsaquo;" 
+					next-text="&rsaquo;" 
+					first-text="&laquo;" 
+					last-text="&raquo;"
+				></pagination>
 			</div>
-
 		</div>
 	</div>
 </div>
-
