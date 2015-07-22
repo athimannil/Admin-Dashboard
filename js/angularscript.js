@@ -65,6 +65,10 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				templateUrl: 'template/project.html',
 				controller: 'projectController'
 			})
+			.when('/insure', {
+				templateUrl: 'template/insure.html',
+				controller: 'insureController'
+			})
 			.otherwise({
 				redirectTo: 'template/dashboard.html'
 			});
@@ -85,6 +89,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				{page: "banks", title: "Banks", icon: "bank"},
 				{page: "loan", title: "Loan", icon: "tags"},
 				{page: "project", title: "Project", icon: "briefcase"},
+				{page: "insure", title: "Insurance", icon: "ambulance"},
 				{page: "phonebook", title: "Phone book", icon: "book"},
 				{page: "employee", title: "Employee", icon: "users"},
 				{page: "expense", title: "Expenses", icon: "shopping-cart"},
@@ -1730,5 +1735,189 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.wageedit = false;
 			$scope.curwage = {};
 		};
+	});
+	app.controller('insureController', function($scope){
+		$scope.insures = [
+			{
+				"id": 1,
+				"name": "Tempor Erat Limited",
+				"term": "luctus sit amet, faucibus ut, nulla. Cras eu tellus eu augue porttitor interdum. Sed auctor odio a purus. Duis elementum, dui quis accumsan convallis, ante lectus convallis est, vitae",
+				"description": "orci, adipiscing non, luctus sit amet, faucibus ut, nulla. Cras eu tellus eu augue porttitor interdum. Sed auctor odio a purus. Duis elementum, dui quis accumsan convallis, ante lectus convallis est, vitae sodales nisi magna sed dui. Fusce aliquam, enim nec",
+				"amount": "7.99",
+				"nominee": "Carolyn Mooney",
+				"premiumamount": "8.90",
+				"date": "10/26/2014",
+				"agentname": "Tyler",
+				"agentphone": "0321 001 4068"
+			},
+			{
+				"id": 2,
+				"name": "Dolor Tempus Incorporated",
+				"term": "vitae dolor. Donec fringilla. Donec feugiat metus sit amet ante. Vivamus non lorem vitae odio sagittis semper. Nam tempor",
+				"description": "est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a sollicitudin",
+				"amount": "1.63",
+				"nominee": "Lesley Mcmillan",
+				"premiumamount": "1.80",
+				"date": "02/21/2015",
+				"agentname": "Lamar",
+				"agentphone": "(018792) 75588"
+			},
+			{
+				"id": 3,
+				"name": "Elit Pharetra Limited",
+				"term": "Nulla tempor augue",
+				"description": "Integer in",
+				"amount": "7.49",
+				"nominee": "Brooke Hinton",
+				"premiumamount": "2.08",
+				"date": "11/21/2014",
+				"agentname": "Harlan",
+				"agentphone": "07624 619629"
+			},
+			{
+				"id": 4,
+				"name": "Sit Amet Incorporated",
+				"term": "nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede",
+				"description": "torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam vel sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh. Aliquam ornare, libero at auctor",
+				"amount": "3.45",
+				"nominee": "Anjolie Greene",
+				"premiumamount": "3.64",
+				"date": "12/07/2014",
+				"agentname": "Eagan",
+				"agentphone": "0800 564723"
+			},
+			{
+				"id": 5,
+				"name": "Risus Odio Auctor Consulting",
+				"term": "ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas",
+				"description": "blandit viverra. Donec tempus, lorem fringilla ornare placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus",
+				"amount": "2.03",
+				"nominee": "Anne Wilder",
+				"premiumamount": "0.09",
+				"date": "02/04/2015",
+				"agentname": "Moses",
+				"agentphone": "0800 1111"
+			},
+			{
+				"id": 6,
+				"name": "Hendrerit Donec Foundation",
+				"term": "elit. Curabitur sed tortor. Integer aliquam adipiscing lacus. Ut nec urna et arcu imperdiet ullamcorper. Duis at lacus. Quisque purus sapien, gravida non, sollicitudin a, malesuada",
+				"description": "pretium aliquet, metus urna convallis erat, eget tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel,",
+				"amount": "2.62",
+				"nominee": "Daphne Holden",
+				"premiumamount": "1.11",
+				"date": "06/22/2015",
+				"agentname": "Tad",
+				"agentphone": "07641 895244"
+			},
+			{
+				"id": 7,
+				"name": "Nascetur Ridiculus LLC",
+				"term": "porttitor eros nec tellus. Nunc lectus pede, ultrices a, auctor non, feugiat nec, diam. Duis mi enim, condimentum eget, volutpat ornare, facilisis",
+				"description": "senectus et netus et",
+				"amount": "5.66",
+				"nominee": "Hedwig Page",
+				"premiumamount": "8.71",
+				"date": "06/16/2016",
+				"agentname": "Odysseus",
+				"agentphone": "(0110) 748 0865"
+			},
+			{
+				"id": 8,
+				"name": "Sit Amet Incorporated",
+				"term": "quis turpis vitae purus gravida sagittis. Duis gravida. Praesent eu nulla at sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue a, aliquet vel,",
+				"description": "penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui,",
+				"amount": "6.13",
+				"nominee": "Beverly Kemp",
+				"premiumamount": "0.92",
+				"date": "09/30/2014",
+				"agentname": "Basil",
+				"agentphone": "0819 696 3637"
+			},
+			{
+				"id": 9,
+				"name": "Augue Eu Tellus Institute",
+				"term": "eget tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer mauris id sapien. Cras dolor dolor, tempus non, lacinia at,",
+				"description": "diam. Sed diam lorem, auctor quis, tristique ac, eleifend vitae, erat. Vivamus nisi. Mauris nulla. Integer urna. Vivamus molestie dapibus ligula. Aliquam erat volutpat. Nulla dignissim. Maecenas ornare egestas ligula. Nullam feugiat placerat velit. Quisque varius. Nam porttitor scelerisque neque.",
+				"amount": "4.61",
+				"nominee": "Claire Suarez",
+				"premiumamount": "8.54",
+				"date": "05/15/2015",
+				"agentname": "Garth",
+				"agentphone": "0845 46 42"
+			},
+			{
+				"id": 10,
+				"name": "Egestas Sed Pharetra LLP",
+				"term": "scelerisque sed, sapien. Nunc pulvinar arcu et pede. Nunc sed orci lobortis augue scelerisque mollis. Phasellus libero mauris, aliquam eu, accumsan sed, facilisis vitae, orci.",
+				"description": "eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis eget varius ultrices, mauris ipsum porta elit, a feugiat tellus lorem",
+				"amount": "0.57",
+				"nominee": "Jaquelyn Sexton",
+				"premiumamount": "3.18",
+				"date": "12/09/2015",
+				"agentname": "Michael",
+				"agentphone": "(0111) 185 3115"
+			},
+			{
+				"id": 11,
+				"name": "Cum Company",
+				"term": "Proin non massa non ante bibendum ullamcorper. Duis cursus, diam at pretium aliquet, metus urna convallis erat, eget tincidunt dui augue",
+				"description": "at arcu. Vestibulum ante ipsum primis in faucibus orci luctus et",
+				"amount": "0.52",
+				"nominee": "Adara Steele",
+				"premiumamount": "9.40",
+				"date": "08/22/2014",
+				"agentname": "Fulton",
+				"agentphone": "0500 642659"
+			},
+			{
+				"id": 12,
+				"name": "Non Ante Bibendum Corp.",
+				"term": "tincidunt. Donec vitae erat vel pede",
+				"description": "enim. Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus faucibus leo, in lobortis tellus justo sit amet nulla. Donec non justo. Proin non massa non ante bibendum",
+				"amount": "2.25",
+				"nominee": "Lisandra Carpenter",
+				"premiumamount": "4.72",
+				"date": "11/26/2015",
+				"agentname": "August",
+				"agentphone": "07624 039818"
+			},
+			{
+				"id": 13,
+				"name": "Morbi Neque Tellus Inc.",
+				"term": "ornare. Fusce mollis. Duis sit amet diam eu dolor egestas rhoncus. Proin nisl sem, consequat nec, mollis",
+				"description": "luctus et ultrices posuere cubilia Curae; Phasellus ornare. Fusce mollis. Duis sit amet diam eu dolor egestas rhoncus. Proin nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis. Class",
+				"amount": "1.69",
+				"nominee": "Scarlet Mcdonald",
+				"premiumamount": "6.01",
+				"date": "03/04/2016",
+				"agentname": "Timon",
+				"agentphone": "0800 292 7433"
+			},
+			{
+				"id": 14,
+				"name": "Volutpat Nulla Facilisis LLC",
+				"term": "Fusce mollis. Duis sit amet diam eu dolor egestas rhoncus. Proin nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus",
+				"description": "Integer mollis. Integer tincidunt aliquam arcu. Aliquam ultrices iaculis odio. Nam interdum enim non nisi. Aenean eget metus. In nec orci. Donec nibh. Quisque nonummy ipsum non arcu. Vivamus sit",
+				"amount": "9.00",
+				"nominee": "Lana Cameron",
+				"premiumamount": "0.47",
+				"date": "02/25/2015",
+				"agentname": "Raja",
+				"agentphone": "055 2778 4618"
+			},
+			{
+				"id": 15,
+				"name": "Eget Metus Company",
+				"term": "vel, faucibus id, libero. Donec consectetuer mauris id sapien. Cras dolor dolor, tempus non, lacinia at, iaculis quis, pede.",
+				"description": "orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor, est ac mattis semper, dui lectus rutrum urna, nec",
+				"amount": "1.83",
+				"nominee": "Kevyn Chandler",
+				"premiumamount": "6.36",
+				"date": "05/12/2015",
+				"agentname": "Basil",
+				"agentphone": "0342 128 3837"
+			}
+		];
 	});
 })();
