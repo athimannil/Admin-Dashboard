@@ -1709,7 +1709,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.wageedit = true;
 			$scope.curwage = thiswage;
 			$scope.newwage = angular.copy(thiswage);
-
 		};
 		$scope.addWage = function () {
 			var curIndex = $scope.projects.indexOf($scope.curProject);
@@ -1738,6 +1737,8 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	});
 	app.controller('insureController', function($scope){
 		$scope.insureedit = false;
+		$scope.newinsure = {};
+		$scope.curinsure = {};
 		$scope.insures = [
 			{
 				"id": 1,
@@ -1920,11 +1921,24 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"agentphone": "0342 128 3837"
 			}
 		];
-		$scope.newInsure = function (argument) {
+		$scope.newInsure = function () {
 			$scope.insureedit = true;
+			$scope.newinsure = {};
 		};
-		$scope.cancelInsure = function (argument) {
+		$scope.editInsure = function (thisInsure) {
 			$scope.insureedit = true;
+			$scope.curinsure = thisInsure;
+			$scope.newinsure = angular.copy($scope.curinsure);
+		};
+		$scope.addInsure = function () {
+			if ($scope.newinsure.id) {
+				angular.extend($scope.curinsure, $scope.curinsure, $scope.newinsure);
+				$scope.curinsure = {};
+			}
+			$scope.insureedit = false;
+		};
+		$scope.cancelInsure = function () {
+			$scope.insureedit = false;
 		};
 	});
 })();
