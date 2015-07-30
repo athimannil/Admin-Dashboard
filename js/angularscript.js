@@ -17,10 +17,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				templateUrl: 'template/ui.html',
 				controller: 'uiController'
 			})
-			.when('/expense', {
-				templateUrl: 'template/expense.html',
-				controller: 'expenseController'
-			})
 			.when('/invoice', {
 				templateUrl: 'template/invoice.html',
 				controller: 'invoiceController'
@@ -68,6 +64,10 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			.when('/insure', {
 				templateUrl: 'template/insure.html',
 				controller: 'insureController'
+			})
+			.when('/expense', {
+				templateUrl: 'template/expense.html',
+				controller: 'expenseController'
 			})
 			.otherwise({
 				redirectTo: 'template/dashboard.html'
@@ -119,88 +119,12 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.currentuser = 1;
 		$scope.lastspend = 1320.90;
 
-		$scope.items = [
-			{ product: '1 Lorem ipsum', date: '12-March-2013', rate: 12.35, member: 1, status: 'approved' },
-			{ product: '2 dolor sit', date: '1-January-2011', rate: 60.54, member: 3, status: 'pending'},
-			{ product: '3 consectetur', date: '12-December-2014', rate: 12.56, member: 1, status: 'pending'},
-			{ product: '4 adipisicing', date: '14-November-2014', rate: 0.99, member: 1, status: 'pending'},
-			{ product: '5 do eiusmod', date: '2-November-2014', rate: 4.00, member: 2, status: 'approved'},
-			{ product: '6 magna aliqua', date: '16-February-2014', rate: 6.54, member: 2, status: 'approved'},
-			{ product: '7 exercitation', date: '30-November-2014', rate: 60.32, member: 2, status: 'pending'},
-			{ product: '8 consequat', date: '5-May-2014', rate: 5.12, member: 1, status: 'denied'},
-			{ product: '9 reprehenderit', date: '12-April-2014', rate: 8.99, member: 5, status: 'approved'},
-			{ product: '10 voluptate', date: '18-November-2014', rate: 34.54, member: 4, status: 'approved'},
-			{ product: '10 ugiat nulla', date: '28-June-2014', rate: 55.12, member: 1, status: 'pending'},
-			{ product: '11 occaecat cupidatat', date: '21-June-2014', rate: 99.54, member: 3, status: 'pending'},
-			{ product: '12 proident', date: '31-December-2014', rate: 15.50, member: 2, status: 'denied'},
-			{ product: '13 culpa qui', date: '1-November-2014', rate: 34.05, member: 1, status: 'pending'},
-			{ product: '14 Lorem ipsum', date: '12-March-2013', rate: 12.35, member: 1, status: 'approved' },
-			{ product: '15 dolor sit', date: '1-January-2011', rate: 60.54, member: 3, status: 'pending'},
-			{ product: '16 consectetur', date: '12-December-2014', rate: 12.56, member: 1, status: 'pending'},
-			{ product: '17 adipisicing', date: '14-November-2014', rate: 0.99, member: 1, status: 'denied'},
-			{ product: '18 do eiusmod', date: '2-November-2014', rate: 4.00, member: 2, status: 'approved'},
-			{ product: '19 magna aliqua', date: '16-February-2014', rate: 6.54, member: 2, status: 'approved'},
-			{ product: '20 exercitation', date: '30-November-2014', rate: 60.32, member: 2, status: 'pending'},
-			{ product: '21 consequat', date: '5-May-2014', rate: 5.12, member: 1, status: 'denied'},
-			{ product: '22 reprehenderit', date: '12-April-2014', rate: 8.99, member: 5, status: 'approved'},
-			{ product: '23 voluptate', date: '18-November-2014', rate: 34.54, member: 4, status: 'approved'},
-			{ product: '24 ugiat nulla', date: '28-June-2014', rate: 55.12, member: 1, status: 'pending'},
-			{ product: '25 occaecat cupidatat', date: '21-June-2014', rate: 99.54, member: 3, status: 'pending'},
-			{ product: '26 proident', date: '31-December-2014', rate: 15.50, member: 2, status: 'denied'},
-			{ product: '27 culpa qui', date: '1-November-2014', rate: 34.05, member: 1, status: 'pending'},
-			{ product: '28 Lorem ipsum', date: '12-March-2013', rate: 12.35, member: 1, status: 'approved' },
-			{ product: '29 dolor sit', date: '1-January-2011', rate: 60.54, member: 3, status: 'pending'},
-			{ product: '30 consectetur', date: '12-December-2014', rate: 12.56, member: 1, status: 'pending'},
-			{ product: '31 adipisicing', date: '14-November-2014', rate: 0.99, member: 1, status: 'approved'},
-			{ product: '32 do eiusmod', date: '2-November-2014', rate: 4.00, member: 2, status: 'approved'},
-			{ product: '33 magna aliqua', date: '16-February-2014', rate: 6.54, member: 2, status: 'denied'},
-			{ product: '34 exercitation', date: '30-November-2014', rate: 60.32, member: 2, status: 'pending'},
-			{ product: '35 consequat', date: '5-May-2014', rate: 5.12, member: 1, status: 'denied'},
-			{ product: '36 reprehenderit', date: '12-April-2014', rate: 8.99, member: 5, status: 'approved'},
-			{ product: '37 voluptate', date: '18-November-2014', rate: 34.54, member: 4, status: 'approved'},
-			{ product: '38 ugiat nulla', date: '28-June-2014', rate: 55.12, member: 1, status: 'pending'},
-			{ product: '39 occaecat cupidatat', date: '21-June-2014', rate: 99.54, member: 3, status: 'pending'},
-			{ product: '40 proident', date: '31-December-2014', rate: 15.50, member: 2, status: 'denied'},
-			{ product: '42 culpa qui', date: '1-November-2014', rate: 34.05, member: 1, status: 'pending'},
-			{ product: '43 culpa qui', date: '1-November-2014', rate: 34.05, member: 1, status: 'denied'},
-			{ product: '44 mollit anim', date: '3-November-2014', rate: 45.00, member: 4, status: 'approved'}
-		];
 		$scope.editmode = false;
 		$scope.deleteitem = function (delItem) {
 			$scope.items.splice(delItem, 1);
 			// alert(delItem);
 		};
-		// limit page items
-		$scope.currentpage = 0;
-		$scope.pageSize = 10;
-		$scope.pagelist = function (start, end) {
-			var ret = [];
-			start = $scope.totalpages();
-			if (!end) {
-				end = start;
-				start = 0;
-			}
-			for (var i = start; i < end; i++) {
-				ret.push(i);
-			}
-			return ret;
-		};
-		$scope.prevlist = function () {
-			if ($scope.currentpage > 0) {
-				$scope.currentpage--;
-			}
-		};
-		$scope.nextlist = function () {
-			if($scope.currentpage <= ($scope.items.length/$scope.pageSize - 1)){
-				$scope.currentpage++;
-			}
-		};
-		$scope.showlist = function (argument) {
-			$scope.currentpage = argument;
-		};
-		$scope.totalpages = function (argument) {
-			return Math.ceil($scope.items.length/$scope.pageSize);
-		};
+
 		$scope.addtolist = function () {
 			$scope.items.push({product: $scope.newitem.name, date: '03-Dec-2014', rate: $scope.newitem.price, member: $scope.currentuser, status: 'pending' });
 			$scope.newitem = '';
@@ -282,7 +206,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newtodo = '';
 		};
 	});
-	app.controller('expenseController', function($scope){});
 	app.controller('invoiceController', function($scope){
 		$scope.invoicebill = {
 			id: 12, invoicefrom: '10-November-2014', invoicedate: '12-December-2014', status:'pending', rent: '1200',
@@ -312,11 +235,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			return $filter('number')(input * 100, decimals) + '%';
 		};
 	}]);
-	app.filter('startFrom', function () {
-		return function (input, start) {
-			return input.slice(start);
-		};
-	});
 	app.filter('sum', function(){
 		return function(items, prop){
 			return items.reduce(function(a, b){
@@ -1732,6 +1650,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 
 		$scope.expenseedit = false;
 		$scope.newexpense = {};
+		$scope.curExpense = {};
 		$scope.expenses = [
 			{
 			    "id": 1,
@@ -2060,6 +1979,134 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 		$scope.cancelInsure = function () {
 			$scope.insureedit = false;
+		};
+	});
+	app.controller('expenseController', function($scope){
+		$scope.expenseedit = false;
+		$scope.newexpense = {};
+		$scope.curExpense = {};
+		$scope.expenses = [
+			{
+			    "id": 1,
+			    "name": "Warren Phillips",
+			    "amount": "37.47",
+			    "date": "12/11/2015",
+			    "description": "blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan"
+			}, {
+			    "id": 2,
+			    "name": "Declan Ayala",
+			    "amount": "29.18",
+			    "date": "12/17/2014",
+			    "description": "Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras"
+			}, {
+			    "id": 3,
+			    "name": "Ivana Bell",
+			    "amount": "88.53",
+			    "date": "11/20/2014",
+			    "description": "Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus faucibus leo, in lobortis tellus justo sit amet nulla."
+			}, {
+			    "id": 4,
+			    "name": "Brennan Noel",
+			    "amount": "17.76",
+			    "date": "02/06/2015",
+			    "description": "velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis"
+			}, {
+			    "id": 5,
+			    "name": "Thomas Tran",
+			    "amount": "29.59",
+			    "date": "08/20/2014",
+			    "description": "nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam vel sapien imperdiet ornare."
+			}, {
+			    "id": 6,
+			    "name": "Tucker Bolton",
+			    "amount": "66.69",
+			    "date": "12/09/2014",
+			    "description": "et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum."
+			}, {
+			    "id": 7,
+			    "name": "Medge Mullen",
+			    "amount": "23.78",
+			    "date": "10/17/2015",
+			    "description": "dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et"
+			}, {
+			    "id": 8,
+			    "name": "Morgan Merritt",
+			    "amount": "54.09",
+			    "date": "04/10/2016",
+			    "description": "Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et,"
+			}, {
+			    "id": 9,
+			    "name": "Janna Casey",
+			    "amount": "22.61",
+			    "date": "08/05/2015",
+			    "description": "eros turpis non enim. Mauris quis turpis vitae purus gravida sagittis. Duis gravida. Praesent eu nulla at sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue a, aliquet vel, vulputate eu, odio. Phasellus at augue id ante dictum"
+			}, {
+			    "id": 10,
+			    "name": "Buffy Best",
+			    "amount": "59.98",
+			    "date": "05/06/2015",
+			    "description": "lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus. Donec est. Nunc ullamcorper, velit in aliquet lobortis, nisi nibh lacinia orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna."
+			}, {
+			    "id": 11,
+			    "name": "Brielle Newman",
+			    "amount": "52.26",
+			    "date": "04/16/2016",
+			    "description": "placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis."
+			}, {
+			    "id": 12,
+			    "name": "Julie James",
+			    "amount": "6.38",
+			    "date": "08/15/2014",
+			    "description": "placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque"
+			}, {
+			    "id": 13,
+			    "name": "Shaine Barnett",
+			    "amount": "0.04",
+			    "date": "09/29/2014",
+			    "description": "laoreet, libero et tristique pellentesque, tellus sem mollis dui, in sodales elit erat vitae risus. Duis a mi fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed"
+			}, {
+			    "id": 14,
+			    "name": "Genevieve Underwood",
+			    "amount": "50.71",
+			    "date": "09/24/2015",
+			    "description": "consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper"
+			}, {
+			    "id": 15,
+			    "name": "Adam Villarreal",
+			    "amount": "18.48",
+			    "date": "04/06/2016",
+			    "description": "nisl. Maecenas malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris"
+			}
+		];
+		$scope.newExpense = function (argument) {
+			$scope.expenseedit = true;
+			$scope.newexpense = {};
+		};
+		$scope.editExpense = function (thisExpense) {
+			$scope.expenseedit = true;
+			$scope.curExpense =  thisExpense;
+			$scope.newexpense = angular.copy(thisExpense);
+		};
+		$scope.addExpense = function () {
+			if ($scope.curExpense.id) {
+				angular.extend($scope.curExpense, $scope.curExpense, $scope.newexpense);
+			} else{
+				$scope.newexpense.id = $scope.expenses.length + 1;
+				$scope.expenses.push($scope.newexpense);
+			}
+			$scope.expenseedit = false;
+			$scope.newexpense = {};
+		};
+		$scope.deleteExpense = function (item) {
+			var confirmDelete = confirm("Do you really need to delete the item ?");
+			if (confirmDelete) {
+				var curIndex = $scope.expenses.indexOf(item);
+				$scope.expenses.splice(curIndex, 1);
+			}
+		};
+		$scope.cancelExpense = function () {
+			$scope.expenseedit = false;
+			$scope.newexpense = {};
 		};
 	});
 })();
