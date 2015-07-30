@@ -69,6 +69,18 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				templateUrl: 'template/expense.html',
 				controller: 'expenseController'
 			})
+			.when('/income', {
+				templateUrl: 'template/income.html',
+				controller: 'incomeController'
+			})
+			.when('/cashdebit', {
+				templateUrl: 'template/cashdebit.html',
+				controller: 'cashdebitController'
+			})
+			.when('/cashcredit', {
+				templateUrl: 'template/cashcredit.html',
+				controller: 'cashcreditController'
+			})
 			.otherwise({
 				redirectTo: 'template/dashboard.html'
 			});
@@ -90,6 +102,9 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				{page: "loan", title: "Loan", icon: "tags"},
 				{page: "project", title: "Project", icon: "briefcase"},
 				{page: "expense", title: "Expenses", icon: "credit-card"},
+				{page: "income", title: "Income", icon: "puzzle-piece"},
+				{page: "cashdebit", title: "Cash Debit", icon: "money"},
+				{page: "cashcredit", title: "Cash Credit", icon: "money"},
 				{page: "insure", title: "Insurance", icon: "ambulance"},
 				{page: "phonebook", title: "Phone book", icon: "book"},
 				{page: "employee", title: "Employee", icon: "users"},
@@ -244,11 +259,11 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	});
 	app.filter('pagination', function() {
 	  return function(input, currentPage, pageSize) {
-	    if(angular.isArray(input)) {
-	      var start = (currentPage-1)*pageSize;
-	      var end = currentPage*pageSize;
-	      return input.slice(start, end);
-	    }
+		if(angular.isArray(input)) {
+		  var start = (currentPage-1)*pageSize;
+		  var end = currentPage*pageSize;
+		  return input.slice(start, end);
+		}
 	  };
 	});
 
@@ -442,25 +457,25 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newbank = {};
 			$scope.status.bankedit = false;
 		};
-    $scope.editBank = function(thisBank) {
-    	$scope.status.bankedit = true;
-    	$scope.curBank = thisBank;
-      $scope.newbank = angular.copy(thisBank);
-    };
-    $scope.deleteBank = function(item){
+		$scope.editBank = function(thisBank) {
+			$scope.status.bankedit = true;
+			$scope.curBank = thisBank;
+			$scope.newbank = angular.copy(thisBank);
+		};
+		$scope.deleteBank = function(item){
 			var confirmDelete = confirm("Do you really need to delete " + item.name + "?");
 			if (confirmDelete) {
 				var bank = $scope.banks.indexOf(item);
 				$scope.banks.splice(bank, 1);
 			}
-    };
-    $scope.cancelBank = function () {
+		};
+		$scope.cancelBank = function () {
 			$scope.status.bankedit = false;
 			$scope.curBank = {};
-    };
+		};
 
 		// Accounts
-    $scope.newaccount = {};
+		$scope.newaccount = {};
 		$scope.accounts = [
 			{
 				"id": 1,
@@ -503,11 +518,11 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newaccount = {};
 			$scope.status.accountedit = false;
 		};
-    $scope.editAccount = function(thisAccount) {
+		$scope.editAccount = function(thisAccount) {
 			$scope.status.accountedit = true;
 			$scope.curAccount = thisAccount;
 			$scope.newaccount = angular.copy(thisAccount);
-    };
+		};
 		$scope.deleteAccount = function(item){
 			var confirmDelete = confirm("Do you really need to delete " + item.name + "?");
 			if (confirmDelete) {
@@ -515,84 +530,84 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				$scope.accounts.splice(account, 1);
 			}
 		};
-    $scope.cancelAccount = function () {
+		$scope.cancelAccount = function () {
 			$scope.status.accountedit = false;
 			$scope.curAccount = {};
-    };
+		};
 
-    // Chque
+		// Chque
 		// TODO edit, add & update
 		$scope.cheques =  [
 			{
-			    "id": 1,
-			    "accountno": 87867867,
-			    "issuedate": "20-May-2015",
-			    "from": 123456,
-			    "to": 1234654,
-			    "chequerecords": [
-				    {
-						    "id": 1,
-						    "cheque_id": 2,
-						    "number": 2222222,
-						    "date": "21-Feb-2015",
-						    "favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non at, ad deserunt eveniet veritatis, modi voluptatum molestiae excepturi molestias amet asperiores doloribus dolorum aliquid, quaerat praesentium. Id ea, officia mollitia.",
-						    "amount": 12000,
-						    "deposit": 98521,
-						    "balance": 56980
+				"id": 1,
+				"accountno": 87867867,
+				"issuedate": "20-May-2015",
+				"from": 123456,
+				"to": 1234654,
+				"chequerecords": [
+					{
+							"id": 1,
+							"cheque_id": 2,
+							"number": 2222222,
+							"date": "21-Feb-2015",
+							"favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non at, ad deserunt eveniet veritatis, modi voluptatum molestiae excepturi molestias amet asperiores doloribus dolorum aliquid, quaerat praesentium. Id ea, officia mollitia.",
+							"amount": 12000,
+							"deposit": 98521,
+							"balance": 56980
 						}, {
-						    "id": 2,
-						    "cheque_id": 2,
-						    "number": 44444444,
-						    "date": "22-March-2015",
-						    "favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus aliquid ex numquam aperiam excepturi officia, nihil eum vero consectetur quaerat praesentium iure, iste fugit vel quidem consequatur illo veniam recusandae?",
-						    "amount": 6000,
-						    "deposit": 1520,
-						    "balance": 48000
+							"id": 2,
+							"cheque_id": 2,
+							"number": 44444444,
+							"date": "22-March-2015",
+							"favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus aliquid ex numquam aperiam excepturi officia, nihil eum vero consectetur quaerat praesentium iure, iste fugit vel quidem consequatur illo veniam recusandae?",
+							"amount": 6000,
+							"deposit": 1520,
+							"balance": 48000
 						}, {
-						    "id": 3,
-						    "cheque_id": 2,
-						    "number": 66666666,
-						    "date": "22-March-2015",
-						    "favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, sapiente accusamus libero consequatur beatae enim animi ipsum incidunt voluptatum. Dolores deleniti dolorum omnis repellat quisquam, maxime ex pariatur eveniet necessitatibus.",
-						    "amount": 6000,
-						    "deposit": 1520,
-						    "balance": 48000
+							"id": 3,
+							"cheque_id": 2,
+							"number": 66666666,
+							"date": "22-March-2015",
+							"favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, sapiente accusamus libero consequatur beatae enim animi ipsum incidunt voluptatum. Dolores deleniti dolorum omnis repellat quisquam, maxime ex pariatur eveniet necessitatibus.",
+							"amount": 6000,
+							"deposit": 1520,
+							"balance": 48000
 						}, {
-						    "id": 4,
-						    "cheque_id": 2,
-						    "number": 88888888,
-						    "date": "22-March-2015",
-						    "favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus ducimus mollitia nobis aspernatur possimus aut explicabo asperiores? Eveniet error aliquid qui in nihil assumenda officiis, distinctio commodi, enim at, facilis.",
-						    "amount": 6000,
-						    "deposit": 1520,
-						    "balance": 48000
+							"id": 4,
+							"cheque_id": 2,
+							"number": 88888888,
+							"date": "22-March-2015",
+							"favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus ducimus mollitia nobis aspernatur possimus aut explicabo asperiores? Eveniet error aliquid qui in nihil assumenda officiis, distinctio commodi, enim at, facilis.",
+							"amount": 6000,
+							"deposit": 1520,
+							"balance": 48000
 						}
 					]
 			}, {
-			    "id": 2,
-			    "accountno": 87867867,
-			    "issuedate": "12-June-2015",
-			    "from": 123657,
-			    "to": 1234752,
-			    "chequerecords": [
+				"id": 2,
+				"accountno": 87867867,
+				"issuedate": "12-June-2015",
+				"from": 123657,
+				"to": 1234752,
+				"chequerecords": [
 						{
-						    "id": 5,
-						    "cheque_id": 1,
-						    "number": 66666666,
-						    "date": "22-March-2015",
-						    "favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore enim, ipsum. Perspiciatis necessitatibus, officia maxime, itaque ad, impedit, qui sint voluptatibus aperiam cumque eos at quisquam quaerat quidem accusantium consectetur.",
-						    "amount": 6000,
-						    "deposit": 1520,
-						    "balance": 48000
+							"id": 5,
+							"cheque_id": 1,
+							"number": 66666666,
+							"date": "22-March-2015",
+							"favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore enim, ipsum. Perspiciatis necessitatibus, officia maxime, itaque ad, impedit, qui sint voluptatibus aperiam cumque eos at quisquam quaerat quidem accusantium consectetur.",
+							"amount": 6000,
+							"deposit": 1520,
+							"balance": 48000
 						}, {
-						    "id": 6,
-						    "cheque_id": 1,
-						    "number": 88888888,
-						    "date": "22-March-2015",
-						    "favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore exercitationem ipsa accusantium deserunt laborum voluptates quis sint quia architecto ad voluptate illum cupiditate, harum ullam earum laboriosam ipsum, at assumenda.",
-						    "amount": 6000,
-						    "deposit": 1520,
-						    "balance": 48000
+							"id": 6,
+							"cheque_id": 1,
+							"number": 88888888,
+							"date": "22-March-2015",
+							"favor": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore exercitationem ipsa accusantium deserunt laborum voluptates quis sint quia architecto ad voluptate illum cupiditate, harum ullam earum laboriosam ipsum, at assumenda.",
+							"amount": 6000,
+							"deposit": 1520,
+							"balance": 48000
 						}
 					]
 			}
@@ -1121,9 +1136,9 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newloan = {};
 		};
 		$scope.editLoan = function (thisloan) {
-    	$scope.loanedit = true;
-    	$scope.curloan = thisloan;
-      $scope.newloan = angular.copy(thisloan);
+		$scope.loanedit = true;
+		$scope.curloan = thisloan;
+	  $scope.newloan = angular.copy(thisloan);
 		};
 		$scope.addLoan = function(){
 			if ($scope.curloan.id) {
@@ -1307,9 +1322,9 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newemi = {};
 		};
 		$scope.editEmi = function (thisemi) {
-    	$scope.emiedit = true;
-    	$scope.curemi = thisemi;
-      $scope.newemi = angular.copy(thisemi);
+		$scope.emiedit = true;
+		$scope.curemi = thisemi;
+	  $scope.newemi = angular.copy(thisemi);
 		};
 		$scope.addEmi = function(){
 			if ($scope.curemi.id) {
@@ -1653,95 +1668,95 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.curExpense = {};
 		$scope.expenses = [
 			{
-			    "id": 1,
-			    "name": "Warren Phillips",
-			    "amount": "37.47",
-			    "date": "12/11/2015",
-			    "description": "blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan"
+				"id": 1,
+				"name": "Warren Phillips",
+				"amount": "37.47",
+				"date": "12/11/2015",
+				"description": "blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan"
 			}, {
-			    "id": 2,
-			    "name": "Declan Ayala",
-			    "amount": "29.18",
-			    "date": "12/17/2014",
-			    "description": "Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras"
+				"id": 2,
+				"name": "Declan Ayala",
+				"amount": "29.18",
+				"date": "12/17/2014",
+				"description": "Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras"
 			}, {
-			    "id": 3,
-			    "name": "Ivana Bell",
-			    "amount": "88.53",
-			    "date": "11/20/2014",
-			    "description": "Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus faucibus leo, in lobortis tellus justo sit amet nulla."
+				"id": 3,
+				"name": "Ivana Bell",
+				"amount": "88.53",
+				"date": "11/20/2014",
+				"description": "Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus faucibus leo, in lobortis tellus justo sit amet nulla."
 			}, {
-			    "id": 4,
-			    "name": "Brennan Noel",
-			    "amount": "17.76",
-			    "date": "02/06/2015",
-			    "description": "velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis"
+				"id": 4,
+				"name": "Brennan Noel",
+				"amount": "17.76",
+				"date": "02/06/2015",
+				"description": "velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis"
 			}, {
-			    "id": 5,
-			    "name": "Thomas Tran",
-			    "amount": "29.59",
-			    "date": "08/20/2014",
-			    "description": "nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam vel sapien imperdiet ornare."
+				"id": 5,
+				"name": "Thomas Tran",
+				"amount": "29.59",
+				"date": "08/20/2014",
+				"description": "nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam vel sapien imperdiet ornare."
 			}, {
-			    "id": 6,
-			    "name": "Tucker Bolton",
-			    "amount": "66.69",
-			    "date": "12/09/2014",
-			    "description": "et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum."
+				"id": 6,
+				"name": "Tucker Bolton",
+				"amount": "66.69",
+				"date": "12/09/2014",
+				"description": "et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum."
 			}, {
-			    "id": 7,
-			    "name": "Medge Mullen",
-			    "amount": "23.78",
-			    "date": "10/17/2015",
-			    "description": "dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et"
+				"id": 7,
+				"name": "Medge Mullen",
+				"amount": "23.78",
+				"date": "10/17/2015",
+				"description": "dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et"
 			}, {
-			    "id": 8,
-			    "name": "Morgan Merritt",
-			    "amount": "54.09",
-			    "date": "04/10/2016",
-			    "description": "Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et,"
+				"id": 8,
+				"name": "Morgan Merritt",
+				"amount": "54.09",
+				"date": "04/10/2016",
+				"description": "Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et,"
 			}, {
-			    "id": 9,
-			    "name": "Janna Casey",
-			    "amount": "22.61",
-			    "date": "08/05/2015",
-			    "description": "eros turpis non enim. Mauris quis turpis vitae purus gravida sagittis. Duis gravida. Praesent eu nulla at sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue a, aliquet vel, vulputate eu, odio. Phasellus at augue id ante dictum"
+				"id": 9,
+				"name": "Janna Casey",
+				"amount": "22.61",
+				"date": "08/05/2015",
+				"description": "eros turpis non enim. Mauris quis turpis vitae purus gravida sagittis. Duis gravida. Praesent eu nulla at sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue a, aliquet vel, vulputate eu, odio. Phasellus at augue id ante dictum"
 			}, {
-			    "id": 10,
-			    "name": "Buffy Best",
-			    "amount": "59.98",
-			    "date": "05/06/2015",
-			    "description": "lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus. Donec est. Nunc ullamcorper, velit in aliquet lobortis, nisi nibh lacinia orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna."
+				"id": 10,
+				"name": "Buffy Best",
+				"amount": "59.98",
+				"date": "05/06/2015",
+				"description": "lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus. Donec est. Nunc ullamcorper, velit in aliquet lobortis, nisi nibh lacinia orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna."
 			}, {
-			    "id": 11,
-			    "name": "Brielle Newman",
-			    "amount": "52.26",
-			    "date": "04/16/2016",
-			    "description": "placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis."
+				"id": 11,
+				"name": "Brielle Newman",
+				"amount": "52.26",
+				"date": "04/16/2016",
+				"description": "placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis."
 			}, {
-			    "id": 12,
-			    "name": "Julie James",
-			    "amount": "6.38",
-			    "date": "08/15/2014",
-			    "description": "placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque"
+				"id": 12,
+				"name": "Julie James",
+				"amount": "6.38",
+				"date": "08/15/2014",
+				"description": "placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque"
 			}, {
-			    "id": 13,
-			    "name": "Shaine Barnett",
-			    "amount": "0.04",
-			    "date": "09/29/2014",
-			    "description": "laoreet, libero et tristique pellentesque, tellus sem mollis dui, in sodales elit erat vitae risus. Duis a mi fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed"
+				"id": 13,
+				"name": "Shaine Barnett",
+				"amount": "0.04",
+				"date": "09/29/2014",
+				"description": "laoreet, libero et tristique pellentesque, tellus sem mollis dui, in sodales elit erat vitae risus. Duis a mi fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed"
 			}, {
-			    "id": 14,
-			    "name": "Genevieve Underwood",
-			    "amount": "50.71",
-			    "date": "09/24/2015",
-			    "description": "consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper"
+				"id": 14,
+				"name": "Genevieve Underwood",
+				"amount": "50.71",
+				"date": "09/24/2015",
+				"description": "consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper"
 			}, {
-			    "id": 15,
-			    "name": "Adam Villarreal",
-			    "amount": "18.48",
-			    "date": "04/06/2016",
-			    "description": "nisl. Maecenas malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris"
+				"id": 15,
+				"name": "Adam Villarreal",
+				"amount": "18.48",
+				"date": "04/06/2016",
+				"description": "nisl. Maecenas malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris"
 			}
 		];
 		$scope.newExpense = function (argument) {
@@ -1987,95 +2002,95 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.curExpense = {};
 		$scope.expenses = [
 			{
-			    "id": 1,
-			    "name": "Warren Phillips",
-			    "amount": "37.47",
-			    "date": "12/11/2015",
-			    "description": "blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan"
+				"id": 1,
+				"name": "Warren Phillips",
+				"amount": "37.47",
+				"date": "12/11/2015",
+				"description": "blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan"
 			}, {
-			    "id": 2,
-			    "name": "Declan Ayala",
-			    "amount": "29.18",
-			    "date": "12/17/2014",
-			    "description": "Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras"
+				"id": 2,
+				"name": "Declan Ayala",
+				"amount": "29.18",
+				"date": "12/17/2014",
+				"description": "Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras"
 			}, {
-			    "id": 3,
-			    "name": "Ivana Bell",
-			    "amount": "88.53",
-			    "date": "11/20/2014",
-			    "description": "Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus faucibus leo, in lobortis tellus justo sit amet nulla."
+				"id": 3,
+				"name": "Ivana Bell",
+				"amount": "88.53",
+				"date": "11/20/2014",
+				"description": "Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus faucibus leo, in lobortis tellus justo sit amet nulla."
 			}, {
-			    "id": 4,
-			    "name": "Brennan Noel",
-			    "amount": "17.76",
-			    "date": "02/06/2015",
-			    "description": "velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis"
+				"id": 4,
+				"name": "Brennan Noel",
+				"amount": "17.76",
+				"date": "02/06/2015",
+				"description": "velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis"
 			}, {
-			    "id": 5,
-			    "name": "Thomas Tran",
-			    "amount": "29.59",
-			    "date": "08/20/2014",
-			    "description": "nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam vel sapien imperdiet ornare."
+				"id": 5,
+				"name": "Thomas Tran",
+				"amount": "29.59",
+				"date": "08/20/2014",
+				"description": "nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam vel sapien imperdiet ornare."
 			}, {
-			    "id": 6,
-			    "name": "Tucker Bolton",
-			    "amount": "66.69",
-			    "date": "12/09/2014",
-			    "description": "et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum."
+				"id": 6,
+				"name": "Tucker Bolton",
+				"amount": "66.69",
+				"date": "12/09/2014",
+				"description": "et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum."
 			}, {
-			    "id": 7,
-			    "name": "Medge Mullen",
-			    "amount": "23.78",
-			    "date": "10/17/2015",
-			    "description": "dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et"
+				"id": 7,
+				"name": "Medge Mullen",
+				"amount": "23.78",
+				"date": "10/17/2015",
+				"description": "dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et"
 			}, {
-			    "id": 8,
-			    "name": "Morgan Merritt",
-			    "amount": "54.09",
-			    "date": "04/10/2016",
-			    "description": "Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et,"
+				"id": 8,
+				"name": "Morgan Merritt",
+				"amount": "54.09",
+				"date": "04/10/2016",
+				"description": "Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et,"
 			}, {
-			    "id": 9,
-			    "name": "Janna Casey",
-			    "amount": "22.61",
-			    "date": "08/05/2015",
-			    "description": "eros turpis non enim. Mauris quis turpis vitae purus gravida sagittis. Duis gravida. Praesent eu nulla at sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue a, aliquet vel, vulputate eu, odio. Phasellus at augue id ante dictum"
+				"id": 9,
+				"name": "Janna Casey",
+				"amount": "22.61",
+				"date": "08/05/2015",
+				"description": "eros turpis non enim. Mauris quis turpis vitae purus gravida sagittis. Duis gravida. Praesent eu nulla at sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue a, aliquet vel, vulputate eu, odio. Phasellus at augue id ante dictum"
 			}, {
-			    "id": 10,
-			    "name": "Buffy Best",
-			    "amount": "59.98",
-			    "date": "05/06/2015",
-			    "description": "lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus. Donec est. Nunc ullamcorper, velit in aliquet lobortis, nisi nibh lacinia orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna."
+				"id": 10,
+				"name": "Buffy Best",
+				"amount": "59.98",
+				"date": "05/06/2015",
+				"description": "lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus. Donec est. Nunc ullamcorper, velit in aliquet lobortis, nisi nibh lacinia orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna."
 			}, {
-			    "id": 11,
-			    "name": "Brielle Newman",
-			    "amount": "52.26",
-			    "date": "04/16/2016",
-			    "description": "placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis."
+				"id": 11,
+				"name": "Brielle Newman",
+				"amount": "52.26",
+				"date": "04/16/2016",
+				"description": "placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis."
 			}, {
-			    "id": 12,
-			    "name": "Julie James",
-			    "amount": "6.38",
-			    "date": "08/15/2014",
-			    "description": "placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque"
+				"id": 12,
+				"name": "Julie James",
+				"amount": "6.38",
+				"date": "08/15/2014",
+				"description": "placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque"
 			}, {
-			    "id": 13,
-			    "name": "Shaine Barnett",
-			    "amount": "0.04",
-			    "date": "09/29/2014",
-			    "description": "laoreet, libero et tristique pellentesque, tellus sem mollis dui, in sodales elit erat vitae risus. Duis a mi fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed"
+				"id": 13,
+				"name": "Shaine Barnett",
+				"amount": "0.04",
+				"date": "09/29/2014",
+				"description": "laoreet, libero et tristique pellentesque, tellus sem mollis dui, in sodales elit erat vitae risus. Duis a mi fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed"
 			}, {
-			    "id": 14,
-			    "name": "Genevieve Underwood",
-			    "amount": "50.71",
-			    "date": "09/24/2015",
-			    "description": "consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper"
+				"id": 14,
+				"name": "Genevieve Underwood",
+				"amount": "50.71",
+				"date": "09/24/2015",
+				"description": "consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper"
 			}, {
-			    "id": 15,
-			    "name": "Adam Villarreal",
-			    "amount": "18.48",
-			    "date": "04/06/2016",
-			    "description": "nisl. Maecenas malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris"
+				"id": 15,
+				"name": "Adam Villarreal",
+				"amount": "18.48",
+				"date": "04/06/2016",
+				"description": "nisl. Maecenas malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris"
 			}
 		];
 		$scope.newExpense = function (argument) {
@@ -2107,6 +2122,340 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.cancelExpense = function () {
 			$scope.expenseedit = false;
 			$scope.newexpense = {};
+		};
+	});
+	app.controller('incomeController', function($scope){
+		$scope.incomeedit = false;
+		$scope.newincome = {};
+		$scope.curIncome = {};
+		$scope.incomes = [
+			{
+				"id": 1,
+				"name": "Warren Phillips",
+				"amount": "37.47",
+				"date": "12/11/2015",
+				"description": "blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan"
+			}, {
+				"id": 2,
+				"name": "Declan Ayala",
+				"amount": "29.18",
+				"date": "12/17/2014",
+				"description": "Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras"
+			}, {
+				"id": 3,
+				"name": "Ivana Bell",
+				"amount": "88.53",
+				"date": "11/20/2014",
+				"description": "Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus faucibus leo, in lobortis tellus justo sit amet nulla."
+			}, {
+				"id": 4,
+				"name": "Brennan Noel",
+				"amount": "17.76",
+				"date": "02/06/2015",
+				"description": "velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis"
+			}, {
+				"id": 5,
+				"name": "Thomas Tran",
+				"amount": "29.59",
+				"date": "08/20/2014",
+				"description": "nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam vel sapien imperdiet ornare."
+			}, {
+				"id": 6,
+				"name": "Tucker Bolton",
+				"amount": "66.69",
+				"date": "12/09/2014",
+				"description": "et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum."
+			}, {
+				"id": 7,
+				"name": "Medge Mullen",
+				"amount": "23.78",
+				"date": "10/17/2015",
+				"description": "dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et"
+			}, {
+				"id": 8,
+				"name": "Morgan Merritt",
+				"amount": "54.09",
+				"date": "04/10/2016",
+				"description": "Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et,"
+			}, {
+				"id": 9,
+				"name": "Janna Casey",
+				"amount": "22.61",
+				"date": "08/05/2015",
+				"description": "eros turpis non enim. Mauris quis turpis vitae purus gravida sagittis. Duis gravida. Praesent eu nulla at sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue a, aliquet vel, vulputate eu, odio. Phasellus at augue id ante dictum"
+			}, {
+				"id": 10,
+				"name": "Buffy Best",
+				"amount": "59.98",
+				"date": "05/06/2015",
+				"description": "lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus. Donec est. Nunc ullamcorper, velit in aliquet lobortis, nisi nibh lacinia orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna."
+			}, {
+				"id": 11,
+				"name": "Brielle Newman",
+				"amount": "52.26",
+				"date": "04/16/2016",
+				"description": "placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis."
+			}, {
+				"id": 12,
+				"name": "Julie James",
+				"amount": "6.38",
+				"date": "08/15/2014",
+				"description": "placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque"
+			}, {
+				"id": 13,
+				"name": "Shaine Barnett",
+				"amount": "0.04",
+				"date": "09/29/2014",
+				"description": "laoreet, libero et tristique pellentesque, tellus sem mollis dui, in sodales elit erat vitae risus. Duis a mi fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed"
+			}, {
+				"id": 14,
+				"name": "Genevieve Underwood",
+				"amount": "50.71",
+				"date": "09/24/2015",
+				"description": "consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper"
+			}, {
+				"id": 15,
+				"name": "Adam Villarreal",
+				"amount": "18.48",
+				"date": "04/06/2016",
+				"description": "nisl. Maecenas malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris"
+			}
+		];
+		$scope.newIncome = function (argument) {
+			$scope.incomeedit = true;
+			$scope.newincome = {};
+		};
+		$scope.editIncome = function (thisIncome) {
+			$scope.incomeedit = true;
+			$scope.curIncome =  thisIncome;
+			$scope.newincome = angular.copy(thisIncome);
+		};
+		$scope.addIncome = function () {
+			if ($scope.curIncome.id) {
+				angular.extend($scope.curIncome, $scope.curIncome, $scope.newincome);
+			} else{
+				$scope.newincome.id = $scope.incomes.length + 1;
+				$scope.incomes.push($scope.newincome);
+			}
+			$scope.incomeedit = false;
+			$scope.newincome = {};
+		};
+		$scope.deleteIncome = function (item) {
+			var confirmDelete = confirm("Do you really need to delete the item ?");
+			if (confirmDelete) {
+				var curIndex = $scope.incomes.indexOf(item);
+				$scope.incomes.splice(curIndex, 1);
+			}
+		};
+		$scope.cancelIncome = function () {
+			$scope.incomeedit = false;
+			$scope.newincome = {};
+		};
+	});
+	app.controller('cashdebitController', function($scope){
+		$scope.debitedit = false;
+		$scope.newdebit = {};
+		$scope.curDebit = {};
+		$scope.cashdebits = [
+			{
+			    "id": 1,
+			    "amount": "87 259",
+			    "date": "11-30-2014",
+			    "description": "at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare,"
+			}, {
+			    "id": 2,
+			    "amount": "39 467",
+			    "date": "03-31-2015",
+			    "description": "Suspendisse ac metus vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec"
+			}, {
+			    "id": 3,
+			    "amount": "19 932",
+			    "date": "07-01-2015",
+			    "description": "non, dapibus rutrum, justo. Praesent luctus. Curabitur egestas nunc sed libero. Proin sed turpis nec mauris blandit mattis. Cras eget nisi"
+			}, {
+			    "id": 4,
+			    "amount": "64 077",
+			    "date": "10-20-2015",
+			    "description": "pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget"
+			}, {
+			    "id": 5,
+			    "amount": "56 845",
+			    "date": "11-01-2015",
+			    "description": "volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et"
+			}, {
+			    "id": 6,
+			    "amount": "94 624",
+			    "date": "03-06-2015",
+			    "description": "lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames"
+			}, {
+			    "id": 7,
+			    "amount": "9 758",
+			    "date": "10-12-2015",
+			    "description": "Phasellus at augue id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae"
+			}, {
+			    "id": 8,
+			    "amount": "91 228",
+			    "date": "11-26-2015",
+			    "description": "sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt"
+			}, {
+			    "id": 9,
+			    "amount": "49 978",
+			    "date": "04-30-2015",
+			    "description": "diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit"
+			}, {
+			    "id": 10,
+			    "amount": "61 396",
+			    "date": "10-08-2014",
+			    "description": "blandit congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit egestas lacinia."
+			}, {
+			    "id": 11,
+			    "amount": "73 303",
+			    "date": "07-03-2015",
+			    "description": "ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod urna. Nullam lobortis quam a felis"
+			}, {
+			    "id": 12,
+			    "amount": "89 901",
+			    "date": "05-11-2015",
+			    "description": "sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris"
+			}, {
+			    "id": 13,
+			    "amount": "48 481",
+			    "date": "01-04-2016",
+			    "description": "tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque"
+			}
+		];
+		$scope.newDebit = function () {
+			$scope.debitedit = true;
+			$scope.newdebit = {};
+		};
+		$scope.editDebit = function (thisDebit) {
+			$scope.debitedit = true;
+			$scope.curDebit =  thisDebit;
+			$scope.newdebit = angular.copy(thisDebit);
+		};
+		$scope.addDebit = function () {
+			if ($scope.curDebit.id) {
+				angular.extend($scope.curDebit, $scope.curDebit, $scope.newdebit);
+			} else{
+				$scope.newdebit.id = $scope.cashdebits.length + 1;
+				$scope.cashdebits.push($scope.newdebit);
+			}
+			$scope.debitedit = false;
+			$scope.newdebit = {};
+		};
+		$scope.deleteDebit = function (item) {
+			var confirmDelete = confirm("Do you really need to delete the item ?");
+			if (confirmDelete) {
+				var curIndex = $scope.cashdebits.indexOf(item);
+				$scope.cashdebits.splice(curIndex, 1);
+			}
+		};
+		$scope.cancelDebit = function () {
+			$scope.debitedit = false;
+			$scope.newdebit = {};
+		};
+	});
+	app.controller('cashcreditController', function($scope){
+		$scope.creditedit = false;
+		$scope.newcredit = {};
+		$scope.curCredit = {};
+		$scope.cashcredits = [
+			{
+			    "id": 1,
+			    "amount": "87 259",
+			    "date": "11-30-2014",
+			    "description": "at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare,"
+			}, {
+			    "id": 2,
+			    "amount": "39 467",
+			    "date": "03-31-2015",
+			    "description": "Suspendisse ac metus vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec"
+			}, {
+			    "id": 3,
+			    "amount": "19 932",
+			    "date": "07-01-2015",
+			    "description": "non, dapibus rutrum, justo. Praesent luctus. Curabitur egestas nunc sed libero. Proin sed turpis nec mauris blandit mattis. Cras eget nisi"
+			}, {
+			    "id": 4,
+			    "amount": "64 077",
+			    "date": "10-20-2015",
+			    "description": "pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget"
+			}, {
+			    "id": 5,
+			    "amount": "56 845",
+			    "date": "11-01-2015",
+			    "description": "volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et"
+			}, {
+			    "id": 6,
+			    "amount": "94 624",
+			    "date": "03-06-2015",
+			    "description": "lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames"
+			}, {
+			    "id": 7,
+			    "amount": "9 758",
+			    "date": "10-12-2015",
+			    "description": "Phasellus at augue id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae"
+			}, {
+			    "id": 8,
+			    "amount": "91 228",
+			    "date": "11-26-2015",
+			    "description": "sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt"
+			}, {
+			    "id": 9,
+			    "amount": "49 978",
+			    "date": "04-30-2015",
+			    "description": "diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit"
+			}, {
+			    "id": 10,
+			    "amount": "61 396",
+			    "date": "10-08-2014",
+			    "description": "blandit congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit egestas lacinia."
+			}, {
+			    "id": 11,
+			    "amount": "73 303",
+			    "date": "07-03-2015",
+			    "description": "ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod urna. Nullam lobortis quam a felis"
+			}, {
+			    "id": 12,
+			    "amount": "89 901",
+			    "date": "05-11-2015",
+			    "description": "sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris"
+			}, {
+			    "id": 13,
+			    "amount": "48 481",
+			    "date": "01-04-2016",
+			    "description": "tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque"
+			}
+		];
+		$scope.newCredit = function () {
+			$scope.creditedit = true;
+			$scope.newcredit = {};
+		};
+		$scope.editCredit = function (thisCredit) {
+			$scope.creditedit = true;
+			$scope.curCredit =  thisCredit;
+			$scope.newcredit = angular.copy(thisCredit);
+		};
+		$scope.addCredit = function () {
+			if ($scope.curCredit.id) {
+				angular.extend($scope.curCredit, $scope.curCredit, $scope.newcredit);
+			} else{
+				$scope.newcredit.id = $scope.cashcredits.length + 1;
+				$scope.cashcredits.push($scope.newcredit);
+			}
+			$scope.creditedit = false;
+			$scope.newcredit = {};
+		};
+		$scope.deleteCredit = function (item) {
+			var confirmDelete = confirm("Do you really need to delete the item ?");
+			if (confirmDelete) {
+				var curIndex = $scope.cashcredits.indexOf(item);
+				$scope.cashcredits.splice(curIndex, 1);
+			}
+		};
+		$scope.cancelCredit = function () {
+			$scope.creditedit = false;
+			$scope.newcredit = {};
 		};
 	});
 })();
