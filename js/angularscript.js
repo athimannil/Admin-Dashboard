@@ -1828,7 +1828,10 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.curwage = {};
 		};
 
-		// Expense part
+		$scope.expenseedit = true;
+		$scope.addExpense = function (argument) {
+			
+		};
 		$scope.deleteExpense = function (item) {
 			var confirmDelete = confirm("Do you really need to delete the item ?");
 			if (confirmDelete) {
