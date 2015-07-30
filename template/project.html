@@ -189,6 +189,7 @@
 				</div>
 			</div>
 			<div id="expense">
+				<h3>Expense and details</h3>
 				<table class="table table-hover table-responsive">
 					<thead>
 						<tr>
@@ -200,17 +201,17 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="expense in curProject.expenses">
+						<tr ng-repeat="expense in expenses | pagination: currentPage : numPerPage">
 							<td>{{expense.name}}</td>
 							<td>{{expense.amount}}</td>
 							<td>{{expense.date}}</td>
 							<td><p class="description" popover="{{expense.description}}" popover-trigger="mouseenter">{{expense.description}}</p></td>
 							<td>
 								<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-									<button type="button" class="btn btn-default" ng-click="editExpense(wage);">
+									<button type="button" class="btn btn-default" ng-click="editExpense(expense);">
 										<i class="fa fa-pencil"></i>
 									</button>
-									<button type="button" class="btn btn-default" ng-click="deleteExpense(wage); editmode = !editmode">
+									<button type="button" class="btn btn-default" ng-click="deleteExpense(expense); editmode = !editmode">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</div>
@@ -218,6 +219,19 @@
 						</tr>
 					</tbody>
 				</table>
+				<div class="clearfix" ng-show="expenses.length > numPerPage">
+					<pagination 
+						ng-model="currentPage" 
+						total-items="expenses.length" 
+						max-size="5" 
+						boundary-links="true" 
+						class="pagination-sm pull-right" 
+						previous-text="&lsaquo;" 
+						next-text="&rsaquo;" 
+						first-text="&laquo;" 
+						last-text="&raquo;"
+					></pagination>
+				</div>
 			</div>
 		</div>
 	</div>
