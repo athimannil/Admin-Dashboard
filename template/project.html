@@ -65,7 +65,7 @@
 				  </div>
 				</div>
 			</form>
-			<div class="row hide" ng-hide="projectedit">
+			<div class="row" ng-hide="projectedit">
 				<div class="col-md-12">
 					<div class="btn-group pull-right" dropdown>
 					  <button type="button" class="btn btn-primary" ng-click="newProject();"><i class="fa fa-plus"></i> Add</button>
@@ -106,166 +106,174 @@
 					</dl>
 				</div>
 			</div>
-			<div id="wage" class="hide">
-				<form class="form-horizontal" ng-show="wageedit" ng-submit="addWage();">
-					<h3>New wage</h3><br>
-					<div class="form-group">
-						<label for="" class="col-sm-2 control-label">Name</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" ng-model="newwage.name" placeholder="Name">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="" class="col-sm-2 control-label">Employee</label>
-						<div class="col-sm-3">
-						<input type="text" class="form-control" ng-model="newwage.employee" placeholder="Employee" typeahead="employee as employee.name for employee in employees | filter:$viewValue | limitTo:8">
-						</div>
-						<label for="" class="col-sm-1 control-label">Amount</label>
-						<div class="col-sm-2">
-							<input type="text" class="form-control" ng-model="newwage.amount" placeholder="Amount">
-						</div>
-						<label for="" class="col-sm-1 control-label">Date</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" ng-model="newwage.date" placeholder="Date">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Description</label>
-						<div class="col-sm-10">
-							<textarea class="form-control" ng-model="newwage.description" placeholder="Description"></textarea>
-						</div>
-					</div>
-					<div class="form-group">
-					  <div class="col-sm-12 text-right">
-					  	<button type="button" class="btn btn-default" ng-click="cancelWage();">Cancel</button>
-						  <button type="submit" class="btn btn-primary">Save</button>
-					  </div>
-					</div>
-					<hr>
-				</form>
-				<button ng-click="newWage();" ng-hide="wageedit"  ng-if="!projectedit" class="btn btn-xs btn-primary pull-right" type="button"><i class="fa fa-plus"></i> Add Wage</button>
-				<h3 ng-hide="projectedit">Wage and details</h3>
-				<table class="table table-hover table-responsive" ng-if="curProject.wages.length">
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Description</th>
-							<th>Amount</th>
-							<th>Date</th>
-							<th>Edit</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="wage in curProject.wages | pagination: currentPage : numPerPage">
-							<td>{{wage.name}}</td>
-							<td><p class="description" popover="{{wage.description}}" popover-trigger="mouseenter">{{wage.description}}</p></td>
-							<td><i class="fa fa-inr"></i> {{wage.amount}}</td>
-							<td>{{wage.date}}</td>
-							<td>
-								<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-									<button type="button" class="btn btn-default" ng-click="editWage(wage);">
-										<i class="fa fa-pencil"></i>
-									</button>
-									<button type="button" class="btn btn-default" ng-click="deleteWage(wage); editmode = !editmode">
-										<i class="fa fa-trash-o"></i>
-									</button>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="clearfix" ng-show="curProject.wages.length > numPerPage">
-					<pagination 
-						ng-model="currentPage" 
-						total-items="curProject.wages.length" 
-						max-size="5" 
-						boundary-links="true" 
-						class="pagination-sm pull-right" 
-						previous-text="&lsaquo;" 
-						next-text="&rsaquo;" 
-						first-text="&laquo;" 
-						last-text="&raquo;"
-					></pagination>
-				</div>
-			</div>
-			<div id="expense">
-				<button ng-click="newExpense();" class="btn btn-primary pull-right" type="button"><i class="fa fa-plus"></i> Add Expense</button>
-				<form class="form-horizontal" ng-show="expenseedit" ng-submit="addExpense();">
-					<h3>New Expense</h3><br>
-					<div class="form-group">
-						<label for="" class="col-sm-2 control-label">Name</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" ng-model="newexpense.name" placeholder="Name">
-						</div>
-						<label for="" class="col-sm-1 control-label">Amount</label>
-						<div class="col-sm-2">
-							<input type="text" class="form-control" ng-model="newexpense.amount" placeholder="Amount">
-						</div>
-						<label for="" class="col-sm-1 control-label">Date</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" ng-model="newexpense.date" placeholder="Date">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Description</label>
-						<div class="col-sm-10">
-							<textarea class="form-control" ng-model="newexpense.description" placeholder="Description"></textarea>
-						</div>
-					</div>
-					<div class="form-group">
-					  <div class="col-sm-12 text-right">
-					  	<button type="button" class="btn btn-default" ng-click="cancelExpense();">Cancel</button>
-						  <button type="submit" class="btn btn-primary">Save</button>
-					  </div>
-					</div>
-					<hr>
-				</form>
 
-
-				<h3 ng-hide="expenseedit">Expense and details</h3>
-				<table class="table table-hover table-responsive">
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Amount</th>
-							<th>Date</th>
-							<th>Description</th>
-							<th>Edit</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="expense in expenses | pagination: currentPage : numPerPage">
-							<td>{{expense.name}}</td>
-							<td>{{expense.amount}}</td>
-							<td>{{expense.date}}</td>
-							<td><p class="description" popover="{{expense.description}}" popover-trigger="mouseenter">{{expense.description}}</p></td>
-							<td>
-								<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-									<button type="button" class="btn btn-default" ng-click="editExpense(expense);">
-										<i class="fa fa-pencil"></i>
-									</button>
-									<button type="button" class="btn btn-default" ng-click="deleteExpense(expense); editmode = !editmode">
-										<i class="fa fa-trash-o"></i>
-									</button>
+			<tabset ng-class="col-smd-12" ng-hide="projectedit">
+				<tab>
+					<tab-heading>Wages</tab-heading>
+					<div class="box">
+						<form class="form-horizontal" ng-show="wageedit" ng-submit="addWage();">
+							<h3>New wage</h3><br>
+							<div class="form-group">
+								<label for="" class="col-sm-2 control-label">Name</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" ng-model="newwage.name" placeholder="Name">
 								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="clearfix" ng-show="expenses.length > numPerPage">
-					<pagination 
-						ng-model="currentPage" 
-						total-items="expenses.length" 
-						max-size="5" 
-						boundary-links="true" 
-						class="pagination-sm pull-right" 
-						previous-text="&lsaquo;" 
-						next-text="&rsaquo;" 
-						first-text="&laquo;" 
-						last-text="&raquo;"
-					></pagination>
-				</div>
-			</div>
+							</div>
+							<div class="form-group">
+								<label for="" class="col-sm-2 control-label">Employee</label>
+								<div class="col-sm-3">
+								<input type="text" class="form-control" ng-model="newwage.employee" placeholder="Employee" typeahead="employee as employee.name for employee in employees | filter:$viewValue | limitTo:8">
+								</div>
+								<label for="" class="col-sm-1 control-label">Amount</label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" ng-model="newwage.amount" placeholder="Amount">
+								</div>
+								<label for="" class="col-sm-1 control-label">Date</label>
+								<div class="col-sm-3">
+									<input type="text" class="form-control" ng-model="newwage.date" placeholder="Date">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Description</label>
+								<div class="col-sm-10">
+									<textarea class="form-control" ng-model="newwage.description" placeholder="Description"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+							  <div class="col-sm-12 text-right">
+							  	<button type="button" class="btn btn-default" ng-click="cancelWage();">Cancel</button>
+								  <button type="submit" class="btn btn-primary">Save</button>
+							  </div>
+							</div>
+							<hr>
+						</form>
+						<button ng-click="newWage();" ng-hide="wageedit" class="btn btn-primary pull-right" type="button"><i class="fa fa-plus"></i> Add Wage</button>
+						<h3 ng-hide="projectedit">Wage and details</h3>
+						<table class="table table-hover table-responsive" ng-if="curProject.wages.length">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Description</th>
+									<th>Amount</th>
+									<th>Date</th>
+									<th>Edit</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="wage in curProject.wages | pagination: currentPage : numPerPage">
+									<td>{{wage.name}}</td>
+									<td><p class="description" popover="{{wage.description}}" popover-trigger="mouseenter">{{wage.description}}</p></td>
+									<td><i class="fa fa-inr"></i> {{wage.amount}}</td>
+									<td>{{wage.date}}</td>
+									<td>
+										<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+											<button type="button" class="btn btn-default" ng-click="editWage(wage);">
+												<i class="fa fa-pencil"></i>
+											</button>
+											<button type="button" class="btn btn-default" ng-click="deleteWage(wage); editmode = !editmode">
+												<i class="fa fa-trash-o"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="clearfix" ng-show="curProject.wages.length > numPerPage">
+							<pagination 
+								ng-model="currentPage" 
+								total-items="curProject.wages.length" 
+								max-size="5" 
+								boundary-links="true" 
+								class="pagination-sm pull-right" 
+								previous-text="&lsaquo;" 
+								next-text="&rsaquo;" 
+								first-text="&laquo;" 
+								last-text="&raquo;"
+							></pagination>
+						</div>
+					</div>
+				</tab>
+				<tab>
+					<tab-heading>Expenses</tab-heading>
+					<div class="box">
+						<button ng-click="newExpense();" class="btn btn-primary pull-right" type="button"><i class="fa fa-plus"></i> Add Expense</button>
+						<form class="form-horizontal" ng-show="expenseedit" ng-submit="addExpense();">
+							<h3>New Expense</h3><br>
+							<div class="form-group">
+								<label for="" class="col-sm-2 control-label">Name</label>
+								<div class="col-sm-3">
+									<input type="text" class="form-control" ng-model="newexpense.name" placeholder="Name">
+								</div>
+								<label for="" class="col-sm-1 control-label">Amount</label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" ng-model="newexpense.amount" placeholder="Amount">
+								</div>
+								<label for="" class="col-sm-1 control-label">Date</label>
+								<div class="col-sm-3">
+									<input type="text" class="form-control" ng-model="newexpense.date" placeholder="Date">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Description</label>
+								<div class="col-sm-10">
+									<textarea class="form-control" ng-model="newexpense.description" placeholder="Description"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+							  <div class="col-sm-12 text-right">
+							  	<button type="button" class="btn btn-default" ng-click="cancelExpense();">Cancel</button>
+								  <button type="submit" class="btn btn-primary">Save</button>
+							  </div>
+							</div>
+							<hr>
+						</form>
+						<h3 ng-hide="expenseedit">Expense and details</h3>
+						<table class="table table-hover table-responsive">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Amount</th>
+									<th>Date</th>
+									<th>Description</th>
+									<th>Edit</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="expense in expenses | pagination: currentPage : numPerPage">
+									<td>{{expense.name}}</td>
+									<td>{{expense.amount}}</td>
+									<td>{{expense.date}}</td>
+									<td><p class="description" popover="{{expense.description}}" popover-trigger="mouseenter">{{expense.description}}</p></td>
+									<td>
+										<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+											<button type="button" class="btn btn-default" ng-click="editExpense(expense);">
+												<i class="fa fa-pencil"></i>
+											</button>
+											<button type="button" class="btn btn-default" ng-click="deleteExpense(expense); editmode = !editmode">
+												<i class="fa fa-trash-o"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="clearfix" ng-show="expenses.length > numPerPage">
+							<pagination 
+								ng-model="currentPage" 
+								total-items="expenses.length" 
+								max-size="5" 
+								boundary-links="true" 
+								class="pagination-sm pull-right" 
+								previous-text="&lsaquo;" 
+								next-text="&rsaquo;" 
+								first-text="&laquo;" 
+								last-text="&raquo;"
+							></pagination>
+						</div>
+					</div>
+				</tab>
+			</tabset>
+
 		</div>
 	</div>
 </div>

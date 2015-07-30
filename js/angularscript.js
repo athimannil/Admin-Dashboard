@@ -1745,23 +1745,19 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		];
 		$scope.initialProject = function (projectIndex) {
 			$scope.projectedit = false;
-			$scope.wageedit = false;
 			$scope.curProject = $scope.projects[projectIndex];
 		};
 		$scope.openProject = function(thisProject){
 			$scope.projectedit = false;
-			$scope.wageedit = false;
 			$scope.curProject = thisProject;
 		};
 		$scope.newProject = function (argument) {
 			$scope.projectedit = true;
-			$scope.wageedit = false;
 			$scope.curProject = {};
 			$scope.newproject = {};
 		};
 		$scope.editProject = function (thisproject) {
 			$scope.projectedit = true;
-			$scope.wageedit = false;
 			$scope.curProject = thisproject;
 			$scope.newproject = angular.copy(thisproject);
 		};
@@ -1798,7 +1794,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newwage = {};
 		};
 		$scope.editWage = function (thiswage) {
-			$scope.projectedit = false;
 			$scope.wageedit = true;
 			$scope.curwage = thiswage;
 			$scope.newwage = angular.copy(thiswage);
@@ -1835,8 +1830,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newexpense = {};
 		};
 		$scope.editExpense = function (thisExpense) {
-				$scope.projectedit = false;
-				$scope.wageedit = false;
 				$scope.expenseedit = true;
 				$scope.curExpense =  thisExpense;
 				$scope.newexpense = angular.copy(thisExpense);
