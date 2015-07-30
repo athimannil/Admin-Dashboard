@@ -1828,11 +1828,18 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.curwage = {};
 		};
 
-		$scope.expenseedit = true;
+		$scope.expenseedit = false;
 		$scope.newexpense = {};
+		$scope.newExpense = function (argument) {
+			$scope.expenseedit = true;
+			$scope.newexpense = {};
+		};
 		$scope.addExpense = function () {
 			$scope.newexpense.id = $scope.expenses.length + 1;
 			$scope.expenses.push($scope.newexpense);
+
+			$scope.expenseedit = false;
+			$scope.newexpense = {};
 		};
 		$scope.deleteExpense = function (item) {
 			var confirmDelete = confirm("Do you really need to delete the item ?");
@@ -1840,6 +1847,10 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				var curIndex = $scope.expenses.indexOf(item);
 				$scope.expenses.splice(curIndex, 1);
 			}
+		};
+		$scope.cancelExpense = function () {
+			$scope.expenseedit = false;
+			$scope.newexpense = {};
 		};
 	});
 	app.controller('insureController', function($scope){
