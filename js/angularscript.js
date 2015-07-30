@@ -1834,10 +1834,20 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.expenseedit = true;
 			$scope.newexpense = {};
 		};
+		$scope.editExpense = function (thisExpense) {
+				$scope.projectedit = false;
+				$scope.wageedit = false;
+				$scope.expenseedit = true;
+				$scope.curExpense =  thisExpense;
+				$scope.newexpense = angular.copy(thisExpense);
+		};
 		$scope.addExpense = function () {
-			$scope.newexpense.id = $scope.expenses.length + 1;
-			$scope.expenses.push($scope.newexpense);
-
+			if ($scope.curExpense.id) {
+				angular.extend($scope.curExpense, $scope.curExpense, $scope.newexpense);
+			} else{
+				$scope.newexpense.id = $scope.expenses.length + 1;
+				$scope.expenses.push($scope.newexpense);
+			}
 			$scope.expenseedit = false;
 			$scope.newexpense = {};
 		};
