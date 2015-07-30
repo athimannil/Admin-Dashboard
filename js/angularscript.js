@@ -1829,8 +1829,10 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 
 		$scope.expenseedit = true;
-		$scope.addExpense = function (argument) {
-			
+		$scope.newexpense = {};
+		$scope.addExpense = function () {
+			$scope.newexpense.id = $scope.expenses.length + 1;
+			$scope.expenses.push($scope.newexpense);
 		};
 		$scope.deleteExpense = function (item) {
 			var confirmDelete = confirm("Do you really need to delete the item ?");
