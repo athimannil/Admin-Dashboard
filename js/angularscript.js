@@ -104,6 +104,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				{page: "expense", title: "Expenses", icon: "credit-card"},
 				{page: "income", title: "Income", icon: "puzzle-piece"},
 				{page: "cash", title: "Cash", icon: "money"},
+				{page: "rent", title: "Rent", icon: "building-o"},
 				{page: "insure", title: "Insurance", icon: "ambulance"},
 				{page: "phonebook", title: "Phone book", icon: "book"},
 				{page: "employee", title: "Employee", icon: "users"},
@@ -2455,6 +2456,134 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.cancelCredit = function () {
 			$scope.creditedit = false;
 			$scope.newcredit = {};
+		};
+	});
+	app.controller('rentController', function($scope){
+		$scope.rentedit = false;
+		$scope.newrent = {};
+		$scope.curRent = {};
+		$scope.rents = [
+			{
+			    "id": 1,
+			    "name": "Eve Dotson",
+			    "amount": "48 197",
+			    "date": "12-30-2014",
+			    "description": "ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis eget varius ultrices, mauris ipsum porta elit, a feugiat tellus lorem eu metus. In lorem. Donec elementum, lorem ut"
+			}, {
+			    "id": 2,
+			    "name": "Daquan Pennington",
+			    "amount": "43 200",
+			    "date": "11-04-2014",
+			    "description": "Duis dignissim tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim."
+			}, {
+			    "id": 3,
+			    "name": "Tatiana Rivas",
+			    "amount": "40 613",
+			    "date": "08-24-2015",
+			    "description": "Donec nibh. Quisque nonummy ipsum non arcu. Vivamus sit amet risus. Donec egestas. Aliquam nec enim. Nunc ut erat. Sed nunc est, mollis non, cursus non, egestas a, dui. Cras pellentesque. Sed dictum. Proin"
+			}, {
+			    "id": 4,
+			    "name": "Raymond Hays",
+			    "amount": "22 171",
+			    "date": "02-22-2016",
+			    "description": "eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan"
+			}, {
+			    "id": 5,
+			    "name": "Rafael Oneill",
+			    "amount": "27 770",
+			    "date": "11-12-2015",
+			    "description": "dictum eu, placerat"
+			}, {
+			    "id": 6,
+			    "name": "Kevyn Bauer",
+			    "amount": "46 764",
+			    "date": "06-12-2015",
+			    "description": "Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar arcu et pede. Nunc sed orci lobortis augue scelerisque mollis. Phasellus libero mauris, aliquam eu, accumsan sed, facilisis vitae, orci. Phasellus dapibus quam quis diam. Pellentesque habitant morbi tristique senectus et netus et malesuada"
+			}, {
+			    "id": 7,
+			    "name": "Gail Rosa",
+			    "amount": "87 456",
+			    "date": "11-06-2014",
+			    "description": "semper cursus. Integer mollis. Integer tincidunt aliquam arcu. Aliquam ultrices iaculis odio. Nam interdum enim non nisi. Aenean eget metus. In nec orci. Donec nibh. Quisque nonummy ipsum non arcu. Vivamus sit amet risus. Donec egestas. Aliquam nec enim. Nunc ut erat. Sed nunc est, mollis non,"
+			}, {
+			    "id": 8,
+			    "name": "Dominic Shannon",
+			    "amount": "77 159",
+			    "date": "09-21-2015",
+			    "description": "nunc. Quisque ornare tortor at risus."
+			}, {
+			    "id": 9,
+			    "name": "Gillian Erickson",
+			    "amount": "56 839",
+			    "date": "03-02-2016",
+			    "description": "placerat eget, venenatis a, magna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque,"
+			}, {
+			    "id": 10,
+			    "name": "Jillian Good",
+			    "amount": "29 181",
+			    "date": "01-07-2016",
+			    "description": "dui. Suspendisse ac metus vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum"
+			}, {
+			    "id": 11,
+			    "name": "Hiram Mathis",
+			    "amount": "34 233",
+			    "date": "08-27-2015",
+			    "description": "in, hendrerit consectetuer, cursus et, magna."
+			}, {
+			    "id": 12,
+			    "name": "Carl Dillon",
+			    "amount": "88 811",
+			    "date": "09-19-2014",
+			    "description": "quam dignissim pharetra. Nam ac nulla. In tincidunt congue turpis. In condimentum. Donec at arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit"
+			}, {
+			    "id": 13,
+			    "name": "Ciaran Cohen",
+			    "amount": "24 056",
+			    "date": "01-25-2015",
+			    "description": "ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet nec, imperdiet nec, leo. Morbi neque tellus, imperdiet non, vestibulum nec, euismod in, dolor. Fusce feugiat. Lorem ipsum dolor sit amet, consectetuer adipiscing"
+			}, {
+			    "id": 14,
+			    "name": "Destiny Wade",
+			    "amount": "87 401",
+			    "date": "01-26-2015",
+			    "description": "eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus. Donec est. Nunc ullamcorper, velit in aliquet lobortis, nisi nibh lacinia orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna. Nunc quis arcu vel quam dignissim pharetra. Nam ac"
+			}, {
+			    "id": 15,
+			    "name": "Charde England",
+			    "amount": "60 786",
+			    "date": "08-14-2014",
+			    "description": "non, feugiat nec, diam. Duis"
+			}
+		];
+		$scope.newRent = function () {
+			$scope.rentedit = true;
+			$scope.newrent = {};
+		};
+		$scope.editRent = function (thisRent) {
+			$scope.rentedit = true;
+			$scope.curRent =  thisRent;
+			$scope.newrent = angular.copy(thisRent);
+		};
+		$scope.addRent = function () {
+			if ($scope.curRent.id) {
+				angular.extend($scope.curRent, $scope.curRent, $scope.newrent);
+			} else{
+				$scope.newrent.id = $scope.rents.length + 1;
+				$scope.rents.push($scope.newrent);
+			}
+			$scope.rentedit = false;
+			$scope.newrent = {};
+		};
+		$scope.deleteRent = function (item) {
+			var confirmDelete = confirm("Do you really need to delete the item ?");
+			if (confirmDelete) {
+				var curIndex = $scope.rents.indexOf(item);
+				$scope.rents.splice(curIndex, 1);
+			}
+		};
+		$scope.cancelRent = function () {
+			$scope.rentedit = false;
+			$scope.newrent = {};
 		};
 	});
 })();

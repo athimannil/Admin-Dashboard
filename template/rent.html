@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2><i class="fa fa-building-o"> </i> Rent</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="box">
+      <button ng-click="newRent();" class="btn btn-primary pull-right" type="button"><i class="fa fa-plus"></i> Add Rent</button>
+      <form class="form-horizontal" ng-show="rentedit" ng-submit="addRent();">
+        <h3>New Debit</h3><br>
+        <div class="form-group">
+          <label for="" class="col-sm-2 control-label">Name</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" ng-model="newrent.name" placeholder="Name">
+          </div>
+          <label for="" class="col-sm-1 control-label">Amount</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" ng-model="newrent.amount" placeholder="Amount">
+          </div>
+          <label for="" class="col-sm-1 control-label">Date</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" ng-model="newrent.date" placeholder="Date">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Description</label>
+          <div class="col-sm-10">
+            <textarea class="form-control" ng-model="newrent.description" placeholder="Description"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12 text-right">
+            <button type="button" class="btn btn-default" ng-click="cancelRent();">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </div>
+        <hr>
+      </form>
+      <h3 ng-hide="rentedit">Rents and details</h3>
+      <table class="table table-hover table-responsive">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="rent in rents | pagination: currentPage : numPerPage">
+            <td>{{rent.name}}</td>
+            <td><i class="fa fa-inr"></i> {{rent.amount}}</td>
+            <td>{{rent.date}}</td>
+            <td><p class="description" popover="{{rent.description}}" popover-trigger="mouseenter">{{rent.description}}</p></td>
+            <td>
+              <div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+                <button type="button" class="btn btn-default" ng-click="editRent(rent);">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                <button type="button" class="btn btn-default" ng-click="deleteRent(rent); editmode = !editmode">
+                  <i class="fa fa-trash-o"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="clearfix" ng-show="rents.length > numPerPage">
+        <pagination 
+          ng-model="currentPage" 
+          total-items="rents.length" 
+          max-size="5" 
+          boundary-links="true" 
+          class="pagination-sm pull-right" 
+          previous-text="&lsaquo;" 
+          next-text="&rsaquo;" 
+          first-text="&laquo;" 
+          last-text="&raquo;"
+        ></pagination>
+      </div>
+    </div>
+  </div>
+</div>
