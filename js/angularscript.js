@@ -73,6 +73,10 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				templateUrl: 'template/income.html',
 				controller: 'incomeController'
 			})
+			.when('/cash', {
+				templateUrl: 'template/cash.html',
+				controller: 'cashController'
+			})
 			.when('/cashdebit', {
 				templateUrl: 'template/cashdebit.html',
 				controller: 'cashdebitController'
@@ -2253,6 +2257,12 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 	});
 	app.controller('cashdebitController', function($scope){
+
+	});
+	app.controller('cashcreditController', function($scope){
+	});
+	app.controller('cashController', function($scope){
+		// Deit part
 		$scope.debitedit = false;
 		$scope.newdebit = {};
 		$scope.curDebit = {};
@@ -2354,8 +2364,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.debitedit = false;
 			$scope.newdebit = {};
 		};
-	});
-	app.controller('cashcreditController', function($scope){
+		// Credit part
 		$scope.creditedit = false;
 		$scope.newcredit = {};
 		$scope.curCredit = {};
