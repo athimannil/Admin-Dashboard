@@ -4,7 +4,29 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem odio, sapiente nesciunt a voluptatibus officiis corporis sequi obcaecati autem ipsam suscipit voluptates dicta, asperiores esse, perferendis eaque dolore animi placeat.</div>
+  <div class="col-md-12">
+    <div class="box">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum ipsa corporis ullam. Veritatis explicabo, sequi deleniti? Explicabo quod unde eius omnis maiores, libero iste, dicta voluptatum animi obcaecati ex odio.</p>
+      <div class="form-inline form-group">
+        <label for="exampleInputName2">Show Month: </label>
+        <select class="form-control" ng-model="curCashoverview" ng-options="cashoverview.month for cashoverview in cashoverviews"></select>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="box">
+            <h4>Total Debit</h4>
+            <h1><i class="fa fa-inr"></i> {{curCashoverview.totaldebit}}</h1>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="box">
+            <h4>Total Credit</h4>
+            <h1><i class="fa fa-inr"></i> {{curCashoverview.totalcredit}}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <tabset class="col-md-12">
     <tab>
       <tab-heading>Cash Debit</tab-heading>

@@ -2253,6 +2253,31 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 	});
 	app.controller('cashController', function($scope){
+		// Debit overview
+		$scope.cashoverviews = [
+			{
+		        "month": "January",
+		        "date": "2015-06-08",
+		        "totaldebit": 8259.85,
+		        "totalcredit": 9122.80
+		    }, {
+		        "month": "February",
+		        "date": "2015-09-08",
+		        "totaldebit": 3467.85,
+		        "totalcredit": 4997.80
+		    }, {
+		        "month": "March",
+		        "date": "2015-09-08",
+		        "totaldebit": 1932.85,
+		        "totalcredit": 6139.60
+		    }, {
+		        "month": "April",
+		        "date": "2015-09-08",
+		        "totaldebit": 1300.85,
+		        "totalcredit": 7330.30
+		    }
+		];
+		$scope.curCashoverview = $scope.cashoverviews[0];
 		// Debit part
 		$scope.debitedit = false;
 		$scope.newdebit = {};
