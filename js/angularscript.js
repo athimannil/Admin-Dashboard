@@ -77,13 +77,9 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				templateUrl: 'template/cash.html',
 				controller: 'cashController'
 			})
-			.when('/cashdebit', {
-				templateUrl: 'template/cashdebit.html',
-				controller: 'cashdebitController'
-			})
-			.when('/cashcredit', {
-				templateUrl: 'template/cashcredit.html',
-				controller: 'cashcreditController'
+			.when('/rent', {
+				templateUrl: 'template/rent.html',
+				controller: 'rentController'
 			})
 			.otherwise({
 				redirectTo: 'template/dashboard.html'
@@ -107,8 +103,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				{page: "project", title: "Project", icon: "briefcase"},
 				{page: "expense", title: "Expenses", icon: "credit-card"},
 				{page: "income", title: "Income", icon: "puzzle-piece"},
-				{page: "cashdebit", title: "Cash Debit", icon: "money"},
-				{page: "cashcredit", title: "Cash Credit", icon: "money"},
+				{page: "cash", title: "Cash", icon: "money"},
 				{page: "insure", title: "Insurance", icon: "ambulance"},
 				{page: "phonebook", title: "Phone book", icon: "book"},
 				{page: "employee", title: "Employee", icon: "users"},
@@ -2256,13 +2251,8 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newincome = {};
 		};
 	});
-	app.controller('cashdebitController', function($scope){
-
-	});
-	app.controller('cashcreditController', function($scope){
-	});
 	app.controller('cashController', function($scope){
-		// Deit part
+		// Debit part
 		$scope.debitedit = false;
 		$scope.newdebit = {};
 		$scope.curDebit = {};
