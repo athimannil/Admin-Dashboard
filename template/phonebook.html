@@ -62,10 +62,17 @@
 					<td>{{selectedContact.secondaryemail}}</td>
 				</tr>
 				<tr ng-repeat="contact in selectedContact.contacts">
-					<th>ontact number {{$index + 1 }}</th>
+					<th>Contact number {{$index + 1 }}</th>
 					<td>{{contact.phone}}</td>
 				</tr>
 				<tr>
+					<th>Employee title</th>
+					<td>{{selectedContact.employee[0].title}}</td>
+				</tr>
+				<tr>
+					<th>Employee description</th>
+					<td><p class="description" popover="{{selectedContact.employee[1].description}}" popover-trigger="mouseenter">{{selectedContact.employee[1].description}}</p></td>
+				</tr>
 			</table>
 		</div>
 		<div class="col-md-9 contact-edit phonebook-box" ng-show="contactMode.editMode">
@@ -113,6 +120,19 @@
 							  </button>
 							</span>
 						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<legend>Employee Details</legend>
+					<label class="col-md-3">Employee name</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" placeholder="Employee name" ng-model="currentContact.employee[0].title">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3">Employee Details</label>
+					<div class="col-md-9">
+						<textarea class="form-control" placeholder="Employee Details" ng-model="currentContact.employee[1].description"></textarea>
 					</div>
 				</div>
 				<div class="form-group">
