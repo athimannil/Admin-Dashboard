@@ -1,517 +1,584 @@
-  <div class="container-fluid" ng-controller="settingsController">
-    <div class="row">
-      <div class="col-md-12">
-        <h3><i class="fa fa-cog"></i> Basic changes</h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <ul class="nav nav-tabs">
-          <li class=""><a href="#users" data-toggle="tab"><i class="fa fa-users"></i> Members</a></li>
-          <li><a href="#basic-settings" data-toggle="tab"><i class="fa fa-gears"></i> Settings</a></li>
-          <li class="active"><a href="#recurring" data-toggle="tab"><i class="fa fa-refresh"></i> Recurring bills</a></li>
-          <li><a href="#cutlery" data-toggle="tab"><i class="fa fa-cutlery"></i> Kitchen</a></li>
-        </ul>
-        <div class="tab-content">
-          <div id="users" class="box tab-pane">
-            <style type="text/css">
-              #members{
-                border-top: 1px solid #DDD;
-              }
-              #members .members:first-child{
-                /*width: 100%;*/
-                margin-top: 0;
-                background-color: #FFF;
-              }
-              #members .members{
-                width: 50%;
-                float: left;
-                border-left: none;
-              }
-              #members li:nth-child(2n){
-                border-left: 1px solid #DDD;
-              }
-              .panel .well {
-                margin-bottom: 0;
-              }
-            </style>
-            <div class="row">
-              <div class="col-md-12 text-right">
-                <div class="form-group">
-                  <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Invite member</button>
+  <!-- <div class="container-fluid" ng-controller="settingsController"> -->
+<div class="row">
+  <div class="col-md-12">
+    <h3><i class="fa fa-cog"></i> Basic changes</h3>
+  </div>
+</div>
+
+<div class="row">
+  <tabset class="col-md-12">
+    <tab>
+      <tab-heading><i class="fa fa-users"></i> Users</tab-heading>
+      <div class="box">
+        <h4>User details</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam dolor, pariatur totam fugiat aliquid beatae quis illo praesentium expedita aut optio, numquam laborum esse blanditiis nemo neque fuga, dolore harum!</p>
+        <table class="table table-hover table-responsive">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Password</th>
+              <th>Email</th>
+              <th>Type</th>
+              <th>Last Login</th>
+              <th>Permission</th>
+              <th>Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="user in users | pagination: currentPage : numPerPage">
+              <td>{{user.name}}</td>
+              <td>{{user.username}}</td>
+              <td>{{user.password}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.last_login}}</td>
+              <td>{{user.type}}</td>
+              <td><a href>{{user.permission}}</a></td>
+              <td>
+                <div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+                  <button type="button" class="btn btn-default" ng-click="editUser(user);">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-click="deleteUser(user); editmode = !editmode">
+                    <i class="fa fa-trash-o"></i>
+                  </button>
                 </div>
-              </div>
-              <div id="members" class="col-md-12">
-                <ul class="list-unstyled">
-                  <li class="members">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Invite member</button>
-                  </li>
-                  <li class="members">
-                    <figure class="pull-left">
-                      <img src="img/me.jpg" alt="Member name" width="100" width="100" class="img-rounded">
-                    </figure>
-                    <ul class="list-unstyled">
-                      <li><strong>MS Basheer</strong></li>
-                      <li><i class="fa fa-phone"></i> 07875 506 426</li>
-                      <li><i class="fa fa-envelope"></i> <a href="mailto:hellow@Basheer.com">hello@Basheer.com</a></li>
-                      <li><i class="fa fa-briefcase"></i> Developer at <a href="">Epic</a></li>
-                      <li><i class="fa fa-skype fa-lg"></i> <a href="#" class="text-info">Basheer</a></li>
-                    </ul>
-                    <div class="btn-group" id="member-settings">
-                      <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></button>
-                      <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
-                        <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"><i class="fa"></i> Set as admin</a></li>
-                      </ul>
-                    </div>
-                  </li>
-                  <li class="members">
-                    <figure class="pull-left">
-                      <img src="img/me.jpg" alt="Member name" width="100" width="100" class="img-rounded">
-                    </figure>
-                    <ul class="list-unstyled">
-                      <li><strong>MS Basheer</strong></li>
-                      <li><i class="fa fa-phone"></i> 07875 506 426</li>
-                      <li><i class="fa fa-envelope"></i> <a href="mailto:hellow@Basheer.com">hello@Basheer.com</a></li>
-                      <li><i class="fa fa-briefcase"></i> Developer at <a href="">Epic</a></li>
-                      <li><i class="fa fa-skype fa-lg"></i> <a href="#" class="text-info">Basheer</a></li>
-                    </ul>
-                    <div class="btn-group" id="member-settings">
-                      <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></button>
-                      <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
-                        <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"><i class="fa"></i> Set as admin</a></li>
-                      </ul>
-                    </div>
-                  </li>
-                  <li class="members">
-                    <figure class="pull-left">
-                      <img src="img/me.jpg" alt="Member name" width="100" width="100" class="img-rounded">
-                    </figure>
-                    <ul class="list-unstyled">
-                      <li><strong>MS Basheer</strong></li>
-                      <li><i class="fa fa-phone"></i> 07875 506 426</li>
-                      <li><i class="fa fa-envelope"></i> <a href="mailto:hellow@Basheer.com">hello@Basheer.com</a></li>
-                      <li><i class="fa fa-briefcase"></i> Developer at <a href="">Epic</a></li>
-                      <li><i class="fa fa-skype fa-lg"></i> <a href="#" class="text-info">Basheer</a></li>
-                    </ul>
-                    <div class="btn-group" id="member-settings">
-                      <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></button>
-                      <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
-                        <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"><i class="fa"></i> Set as admin</a></li>
-                      </ul>
-                    </div>
-                  </li>
-                  <li class="members">
-                    <figure class="pull-left">
-                      <img src="img/me.jpg" alt="Member name" width="100" width="100" class="img-rounded">
-                    </figure>
-                    <ul class="list-unstyled">
-                      <li><strong>MS Basheer</strong></li>
-                      <li><i class="fa fa-phone"></i> 07875 506 426</li>
-                      <li><i class="fa fa-envelope"></i> <a href="mailto:hellow@Basheer.com">hello@Basheer.com</a></li>
-                      <li><i class="fa fa-briefcase"></i> Developer at <a href="">Epic</a></li>
-                      <li><i class="fa fa-skype fa-lg"></i> <a href="#" class="text-info">Basheer</a></li>
-                    </ul>
-                    <div class="btn-group" id="member-settings">
-                      <button i type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></button>
-                      <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
-                        <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"><i class="fa"></i> Set as admin</a></li>
-                      </ul>
-                    </div>
-                  </li>
-                  <li class="members">
-                    <figure class="pull-left">
-                      <img src="img/me.jpg" alt="Member name" width="100" width="100" class="img-rounded">
-                    </figure>
-                    <ul class="list-unstyled">
-                      <li><strong>MS Basheer</strong></li>
-                      <li><i class="fa fa-phone"></i> 07875 506 426</li>
-                      <li><i class="fa fa-envelope"></i> <a href="mailto:hellow@Basheer.com">hello@Basheer.com</a></li>
-                      <li><i class="fa fa-briefcase"></i> Developer at <a href="">Epic</a></li>
-                      <li><i class="fa fa-skype fa-lg"></i> <a href="#" class="text-info">Basheer</a></li>
-                    </ul>
-                    <div class="btn-group" id="member-settings">
-                      <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></button>
-                      <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
-                        <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"><i class="fa"></i> Set as admin</a></li>
-                      </ul>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="clearfix" ng-show="users.length > numPerPage">
+          <pagination 
+            ng-model="currentPage" 
+            total-items="users.length" 
+            max-size="5" 
+            boundary-links="true" 
+            class="pagination-sm pull-right" 
+            previous-text="&lsaquo;" 
+            next-text="&rsaquo;" 
+            first-text="&laquo;" 
+            last-text="&raquo;"
+          ></pagination>
+        </div>
+      </div>
+    </tab>
+  </tabset>
+</div>
+
+
+
+
+
+
+
+<div class="row hide">
+  <div class="col-md-12">
+    <ul class="nav nav-tabs">
+      <li class=""><a href="#users" data-toggle="tab"><i class="fa fa-users"></i> Members</a></li>
+      <li><a href="#basic-settings" data-toggle="tab"><i class="fa fa-gears"></i> Settings</a></li>
+      <li class="active"><a href="#recurring" data-toggle="tab"><i class="fa fa-refresh"></i> Recurring bills</a></li>
+      <li><a href="#cutlery" data-toggle="tab"><i class="fa fa-cutlery"></i> Kitchen</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="users" class="box tab-pane active">
+        <style type="text/css">
+          #members{
+            border-top: 1px solid #DDD;
+          }
+          #members .members:first-child{
+            /*width: 100%;*/
+            margin-top: 0;
+            background-color: #FFF;
+          }
+          #members .members{
+            width: 50%;
+            float: left;
+            border-left: none;
+          }
+          #members li:nth-child(2n){
+            border-left: 1px solid #DDD;
+          }
+          .panel .well {
+            margin-bottom: 0;
+          }
+        </style>
+        <div class="row">
+          <div class="col-md-12 text-right">
+            <div class="form-group">
+              <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Invite member</button>
             </div>
           </div>
-          <div id="basic-settings" class="box tab-pane">
-            <div class="row">
-              <div class="col-md-6">
-                <form class="form-horizontal" role="form">
-                  <div class="form-group">
-                    <label for="main-admin" class="col-sm-3 control-label">Admin members</label>
-                    <div class="col-sm-9">
-                      <select id="main-admin" multiple data-selected-text-format="count">
-                        <option>MS Basheer</option>
-                        <option>Muhsin Manniyil</option>
-                        <option>Prince Roshan</option>
-                        <option>Mohasin Moorkote</option>
-                      </select>
-                    </div>
+          <div id="members" class="col-md-12">
+            <ul class="list-unstyled">
+              <li class="members">
+                <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Invite member</button>
+              </li>
+              <li class="members">
+                <figure class="pull-left">
+                  <img src="img/me.jpg" alt="Member name" width="100" width="100" class="img-rounded">
+                </figure>
+                <ul class="list-unstyled">
+                  <li><strong>MS Basheer</strong></li>
+                  <li><i class="fa fa-phone"></i> 07875 506 426</li>
+                  <li><i class="fa fa-envelope"></i> <a href="mailto:hellow@Basheer.com">hello@Basheer.com</a></li>
+                  <li><i class="fa fa-briefcase"></i> Developer at <a href="">Epic</a></li>
+                  <li><i class="fa fa-skype fa-lg"></i> <a href="#" class="text-info">Basheer</a></li>
+                </ul>
+                <div class="btn-group" id="member-settings">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
+                    <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="fa"></i> Set as admin</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="members">
+                <figure class="pull-left">
+                  <img src="img/me.jpg" alt="Member name" width="100" width="100" class="img-rounded">
+                </figure>
+                <ul class="list-unstyled">
+                  <li><strong>MS Basheer</strong></li>
+                  <li><i class="fa fa-phone"></i> 07875 506 426</li>
+                  <li><i class="fa fa-envelope"></i> <a href="mailto:hellow@Basheer.com">hello@Basheer.com</a></li>
+                  <li><i class="fa fa-briefcase"></i> Developer at <a href="">Epic</a></li>
+                  <li><i class="fa fa-skype fa-lg"></i> <a href="#" class="text-info">Basheer</a></li>
+                </ul>
+                <div class="btn-group" id="member-settings">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
+                    <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="fa"></i> Set as admin</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="members">
+                <figure class="pull-left">
+                  <img src="img/me.jpg" alt="Member name" width="100" width="100" class="img-rounded">
+                </figure>
+                <ul class="list-unstyled">
+                  <li><strong>MS Basheer</strong></li>
+                  <li><i class="fa fa-phone"></i> 07875 506 426</li>
+                  <li><i class="fa fa-envelope"></i> <a href="mailto:hellow@Basheer.com">hello@Basheer.com</a></li>
+                  <li><i class="fa fa-briefcase"></i> Developer at <a href="">Epic</a></li>
+                  <li><i class="fa fa-skype fa-lg"></i> <a href="#" class="text-info">Basheer</a></li>
+                </ul>
+                <div class="btn-group" id="member-settings">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
+                    <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="fa"></i> Set as admin</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="members">
+                <figure class="pull-left">
+                  <img src="img/me.jpg" alt="Member name" width="100" width="100" class="img-rounded">
+                </figure>
+                <ul class="list-unstyled">
+                  <li><strong>MS Basheer</strong></li>
+                  <li><i class="fa fa-phone"></i> 07875 506 426</li>
+                  <li><i class="fa fa-envelope"></i> <a href="mailto:hellow@Basheer.com">hello@Basheer.com</a></li>
+                  <li><i class="fa fa-briefcase"></i> Developer at <a href="">Epic</a></li>
+                  <li><i class="fa fa-skype fa-lg"></i> <a href="#" class="text-info">Basheer</a></li>
+                </ul>
+                <div class="btn-group" id="member-settings">
+                  <button i type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
+                    <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="fa"></i> Set as admin</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="members">
+                <figure class="pull-left">
+                  <img src="img/me.jpg" alt="Member name" width="100" width="100" class="img-rounded">
+                </figure>
+                <ul class="list-unstyled">
+                  <li><strong>MS Basheer</strong></li>
+                  <li><i class="fa fa-phone"></i> 07875 506 426</li>
+                  <li><i class="fa fa-envelope"></i> <a href="mailto:hellow@Basheer.com">hello@Basheer.com</a></li>
+                  <li><i class="fa fa-briefcase"></i> Developer at <a href="">Epic</a></li>
+                  <li><i class="fa fa-skype fa-lg"></i> <a href="#" class="text-info">Basheer</a></li>
+                </ul>
+                <div class="btn-group" id="member-settings">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
+                    <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="fa"></i> Set as admin</a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="basic-settings" class="box tab-pane">
+        <div class="row">
+          <div class="col-md-6">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="main-admin" class="col-sm-3 control-label">Admin members</label>
+                <div class="col-sm-9">
+                  <select id="main-admin" multiple data-selected-text-format="count">
+                    <option>MS Basheer</option>
+                    <option>Muhsin Manniyil</option>
+                    <option>Prince Roshan</option>
+                    <option>Mohasin Moorkote</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="currency" class="col-sm-3 control-label">Currency</label>
+                <div class="col-sm-9">
+                  <select name="currency" id="currency" data-width="auto">
+                    <option value="₹">₹</option>
+                    <option value="$">$</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="monthly-limit" class="col-sm-3 control-label">Monthly limit</label>
+                <div class="col-sm-3">
+                  <div class="input-group">
+                    <span class="input-group-addon">₹</span>
+                    <input type="text" class="form-control">
                   </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="payment-to" class="col-sm-3 control-label">Payment to</label>
+                <div class="col-sm-9">
+                  <select id="payment-to">
+                    <option>MS Basheer</option>
+                    <option>Muhsin Manniyil</option>
+                    <option>Prince Roshan</option>
+                    <option>Mohasin Moorkote</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div id="recurring" class="box tab-pane">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">Add a recurring bill</h3>
+              </div>
+              <div class="panel-body">
+                <form role="form">
                   <div class="form-group">
-                    <label for="currency" class="col-sm-3 control-label">Currency</label>
-                    <div class="col-sm-9">
-                      <select name="currency" id="currency" data-width="auto">
-                        <option value="₹">₹</option>
-                        <option value="$">$</option>
-                      </select>
-                    </div>
+                    <label for="item-name">Item name</label>
+                    <input type="text" class="form-control" id="item-name" placeholder="Eg: Broadband">
                   </div>
-                  <div class="form-group">
-                    <label for="monthly-limit" class="col-sm-3 control-label">Monthly limit</label>
-                    <div class="col-sm-3">
+                  <!-- <div class="form-group"> -->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="checkbox">
+                        <label><input type="checkbox"> Fixed amount</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
                       <div class="input-group">
                         <span class="input-group-addon">₹</span>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" placeholder="0.00">
                       </div>
                     </div>
                   </div>
+                  <!-- </div> -->
                   <div class="form-group">
-                    <label for="payment-to" class="col-sm-3 control-label">Payment to</label>
-                    <div class="col-sm-9">
-                      <select id="payment-to">
-                        <option>MS Basheer</option>
-                        <option>Muhsin Manniyil</option>
-                        <option>Prince Roshan</option>
-                        <option>Mohasin Moorkote</option>
-                      </select>
+                    <label for="bill-date">Next bill date</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="0.00">
+                      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                     </div>
                   </div>
+                  <div class="form-group">
+                    <label for="prchase-date">Bill type</label>
+                    <select class="selectpicker" data-width="100%">
+                      <option value="Daily">Daily</option>
+                      <option value="Weekly">Weekly</option>
+                      <option value="Monthly">Monthly</option>
+                      <option value="Yearly">Yearly</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary pull-right">
+                    <i class="fa fa-plus"></i> Add to bills</button>
                 </form>
               </div>
             </div>
           </div>
-          <div id="recurring" class="box tab-pane active">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="panel panel-primary">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Add a recurring bill</h3>
-                  </div>
-                  <div class="panel-body">
-                    <form role="form">
-                      <div class="form-group">
-                        <label for="item-name">Item name</label>
-                        <input type="text" class="form-control" id="item-name" placeholder="Eg: Broadband">
-                      </div>
-                      <!-- <div class="form-group"> -->
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="checkbox">
-                            <label><input type="checkbox"> Fixed amount</label>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="input-group">
-                            <span class="input-group-addon">₹</span>
-                            <input type="text" class="form-control" placeholder="0.00">
-                          </div>
-                        </div>
-                      </div>
-                      <!-- </div> -->
-                      <div class="form-group">
-                        <label for="bill-date">Next bill date</label>
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="0.00">
-                          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="prchase-date">Bill type</label>
-                        <select class="selectpicker" data-width="100%">
-                          <option value="Daily">Daily</option>
-                          <option value="Weekly">Weekly</option>
-                          <option value="Monthly">Monthly</option>
-                          <option value="Yearly">Yearly</option>
-                        </select>
-                      </div>
-                      <button type="submit" class="btn btn-primary pull-right">
-                        <i class="fa fa-plus"></i> Add to bills</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
 
-              <div class="col-md-4">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Broadband</h3>
-                  </div>
-                  <div class="panel-body">
-                    <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
-                    <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
-                    <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
-                    <div class="well text-center">Amount Due: <strong> ₹23.50</strong></div>
-                  </div>
-                </div>
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Broadband</h3>
               </div>
-              <div class="col-md-4">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Electricity</h3>
-                  </div>
-                  <div class="panel-body">
-                    <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
-                    <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
-                    <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
-                    <div class="well text-center">Amount Due: <strong> ₹23.50</strong></div>
-                  </div>
-                </div>
+              <div class="panel-body">
+                <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
+                <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
+                <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
+                <div class="well text-center">Amount Due: <strong> ₹23.50</strong></div>
               </div>
-              <div class="col-md-4">
-                <div class="panel panel-success">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Gas</h3>
-                  </div>
-                  <div class="panel-body">
-                    <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
-                    <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
-                    <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
-                    <div class="well text-center">Amount Due: <strong> ₹23.50</strong></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="panel panel-info">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Council Tax</h3>
-                  </div>
-                  <div class="panel-body">
-                    <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
-                    <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
-                    <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
-                    <div class="well text-center">Amount Due: <strong> ₹321.76</strong></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="panel panel-warning">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Panel title</h3>
-                  </div>
-                  <div class="panel-body">
-                    <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
-                    <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
-                    <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
-                    <div class="well text-center">Amount Due: <strong> ₹23.50</strong></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="panel panel-danger">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Panel title</h3>
-                  </div>
-                  <div class="panel-body">
-                    <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
-                    <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
-                    <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
-                    <div class="well text-center">Amount Due: <strong> ₹23.50</strong></div>
-                  </div>
-                </div>
-              </div>
-            </div>            
+            </div>
           </div>
-          <div id="cutlery" class="box tab-pane">
-            <div class="row">
-              <div class="col-md-2">
-                <strong>Monday</strong>
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Electricity</h3>
               </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <select class="selectpicker" data-width="100%">
-                    <option>MS Basheer</option>
-                    <option>Muhsin Manniyil</option>
-                    <option>Prince Roshan</option>
-                    <option>Mohasin Moorkote</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <select class="selectpicker" data-width="100%">
-                    <option>MS Basheer</option>
-                    <option>Muhsin Manniyil</option>
-                    <option>Prince Roshan</option>
-                    <option>Mohasin Moorkote</option>
-                  </select>
-                </div>
+              <div class="panel-body">
+                <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
+                <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
+                <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
+                <div class="well text-center">Amount Due: <strong> ₹23.50</strong></div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-2">
-                <strong>Tuesday</strong>
+          </div>
+          <div class="col-md-4">
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">Gas</h3>
               </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <select class="selectpicker" data-width="100%">
-                    <option>MS Basheer</option>
-                    <option>Muhsin Manniyil</option>
-                    <option>Prince Roshan</option>
-                    <option>Mohasin Moorkote</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <select class="selectpicker" data-width="100%">
-                    <option>MS Basheer</option>
-                    <option>Muhsin Manniyil</option>
-                    <option>Prince Roshan</option>
-                    <option>Mohasin Moorkote</option>
-                  </select>
-                </div>
+              <div class="panel-body">
+                <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
+                <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
+                <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
+                <div class="well text-center">Amount Due: <strong> ₹23.50</strong></div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-2">
-                <strong>Wednesday</strong>
+          </div>
+          <div class="col-md-4">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">Council Tax</h3>
               </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <select class="selectpicker" data-width="100%">
-                    <option>MS Basheer</option>
-                    <option>Muhsin Manniyil</option>
-                    <option>Prince Roshan</option>
-                    <option>Mohasin Moorkote</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <select class="selectpicker" data-width="100%">
-                    <option>MS Basheer</option>
-                    <option>Muhsin Manniyil</option>
-                    <option>Prince Roshan</option>
-                    <option>Mohasin Moorkote</option>
-                  </select>
-                </div>
+              <div class="panel-body">
+                <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
+                <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
+                <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
+                <div class="well text-center">Amount Due: <strong> ₹321.76</strong></div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-2">
-                <strong>Thursday</strong>
+          </div>
+          <div class="col-md-4">
+            <div class="panel panel-warning">
+              <div class="panel-heading">
+                <h3 class="panel-title">Panel title</h3>
               </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <select class="selectpicker" data-width="100%">
-                    <option>MS Basheer</option>
-                    <option>Muhsin Manniyil</option>
-                    <option>Prince Roshan</option>
-                    <option>Mohasin Moorkote</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <select class="selectpicker" data-width="100%">
-                    <option>MS Basheer</option>
-                    <option>Muhsin Manniyil</option>
-                    <option>Prince Roshan</option>
-                    <option>Mohasin Moorkote</option>
-                  </select>
-                </div>
+              <div class="panel-body">
+                <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
+                <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
+                <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
+                <div class="well text-center">Amount Due: <strong> ₹23.50</strong></div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-2">
-                <strong>Friday</strong>
+          </div>
+          <div class="col-md-4">
+            <div class="panel panel-danger">
+              <div class="panel-heading">
+                <h3 class="panel-title">Panel title</h3>
               </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <select class="selectpicker" data-width="100%">
-                    <option>MS Basheer</option>
-                    <option>Muhsin Manniyil</option>
-                    <option>Prince Roshan</option>
-                    <option>Mohasin Moorkote</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <select class="selectpicker" data-width="100%">
-                    <option>MS Basheer</option>
-                    <option>Muhsin Manniyil</option>
-                    <option>Prince Roshan</option>
-                    <option>Mohasin Moorkote</option>
-                  </select>
-                </div>
+              <div class="panel-body">
+                <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
+                <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
+                <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
+                <div class="well text-center">Amount Due: <strong> ₹23.50</strong></div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-2">
-                <strong>Saturday</strong>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <select class="selectpicker" data-width="100%">
-                    <option>MS Basheer</option>
-                    <option>Muhsin Manniyil</option>
-                    <option>Prince Roshan</option>
-                    <option>Mohasin Moorkote</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <select class="selectpicker" data-width="100%">
-                    <option>MS Basheer</option>
-                    <option>Muhsin Manniyil</option>
-                    <option>Prince Roshan</option>
-                    <option>Mohasin Moorkote</option>
-                  </select>
-                </div>
-              </div>
+          </div>
+        </div>            
+      </div>
+      <div id="cutlery" class="box tab-pane">
+        <div class="row">
+          <div class="col-md-2">
+            <strong>Monday</strong>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="selectpicker" data-width="100%">
+                <option>MS Basheer</option>
+                <option>Muhsin Manniyil</option>
+                <option>Prince Roshan</option>
+                <option>Mohasin Moorkote</option>
+              </select>
             </div>
-            <div class="row">
-              <div class="col-md-2">
-                <strong>Sunday</strong>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <select class="selectpicker" data-width="100%">
-                    <option>MS Basheer</option>
-                    <option>Muhsin Manniyil</option>
-                    <option>Prince Roshan</option>
-                    <option>Mohasin Moorkote</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <select class="selectpicker" data-width="100%">
-                    <option>MS Basheer</option>
-                    <option>Muhsin Manniyil</option>
-                    <option>Prince Roshan</option>
-                    <option>Mohasin Moorkote</option>
-                  </select>
-                </div>
-              </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="selectpicker" data-width="100%">
+                <option>MS Basheer</option>
+                <option>Muhsin Manniyil</option>
+                <option>Prince Roshan</option>
+                <option>Mohasin Moorkote</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <strong>Tuesday</strong>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="selectpicker" data-width="100%">
+                <option>MS Basheer</option>
+                <option>Muhsin Manniyil</option>
+                <option>Prince Roshan</option>
+                <option>Mohasin Moorkote</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="selectpicker" data-width="100%">
+                <option>MS Basheer</option>
+                <option>Muhsin Manniyil</option>
+                <option>Prince Roshan</option>
+                <option>Mohasin Moorkote</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <strong>Wednesday</strong>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="selectpicker" data-width="100%">
+                <option>MS Basheer</option>
+                <option>Muhsin Manniyil</option>
+                <option>Prince Roshan</option>
+                <option>Mohasin Moorkote</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="selectpicker" data-width="100%">
+                <option>MS Basheer</option>
+                <option>Muhsin Manniyil</option>
+                <option>Prince Roshan</option>
+                <option>Mohasin Moorkote</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <strong>Thursday</strong>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="selectpicker" data-width="100%">
+                <option>MS Basheer</option>
+                <option>Muhsin Manniyil</option>
+                <option>Prince Roshan</option>
+                <option>Mohasin Moorkote</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="selectpicker" data-width="100%">
+                <option>MS Basheer</option>
+                <option>Muhsin Manniyil</option>
+                <option>Prince Roshan</option>
+                <option>Mohasin Moorkote</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <strong>Friday</strong>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="selectpicker" data-width="100%">
+                <option>MS Basheer</option>
+                <option>Muhsin Manniyil</option>
+                <option>Prince Roshan</option>
+                <option>Mohasin Moorkote</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="selectpicker" data-width="100%">
+                <option>MS Basheer</option>
+                <option>Muhsin Manniyil</option>
+                <option>Prince Roshan</option>
+                <option>Mohasin Moorkote</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <strong>Saturday</strong>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="selectpicker" data-width="100%">
+                <option>MS Basheer</option>
+                <option>Muhsin Manniyil</option>
+                <option>Prince Roshan</option>
+                <option>Mohasin Moorkote</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="selectpicker" data-width="100%">
+                <option>MS Basheer</option>
+                <option>Muhsin Manniyil</option>
+                <option>Prince Roshan</option>
+                <option>Mohasin Moorkote</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <strong>Sunday</strong>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="selectpicker" data-width="100%">
+                <option>MS Basheer</option>
+                <option>Muhsin Manniyil</option>
+                <option>Prince Roshan</option>
+                <option>Mohasin Moorkote</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select class="selectpicker" data-width="100%">
+                <option>MS Basheer</option>
+                <option>Muhsin Manniyil</option>
+                <option>Prince Roshan</option>
+                <option>Mohasin Moorkote</option>
+              </select>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+  <!-- </div> -->

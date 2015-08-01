@@ -244,7 +244,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.selectedTab = switchTab;
 		};
 	});
-	app.controller('settingsController', function($scope){});
 	app.filter('percentage', ['$filter', function ($filter) {
 		return function (input, decimals) {
 			return $filter('number')(input * 100, decimals) + '%';
@@ -2611,4 +2610,149 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newrent = {};
 		};
 	});
+	app.controller('settingsController', function($scope){
+		$scope.users = [
+			{
+			    "id": 1,
+			    "name": "George",
+			    "username": "Raya",
+			    "password": "Elijah",
+			    "email": "dis@Cum.net",
+			    "last_login": "02-20-2016",
+			    "type": "Dr.",
+			    "permission": "Payroll"
+			}, {
+			    "id": 2,
+			    "name": "Deirdre",
+			    "username": "Bernard",
+			    "password": "Garrison",
+			    "email": "a.tortor@faucibusidlibero.co.uk",
+			    "last_login": "08-10-2014",
+			    "type": "",
+			    "permission": "Tech Support"
+			}, {
+			    "id": 3,
+			    "name": "Rigel",
+			    "username": "Demetria",
+			    "password": "Wade",
+			    "email": "Nunc.mauris.Morbi@arcuSed.edu",
+			    "last_login": "12-31-2014",
+			    "type": "Ms.",
+			    "permission": "Finances"
+			}, {
+			    "id": 4,
+			    "name": "Lacota",
+			    "username": "Alana",
+			    "password": "Octavius",
+			    "email": "magnis.dis@egettincidunt.co.uk",
+			    "last_login": "11-23-2014",
+			    "type": "Ms.",
+			    "permission": "Public Relations"
+			}, {
+			    "id": 5,
+			    "name": "Shay",
+			    "username": "Alyssa",
+			    "password": "Veda",
+			    "email": "purus.in@faucibusutnulla.co.uk",
+			    "last_login": "11-13-2015",
+			    "type": "Mr.",
+			    "permission": "Media Relations"
+			}, {
+			    "id": 6,
+			    "name": "Colt",
+			    "username": "Odysseus",
+			    "password": "Oscar",
+			    "email": "velit.Aliquam@Maecenasmi.org",
+			    "last_login": "11-02-2014",
+			    "type": "Mrs.",
+			    "permission": "Customer Relations"
+			}, {
+			    "id": 7,
+			    "name": "Ethan",
+			    "username": "Blossom",
+			    "password": "Colette",
+			    "email": "ac@nisidictumaugue.com",
+			    "last_login": "05-16-2016",
+			    "type": "Ms.",
+			    "permission": "Advertising"
+			}, {
+			    "id": 8,
+			    "name": "Melissa",
+			    "username": "Susan",
+			    "password": "Jeanette",
+			    "email": "nec.quam@laoreet.co.uk",
+			    "last_login": "12-10-2015",
+			    "type": "Ms.",
+			    "permission": "Payroll"
+			}, {
+			    "id": 9,
+			    "name": "Yardley",
+			    "username": "Nehru",
+			    "password": "Desiree",
+			    "email": "blandit.congue@IntegermollisInteger.edu",
+			    "last_login": "06-05-2015",
+			    "type": "Ms.",
+			    "permission": "Accounting"
+			}, {
+			    "id": 10,
+			    "name": "Bethany",
+			    "username": "Cedric",
+			    "password": "Emma",
+			    "email": "dapibus.gravida@nullaDonec.com",
+			    "last_login": "06-16-2016",
+			    "type": "Dr.",
+			    "permission": "Accounting"
+			}, {
+			    "id": 11,
+			    "name": "Latifah",
+			    "username": "Camden",
+			    "password": "April",
+			    "email": "hendrerit.consectetuer@nequepellentesquemassa.org",
+			    "last_login": "04-21-2015",
+			    "type": "",
+			    "permission": "Tech Support"
+			}, {
+			    "id": 12,
+			    "name": "Amaya",
+			    "username": "Orla",
+			    "password": "Carla",
+			    "email": "dolor.sit.amet@Donecegestas.co.uk",
+			    "last_login": "08-09-2015",
+			    "type": "Dr.",
+			    "permission": "Accounting"
+			}, {
+			    "id": 13,
+			    "name": "Kelly",
+			    "username": "Charlotte",
+			    "password": "Gretchen",
+			    "email": "cursus@netus.co.uk",
+			    "last_login": "10-04-2014",
+			    "type": "Mrs.",
+			    "permission": "Finances"
+			}, {
+			    "id": 14,
+			    "name": "Omar",
+			    "username": "Roary",
+			    "password": "Dale",
+			    "email": "tellus@erat.net",
+			    "last_login": "02-02-2015",
+			    "type": "Mrs.",
+			    "permission": "Accounting"
+			}, {
+			    "id": 15,
+			    "name": "Warren",
+			    "username": "Forrest",
+			    "password": "Cyrus",
+			    "email": "velit.egestas.lacinia@penatibusetmagnis.edu",
+			    "last_login": "05-09-2016",
+			    "type": "Ms.",
+			    "permission": "Research and Development"
+			}
+		];
+	});
+
+
+
+
+
 })();
