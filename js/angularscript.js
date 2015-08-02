@@ -120,7 +120,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 
 
 		// Toggle sede menu
-		$scope.menuStatus = false;
+		$scope.menuStatus = true;
 		$scope.toggleMenu = function(){
 			$scope.menuStatus = $scope.menuStatus === false ? true : false;
 		};
@@ -2611,6 +2611,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 	});
 	app.controller('settingsController', function($scope){
+		$scope.resetPermission = true;
 		$scope.users = [
 			{
 			    "id": 1,
@@ -2749,6 +2750,19 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			    "permission": "Research and Development"
 			}
 		];
+		$scope.resetPassword = function (thisUser) {
+			var confirmReset = confirm("Do you need to reset "+thisUser.name+"\'s password !");
+			if (confirmReset) {
+				alert("yes");
+			}
+		};
+		$scope.userPermission = {
+			"write": true,
+			"edit": false
+		};
+		$scope.permissionMode = function (argument) {
+			$scope.resetPermission = true;
+		};
 	});
 
 

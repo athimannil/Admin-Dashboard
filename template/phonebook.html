@@ -65,11 +65,11 @@
 					<th>Contact number {{$index + 1 }}</th>
 					<td>{{contact.phone}}</td>
 				</tr>
-				<tr>
+				<tr ng-show="selectedContact.isEmployee">
 					<th>Employee title</th>
 					<td>{{selectedContact.employee[0].title}}</td>
 				</tr>
-				<tr>
+				<tr ng-show="selectedContact.isEmployee">
 					<th>Employee description</th>
 					<td><p class="description" popover="{{selectedContact.employee[1].description}}" popover-trigger="mouseenter">{{selectedContact.employee[1].description}}</p></td>
 				</tr>

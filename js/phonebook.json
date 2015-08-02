@@ -12,7 +12,7 @@
               {"phone": "(516) 312-8998"},
               {"phone": "03 10 89 80 99"}
           ],
-          "isEmployee": "false",
+          "isEmployee": false,
           "employee": [
             {"title": "developer"},
             {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam deleniti voluptate temporibus recusandae, vero incidunt non laboriosam exercitationem inventore consectetur quam sint autem soluta nisi error praesentium nostrum. Assumenda, inventore."}
@@ -29,7 +29,7 @@
               {"phone": "(975) 434-4309"},
               {"phone": "07 81 73 29 97"}
           ],
-          "isEmployee": "true",
+          "isEmployee": true,
           "employee": [
             {"title": "developer"},
             {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis nam, iusto voluptas veritatis. Voluptatem itaque alias tempore rem qui, voluptas, natus iusto sequi necessitatibus sit mollitia adipisci cum dignissimos tenetur."}
@@ -46,7 +46,7 @@
               {"phone": "(260) 618-9707"},
               {"phone": "02 39 96 89 09"}
           ],
-          "isEmployee": "true",
+          "isEmployee": true,
           "employee": [
             {"title": "developer"},
             {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita iure autem magni, qui dignissimos sapiente sunt placeat quas, consequatur maiores architecto accusantium minus dolorum culpa doloribus, aut quia nobis! Animi."}
@@ -63,7 +63,7 @@
               {"phone": "(412) 281-3850"},
               {"phone": "06 34 93 80 47"}
           ],
-          "isEmployee": "false",
+          "isEmployee": false,
           "employee": [
             {"title": "developer"},
             {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur libero est illum dicta molestiae maxime, expedita asperiores eos nesciunt laborum, dolores, officia dolorum doloremque sint ab corporis ea possimus harum."}
@@ -80,7 +80,7 @@
               {"phone": "(265) 893-5251"},
               {"phone": "04 89 57 48 62"}
           ],
-          "isEmployee": "true",
+          "isEmployee": true,
           "employee": [
             {"title": "developer"},
             {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero accusantium reprehenderit, unde totam doloremque excepturi, harum, omnis, blanditiis nostrum officia minima reiciendis veniam ea laboriosam eligendi repudiandae dolorem rem ratione."}
@@ -97,7 +97,7 @@
               {"phone": "(317) 446-8931"},
               {"phone": "06 61 96 39 62"}
           ],
-          "isEmployee": "true",
+          "isEmployee": true,
           "employee": [
             {"title": "developer"},
             {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis accusamus laborum culpa est, amet ipsam debitis quae placeat obcaecati reprehenderit quaerat, magni deserunt. Officiis commodi rerum, amet iste earum omnis."}
@@ -114,7 +114,7 @@
               {"phone": "(158) 125-8843"},
               {"phone": "01 54 21 37 94"}
           ],
-          "isEmployee": "false",
+          "isEmployee": false,
           "employee": [
             {"title": "developer"},
             {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam esse veritatis recusandae asperiores laudantium quo officia minima distinctio, nulla saepe! Obcaecati, maxime enim quas modi autem, fuga facere. Officiis, aperiam!"}
@@ -131,7 +131,7 @@
               {"phone": "(338) 260-2245"},
               {"phone": "06 15 86 79 09"}
           ],
-          "isEmployee": "false",
+          "isEmployee": false,
           "employee": [
             {"title": "developer"},
             {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor laborum tempore, saepe temporibus soluta quibusdam explicabo repellendus ea commodi quidem, minima eius illum fugit natus voluptate aperiam nemo repellat deserunt."}
@@ -148,7 +148,7 @@
               {"phone": "(906) 163-1096"},
               {"phone": "01 63 67 69 85"}
           ],
-          "isEmployee": "true",
+          "isEmployee": true,
           "employee": [
             {"title": "developer"},
             {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat vel dolores nulla libero dignissimos at quis. Reprehenderit, quasi nostrum blanditiis unde possimus, saepe inventore repudiandae quae error. Ducimus, iste."}
@@ -165,7 +165,7 @@
               {"phone": "(224) 922-2320"},
               {"phone": "04 37 61 50 49"}
           ],
-          "isEmployee": "false",
+          "isEmployee": false,
           "employee": [
             {"title": "developer"},
             {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro nostrum vel obcaecati ipsam error harum similique! Rem minima, recusandae reprehenderit blanditiis, mollitia eum aspernatur cumque architecto odit iure. Eius, cupiditate."}
@@ -182,7 +182,7 @@
               {"phone": "(768) 780-6316"},
               {"phone": "08 01 97 87 88"}
           ],
-          "isEmployee": "false",
+          "isEmployee": false,
           "employee": [
             {"title": "developer"},
             {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis eius quae necessitatibus odio itaque, voluptate possimus commodi suscipit iste voluptas consequuntur quos quo pariatur, nemo assumenda tenetur incidunt. At, ducimus!"}
@@ -199,7 +199,7 @@
               {"phone": "(486) 875-6416"},
               {"phone": "05 28 98 51 50"}
           ],
-          "isEmployee": "true",
+          "isEmployee": true,
           "employee": [
             {"title": "developer"},
             {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam voluptate tempora laudantium totam est quam aperiam perferendis, vel amet labore consectetur dolorem odio reiciendis ducimus nobis harum provident, vitae autem."}
@@ -216,7 +216,7 @@
               {"phone": "(669) 526-2613"},
               {"phone": "01 02 12 95 18"}
           ],
-          "isEmployee": "true",
+          "isEmployee": true,
           "employee": [
             {"title": "developer"},
             {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla molestiae praesentium provident quidem commodi consequatur, dolor dignissimos non aperiam velit minima voluptates vero reprehenderit recusandae adipisci autem molestias, neque error."}
@@ -233,7 +233,7 @@
               {"phone": "(275) 780-5692"},
               {"phone": "09 17 07 78 17"}
           ],
-          "isEmployee": "false",
+          "isEmployee": false,
           "employee": [
             {"title": "developer"},
             {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, quos, laboriosam. Eligendi adipisci porro non accusamus impedit hic, beatae totam praesentium sit ipsa commodi vero, doloremque ducimus ratione nostrum rem."}
@@ -250,7 +250,7 @@
               {"phone": "(224) 873-2580"},
               {"phone": "06 93 00 54 07"}
           ],
-          "isEmployee": "true",
+          "isEmployee": true,
           "employee": [
             {"title": "developer"},
             {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum delectus recusandae consectetur, repudiandae optio quia sequi quibusdam repellat error odio vero similique nostrum ducimus quis ut amet magnam eligendi provident!"}

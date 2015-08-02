@@ -9,7 +9,7 @@
   <tabset class="col-md-12">
     <tab>
       <tab-heading><i class="fa fa-users"></i> Users</tab-heading>
-      <div class="box">
+      <div class="box" ng-hide="resetPermission">
         <h4>User details</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam dolor, pariatur totam fugiat aliquid beatae quis illo praesentium expedita aut optio, numquam laborum esse blanditiis nemo neque fuga, dolore harum!</p>
         <table class="table table-hover table-responsive">
@@ -19,9 +19,7 @@
               <th>Username</th>
               <th>Password</th>
               <th>Email</th>
-              <th>Type</th>
               <th>Last Login</th>
-              <th>Permission</th>
               <th>Edit</th>
             </tr>
           </thead>
@@ -29,13 +27,18 @@
             <tr ng-repeat="user in users | pagination: currentPage : numPerPage">
               <td>{{user.name}}</td>
               <td>{{user.username}}</td>
-              <td>{{user.password}}</td>
+              <td>
+                <button type="button" class="btn btn-info btn-xs" ng-click="resetPassword(user)">
+                  <i class="fa fa-refresh"></i> reset
+                </button>
+              </td>
               <td>{{user.email}}</td>
               <td>{{user.last_login}}</td>
-              <td>{{user.type}}</td>
-              <td><a href>{{user.permission}}</a></td>
               <td>
                 <div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+                  <button type="button" class="btn btn-danger" ng-click="permissionMode(user);">
+                    <i class="fa fa-key"></i>
+                  </button>
                   <button type="button" class="btn btn-default" ng-click="editUser(user);">
                     <i class="fa fa-pencil"></i>
                   </button>
@@ -59,6 +62,39 @@
             first-text="&laquo;" 
             last-text="&raquo;"
           ></pagination>
+        </div>
+      </div>
+      <div class="box" ng-show="resetPermission">
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="list-group">
+              <li class="list-group-item">
+                <input type="text" name="SearchDualList" class="form-control" placeholder="search" />
+              </li>
+              <li class="list-group-item">
+                bootstrap-duallist <a href class><i class="fa fa-arrow-right"></i></a>
+                <div class="btn-group btn-group-xs pull-right">
+                  <label class="btn" ng-model="userPermission.write" btn-checkbox ng-class="userPermission.write ? 'btn-primary' : 'btn-default'">
+                    write 
+                    <!-- <i class="fa fa-lg" ng-class="userPermission.write ? 'fa-check-square-o' : 'fa-square-o'"></i> -->
+                  </label>
+                  <label class="btn btn-default" ng-model="userPermission.edit" btn-checkbox ng-class="userPermission.edit ? 'btn-primary' : 'btn-default'">
+                    Edit 
+                    <!-- <i class="fa fa-lg" ng-class="userPermission.edit ? 'fa-check-square-o' : 'fa-square-o'"></i> -->
+                  </label>
+                </div>
+              </li>
+              <li class="list-group-item">Dapibus ac facilisis in</li>
+              <li class="list-group-item">Morbi leo risus</li>
+              <li class="list-group-item">Porta ac consectetur ac</li>
+              <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <div class="box">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit sequi quia odit veniam culpa obcaecati quidem nemo ratione, ullam alias enim, debitis quod consectetur voluptatum vel molestias iure placeat! Inventore. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus molestiae maiores deleniti vero a sapiente assumenda accusantium, voluptas. Velit magnam incidunt dolores eveniet, cumque assumenda quam porro doloremque consequuntur deserunt.</p>
+            </div>
+          </div>
         </div>
       </div>
     </tab>
