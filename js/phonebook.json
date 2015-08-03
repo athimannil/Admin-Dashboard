@@ -13,10 +13,11 @@
               {"phone": "03 10 89 80 99"}
           ],
           "isEmployee": false,
-          "employee": [
-            {"title": "developer"},
-            {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam deleniti voluptate temporibus recusandae, vero incidunt non laboriosam exercitationem inventore consectetur quam sint autem soluta nisi error praesentium nostrum. Assumenda, inventore."}
-          ]
+          "employee":
+            {
+              "title": "developer",
+             "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam deleniti voluptate temporibus recusandae, vero incidunt non laboriosam exercitationem inventore consectetur quam sint autem soluta nisi error praesentium nostrum. Assumenda, inventore."
+            }
         }, {
           "id": 2,
           "title": "Mrs.",
@@ -30,10 +31,11 @@
               {"phone": "07 81 73 29 97"}
           ],
           "isEmployee": true,
-          "employee": [
-            {"title": "developer"},
-            {"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis nam, iusto voluptas veritatis. Voluptatem itaque alias tempore rem qui, voluptas, natus iusto sequi necessitatibus sit mollitia adipisci cum dignissimos tenetur."}
-          ]
+          "employee":
+            {
+              "title": "developer",
+             "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam deleniti voluptate temporibus recusandae, vero incidunt non laboriosam exercitationem inventore consectetur quam sint autem soluta nisi error praesentium nostrum. Assumenda, inventore."
+            }
         }, {
           "id": 3,
           "title": "Ms.",

@@ -67,11 +67,11 @@
 				</tr>
 				<tr ng-show="selectedContact.isEmployee">
 					<th>Employee title</th>
-					<td>{{selectedContact.employee[0].title}}</td>
+					<td>{{selectedContact.employee.title}}</td>
 				</tr>
 				<tr ng-show="selectedContact.isEmployee">
 					<th>Employee description</th>
-					<td><p class="description" popover="{{selectedContact.employee[1].description}}" popover-trigger="mouseenter">{{selectedContact.employee[1].description}}</p></td>
+					<td><p class="description" popover="{{selectedContact.employee.description}}" popover-trigger="mouseenter">{{selectedContact.employee.description}}</p></td>
 				</tr>
 			</table>
 		</div>
@@ -126,13 +126,13 @@
 					<legend>Employee Details</legend>
 					<label class="col-md-3">Employee name</label>
 					<div class="col-md-9">
-						<input type="text" class="form-control" placeholder="Employee name" ng-model="currentContact.employee[0].title">
+						<input type="text" class="form-control" placeholder="Employee name" ng-model="currentContact.employee.title">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-md-3">Employee Details</label>
 					<div class="col-md-9">
-						<textarea class="form-control" placeholder="Employee Details" ng-model="currentContact.employee[1].description"></textarea>
+						<textarea class="form-control" placeholder="Employee Details" ng-model="currentContact.employee.description"></textarea>
 					</div>
 				</div>
 				<div class="form-group">

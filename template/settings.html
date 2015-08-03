@@ -66,34 +66,40 @@
       </div>
       <div class="box" ng-show="resetPermission">
         <div class="row">
+          <div class="col-md-12">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non rerum fuga eius, adipisci recusandae accusantium veritatis ea! Excepturi in officia placeat delectus dicta doloribus quam vitae! Explicabo, porro, ea. Ipsa. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non rerum fuga eius, adipisci recusandae accusantium veritatis ea! Excepturi in officia placeat delectus dicta doloribus quam vitae! Explicabo, porro, ea. Ipsa.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos a, nemo temporibus quasi. Ullam fuga, nam vero maiores, molestias est expedita officiis maxime ratione recusandae enim dolore, quae quisquam magnam?</p>
+          </div>
           <div class="col-md-6">
             <ul class="list-group">
+              <li class="list-group-item active">Permited pages</li>
               <li class="list-group-item">
-                <input type="text" name="SearchDualList" class="form-control" placeholder="search" />
+                <input type="text" name="SearchDualList" class="form-control" placeholder="search" ng-model="filterMypermission" />
               </li>
-              <li class="list-group-item">
-                bootstrap-duallist <a href class><i class="fa fa-arrow-right"></i></a>
+              <li class="list-group-item" ng-repeat="mypermision in mypermisions | filter:filterMypermission">
+                {{mypermision.name}} <a href ng-click="removeToList(mypermision);"><i class="fa fa-arrow-right"></i></a>
                 <div class="btn-group btn-group-xs pull-right">
-                  <label class="btn" ng-model="userPermission.write" btn-checkbox ng-class="userPermission.write ? 'btn-primary' : 'btn-default'">
+                  <label class="btn" ng-model="mypermision.write" btn-checkbox ng-class="mypermision.write ? 'btn-primary' : 'btn-default'">
                     write 
-                    <!-- <i class="fa fa-lg" ng-class="userPermission.write ? 'fa-check-square-o' : 'fa-square-o'"></i> -->
                   </label>
-                  <label class="btn btn-default" ng-model="userPermission.edit" btn-checkbox ng-class="userPermission.edit ? 'btn-primary' : 'btn-default'">
+                  <label class="btn btn-default" ng-model="mypermision.edit" btn-checkbox ng-class="mypermision.edit ? 'btn-primary' : 'btn-default'">
                     Edit 
-                    <!-- <i class="fa fa-lg" ng-class="userPermission.edit ? 'fa-check-square-o' : 'fa-square-o'"></i> -->
                   </label>
                 </div>
+
               </li>
-              <li class="list-group-item">Dapibus ac facilisis in</li>
-              <li class="list-group-item">Morbi leo risus</li>
-              <li class="list-group-item">Porta ac consectetur ac</li>
-              <li class="list-group-item">Vestibulum at eros</li>
             </ul>
           </div>
           <div class="col-md-6">
-            <div class="box">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit sequi quia odit veniam culpa obcaecati quidem nemo ratione, ullam alias enim, debitis quod consectetur voluptatum vel molestias iure placeat! Inventore. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus molestiae maiores deleniti vero a sapiente assumenda accusantium, voluptas. Velit magnam incidunt dolores eveniet, cumque assumenda quam porro doloremque consequuntur deserunt.</p>
-            </div>
+            <ul class="list-group">
+              <li class="list-group-item active">Available pages</li>
+              <li class="list-group-item">
+                <input type="text" name="SearchDualList" class="form-control" placeholder="search" ng-model="filterPage" />
+              </li>
+              <li class="list-group-item" ng-repeat="page in pages | filter:filterPage">
+                <a href ng-click="addToList(page);"><i class="fa fa-arrow-left"></i></a> {{page.name}}
+              </li>
+            </ul>
           </div>
         </div>
       </div>

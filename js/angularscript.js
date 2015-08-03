@@ -2611,7 +2611,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 	});
 	app.controller('settingsController', function($scope){
-		$scope.resetPermission = true;
+		$scope.resetPermission = false;
 		$scope.users = [
 			{
 			    "id": 1,
@@ -2756,12 +2756,53 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				alert("yes");
 			}
 		};
+		// $scope.pages = ["loand", "adu", "idu"];
 		$scope.userPermission = {
 			"write": true,
 			"edit": false
 		};
+		$scope.pages = [
+			{"name": "dashboard"},
+			{"name": "loan"},
+			{"name": "project"},
+			{"name": "expense"},
+			{"name": "income"},
+			{"name": "cash"},
+			{"name": "rent"},
+			{"name": "insure"},
+			{"name": "phonebook"},
+			{"name": "employee"},
+			{"name": "invoice"},
+			{"name": "recur"},
+			{"name": "profile"},
+			{"name": "settings"},
+			{"name": "login"},
+			{"name": "ui"}
+		];
+		// page.name;
+		$scope.mypermisions = [
+			{
+				"name": "banks",
+				"write": true,
+				"edit": false
+			}
+		];
 		$scope.permissionMode = function (argument) {
 			$scope.resetPermission = true;
+		};
+		$scope.addToList = function (thisPage) {
+			// add to premission list
+			$scope.mypermisions.push(thisPage);
+			// delete from list
+			var curIndex = $scope.pages.indexOf(thisPage);
+			$scope.pages.splice(curIndex, 1);
+		};
+		$scope.removeToList = function (thisItem) {
+			// add to premission list
+			$scope.pages.push(thisItem);
+			// delete from list
+			var curIndex = $scope.mypermisions.indexOf(thisItem);
+			$scope.mypermisions.splice(curIndex, 1);
 		};
 	});
 
