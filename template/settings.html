@@ -142,9 +142,67 @@
       </div>
     </tab>
     <tab>
-      <tab-heading><i class="fa fa-user"></i> Users</tab-heading>
+      <tab-heading><i class="fa fa-user"></i> Profile</tab-heading>
       <div class="box">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae omnis cumque odio inventore, accusantium perferendis qui et ullam ipsa doloremque! In nemo ad fuga quasi consequatur accusamus laudantium, animi modi?</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim distinctio, maxime culpa at repellat ipsa quos dolorem tempora aliquam provident earum, sequi reprehenderit reiciendis ex accusamus magni assumenda adipisci deleniti?</p>
+        <table class="table table-hover table-responsive">
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <td ng-if="!editmode">{{userdetails.name}}</td>
+              <td ng-if="editmode"><input type="text" ng-model="userdetails.name"></td>
+              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+            </tr>
+            <tr>
+              <th>Address</th>
+              <td ng-if="!editmode">{{userdetails.address}}</td>
+              <td ng-if="editmode"><input type="text" ng-model="userdetails.address"></td>
+              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+            </tr>
+            <tr>
+              <th>Post</th>
+              <td ng-if="!editmode">{{userdetails.post}}</td>
+              <td ng-if="editmode"><input type="text" ng-model="userdetails.post"></td>
+              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+            </tr>
+            <tr>
+              <th>District</th>
+              <td ng-if="!editmode">{{userdetails.district}}</td>
+              <td ng-if="editmode"><input type="text" ng-model="userdetails.district"></td>
+              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+            </tr>
+            <tr>
+              <th>State</th>
+              <td ng-if="!editmode">{{userdetails.state}}</td>
+              <td ng-if="editmode"><input type="text" ng-model="userdetails.state"></td>
+              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+            </tr>
+            <tr>
+              <th>Pin</th>
+              <td ng-if="!editmode">{{userdetails.pin}}</td>
+              <td ng-if="editmode"><input type="text" ng-model="userdetails.pin"></td>
+              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+            </tr>
+            <tr>
+              <th>Phone</th>
+              <td ng-if="!editmode">{{userdetails.phone}}</td>
+              <td ng-if="editmode"><input type="text" ng-model="userdetails.phone"></td>
+              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+            </tr>
+            <tr>
+              <th>Mobile 1</th>
+              <td ng-if="!editmode">{{userdetails.mobile1}}</td>
+              <td ng-if="editmode"><input type="text" ng-model="userdetails.mobile1"></td>
+              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+            </tr>
+            <tr>
+              <th>Mobile 2</th>
+              <td ng-if="!editmode">{{userdetails.mobile2}}</td>
+              <td ng-if="editmode"><input type="text" ng-model="userdetails.mobile2"></td>
+              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </tab>
     <tab>

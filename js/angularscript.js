@@ -87,6 +87,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	});
 	app.controller('loginController', function($scope){});
 	app.controller('homecontroller', function($scope){
+// $scope.editmode = false;
 		/* paggination */
 		$scope.currentPage = 1;
 		$scope.numPerPage = 10;
@@ -118,7 +119,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 		/* End menu */
 
-
 		// Toggle sede menu
 		$scope.menuStatus = true;
 		$scope.toggleMenu = function(){
@@ -134,7 +134,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.currentuser = 1;
 		$scope.lastspend = 1320.90;
 
-		$scope.editmode = false;
 		$scope.deleteitem = function (delItem) {
 			$scope.items.splice(delItem, 1);
 			// alert(delItem);
@@ -2612,7 +2611,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	});
 	app.controller('settingsController', function($scope){
 		$scope.resetPermission = false;
-
 		$scope.useredit = false;
 		$scope.newuser = {};
 		$scope.curUser = {};
@@ -2843,6 +2841,25 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			// delete from list
 			var curIndex = $scope.mypermisions.indexOf(thisItem);
 			$scope.mypermisions.splice(curIndex, 1);
+		};
+
+		$scope.userdetails = {
+			"id": "1",
+			"user_id": "2",
+			"name": "Alycia",
+			"address": "510 Marks Parkway Suite 221\nLake Karelle, SC 01791",
+			"post": "Howellmouth",
+			"district": "Schaeferside",
+			"state": "New Mexico",
+			"pin": "61354-9529",
+			"phone": "(239)009-2861x858",
+			"mobile1": "+70(1)8058651903",
+			"mobile2": "+69(3)0049980344",
+			"file_id": "1",
+			"email1": "Diana11@Sipes.info",
+			"email2": "Dietrich.Georgianna@hotmail.com",
+			"created_at": "2015-08-04 11:41:56",
+			"updated_at": "2015-08-04 11:41:56"
 		};
 	});
 

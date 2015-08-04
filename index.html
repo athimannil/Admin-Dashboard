@@ -35,17 +35,6 @@
 		<nav class="navbar bg-primary">
 		    <div class="container-fluid">
 				<a id="menu-toggle" class="btn btn-primary pull-left toggle-button" ng-click="toggleMenu();"><i class="fa fa-bars fa-lg"></i></a>
-				<div id="login-menu" class="dropdown pull-right hide">
-				  <a data-toggle="dropdown" href="#"> 
-				    <img class="img-circle" src="img/me.jpg" width="30" height="30" alt="Kallayi">
-				    Basheer Shah <span class="caret"></span></a>
-				  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-				    <li><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
-				    <li><a href="settings.html"><i class="fa fa-gear"></i> Settings</a></li>
-				    <li class="divider"></li>
-				    <li><a href="logout.html"><i class="fa fa-power-off"></i> Logout</a></li>
-				  </ul>
-				</div>
 				<!-- User dropdown -->
 				<div class="dropdown pull-right">
 				  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-expanded="true">
@@ -53,8 +42,7 @@
 				    <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
-				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-user"></i> Profile</a></li>
-				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-gear"></i> Settings</a></li>
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#settings"><i class="fa fa-gear"></i> Settings</a></li>
 					<li role="presentation" class="divider"></li>
 				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-power-off"></i> Log out</a></li>
 				  </ul>
