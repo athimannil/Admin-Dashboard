@@ -9,97 +9,108 @@
   <tabset class="col-md-12">
     <tab>
       <tab-heading><i class="fa fa-users"></i> Users</tab-heading>
-      <div class="box" ng-hide="resetPermission">
-        <h4>User details</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam dolor, pariatur totam fugiat aliquid beatae quis illo praesentium expedita aut optio, numquam laborum esse blanditiis nemo neque fuga, dolore harum!</p>
-        <table class="table table-hover table-responsive">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Username</th>
-              <th>Password</th>
-              <th>Email</th>
-              <th>Last Login</th>
-              <th>Edit</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="user in users | pagination: currentPage : numPerPage">
-              <td>{{user.name}}</td>
-              <td>{{user.username}}</td>
-              <td>
-                <button type="button" class="btn btn-info btn-xs" ng-click="resetPassword(user)">
-                  <i class="fa fa-refresh"></i> reset
-                </button>
-              </td>
-              <td>{{user.email}}</td>
-              <td>{{user.last_login}}</td>
-              <td>
-                <div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-                  <button type="button" class="btn btn-danger" ng-click="permissionMode(user);">
-                    <i class="fa fa-key"></i>
-                  </button>
-                  <button type="button" class="btn btn-default" ng-click="editUser(user);">
-                    <i class="fa fa-pencil"></i>
-                  </button>
-                  <button type="button" class="btn btn-default" ng-click="deleteUser(user); editmode = !editmode">
-                    <i class="fa fa-trash-o"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="clearfix" ng-show="users.length > numPerPage">
-          <pagination 
-            ng-model="currentPage" 
-            total-items="users.length" 
-            max-size="5" 
-            boundary-links="true" 
-            class="pagination-sm pull-right" 
-            previous-text="&lsaquo;" 
-            next-text="&rsaquo;" 
-            first-text="&laquo;" 
-            last-text="&raquo;"
-          ></pagination>
-        </div>
-      </div>
-      <div class="box" ng-show="resetPermission">
-        <div class="row">
-          <div class="col-md-12">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non rerum fuga eius, adipisci recusandae accusantium veritatis ea! Excepturi in officia placeat delectus dicta doloribus quam vitae! Explicabo, porro, ea. Ipsa. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non rerum fuga eius, adipisci recusandae accusantium veritatis ea! Excepturi in officia placeat delectus dicta doloribus quam vitae! Explicabo, porro, ea. Ipsa.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos a, nemo temporibus quasi. Ullam fuga, nam vero maiores, molestias est expedita officiis maxime ratione recusandae enim dolore, quae quisquam magnam?</p>
-          </div>
-          <div class="col-md-6">
-            <ul class="list-group">
-              <li class="list-group-item active">Permited pages</li>
-              <li class="list-group-item">
-                <input type="text" name="SearchDualList" class="form-control" placeholder="search" ng-model="filterMypermission" />
-              </li>
-              <li class="list-group-item" ng-repeat="mypermision in mypermisions | filter:filterMypermission">
-                {{mypermision.name}} <a href ng-click="removeToList(mypermision);"><i class="fa fa-arrow-right"></i></a>
-                <div class="btn-group btn-group-xs pull-right">
-                  <label class="btn" ng-model="mypermision.write" btn-checkbox ng-class="mypermision.write ? 'btn-primary' : 'btn-default'">
-                    write 
-                  </label>
-                  <label class="btn btn-default" ng-model="mypermision.edit" btn-checkbox ng-class="mypermision.edit ? 'btn-primary' : 'btn-default'">
-                    Edit 
-                  </label>
-                </div>
+      <div class="box">
 
-              </li>
-            </ul>
+        <ol class="breadcrumb" ng-show="breadCrumbs.length">
+          <li ng-repeat="breadCrumb in breadCrumbs" ng-class="{active: $last}">
+            <a ng-if="!$last" href ng-click="backToUsers($event);"><i class="fa fa-home" ng-show="$first"></i> {{breadCrumb}}</a>
+            <span ng-if="$last">{{breadCrumb}}</span>
+          </li>
+        </ol>
+
+
+        <div ng-hide="resetPermission">
+          <h4>User details</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam dolor, pariatur totam fugiat aliquid beatae quis illo praesentium expedita aut optio, numquam laborum esse blanditiis nemo neque fuga, dolore harum!</p>
+          <table class="table table-hover table-responsive">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Email</th>
+                <th>Last Login</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="user in users | pagination: currentPage : numPerPage">
+                <td>{{user.name}}</td>
+                <td>{{user.username}}</td>
+                <td>
+                  <button type="button" class="btn btn-info btn-xs" ng-click="resetPassword(user)">
+                    <i class="fa fa-refresh"></i> reset
+                  </button>
+                </td>
+                <td>{{user.email}}</td>
+                <td>{{user.last_login}}</td>
+                <td>
+                  <div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+                    <button type="button" class="btn btn-danger" ng-click="permissionMode(user);">
+                      <i class="fa fa-key"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" ng-click="editUser(user);">
+                      <i class="fa fa-pencil"></i>
+                    </button>
+                    <button type="button" class="btn btn-default" ng-click="deleteUser(user); editmode = !editmode">
+                      <i class="fa fa-trash-o"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="clearfix" ng-show="users.length > numPerPage">
+            <pagination 
+              ng-model="currentPage" 
+              total-items="users.length" 
+              max-size="5" 
+              boundary-links="true" 
+              class="pagination-sm pull-right" 
+              previous-text="&lsaquo;" 
+              next-text="&rsaquo;" 
+              first-text="&laquo;" 
+              last-text="&raquo;"
+            ></pagination>
           </div>
-          <div class="col-md-6">
-            <ul class="list-group">
-              <li class="list-group-item active">Available pages</li>
-              <li class="list-group-item">
-                <input type="text" name="SearchDualList" class="form-control" placeholder="search" ng-model="filterPage" />
-              </li>
-              <li class="list-group-item" ng-repeat="page in pages | filter:filterPage">
-                <a href ng-click="addToList(page);"><i class="fa fa-arrow-left"></i></a> {{page.name}}
-              </li>
-            </ul>
+        </div>
+        <div ng-show="resetPermission">
+          <div class="row">
+            <div class="col-md-12">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non rerum fuga eius, adipisci recusandae accusantium veritatis ea! Excepturi in officia placeat delectus dicta doloribus quam vitae! Explicabo, porro, ea. Ipsa. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non rerum fuga eius, adipisci recusandae accusantium veritatis ea! Excepturi in officia placeat delectus dicta doloribus quam vitae! Explicabo, porro, ea. Ipsa.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos a, nemo temporibus quasi. Ullam fuga, nam vero maiores, molestias est expedita officiis maxime ratione recusandae enim dolore, quae quisquam magnam?</p>
+            </div>
+            <div class="col-md-6">
+              <ul class="list-group">
+                <li class="list-group-item active">Permited pages</li>
+                <li class="list-group-item">
+                  <input type="text" name="SearchDualList" class="form-control" placeholder="search" ng-model="filterMypermission" />
+                </li>
+                <li class="list-group-item" ng-repeat="mypermision in mypermisions | filter:filterMypermission">
+                  {{mypermision.name}} <a href ng-click="removeToList(mypermision);"><i class="fa fa-arrow-right"></i></a>
+                  <div class="btn-group btn-group-xs pull-right">
+                    <label class="btn" ng-model="mypermision.write" btn-checkbox ng-class="mypermision.write ? 'btn-primary' : 'btn-default'">
+                      write 
+                    </label>
+                    <label class="btn btn-default" ng-model="mypermision.edit" btn-checkbox ng-class="mypermision.edit ? 'btn-primary' : 'btn-default'">
+                      Edit 
+                    </label>
+                  </div>
+
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul class="list-group">
+                <li class="list-group-item active">Available pages</li>
+                <li class="list-group-item">
+                  <input type="text" name="SearchDualList" class="form-control" placeholder="search" ng-model="filterPage" />
+                </li>
+                <li class="list-group-item" ng-repeat="page in pages | filter:filterPage">
+                  <a href ng-click="addToList(page);"><i class="fa fa-arrow-left"></i></a> {{page.name}}
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

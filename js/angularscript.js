@@ -2756,7 +2756,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				alert("yes");
 			}
 		};
-		// $scope.pages = ["loand", "adu", "idu"];
+		$scope.breadCrumbs = [];
 		$scope.userPermission = {
 			"write": true,
 			"edit": false
@@ -2787,8 +2787,14 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"edit": false
 			}
 		];
-		$scope.permissionMode = function (argument) {
+		$scope.permissionMode = function (thisUser) {
+			$scope.curUser = thisUser;
 			$scope.resetPermission = true;
+			$scope.breadCrumbs.push("home", $scope.curUser.name);
+		};
+		$scope.backToUsers = function () {
+			$scope.breadCrumbs = [];
+			$scope.resetPermission = false;
 		};
 		$scope.addToList = function (thisPage) {
 			// add to premission list
