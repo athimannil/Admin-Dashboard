@@ -2764,7 +2764,21 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newuser = angular.copy(thisUser);
 		};
 		$scope.addUser = function (argument) {
-			// body...
+			if ($scope.curUser.id) {
+				angular.extend($scope.curUser, $scope.curUser, $scope.newuser);
+			} else{
+				$scope.newuser.id = $scope.users.length + 1;
+				$scope.users.push($scope.newuser);
+			}
+			$scope.useredit = false;
+			$scope.newuser = {};
+		};
+		$scope.deleteUser = function (item) {
+			var confirmDelete = confirm("Do you really need to delete the item ?");
+			if (confirmDelete) {
+				var curIndex = $scope.users.indexOf(item);
+				$scope.users.splice(curIndex, 1);
+			}
 		};
 		$scope.cancelUser = function (argument) {
 			$scope.useredit = false;
@@ -2774,13 +2788,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			var confirmReset = confirm("Do you need to reset "+thisUser.name+"\'s password !");
 			if (confirmReset) {
 				alert("yes");
-			}
-		};
-		$scope.deleteUser = function (item) {
-			var confirmDelete = confirm("Do you really need to delete the item ?");
-			if (confirmDelete) {
-				var curIndex = $scope.users.indexOf(item);
-				$scope.users.splice(curIndex, 1);
 			}
 		};
 		$scope.breadCrumbs = [];
