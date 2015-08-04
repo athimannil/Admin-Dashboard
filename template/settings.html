@@ -10,15 +10,12 @@
     <tab>
       <tab-heading><i class="fa fa-users"></i> Users</tab-heading>
       <div class="box">
-
         <ol class="breadcrumb" ng-show="breadCrumbs.length">
           <li ng-repeat="breadCrumb in breadCrumbs" ng-class="{active: $last}">
             <a ng-if="!$last" href ng-click="backToUsers($event);"><i class="fa fa-home" ng-show="$first"></i> {{breadCrumb}}</a>
             <span ng-if="$last">{{breadCrumb}}</span>
           </li>
         </ol>
-
-
         <div ng-hide="resetPermission">
           <h4>User details</h4>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam dolor, pariatur totam fugiat aliquid beatae quis illo praesentium expedita aut optio, numquam laborum esse blanditiis nemo neque fuga, dolore harum!</p>
@@ -113,6 +110,18 @@
             </div>
           </div>
         </div>
+      </div>
+    </tab>
+    <tab>
+      <tab-heading><i class="fa fa-user"></i> Users</tab-heading>
+      <div class="box">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae omnis cumque odio inventore, accusantium perferendis qui et ullam ipsa doloremque! In nemo ad fuga quasi consequatur accusamus laudantium, animi modi?</p>
+      </div>
+    </tab>
+    <tab>
+      <tab-heading><i class="fa fa-cog"></i> Settings</tab-heading>
+      <div class="box">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae omnis cumque odio inventore, accusantium perferendis qui et ullam ipsa doloremque! In nemo ad fuga quasi consequatur accusamus laudantium, animi modi?</p>
       </div>
     </tab>
   </tabset>
