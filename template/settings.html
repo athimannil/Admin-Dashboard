@@ -1,7 +1,7 @@
   <!-- <div class="container-fluid" ng-controller="settingsController"> -->
 <div class="row">
   <div class="col-md-12">
-    <h3><i class="fa fa-cog"></i> Basic changes</h3>
+    <h2><i class="fa fa-cog"></i> Basic changes</h2>
   </div>
 </div>
 
@@ -10,14 +10,38 @@
     <tab>
       <tab-heading><i class="fa fa-users"></i> Users</tab-heading>
       <div class="box">
-        <ol class="breadcrumb" ng-show="breadCrumbs.length">
-          <li ng-repeat="breadCrumb in breadCrumbs" ng-class="{active: $last}">
-            <a ng-if="!$last" href ng-click="backToUsers($event);"><i class="fa fa-home" ng-show="$first"></i> {{breadCrumb}}</a>
-            <span ng-if="$last">{{breadCrumb}}</span>
-          </li>
-        </ol>
         <div ng-hide="resetPermission">
-          <h4>User details</h4>
+          <button class="btn btn-primary pull-right" ng-click="newUser();" ng-hide="useredit"><i class="fa fa-plus"></i> Add User</button>
+          <form class="form-horizontal" ng-show="useredit" ng-submit="addUser();">
+            <h3>New User</h3>
+            <div class="form-group">
+              <label for="" class="col-sm-1 control-label">Name</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" ng-model="newuser.name" placeholder="Name">
+              </div>
+              <label for="" class="col-sm-1 control-label">Email</label>
+              <div class="col-sm-2">
+                <input type="email" class="form-control" ng-model="newuser.email" placeholder="Email">
+              </div>
+              <label for="" class="col-sm-1 control-label">User Name</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" ng-model="newuser.username" placeholder="User Name">
+              </div>
+              <label for="" class="col-sm-1 control-label">Password</label>
+              <div class="col-sm-2">
+                <input type="password" class="form-control" ng-model="newuser.password" placeholder="Password">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12 text-right">
+                <button type="button" class="btn btn-default" ng-click="cancelUser();">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </div>
+            <hr>
+          </form>
+          <h3>User details</h3>
+          <pre>{{newuser | json}}</pre>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam dolor, pariatur totam fugiat aliquid beatae quis illo praesentium expedita aut optio, numquam laborum esse blanditiis nemo neque fuga, dolore harum!</p>
           <table class="table table-hover table-responsive">
             <thead>
@@ -74,6 +98,12 @@
         <div ng-show="resetPermission">
           <div class="row">
             <div class="col-md-12">
+              <ol class="breadcrumb">
+                <li ng-repeat="breadCrumb in breadCrumbs" ng-class="{active: $last}">
+                  <a ng-if="!$last" href ng-click="backToUsers($event);"><i class="fa fa-home" ng-show="$first"></i> {{breadCrumb}}</a>
+                  <span ng-if="$last">{{breadCrumb}}</span>
+                </li>
+              </ol>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non rerum fuga eius, adipisci recusandae accusantium veritatis ea! Excepturi in officia placeat delectus dicta doloribus quam vitae! Explicabo, porro, ea. Ipsa. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non rerum fuga eius, adipisci recusandae accusantium veritatis ea! Excepturi in officia placeat delectus dicta doloribus quam vitae! Explicabo, porro, ea. Ipsa.</p>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos a, nemo temporibus quasi. Ullam fuga, nam vero maiores, molestias est expedita officiis maxime ratione recusandae enim dolore, quae quisquam magnam?</p>
             </div>

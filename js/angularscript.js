@@ -2612,6 +2612,10 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	});
 	app.controller('settingsController', function($scope){
 		$scope.resetPermission = false;
+
+		$scope.useredit = false;
+		$scope.newuser = {};
+		$scope.curUser = {};
 		$scope.users = [
 			{
 			    "id": 1,
@@ -2750,6 +2754,22 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			    "permission": "Research and Development"
 			}
 		];
+		$scope.newUser = function (argument) {
+			$scope.useredit = true;
+			$scope.newuser = {};
+		};
+		$scope.editUser = function (thisUser) {
+			$scope.useredit = true;
+			$scope.curUser =  thisUser;
+			$scope.newuser = angular.copy(thisUser);
+		};
+		$scope.addUser = function (argument) {
+			// body...
+		};
+		$scope.cancelUser = function (argument) {
+			$scope.useredit = false;
+			$scope.newuser = {};
+		};
 		$scope.resetPassword = function (thisUser) {
 			var confirmReset = confirm("Do you need to reset "+thisUser.name+"\'s password !");
 			if (confirmReset) {
