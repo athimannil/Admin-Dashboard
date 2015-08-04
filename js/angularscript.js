@@ -2756,6 +2756,13 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				alert("yes");
 			}
 		};
+		$scope.deleteUser = function (item) {
+			var confirmDelete = confirm("Do you really need to delete the item ?");
+			if (confirmDelete) {
+				var curIndex = $scope.users.indexOf(item);
+				$scope.users.splice(curIndex, 1);
+			}
+		};
 		$scope.breadCrumbs = [];
 		$scope.userPermission = {
 			"write": true,
