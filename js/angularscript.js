@@ -87,7 +87,6 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	});
 	app.controller('loginController', function($scope){});
 	app.controller('homecontroller', function($scope){
-// $scope.editmode = false;
 		/* paggination */
 		$scope.currentPage = 1;
 		$scope.numPerPage = 10;
@@ -2847,6 +2846,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			"id": "1",
 			"user_id": "2",
 			"name": "Alycia",
+			"lastname": "Maanu",
 			"address": "510 Marks Parkway Suite 221\nLake Karelle, SC 01791",
 			"post": "Howellmouth",
 			"district": "Schaeferside",
@@ -2861,10 +2861,13 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			"created_at": "2015-08-04 11:41:56",
 			"updated_at": "2015-08-04 11:41:56"
 		};
+		$scope.inputs = {};
+		$scope.editDetail = function (key, thisDetail) {
+			$scope.inputs[key] = thisDetail;
+			console.log(key);
+		};
+		$scope.saveDetail = function (key,thisResult) {
+			$scope.userdetails[key] = thisResult;
+		};
 	});
-
-
-
-
-
 })();

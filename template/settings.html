@@ -1,10 +1,8 @@
-  <!-- <div class="container-fluid" ng-controller="settingsController"> -->
 <div class="row">
   <div class="col-md-12">
     <h2><i class="fa fa-cog"></i> Basic changes</h2>
   </div>
 </div>
-
 <div class="row">
   <tabset class="col-md-12">
     <tab>
@@ -149,57 +147,185 @@
           <tbody>
             <tr>
               <th>Name</th>
-              <td ng-if="!editmode">{{userdetails.name}}</td>
-              <td ng-if="editmode"><input type="text" ng-model="userdetails.name"></td>
-              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+              <td ng-if="!editName">{{userdetails.name}}</td>
+              <td ng-if="editName"><input type="text" ng-model="inputs.name"></td>
+              <td>
+                <div class="btn-group btn-group-xs" role="group">
+                  <button type="button" class="btn btn-default ng-hide" ng-hide="editName" ng-click="editDetail('name', userdetails.name); editName = !editName">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editName" ng-click="saveDetail('name',inputs.name); editName = !editName">
+                    <i class="fa fa-save"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editName" ng-click="editName = !editName">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>Last Name</th>
+              <td>
+                <span ng-if="!editLastName">{{userdetails.lastname}}</span>
+                <input type="text" ng-model="inputs.lastname" ng-if="editLastName">
+              </td>
+              <td>
+                <div class="btn-group btn-group-xs" role="group">
+                  <button type="button" class="btn btn-default ng-hide" ng-hide="editLastName" ng-click="editDetail('lastname', userdetails.lastname); editLastName = !editLastName">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editLastName" ng-click="saveDetail('lastname' ,inputs.lastname); editLastName = !editLastName">
+                    <i class="fa fa-save"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editLastName" ng-click="editLastName = !editLastName">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </td>
             </tr>
             <tr>
               <th>Address</th>
-              <td ng-if="!editmode">{{userdetails.address}}</td>
-              <td ng-if="editmode"><input type="text" ng-model="userdetails.address"></td>
-              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+              <td ng-if="!editaddress">{{userdetails.address}}</td>
+              <td ng-if="editaddress"><input type="text" ng-model="inputs.address"></td>
+              <td>
+                <div class="btn-group btn-group-xs" role="group">
+                  <button type="button" class="btn btn-default ng-hide" ng-hide="editaddress" ng-click="editDetail('address', userdetails.address); editaddress = !editaddress">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editaddress" ng-click="saveDetail('address',inputs.address); editaddress = !editaddress">
+                    <i class="fa fa-save"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editaddress" ng-click="editaddress = !editaddress">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </td>
             </tr>
             <tr>
               <th>Post</th>
-              <td ng-if="!editmode">{{userdetails.post}}</td>
-              <td ng-if="editmode"><input type="text" ng-model="userdetails.post"></td>
-              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+              <td ng-if="!editpost">{{userdetails.post}}</td>
+              <td ng-if="editpost"><input type="text" ng-model="inputs.post"></td>
+              <td>
+                <div class="btn-group btn-group-xs" role="group">
+                  <button type="button" class="btn btn-default ng-hide" ng-hide="editpost" ng-click="editDetail('name', userdetails.name); editpost = !editpost">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editpost" ng-click="saveDetail('name',inputs.name); editpost = !editpost">
+                    <i class="fa fa-save"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editpost" ng-click="editpost = !editpost">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </td>
             </tr>
             <tr>
               <th>District</th>
-              <td ng-if="!editmode">{{userdetails.district}}</td>
-              <td ng-if="editmode"><input type="text" ng-model="userdetails.district"></td>
-              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+              <td ng-if="!editdistrict">{{userdetails.district}}</td>
+              <td ng-if="editdistrict"><input type="text" ng-model="inputs.district"></td>
+              <td>
+                <div class="btn-group btn-group-xs" role="group">
+                  <button type="button" class="btn btn-default ng-hide" ng-hide="editdistrict" ng-click="editDetail('district', userdetails.district); editdistrict = !editdistrict">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editdistrict" ng-click="saveDetail('district',inputs.district); editdistrict = !editdistrict">
+                    <i class="fa fa-save"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editdistrict" ng-click="editdistrict = !editdistrict">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </td>
             </tr>
             <tr>
               <th>State</th>
-              <td ng-if="!editmode">{{userdetails.state}}</td>
-              <td ng-if="editmode"><input type="text" ng-model="userdetails.state"></td>
-              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+              <td ng-if="!editstate">{{userdetails.state}}</td>
+              <td ng-if="editstate"><input type="text" ng-model="inputs.state"></td>
+              <td>
+                <div class="btn-group btn-group-xs" role="group">
+                  <button type="button" class="btn btn-default ng-hide" ng-hide="editstate" ng-click="editDetail('state', userdetails.state); editstate = !editstate">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editstate" ng-click="saveDetail('state',inputs.state); editstate = !editstate">
+                    <i class="fa fa-save"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editstate" ng-click="editstate = !editstate">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </td>
             </tr>
             <tr>
               <th>Pin</th>
-              <td ng-if="!editmode">{{userdetails.pin}}</td>
-              <td ng-if="editmode"><input type="text" ng-model="userdetails.pin"></td>
-              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+              <td ng-if="!editpin">{{userdetails.pin}}</td>
+              <td ng-if="editpin"><input type="text" ng-model="inputs.pin"></td>
+              <td>
+                <div class="btn-group btn-group-xs" role="group">
+                  <button type="button" class="btn btn-default ng-hide" ng-hide="editpin" ng-click="editDetail('pin', userdetails.pin); editpin = !editpin">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editpin" ng-click="saveDetail('pin',inputs.pin); editpin = !editpin">
+                    <i class="fa fa-save"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editpin" ng-click="editpin = !editpin">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </td>
             </tr>
             <tr>
               <th>Phone</th>
-              <td ng-if="!editmode">{{userdetails.phone}}</td>
-              <td ng-if="editmode"><input type="text" ng-model="userdetails.phone"></td>
-              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+              <td ng-if="!editphone">{{userdetails.phone}}</td>
+              <td ng-if="editphone"><input type="text" ng-model="inputs.phone"></td>
+              <td>
+                <div class="btn-group btn-group-xs" role="group">
+                  <button type="button" class="btn btn-default ng-hide" ng-hide="editphone" ng-click="editDetail('phone', userdetails.phone); editphone = !editphone">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editphone" ng-click="saveDetail('phone',inputs.phone); editphone = !editphone">
+                    <i class="fa fa-save"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editphone" ng-click="editphone = !editphone">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </td>
             </tr>
             <tr>
               <th>Mobile 1</th>
-              <td ng-if="!editmode">{{userdetails.mobile1}}</td>
-              <td ng-if="editmode"><input type="text" ng-model="userdetails.mobile1"></td>
-              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+              <td ng-if="!editmobile1">{{userdetails.mobile1}}</td>
+              <td ng-if="editmobile1"><input type="text" ng-model="inputs.mobile1"></td>
+              <td>
+                <div class="btn-group btn-group-xs" role="group">
+                  <button type="button" class="btn btn-default ng-hide" ng-hide="editmobile1" ng-click="editDetail('mobile1', userdetails.mobile1); editmobile1 = !editmobile1">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editmobile1" ng-click="saveDetail('mobile1',inputs.mobile1); editmobile1 = !editmobile1">
+                    <i class="fa fa-save"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editmobile1" ng-click="editmobile1 = !editmobile1">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </td>
             </tr>
             <tr>
               <th>Mobile 2</th>
-              <td ng-if="!editmode">{{userdetails.mobile2}}</td>
-              <td ng-if="editmode"><input type="text" ng-model="userdetails.mobile2"></td>
-              <td><button class="btn btn-default btn-xs" ng-click="editmode = !editmode"><i class="fa fa-pencil"></i></button></td>
+              <td ng-if="!editmobile2">{{userdetails.mobile2}}</td>
+              <td ng-if="editmobile2"><input type="text" ng-model="inputs.mobile2"></td>
+              <td>
+                <div class="btn-group btn-group-xs" role="group">
+                  <button type="button" class="btn btn-default ng-hide" ng-hide="editmobile2" ng-click="editDetail('mobile2', userdetails.mobile2); editmobile2 = !editmobile2">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editmobile2" ng-click="saveDetail('mobile2',inputs.mobile2); editmobile2 = !editmobile2">
+                    <i class="fa fa-save"></i>
+                  </button>
+                  <button type="button" class="btn btn-default" ng-show="editmobile2" ng-click="editmobile2 = !editmobile2">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -208,526 +334,8 @@
     <tab>
       <tab-heading><i class="fa fa-cog"></i> Settings</tab-heading>
       <div class="box">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae omnis cumque odio inventore, accusantium perferendis qui et ullam ipsa doloremque! In nemo ad fuga quasi consequatur accusamus laudantium, animi modi?</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit quasi repellendus, doloremque culpa soluta omnis delectus illo blanditiis eius iusto eum quibusdam, inventore fuga placeat, enim odio odit. Facilis, atque.</p>
       </div>
     </tab>
   </tabset>
 </div>
-
-
-
-
-
-
-
-<div class="row hide">
-  <div class="col-md-12">
-    <ul class="nav nav-tabs">
-      <li class=""><a href="#users" data-toggle="tab"><i class="fa fa-users"></i> Members</a></li>
-      <li><a href="#basic-settings" data-toggle="tab"><i class="fa fa-gears"></i> Settings</a></li>
-      <li class="active"><a href="#recurring" data-toggle="tab"><i class="fa fa-refresh"></i> Recurring bills</a></li>
-      <li><a href="#cutlery" data-toggle="tab"><i class="fa fa-cutlery"></i> Kitchen</a></li>
-    </ul>
-    <div class="tab-content">
-      <div id="users" class="box tab-pane active">
-        <style type="text/css">
-          #members{
-            border-top: 1px solid #DDD;
-          }
-          #members .members:first-child{
-            /*width: 100%;*/
-            margin-top: 0;
-            background-color: #FFF;
-          }
-          #members .members{
-            width: 50%;
-            float: left;
-            border-left: none;
-          }
-          #members li:nth-child(2n){
-            border-left: 1px solid #DDD;
-          }
-          .panel .well {
-            margin-bottom: 0;
-          }
-        </style>
-        <div class="row">
-          <div class="col-md-12 text-right">
-            <div class="form-group">
-              <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Invite member</button>
-            </div>
-          </div>
-          <div id="members" class="col-md-12">
-            <ul class="list-unstyled">
-              <li class="members">
-                <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Invite member</button>
-              </li>
-              <li class="members">
-                <figure class="pull-left">
-                  <img src="img/me.jpg" alt="Member name" width="100" width="100" class="img-rounded">
-                </figure>
-                <ul class="list-unstyled">
-                  <li><strong>MS Basheer</strong></li>
-                  <li><i class="fa fa-phone"></i> 07875 506 426</li>
-                  <li><i class="fa fa-envelope"></i> <a href="mailto:hellow@Basheer.com">hello@Basheer.com</a></li>
-                  <li><i class="fa fa-briefcase"></i> Developer at <a href="">Epic</a></li>
-                  <li><i class="fa fa-skype fa-lg"></i> <a href="#" class="text-info">Basheer</a></li>
-                </ul>
-                <div class="btn-group" id="member-settings">
-                  <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></button>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
-                    <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#"><i class="fa"></i> Set as admin</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="members">
-                <figure class="pull-left">
-                  <img src="img/me.jpg" alt="Member name" width="100" width="100" class="img-rounded">
-                </figure>
-                <ul class="list-unstyled">
-                  <li><strong>MS Basheer</strong></li>
-                  <li><i class="fa fa-phone"></i> 07875 506 426</li>
-                  <li><i class="fa fa-envelope"></i> <a href="mailto:hellow@Basheer.com">hello@Basheer.com</a></li>
-                  <li><i class="fa fa-briefcase"></i> Developer at <a href="">Epic</a></li>
-                  <li><i class="fa fa-skype fa-lg"></i> <a href="#" class="text-info">Basheer</a></li>
-                </ul>
-                <div class="btn-group" id="member-settings">
-                  <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></button>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
-                    <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#"><i class="fa"></i> Set as admin</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="members">
-                <figure class="pull-left">
-                  <img src="img/me.jpg" alt="Member name" width="100" width="100" class="img-rounded">
-                </figure>
-                <ul class="list-unstyled">
-                  <li><strong>MS Basheer</strong></li>
-                  <li><i class="fa fa-phone"></i> 07875 506 426</li>
-                  <li><i class="fa fa-envelope"></i> <a href="mailto:hellow@Basheer.com">hello@Basheer.com</a></li>
-                  <li><i class="fa fa-briefcase"></i> Developer at <a href="">Epic</a></li>
-                  <li><i class="fa fa-skype fa-lg"></i> <a href="#" class="text-info">Basheer</a></li>
-                </ul>
-                <div class="btn-group" id="member-settings">
-                  <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></button>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
-                    <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#"><i class="fa"></i> Set as admin</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="members">
-                <figure class="pull-left">
-                  <img src="img/me.jpg" alt="Member name" width="100" width="100" class="img-rounded">
-                </figure>
-                <ul class="list-unstyled">
-                  <li><strong>MS Basheer</strong></li>
-                  <li><i class="fa fa-phone"></i> 07875 506 426</li>
-                  <li><i class="fa fa-envelope"></i> <a href="mailto:hellow@Basheer.com">hello@Basheer.com</a></li>
-                  <li><i class="fa fa-briefcase"></i> Developer at <a href="">Epic</a></li>
-                  <li><i class="fa fa-skype fa-lg"></i> <a href="#" class="text-info">Basheer</a></li>
-                </ul>
-                <div class="btn-group" id="member-settings">
-                  <button i type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></button>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
-                    <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#"><i class="fa"></i> Set as admin</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="members">
-                <figure class="pull-left">
-                  <img src="img/me.jpg" alt="Member name" width="100" width="100" class="img-rounded">
-                </figure>
-                <ul class="list-unstyled">
-                  <li><strong>MS Basheer</strong></li>
-                  <li><i class="fa fa-phone"></i> 07875 506 426</li>
-                  <li><i class="fa fa-envelope"></i> <a href="mailto:hellow@Basheer.com">hello@Basheer.com</a></li>
-                  <li><i class="fa fa-briefcase"></i> Developer at <a href="">Epic</a></li>
-                  <li><i class="fa fa-skype fa-lg"></i> <a href="#" class="text-info">Basheer</a></li>
-                </ul>
-                <div class="btn-group" id="member-settings">
-                  <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></button>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#"><i class="fa fa-edit"></i> Edit</a></li>
-                    <li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#"><i class="fa"></i> Set as admin</a></li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div id="basic-settings" class="box tab-pane">
-        <div class="row">
-          <div class="col-md-6">
-            <form class="form-horizontal" role="form">
-              <div class="form-group">
-                <label for="main-admin" class="col-sm-3 control-label">Admin members</label>
-                <div class="col-sm-9">
-                  <select id="main-admin" multiple data-selected-text-format="count">
-                    <option>MS Basheer</option>
-                    <option>Muhsin Manniyil</option>
-                    <option>Prince Roshan</option>
-                    <option>Mohasin Moorkote</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="currency" class="col-sm-3 control-label">Currency</label>
-                <div class="col-sm-9">
-                  <select name="currency" id="currency" data-width="auto">
-                    <option value="₹">₹</option>
-                    <option value="$">$</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="monthly-limit" class="col-sm-3 control-label">Monthly limit</label>
-                <div class="col-sm-3">
-                  <div class="input-group">
-                    <span class="input-group-addon">₹</span>
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="payment-to" class="col-sm-3 control-label">Payment to</label>
-                <div class="col-sm-9">
-                  <select id="payment-to">
-                    <option>MS Basheer</option>
-                    <option>Muhsin Manniyil</option>
-                    <option>Prince Roshan</option>
-                    <option>Mohasin Moorkote</option>
-                  </select>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div id="recurring" class="box tab-pane">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="panel panel-primary">
-              <div class="panel-heading">
-                <h3 class="panel-title">Add a recurring bill</h3>
-              </div>
-              <div class="panel-body">
-                <form role="form">
-                  <div class="form-group">
-                    <label for="item-name">Item name</label>
-                    <input type="text" class="form-control" id="item-name" placeholder="Eg: Broadband">
-                  </div>
-                  <!-- <div class="form-group"> -->
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="checkbox">
-                        <label><input type="checkbox"> Fixed amount</label>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="input-group">
-                        <span class="input-group-addon">₹</span>
-                        <input type="text" class="form-control" placeholder="0.00">
-                      </div>
-                    </div>
-                  </div>
-                  <!-- </div> -->
-                  <div class="form-group">
-                    <label for="bill-date">Next bill date</label>
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="0.00">
-                      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="prchase-date">Bill type</label>
-                    <select class="selectpicker" data-width="100%">
-                      <option value="Daily">Daily</option>
-                      <option value="Weekly">Weekly</option>
-                      <option value="Monthly">Monthly</option>
-                      <option value="Yearly">Yearly</option>
-                    </select>
-                  </div>
-                  <button type="submit" class="btn btn-primary pull-right">
-                    <i class="fa fa-plus"></i> Add to bills</button>
-                </form>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">Broadband</h3>
-              </div>
-              <div class="panel-body">
-                <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
-                <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
-                <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
-                <div class="well text-center">Amount Due: <strong> ₹23.50</strong></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">Electricity</h3>
-              </div>
-              <div class="panel-body">
-                <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
-                <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
-                <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
-                <div class="well text-center">Amount Due: <strong> ₹23.50</strong></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="panel panel-success">
-              <div class="panel-heading">
-                <h3 class="panel-title">Gas</h3>
-              </div>
-              <div class="panel-body">
-                <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
-                <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
-                <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
-                <div class="well text-center">Amount Due: <strong> ₹23.50</strong></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <h3 class="panel-title">Council Tax</h3>
-              </div>
-              <div class="panel-body">
-                <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
-                <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
-                <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
-                <div class="well text-center">Amount Due: <strong> ₹321.76</strong></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="panel panel-warning">
-              <div class="panel-heading">
-                <h3 class="panel-title">Panel title</h3>
-              </div>
-              <div class="panel-body">
-                <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
-                <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
-                <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
-                <div class="well text-center">Amount Due: <strong> ₹23.50</strong></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="panel panel-danger">
-              <div class="panel-heading">
-                <h3 class="panel-title">Panel title</h3>
-              </div>
-              <div class="panel-body">
-                <p><i class="fa fa-retweet"> </i> <strong> Recurs:</strong> Monthly</p>
-                <p><i class="fa fa-hand-o-left"> </i> <strong> last Bill:</strong> 12 January 2014</p>
-                <p><i class="fa fa-hand-o-right"> </i> <strong> Next Bill:</strong> 11 February 2014</p>
-                <div class="well text-center">Amount Due: <strong> ₹23.50</strong></div>
-              </div>
-            </div>
-          </div>
-        </div>            
-      </div>
-      <div id="cutlery" class="box tab-pane">
-        <div class="row">
-          <div class="col-md-2">
-            <strong>Monday</strong>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <select class="selectpicker" data-width="100%">
-                <option>MS Basheer</option>
-                <option>Muhsin Manniyil</option>
-                <option>Prince Roshan</option>
-                <option>Mohasin Moorkote</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <select class="selectpicker" data-width="100%">
-                <option>MS Basheer</option>
-                <option>Muhsin Manniyil</option>
-                <option>Prince Roshan</option>
-                <option>Mohasin Moorkote</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <strong>Tuesday</strong>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <select class="selectpicker" data-width="100%">
-                <option>MS Basheer</option>
-                <option>Muhsin Manniyil</option>
-                <option>Prince Roshan</option>
-                <option>Mohasin Moorkote</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <select class="selectpicker" data-width="100%">
-                <option>MS Basheer</option>
-                <option>Muhsin Manniyil</option>
-                <option>Prince Roshan</option>
-                <option>Mohasin Moorkote</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <strong>Wednesday</strong>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <select class="selectpicker" data-width="100%">
-                <option>MS Basheer</option>
-                <option>Muhsin Manniyil</option>
-                <option>Prince Roshan</option>
-                <option>Mohasin Moorkote</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <select class="selectpicker" data-width="100%">
-                <option>MS Basheer</option>
-                <option>Muhsin Manniyil</option>
-                <option>Prince Roshan</option>
-                <option>Mohasin Moorkote</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <strong>Thursday</strong>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <select class="selectpicker" data-width="100%">
-                <option>MS Basheer</option>
-                <option>Muhsin Manniyil</option>
-                <option>Prince Roshan</option>
-                <option>Mohasin Moorkote</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <select class="selectpicker" data-width="100%">
-                <option>MS Basheer</option>
-                <option>Muhsin Manniyil</option>
-                <option>Prince Roshan</option>
-                <option>Mohasin Moorkote</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <strong>Friday</strong>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <select class="selectpicker" data-width="100%">
-                <option>MS Basheer</option>
-                <option>Muhsin Manniyil</option>
-                <option>Prince Roshan</option>
-                <option>Mohasin Moorkote</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <select class="selectpicker" data-width="100%">
-                <option>MS Basheer</option>
-                <option>Muhsin Manniyil</option>
-                <option>Prince Roshan</option>
-                <option>Mohasin Moorkote</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <strong>Saturday</strong>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <select class="selectpicker" data-width="100%">
-                <option>MS Basheer</option>
-                <option>Muhsin Manniyil</option>
-                <option>Prince Roshan</option>
-                <option>Mohasin Moorkote</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <select class="selectpicker" data-width="100%">
-                <option>MS Basheer</option>
-                <option>Muhsin Manniyil</option>
-                <option>Prince Roshan</option>
-                <option>Mohasin Moorkote</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <strong>Sunday</strong>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <select class="selectpicker" data-width="100%">
-                <option>MS Basheer</option>
-                <option>Muhsin Manniyil</option>
-                <option>Prince Roshan</option>
-                <option>Mohasin Moorkote</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <select class="selectpicker" data-width="100%">
-                <option>MS Basheer</option>
-                <option>Muhsin Manniyil</option>
-                <option>Prince Roshan</option>
-                <option>Mohasin Moorkote</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-  <!-- </div> -->
