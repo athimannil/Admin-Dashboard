@@ -7,7 +7,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$routeProvider
 			.when('/', {
 				templateUrl: 'template/dashboard.html',
-				controller: 'homecontroller'
+				// controller: 'homecontroller'
 			})
 			.when('/dashboard', {
 				templateUrl: 'template/dashboard.html',
@@ -87,8 +87,17 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	});
 	app.controller('loginController', function($scope){});
 	app.controller('homecontroller', function($scope){
+
+localStorage.setItem("itemPerPage", 2);
+/*if (localStorage.itemPerPage === null) {
+    alert('yes');
+} else {
+   alert('no');
+}*/
+
 		/* paggination */
 		$scope.currentPage = 1;
+		// $scope.numPerPage = localStorage.itemPerPage;
 		$scope.numPerPage = 10;
 		$scope.maxSize = 5;
 		/* Nav menu */
