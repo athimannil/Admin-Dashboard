@@ -70,6 +70,15 @@
 				<hr>
 			</form>
 			<h3>Loans and details</h3>
+			<div class="row">
+			  <div class="col-md-6">
+			    <label for="">Show 
+			      <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
+			      entries
+			    </label>
+			  </div>
+			  <div class="col-md-6"></div>
+			</div>
 			<table class="table table-hover table-responsive">
 				<thead>
 					<tr>
@@ -85,7 +94,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="loan in loans">
+					<tr ng-repeat="loan in loans | pagination: currentPage : numPerPage">
 						<td><a href ng-click="openEmi(loan);">{{loan.name}}</a></td>
 						<td><p class="description" popover="{{loan.description}}" popover-trigger="mouseenter">{{loan.description}}</p></td>
 						<td><i class="fa fa-inr"></i> {{loan.amount}}</td>
@@ -107,6 +116,20 @@
 					</tr>
 				</tbody>
 			</table>
+			<div class="clearfix">
+				<pagination 
+					ng-model="currentPage" 
+					total-items="banks.length" 
+					max-size="maxSize" 
+					items-per-page="numPerPage"
+					boundary-links="true" 
+					class="pagination-sm pull-right" 
+					previous-text="&lsaquo;" 
+					next-text="&rsaquo;" 
+					first-text="&laquo;" 
+					last-text="&raquo;"
+				></pagination>
+			</div>
 		</div>
 	</div>
 	<div class="col-md-12" ng-switch-when="emi">
@@ -145,6 +168,15 @@
 				<hr>
 			</form>
 			<h3>Loan EMI</h3>
+      <div class="row">
+        <div class="col-md-6">
+          <label for="">Show 
+            <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
+            entries
+          </label>
+        </div>
+        <div class="col-md-6"></div>
+      </div>
 			<table class="table table-hover table-responsive">
 				<thead>
 					<tr>
@@ -175,11 +207,11 @@
 				</tbody>
 			</table>
 			<div class="clearfix">
-				<!-- <pagination ng-model="currentPage" total-items="emis.length" max-size="5" boundary-links="true" class="pagination-sm pull-right" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination> -->
 				<pagination
 					ng-model="currentPage"
 					total-items="emis.length"
-					max-size="5"
+	        max-size="maxSize" 
+	        items-per-page="numPerPage"
 					boundary-links="true"
 					class="pagination-sm pull-right"
 					previous-text="&lsaquo;"

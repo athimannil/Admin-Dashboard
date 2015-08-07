@@ -86,20 +86,36 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			});
 	});
 	app.controller('loginController', function($scope){});
+	/*app.factory('paginationFactory', function(){
+		return { 
+			setNumPerpage : function (){
+				return "kooy";
+			}
+		};
+	});*/
 	app.controller('homecontroller', function($scope){
-
-localStorage.setItem("itemPerPage", 10);
-/*if (localStorage.itemPerPage === null) {
-    alert('yes');
-} else {
-   alert('no');
-}*/
-
 		/* paggination */
+		if (localStorage.getItem("itemPerPage") === null) {
+			localStorage.setItem("itemPerPage", 10);
+		}
+		function getPerPage(){			
+			return parseInt(localStorage.itemPerPage);
+		}
+		$scope.changeNum = function (itemNum) {
+			localStorage.itemPerPage = itemNum;
+			$scope.numPerPage = getPerPage();
+		};
+
+
+console.log(localStorage.itemPerPage);
+		$scope.numsForPage = [5, 10, 25, 50, 100];
 		$scope.currentPage = 1;
-		// $scope.itemsPerPage = localStorage.itemPerPage;
-		$scope.numPerPage = localStorage.itemPerPage;
+		$scope.numPerPage = getPerPage();
 		$scope.maxSize = 5;
+
+
+
+
 		/* Nav menu */
 		$scope.user = {
 			firstname: "Basheer",
@@ -126,7 +142,6 @@ localStorage.setItem("itemPerPage", 10);
 			]
 		};
 		/* End menu */
-
 		// Toggle sede menu
 		$scope.menuStatus = true;
 		$scope.toggleMenu = function(){
@@ -146,7 +161,6 @@ localStorage.setItem("itemPerPage", 10);
 			$scope.items.splice(delItem, 1);
 			// alert(delItem);
 		};
-
 		$scope.addtolist = function () {
 			$scope.items.push({product: $scope.newitem.name, date: '03-Dec-2014', rate: $scope.newitem.price, member: $scope.currentuser, status: 'pending' });
 			$scope.newitem = '';

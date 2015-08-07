@@ -40,6 +40,15 @@
           </form>
           <h3>User details</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam dolor, pariatur totam fugiat aliquid beatae quis illo praesentium expedita aut optio, numquam laborum esse blanditiis nemo neque fuga, dolore harum!</p>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="">Show 
+                <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
+                entries
+              </label>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
           <table class="table table-hover table-responsive">
             <thead>
               <tr>
@@ -82,7 +91,8 @@
             <pagination 
               ng-model="currentPage" 
               total-items="users.length" 
-              max-size="5" 
+              max-size="maxSize" 
+              items-per-page="numPerPage"
               boundary-links="true" 
               class="pagination-sm pull-right" 
               previous-text="&lsaquo;" 
@@ -204,7 +214,7 @@
             <tr>
               <th>Post</th>
               <td ng-if="!editpost">{{userdetails.post}}</td>
-              <td ng-if="editpost"><input type="text" ng-model="inputs.post"></td>
+              <td ng-if="editpost"><input type="text" ng-model="userdetails.post"></td>
               <td>
                 <div class="btn-group btn-group-xs" role="group">
                   <button type="button" class="btn btn-default ng-hide" ng-hide="editpost" ng-click="editDetail('name', userdetails.name); editpost = !editpost">

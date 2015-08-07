@@ -64,6 +64,15 @@
 				<hr>
 			</form>
 			<h3>Banks and details</h3>
+			<div class="row">
+			  <div class="col-md-6">
+			    <label for="">Show 
+			      <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
+			      entries
+			    </label>
+			  </div>
+			  <div class="col-md-6"></div>
+			</div>
 			<table class="table table-hover table-responsive">
 				<thead>
 					<tr>
@@ -78,7 +87,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="bank in banks">
+					<tr ng-repeat="bank in banks | pagination: currentPage : numPerPage">
 						<td>
 							<a href title="{{bank.name}}" ng-click="openAccount(bank);">{{bank.name}}</a>
 						</td>
@@ -101,6 +110,20 @@
 					</tr>
 				</tbody>
 			</table>
+			<div class="clearfix">
+				<pagination 
+					ng-model="currentPage" 
+					total-items="banks.length" 
+					max-size="maxSize" 
+					items-per-page="numPerPage"
+					boundary-links="true" 
+					class="pagination-sm pull-right" 
+					previous-text="&lsaquo;" 
+					next-text="&rsaquo;" 
+					first-text="&laquo;" 
+					last-text="&raquo;"
+				></pagination>
+			</div>
 		</div>
 	</div>
 	<div class="col-md-12" ng-switch-when="accounts">
@@ -145,6 +168,15 @@
 				<hr>
 			</form>
 			<h3>Accounts and details</h3>
+			<div class="row">
+			  <div class="col-md-6">
+			    <label for="">Show 
+			      <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
+			      entries
+			    </label>
+			  </div>
+			  <div class="col-md-6"></div>
+			</div>
 			<table class="table table-hover table-responsive">
 				<thead>
 					<tr>
@@ -158,7 +190,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="account in accounts">
+					<tr ng-repeat="account in accounts | pagination: currentPage : numPerPage">
 						<td><a href ng-click="openStatement(account);">{{account.name}}</a></td>
 						<td>{{account.acnumber}}</td>
 						<td>{{account.type}}</td>
@@ -178,6 +210,20 @@
 					</tr>
 				</tbody>
 			</table>
+			<div class="clearfix">
+				<pagination 
+					ng-model="currentPage" 
+					total-items="accounts.length" 
+					max-size="maxSize" 
+					items-per-page="numPerPage"
+					boundary-links="true" 
+					class="pagination-sm pull-right" 
+					previous-text="&lsaquo;" 
+					next-text="&rsaquo;" 
+					first-text="&laquo;" 
+					last-text="&raquo;"
+				></pagination>
+			</div>
 		</div>
 	</div>
 	<div ng-switch-when="selectedAcc">	
@@ -227,6 +273,15 @@
 						<hr>
 					</form>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto magnam eius quia, sint mollitia, ipsum error consequatur corrupti. Voluptas tenetur totam aut quo ea consequatur et illo optio, deleniti officia!</p>
+					<div class="row">
+					  <div class="col-md-6">
+					    <label for="">Show 
+					      <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
+					      entries
+					    </label>
+					  </div>
+					  <div class="col-md-6"></div>
+					</div>
 					<table class="table table-hover table-responsive">
 						<thead>
 							<tr class="bg-primary">
@@ -264,7 +319,8 @@
 						<pagination 
 							ng-model="currentPage" 
 							total-items="particulars.length" 
-							max-size="5" 
+							max-size="maxSize" 
+							items-per-page="numPerPage"
 							boundary-links="true" 
 							class="pagination-sm pull-right" 
 							previous-text="&lsaquo;" 
@@ -535,14 +591,6 @@
 							</form>
 						</accordion-group>
 					</accordion>
-				</div>
-			</tab>
-			<tab>
-				<tab-heading> Loan</a></tab-heading>
-				<div class="row box">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
 				</div>
 			</tab>
 		</tabset>

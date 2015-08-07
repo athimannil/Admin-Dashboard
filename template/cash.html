@@ -59,6 +59,15 @@
           <hr>
         </form>
         <h3 ng-hide="debitedit">Credit and details</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="">Show 
+              <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
+              entries
+            </label>
+          </div>
+          <div class="col-md-6"></div>
+        </div>
         <table class="table table-hover table-responsive">
           <thead>
             <tr>
@@ -90,7 +99,8 @@
           <pagination 
             ng-model="currentPage" 
             total-items="cashdebits.length" 
-            max-size="5" 
+            max-size="maxSize" 
+            items-per-page="numPerPage"
             boundary-links="true" 
             class="pagination-sm pull-right" 
             previous-text="&lsaquo;" 
@@ -132,6 +142,15 @@
           <hr>
         </form>
         <h3 ng-hide="creditedit">Credit and details</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="">Show 
+              <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
+              entries
+            </label>
+          </div>
+          <div class="col-md-6"></div>
+        </div>
         <table class="table table-hover table-responsive">
           <thead>
             <tr>
@@ -163,7 +182,8 @@
           <pagination 
             ng-model="currentPage" 
             total-items="cashcredits.length" 
-            max-size="5" 
+            max-size="maxSize" 
+            items-per-page="numPerPage"
             boundary-links="true" 
             class="pagination-sm pull-right" 
             previous-text="&lsaquo;" 
