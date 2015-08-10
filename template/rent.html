@@ -45,7 +45,12 @@
             entries
           </label>
         </div>
-        <div class="col-md-6"></div>
+        <div class="col-md-6 text-right">
+          <div class="form-inline form-group">
+            <label for="filter-list">Search </label>
+            <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
+          </div>
+        </div>
       </div>
       <table class="table table-hover table-responsive">
         <thead>
@@ -58,7 +63,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="rent in rents | pagination: currentPage : numPerPage">
+          <tr ng-repeat="rent in listCount  = (rents | filter:filterlist)| pagination: currentPage : numPerPage">
             <td>{{rent.name}}</td>
             <td><i class="fa fa-inr"></i> {{rent.amount}}</td>
             <td>{{rent.date}}</td>
@@ -79,7 +84,7 @@
       <div class="clearfix" ng-show="rents.length > numPerPage">
         <pagination 
           ng-model="currentPage" 
-          total-items="rents.length" 
+          total-items="listCount.length" 
           max-size="maxSize" 
           items-per-page="numPerPage"
           boundary-links="true" 

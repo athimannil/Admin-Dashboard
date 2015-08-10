@@ -77,7 +77,12 @@
 			      entries
 			    </label>
 			  </div>
-			  <div class="col-md-6"></div>
+	        <div class="col-md-6 text-right">
+	          <div class="form-inline form-group">
+	            <label for="filter-list">Search </label>
+	            <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
+	          </div>
+	        </div>
 			</div>
 			<table class="table table-hover table-responsive">
 				<thead>
@@ -94,7 +99,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="loan in loans | pagination: currentPage : numPerPage">
+					<tr ng-repeat="loan in  listCount = (loans | filter:filterlist) | pagination: currentPage : numPerPage">
 						<td><a href ng-click="openEmi(loan);">{{loan.name}}</a></td>
 						<td><p class="description" popover="{{loan.description}}" popover-trigger="mouseenter">{{loan.description}}</p></td>
 						<td><i class="fa fa-inr"></i> {{loan.amount}}</td>
@@ -119,7 +124,7 @@
 			<div class="clearfix">
 				<pagination 
 					ng-model="currentPage" 
-					total-items="banks.length" 
+					total-items="listCount.length" 
 					max-size="maxSize" 
 					items-per-page="numPerPage"
 					boundary-links="true" 
@@ -175,7 +180,12 @@
             entries
           </label>
         </div>
-        <div class="col-md-6"></div>
+        <div class="col-md-6 text-right">
+          <div class="form-inline form-group">
+            <label for="filter-list">Search </label>
+            <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
+          </div>
+        </div>
       </div>
 			<table class="table table-hover table-responsive">
 				<thead>
@@ -187,7 +197,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="emi in emis | pagination: currentPage : numPerPage">
+					<tr ng-repeat="emi in listCount = (emis | filter:filterlist) | pagination: currentPage : numPerPage">
 						<td>{{emi.date}}</td>
 						<td>
 							<p class="description" popover="{{emi.description}}" popover-trigger="mouseenter">{{emi.description}}</p>
@@ -209,9 +219,9 @@
 			<div class="clearfix">
 				<pagination
 					ng-model="currentPage"
-					total-items="emis.length"
-	        max-size="maxSize" 
-	        items-per-page="numPerPage"
+					total-items="listCount.length" 
+			        max-size="maxSize" 
+			        items-per-page="numPerPage"
 					boundary-links="true"
 					class="pagination-sm pull-right"
 					previous-text="&lsaquo;"

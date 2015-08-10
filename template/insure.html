@@ -69,7 +69,12 @@
             entries
           </label>
         </div>
-        <div class="col-md-6"></div>
+        <div class="col-md-6 text-right">
+          <div class="form-inline form-group">
+            <label for="filter-list">Search </label>
+            <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
+          </div>
+        </div>
       </div>
 			<table class="table table-striped table-hover table-responsive">
 				<thead>
@@ -87,7 +92,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="insure in insures | pagination: currentPage : numPerPage">
+					<!-- <tr ng-repeat="expense in listCount = ( expenses | filter:filterlist) | pagination: currentPage : numPerPage"> -->
+					<tr ng-repeat="insure in listCount = ( insures | filter:filterlist) | pagination: currentPage : numPerPage">
 						<td>{{insure.name}}</td>
 						<td><p class="description" popover="{{insure.term}}" popover-trigger="mouseenter">{{insure.term}}</p></td>
 						<td><p class="description" popover="{{insure.description}}" popover-trigger="mouseenter">{{insure.description}}</p></td>
@@ -110,10 +116,10 @@
 					</tr>
 				</tbody>
 			</table>
-			<div class="clearfix" ng-show="insures.length > numPerPage">
+			<div class="clearfix">
 				<pagination 
 					ng-model="currentPage" 
-					total-items="insures.length" 
+					total-items="listCount.length" 
 					max-size="maxSize" 
 					items-per-page="numPerPage"
 					boundary-links="true" 

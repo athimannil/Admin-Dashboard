@@ -44,8 +44,6 @@
             <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
             entries
           </label>
-          <br><p>{{listCount.length}}</p>
-          <br><pre>{{listCount}}</pre>
         </div>
         <div class="col-md-6 text-right">
           <div class="form-inline form-group">
@@ -65,7 +63,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="expense in listCount = ( expenses | filter:filterlist) | pagination: currentPage : numPerPage">
+          <tr ng-repeat="expense in listCount = (expenses | filter:filterlist) | pagination: currentPage : numPerPage">
             <td>{{expense.name}}</td>
             <td>{{expense.amount}}</td>
             <td>{{expense.date}}</td>

@@ -156,7 +156,12 @@
 			            entries
 			          </label>
 			        </div>
-			        <div class="col-md-6"></div>
+							<div class="col-md-6 text-right">
+							  <div class="form-inline form-group">
+							    <label for="filter-list">Search </label>
+							    <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="wagefilter">
+							  </div>
+							</div>
 			      </div>
 						<table class="table table-hover table-responsive" ng-if="curProject.wages.length">
 							<thead>
@@ -169,7 +174,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="wage in curProject.wages | pagination: currentPage : numPerPage">
+								<tr ng-repeat="wage in listCount = (curProject.wages | filter:wagefilter) | pagination: currentPage : numPerPage">
 									<td>{{wage.name}}</td>
 									<td><p class="description" popover="{{wage.description}}" popover-trigger="mouseenter">{{wage.description}}</p></td>
 									<td><i class="fa fa-inr"></i> {{wage.amount}}</td>
@@ -187,12 +192,12 @@
 								</tr>
 							</tbody>
 						</table>
-						<div class="clearfix" ng-show="curProject.wages.length > numPerPage">
+						<div class="clearfix">
 							<pagination 
 								ng-model="currentPage" 
-								total-items="curProject.wages.length" 
-						        max-size="maxSize" 
-						        items-per-page="numPerPage"
+								total-items="listCount.length" 
+								max-size="maxSize" 
+								items-per-page="numPerPage"
 								boundary-links="true" 
 								class="pagination-sm pull-right" 
 								previous-text="&lsaquo;" 
@@ -245,7 +250,12 @@
 			            entries
 			          </label>
 			        </div>
-			        <div class="col-md-6"></div>
+							<div class="col-md-6 text-right">
+							  <div class="form-inline form-group">
+							    <label for="filter-list">Search </label>
+							    <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="expensefilter">
+							  </div>
+							</div>
 			      </div>
 						<table class="table table-hover table-responsive">
 							<thead>
@@ -258,7 +268,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="expense in expenses | pagination: currentPage : numPerPage">
+								<tr ng-repeat="expense in listCount = (expenses | filter:expensefilter) | pagination: currentPage : numPerPage">
 									<td>{{expense.name}}</td>
 									<td>{{expense.amount}}</td>
 									<td>{{expense.date}}</td>
@@ -276,10 +286,10 @@
 								</tr>
 							</tbody>
 						</table>
-						<div class="clearfix" ng-show="expenses.length > numPerPage">
+						<div class="clearfix">
 							<pagination 
 								ng-model="currentPage" 
-								total-items="expenses.length" 
+								total-items="listCount.length" 
 								max-size="maxSize" 
 								items-per-page="numPerPage" 
 								boundary-links="true" 

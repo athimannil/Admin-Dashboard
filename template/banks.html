@@ -71,7 +71,12 @@
 			      entries
 			    </label>
 			  </div>
-			  <div class="col-md-6"></div>
+        <div class="col-md-6 text-right">
+          <div class="form-inline form-group">
+            <label for="filter-list">Search </label>
+            <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
+          </div>
+        </div>
 			</div>
 			<table class="table table-hover table-responsive">
 				<thead>
@@ -87,7 +92,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="bank in banks | pagination: currentPage : numPerPage">
+					<tr ng-repeat="bank in listCount  = ( banks | filter:filterlist) | pagination: currentPage : numPerPage">
 						<td>
 							<a href title="{{bank.name}}" ng-click="openAccount(bank);">{{bank.name}}</a>
 						</td>
@@ -113,7 +118,7 @@
 			<div class="clearfix">
 				<pagination 
 					ng-model="currentPage" 
-					total-items="banks.length" 
+					total-items="listCount.length" 
 					max-size="maxSize" 
 					items-per-page="numPerPage"
 					boundary-links="true" 
@@ -175,7 +180,12 @@
 			      entries
 			    </label>
 			  </div>
-			  <div class="col-md-6"></div>
+        <div class="col-md-6 text-right">
+          <div class="form-inline form-group">
+            <label for="filter-list">Search </label>
+            <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
+          </div>
+        </div>
 			</div>
 			<table class="table table-hover table-responsive">
 				<thead>
@@ -190,7 +200,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="account in accounts | pagination: currentPage : numPerPage">
+					<tr ng-repeat="account in listCount = (accounts | filter:filterlist) | pagination: currentPage : numPerPage">
 						<td><a href ng-click="openStatement(account);">{{account.name}}</a></td>
 						<td>{{account.acnumber}}</td>
 						<td>{{account.type}}</td>
@@ -213,7 +223,7 @@
 			<div class="clearfix">
 				<pagination 
 					ng-model="currentPage" 
-					total-items="accounts.length" 
+					total-items="listCount.length" 
 					max-size="maxSize" 
 					items-per-page="numPerPage"
 					boundary-links="true" 
@@ -280,7 +290,12 @@
 					      entries
 					    </label>
 					  </div>
-					  <div class="col-md-6"></div>
+		        <div class="col-md-6 text-right">
+		          <div class="form-inline form-group">
+		            <label for="filter-list">Search </label>
+		            <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
+		          </div>
+		        </div>
 					</div>
 					<table class="table table-hover table-responsive">
 						<thead>
@@ -295,7 +310,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="particular in particulars | pagination: currentPage : numPerPage">
+							<tr ng-repeat="particular in listCount = (particulars | filter:filterlist) | pagination: currentPage : numPerPage">
 								<td>{{particular.date}}</td>
 								<td><p class="description" popover="{{particular.particuler}}" popover-trigger="mouseenter">{{particular.particuler}}</p></td>
 								<td>{{particular.cheque_no}}</td>
@@ -318,7 +333,7 @@
 					<div class="clearfix">
 						<pagination 
 							ng-model="currentPage" 
-							total-items="particulars.length" 
+							total-items="listCount.length" 
 							max-size="maxSize" 
 							items-per-page="numPerPage"
 							boundary-links="true" 
