@@ -58,7 +58,7 @@
           </div>
           <hr>
         </form>
-        <h3 ng-hide="debitedit">Credit and details</h3>
+        <h3 ng-hide="debitedit"> Cash Debit and details</h3>
         <div class="row">
           <div class="col-md-6">
             <label for="">Show 
@@ -66,7 +66,12 @@
               entries
             </label>
           </div>
-          <div class="col-md-6"></div>
+          <div class="col-md-6 text-right">
+            <div class="form-inline form-group">
+              <label for="filter-list">Search </label>
+              <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="debitfilter">
+            </div>
+          </div>
         </div>
         <table class="table table-hover table-responsive">
           <thead>
@@ -78,7 +83,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="debit in cashdebits | pagination: currentPage : numPerPage">
+            <tr ng-repeat="debit in listCount = (cashdebits | filter:debitfilter) | pagination: currentPage : numPerPage">
               <td><i class="fa fa-inr"></i> {{debit.amount}}</td>
               <td>{{debit.date}}</td>
               <td><p class="description" popover="{{debit.description}}" popover-trigger="mouseenter">{{debit.description}}</p></td>
@@ -98,7 +103,7 @@
         <div class="clearfix" ng-show="cashdebits.length > numPerPage">
           <pagination 
             ng-model="currentPage" 
-            total-items="cashdebits.length" 
+            total-items="listCount.length" 
             max-size="maxSize" 
             items-per-page="numPerPage"
             boundary-links="true" 
@@ -141,7 +146,7 @@
           </div>
           <hr>
         </form>
-        <h3 ng-hide="creditedit">Credit and details</h3>
+        <h3 ng-hide="creditedit">Cash Credit and details</h3>
         <div class="row">
           <div class="col-md-6">
             <label for="">Show 
@@ -149,7 +154,12 @@
               entries
             </label>
           </div>
-          <div class="col-md-6"></div>
+          <div class="col-md-6 text-right">
+            <div class="form-inline form-group">
+              <label for="filter-list">Search </label>
+              <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="creditfilter">
+            </div>
+          </div>
         </div>
         <table class="table table-hover table-responsive">
           <thead>
@@ -161,7 +171,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="credit in cashcredits | pagination: currentPage : numPerPage">
+            <tr ng-repeat="credit in listCount = (cashcredits|filter:creditfilter) | pagination: currentPage : numPerPage">
               <td><i class="fa fa-inr"></i> {{credit.amount}}</td>
               <td>{{credit.date}}</td>
               <td><p class="description" popover="{{credit.description}}" popover-trigger="mouseenter">{{credit.description}}</p></td>
@@ -181,7 +191,7 @@
         <div class="clearfix" ng-show="cashcredits.length > numPerPage">
           <pagination 
             ng-model="currentPage" 
-            total-items="cashcredits.length" 
+            total-items="listCount.length" 
             max-size="maxSize" 
             items-per-page="numPerPage"
             boundary-links="true" 
