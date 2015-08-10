@@ -15,68 +15,68 @@
 			<button type="button" class="btn btn-primary pull-right" ng-hide="status.bankedit" ng-click="newBank();"><i class="fa fa-plus"></i> Add bank</button>
 			<form class="form-horizontal" ng-submit="addBank()" ng-show="status.bankedit">
 				<h3>New Bank Account</h3><br>
-			  <div class="form-group">
+				<div class="form-group">
 					<label class="col-sm-2 control-label">Bank Name</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" ng-model="newbank.name" placeholder="Bank Name">
 					</div>
-			  </div>
+				</div>
 				<div class="form-group">
-				  <label class="col-sm-2 control-label">Branch Code</label>
-				  <div class="col-sm-2">
-				    <input type="text" class="form-control" ng-model="newbank.branchcode" placeholder="Branch Code">
-				  </div>
-				  <label class="col-sm-1 control-label">IFSC Code</label>
-				  <div class="col-sm-3">
-				    <input type="text" class="form-control" ng-model="newbank.ifsc" placeholder="IFSC Code">
-				  </div>
-				  <label class="col-sm-1 control-label">MICR</label>
-				  <div class="col-sm-3">
-				    <input type="text" class="form-control" ng-model="newbank.micr" placeholder="MICR">
-				  </div>
+					<label class="col-sm-2 control-label">Branch Code</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" ng-model="newbank.branchcode" placeholder="Branch Code">
+					</div>
+					<label class="col-sm-1 control-label">IFSC Code</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" ng-model="newbank.ifsc" placeholder="IFSC Code">
+					</div>
+					<label class="col-sm-1 control-label">MICR</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" ng-model="newbank.micr" placeholder="MICR">
+					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Swift</label>
 					<div class="col-sm-2">
-					  <input type="text" class="form-control" ng-model="newbank.swift" placeholder="Swift">
+						<input type="text" class="form-control" ng-model="newbank.swift" placeholder="Swift">
 					</div>
-				  <label class="col-sm-1 control-label">Contact</label>
-				  <div class="col-sm-3">
-				    <input type="text" class="form-control" ng-model="newbank.contact" placeholder="Contact Number">
-				  </div>
-				  <label class="col-sm-1 control-label">Branch</label>
-				  <div class="col-sm-3">
-				    <input type="text" class="form-control" ng-model="newbank.branch" placeholder="Branch">
-				  </div>
+					<label class="col-sm-1 control-label">Contact</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" ng-model="newbank.contact" placeholder="Contact Number">
+					</div>
+					<label class="col-sm-1 control-label">Branch</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" ng-model="newbank.branch" placeholder="Branch">
+					</div>
 				</div>
-			  <div class="form-group">
+				<div class="form-group">
 					<label class="col-sm-2 control-label">Address</label>
 					<div class="col-sm-10">
 						<textarea class="form-control" ng-model="newbank.address" placeholder="Address"></textarea>
 					</div>
-			  </div>
+				</div>
 				<div class="form-group">
-				  <div class="col-md-12 text-right">
-				  	<button type="button" class="btn btn-default" ng-click="cancelBank();">Cancel</button>
-					  <button type="submit" class="btn btn-primary">Save</button>
-				  </div>
+					<div class="col-md-12 text-right">
+						<button type="button" class="btn btn-default" ng-click="cancelBank();">Cancel</button>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
 				</div>
 				<hr>
 			</form>
 			<h3>Banks and details</h3>
 			<div class="row">
-			  <div class="col-md-6">
-			    <label for="">Show 
-			      <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
-			      entries
-			    </label>
-			  </div>
-        <div class="col-md-6 text-right">
-          <div class="form-inline form-group">
-            <label for="filter-list">Search </label>
-            <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
-          </div>
-        </div>
+				<div class="col-md-6">
+					<label for="">Show 
+						<select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
+						entries
+					</label>
+				</div>
+				<div class="col-md-6 text-right">
+					<div class="form-inline form-group">
+						<label for="filter-list">Search </label>
+						<input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
+					</div>
+				</div>
 			</div>
 			<table class="table table-hover table-responsive">
 				<thead>
@@ -136,56 +136,56 @@
 			<button type="button" class="btn btn-primary pull-right" ng-hide="status.accountedit" ng-click="newAccount();"><i class="fa fa-plus"></i> Add bank</button>
 			<form class="form-horizontal" ng-submit="addAccount()" ng-show="status.accountedit">
 				<h3>New Bank Account</h3><br>
-			  <div class="form-group">
+				<div class="form-group">
 					<label class="col-sm-2 control-label">Name</label>
 					<div class="col-sm-4">
 						<input type="text" class="form-control" ng-model="newaccount.name" placeholder="Name">
 					</div>
 					<label class="col-sm-1 control-label">Issue date</label>
 					<div class="col-sm-2">
-					  <input type="text" class="form-control" ng-model="newaccount.issuedate" placeholder="Isues date">
+						<input type="text" class="form-control" ng-model="newaccount.issuedate" placeholder="Isues date">
 					</div>
 					<label class="col-sm-1 control-label">Balance</label>
 					<div class="col-sm-2">
-					  <input type="text" class="form-control" ng-model="newaccount.balance" placeholder="Isues date">
+						<input type="text" class="form-control" ng-model="newaccount.balance" placeholder="Isues date">
 					</div>
-			  </div>
-				<div class="form-group">
-				  <label class="col-sm-2 control-label">Account Type</label>
-				  <div class="col-sm-2">
-				    <input type="text" class="form-control" ng-model="newaccount.type" placeholder="Account Type">
-				  </div>
-				  <label class="col-sm-2 control-label">Account Number</label>
-				  <div class="col-sm-2">
-				    <input type="text" class="form-control" ng-model="newaccount.acnumber" placeholder="Account Number">
-				  </div>
-				  <label class="col-sm-1 control-label">IBAN</label>
-				  <div class="col-sm-3">
-				    <input type="text" class="form-control" ng-model="newaccount.iban" placeholder="IBAN">
-				  </div>
 				</div>
 				<div class="form-group">
-				  <div class="col-md-12 text-right">
-				  	<button type="button" class="btn btn-default" ng-click="cancelAccount();">Cancel</button>
-					  <button type="submit" class="btn btn-primary">Save</button>
-				  </div>
+					<label class="col-sm-2 control-label">Account Type</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" ng-model="newaccount.type" placeholder="Account Type">
+					</div>
+					<label class="col-sm-2 control-label">Account Number</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" ng-model="newaccount.acnumber" placeholder="Account Number">
+					</div>
+					<label class="col-sm-1 control-label">IBAN</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" ng-model="newaccount.iban" placeholder="IBAN">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-12 text-right">
+						<button type="button" class="btn btn-default" ng-click="cancelAccount();">Cancel</button>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
 				</div>
 				<hr>
 			</form>
 			<h3>Accounts and details</h3>
 			<div class="row">
-			  <div class="col-md-6">
-			    <label for="">Show 
-			      <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
-			      entries
-			    </label>
-			  </div>
-        <div class="col-md-6 text-right">
-          <div class="form-inline form-group">
-            <label for="filter-list">Search </label>
-            <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
-          </div>
-        </div>
+				<div class="col-md-6">
+					<label for="">Show 
+						<select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
+						entries
+					</label>
+				</div>
+				<div class="col-md-6 text-right">
+					<div class="form-inline form-group">
+						<label for="filter-list">Search </label>
+						<input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
+					</div>
+				</div>
 			</div>
 			<table class="table table-hover table-responsive">
 				<thead>
@@ -236,7 +236,7 @@
 			</div>
 		</div>
 	</div>
-	<div ng-switch-when="selectedAcc">	
+	<div ng-switch-when="selectedAcc">  
 		<tabset class="col-md-12">
 			<tab>
 				<tab-heading><i class="fa fa-newspaper-o"></i> Statement</a></tab-heading>
@@ -244,7 +244,7 @@
 					<button type="button" class="btn btn-primary pull-right" ng-hide="status.particularedit" ng-click="status.particularedit = true; newParticular();"><i class="fa fa-plus"></i> Add payment</button>
 					<form class="form-horizontal" ng-submit="addParticular()" ng-show="status.particularedit">
 						<h3>New Account Particular</h3><br>
-					  <div class="form-group">
+						<div class="form-group">
 							<label class="col-sm-2 control-label">Date</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" ng-model="newparticular.date" placeholder="Date">
@@ -253,49 +253,49 @@
 							<div class="col-sm-3">
 								<input type="text" class="form-control" ng-model="newparticular.cheque_no" placeholder="Cheque Number">
 							</div>
-					  </div>
+						</div>
 						<div class="form-group">
-						  <label class="col-sm-2 control-label">Withdraw</label>
-						  <div class="col-sm-2">
-						    <input type="text" class="form-control" ng-model="newparticular.withdraw" placeholder="Withdraw Amount">
-						  </div>
-						  <label class="col-sm-2 control-label">Deposit</label>
-						  <div class="col-sm-2">
-						    <input type="text" class="form-control" ng-model="newparticular.deposit" placeholder="Deposit Amount">
-						  </div>
-						  <label class="col-sm-2 control-label">Balance</label>
-						  <div class="col-sm-2">
-						    <input type="text" class="form-control" ng-model="newparticular.balance" placeholder="Balance Amount">
-						  </div>
+							<label class="col-sm-2 control-label">Withdraw</label>
+							<div class="col-sm-2">
+								<input type="text" class="form-control" ng-model="newparticular.withdraw" placeholder="Withdraw Amount">
+							</div>
+							<label class="col-sm-2 control-label">Deposit</label>
+							<div class="col-sm-2">
+								<input type="text" class="form-control" ng-model="newparticular.deposit" placeholder="Deposit Amount">
+							</div>
+							<label class="col-sm-2 control-label">Balance</label>
+							<div class="col-sm-2">
+								<input type="text" class="form-control" ng-model="newparticular.balance" placeholder="Balance Amount">
+							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Description</label>
 							<div class="col-sm-10">
-							  <textarea class="form-control" ng-model="newparticular.particuler" placeholder="Description"></textarea>
+								<textarea class="form-control" ng-model="newparticular.particuler" placeholder="Description"></textarea>
 							</div>
 						</div>
 						<div class="form-group">
-						  <div class="col-md-12 text-right">
-						  	<button type="button" class="btn btn-default" ng-click="cancelParticular();">Cancel</button>
-							  <button type="submit" class="btn btn-primary">Save</button>
-						  </div>
+							<div class="col-md-12 text-right">
+								<button type="button" class="btn btn-default" ng-click="cancelParticular();">Cancel</button>
+								<button type="submit" class="btn btn-primary">Save</button>
+							</div>
 						</div>
 						<hr>
 					</form>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto magnam eius quia, sint mollitia, ipsum error consequatur corrupti. Voluptas tenetur totam aut quo ea consequatur et illo optio, deleniti officia!</p>
 					<div class="row">
-					  <div class="col-md-6">
-					    <label for="">Show 
-					      <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
-					      entries
-					    </label>
-					  </div>
-		        <div class="col-md-6 text-right">
-		          <div class="form-inline form-group">
-		            <label for="filter-list">Search </label>
-		            <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
-		          </div>
-		        </div>
+						<div class="col-md-6">
+							<label for="">Show 
+								<select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
+								entries
+							</label>
+						</div>
+						<div class="col-md-6 text-right">
+							<div class="form-inline form-group">
+								<label for="filter-list">Search </label>
+								<input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
+							</div>
+						</div>
 					</div>
 					<table class="table table-hover table-responsive">
 						<thead>
@@ -351,8 +351,8 @@
 				<div class="row box">
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius necessitatibus nam reprehenderit animi optio voluptas aspernatur alias dolore libero, atque cumque, inventore molestias nisi nihil modi quae, hic velit eos. ipsum dolor sit amet, consectetur adipisicing elit. Quam magni aperiam nisi eum explicabo consequatur veritatis, totam iure ipsum distinctio! Fugiat et optio molestias ut officiis impedit nam aliquam dignissimos. ipsum dolor sit amet, consectetur adipisicing elit. Dolore ducimus aut esse quidem. Ratione cumque, officia vero voluptate facere laborum accusantium velit consectetur nobis delectus, dolorem, illum commodi laudantium quaerat! ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
 					<accordion>
-					  <accordion-group ng-repeat="cheque in cheques" is-open="$first">
-					  	<accordion-heading><i class="fa fa-files-o"></i> From: {{cheque.from}} To:{{cheque.to}}</accordion-heading>
+						<accordion-group ng-repeat="cheque in cheques" is-open="$first">
+							<accordion-heading><i class="fa fa-files-o"></i> From: {{cheque.from}} To:{{cheque.to}}</accordion-heading>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ducimus aut esse quidem. Ratione cumque, officia vero voluptate facere laborum accusantium velit consectetur nobis delectus, dolorem, illum commodi laudantium quaerat! ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem esse, ratione nam ea. Sint voluptates dolore id sapiente ea, architecto adipisci dolorem natus culpa itaque, ad repellat doloribus eius quas.</p>
 								<form class="form-horizontal">
 									<div class="form-group">
@@ -408,7 +408,7 @@
 									</tbody>
 								</table>
 
-					  </accordion-group>
+						</accordion-group>
 					</accordion>
 				</div>
 			</tab>
@@ -422,23 +422,23 @@
 							<div class="row">
 								<div class="col-sm-12">
 									<form class="form-horizontal" ng-submit="addCard();">
-									  <div class="form-group">
+										<div class="form-group">
 											<label for="nameon-card" class="col-md-2 control-label">Cardholder Name</label>
 											<div class="col-md-10">
 												<p class="form-control-static">{{card.name}}</p>
-											  <!-- <input type="text" class="form-control" id="nameon-card" placeholder="Name on card" required> -->
+												<!-- <input type="text" class="form-control" id="nameon-card" placeholder="Name on card" required> -->
 											</div>
-									  </div>
-									  <div class="form-group">
+										</div>
+										<div class="form-group">
 											<div class="row">
-											  <div class="col-md-8">
+												<div class="col-md-8">
 													<label for="card-number" class="col-md-3 control-label">Card number</label>
 													<div class="col-md-9">
 														<p class="form-control-static">{{card.no}}</p>
-													  <!-- <input type="text" class="form-control" id="card-number" placeholder="Card number" maxlength="16" required> -->
+														<!-- <input type="text" class="form-control" id="card-number" placeholder="Card number" maxlength="16" required> -->
 													</div>
-											  </div>
-											  <div class="col-md-4">
+												</div>
+												<div class="col-md-4">
 													<label for="card-type" class="col-md-2 control-label">Type</label>
 													<div class="col-md-10">
 														<p class="form-control-static">{{card.type}}</p>
@@ -449,8 +449,8 @@
 													</div>
 												</div>
 											</div>
-									  </div>
-									  <div class="form-group">
+										</div>
+										<div class="form-group">
 											<div class="row">
 												<div class="col-md-4">
 													<label class="col-md-6 control-label">Card from</label>
@@ -472,14 +472,14 @@
 															</select>
 													</div>
 													<div class="col-md-3">
-													  <input type="text" class="form-control" placeholder="year" maxlength="2"> -->
+														<input type="text" class="form-control" placeholder="year" maxlength="2"> -->
 													</div>
-											  </div>
+												</div>
 												<div class="col-md-4">
 													<label class="col-md-4 control-label">Expiry</label>
 													<div class="col-md-4">
 														<p class="form-control-static">{{card.expiry}}</p>
-													  <!-- <select name="day" class="form-control" required>
+														<!-- <select name="day" class="form-control" required>
 															<option value="01">01</option>
 															<option value="02">02</option>
 															<option value="03">03</option>
@@ -492,26 +492,26 @@
 															<option value="10">10</option>
 															<option value="11">11</option>
 															<option value="12">12</option>
-													  </select>
+														</select>
 													</div>
 													<div class="col-md-4">
-													  <input type="text" class="form-control" placeholder="year" maxlength="2" required> -->
+														<input type="text" class="form-control" placeholder="year" maxlength="2" required> -->
 													</div>
-											  </div>
+												</div>
 												<div class="col-md-3">
 													<label class="col-md-6 control-label">Security Code</label>
 													<div class="col-md-6">
 														<p class="form-control-static">{{card.cvv}}</p>
-													  <!-- <input type="text" class="form-control" placeholder="CCV" maxlength="3" required> -->
+														<!-- <input type="text" class="form-control" placeholder="CCV" maxlength="3" required> -->
 													</div>
-											  </div>
+												</div>
 											</div>
 										</div>
-									  <div class="form-group">
-									  	<div class="col-md-12">
-											  <button type="submit" class="btn btn-primary pull-right">Edit card</button>
-										  </div>
-									  </div>
+										<div class="form-group">
+											<div class="col-md-12">
+												<button type="submit" class="btn btn-primary pull-right">Edit card</button>
+											</div>
+										</div>
 									</form>
 								</div>
 							</div>
@@ -519,21 +519,21 @@
 						<accordion-group class="panel panel-primary">
 							<accordion-heading><i class="fa fa-credit-card"></i> Add new card</accordion-heading>
 							<form class="form-horizontal" ng-submit="addCard();">
-							  <div class="form-group">
+								<div class="form-group">
 									<label for="nameon-card" class="col-md-2 control-label">Cardholder Name</label>
 									<div class="col-md-10">
-									  <input type="text" class="form-control" id="nameon-card" placeholder="Name on card" required>
+										<input type="text" class="form-control" id="nameon-card" placeholder="Name on card" required>
 									</div>
-							  </div>
-							  <div class="form-group">
+								</div>
+								<div class="form-group">
 									<div class="row">
-									  <div class="col-md-8">
+										<div class="col-md-8">
 											<label for="card-number" class="col-md-3 control-label">Card number</label>
 											<div class="col-md-9">
-											  <input type="text" class="form-control" id="card-number" placeholder="Card number" maxlength="16" required>
+												<input type="text" class="form-control" id="card-number" placeholder="Card number" maxlength="16" required>
 											</div>
-									  </div>
-									  <div class="col-md-4">
+										</div>
+										<div class="col-md-4">
 											<label for="card-type" class="col-md-2 control-label">Type</label>
 											<div class="col-md-10">
 												<select name="card-type" id="card-type" class="form-control" required>
@@ -543,8 +543,8 @@
 											</div>
 										</div>
 									</div>
-							  </div>
-							  <div class="form-group">
+								</div>
+								<div class="form-group">
 									<div class="row">
 										<div class="col-md-4">
 											<label class="col-md-6 control-label">Card from</label>
@@ -565,13 +565,13 @@
 													</select>
 											</div>
 											<div class="col-md-3">
-											  <input type="text" class="form-control" placeholder="year" maxlength="2">
+												<input type="text" class="form-control" placeholder="year" maxlength="2">
 											</div>
-									  </div>
+										</div>
 										<div class="col-md-4">
 											<label class="col-md-4 control-label">Expiry</label>
 											<div class="col-md-4">
-											  <select name="day" class="form-control" required>
+												<select name="day" class="form-control" required>
 												<option value="01">01</option>
 												<option value="02">02</option>
 												<option value="03">03</option>
@@ -584,25 +584,25 @@
 												<option value="10">10</option>
 												<option value="11">11</option>
 												<option value="12">12</option>
-											  </select>
+												</select>
 											</div>
 											<div class="col-md-4">
-											  <input type="text" class="form-control" placeholder="year" maxlength="2" required>
+												<input type="text" class="form-control" placeholder="year" maxlength="2" required>
 											</div>
-									  </div>
+										</div>
 										<div class="col-md-3">
 											<label class="col-md-6 control-label">Security Code</label>
 											<div class="col-md-6">
-											  <input type="text" class="form-control" placeholder="CCV" maxlength="3" required>
+												<input type="text" class="form-control" placeholder="CCV" maxlength="3" required>
 											</div>
-									  </div>
+										</div>
 									</div>
 								</div>
-							  <div class="form-group">
-							  	<div class="col-md-12">
-									  <button type="submit" class="btn btn-primary pull-right">Submit new card</button>
-								  </div>
-							  </div>
+								<div class="form-group">
+									<div class="col-md-12">
+										<button type="submit" class="btn btn-primary pull-right">Submit new card</button>
+									</div>
+								</div>
 							</form>
 						</accordion-group>
 					</accordion>
