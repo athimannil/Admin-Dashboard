@@ -21,7 +21,7 @@
           <label for="" class="col-sm-1 control-label">Date</label>
           <div class="col-sm-3">
             <div class="input-group">
-              <input type="date" class="form-control" ng-model="newexpense.date" datepicker-popup is-open="expensepicker" readonly>
+              <input type="text" class="form-control" datepicker-popup ng-model="newexpense.date" is-open="expensepicker" show-button-bar="false" show-weeks="false" readonly>
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="expensepicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>

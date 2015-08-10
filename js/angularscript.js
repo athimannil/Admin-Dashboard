@@ -95,18 +95,17 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	});*/
 	app.controller('homecontroller', function($scope){
 		/* paggination */
+		// TODO factory
 		if (localStorage.getItem("itemPerPage") === null) {
 			localStorage.setItem("itemPerPage", 10);
 		}
-		function getPerPage(){			
+		function getPerPage(){          
 			return parseInt(localStorage.itemPerPage);
 		}
 		$scope.changeNum = function (itemNum) {
 			localStorage.itemPerPage = itemNum;
 			$scope.numPerPage = getPerPage();
 		};
-
-
 		console.log(localStorage.itemPerPage);
 		$scope.numsForPage = [5, 10, 25, 50, 100];
 		$scope.currentPage = 1;
@@ -116,17 +115,17 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 
 
   $scope.today = function() {
-    $scope.dt = new Date();
+	$scope.dt = new Date();
   };
   $scope.today();
   $scope.clear = function () {
-    $scope.dt = null;
+	$scope.dt = null;
   };
   $scope.open = function($event) {
-    $scope.status.opened = true;
+	$scope.status.opened = true;
   };
   $scope.status = {
-    opened: false
+	opened: false
   };
 
 		/*$scope.settings = [
@@ -2042,13 +2041,13 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				"id": 1,
 				"name": "Warren Phillips",
 				"amount": "37.47",
-				"date": "12/11/2015",
+				"date": "2015-12-19",
 				"description": "blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan"
 			}, {
 				"id": 2,
 				"name": "Declan Ayala",
 				"amount": "29.18",
-				"date": "12/17/2014",
+				"date": "2015-08-19T18:17:35.647Z",
 				"description": "Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras"
 			}, {
 				"id": 3,
@@ -2293,26 +2292,26 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		// Debit overview
 		$scope.cashoverviews = [
 			{
-		        "month": "January",
-		        "date": "2015-06-08",
-		        "totaldebit": 8259.85,
-		        "totalcredit": 9122.80
-		    }, {
-		        "month": "February",
-		        "date": "2015-09-08",
-		        "totaldebit": 3467.85,
-		        "totalcredit": 4997.80
-		    }, {
-		        "month": "March",
-		        "date": "2015-09-08",
-		        "totaldebit": 1932.85,
-		        "totalcredit": 6139.60
-		    }, {
-		        "month": "April",
-		        "date": "2015-09-08",
-		        "totaldebit": 1300.85,
-		        "totalcredit": 7330.30
-		    }
+				"month": "January",
+				"date": "2015-06-08",
+				"totaldebit": 8259.85,
+				"totalcredit": 9122.80
+			}, {
+				"month": "February",
+				"date": "2015-09-08",
+				"totaldebit": 3467.85,
+				"totalcredit": 4997.80
+			}, {
+				"month": "March",
+				"date": "2015-09-08",
+				"totaldebit": 1932.85,
+				"totalcredit": 6139.60
+			}, {
+				"month": "April",
+				"date": "2015-09-08",
+				"totaldebit": 1300.85,
+				"totalcredit": 7330.30
+			}
 		];
 		$scope.curCashoverview = $scope.cashoverviews[0];
 		// Debit part
@@ -2321,70 +2320,70 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.curDebit = {};
 		$scope.cashdebits = [
 			{
-			    "id": 1,
-			    "amount": "87 259",
-			    "date": "11-30-2014",
-			    "description": "at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare,"
+				"id": 1,
+				"amount": "87 259",
+				"date": "11-30-2014",
+				"description": "at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare,"
 			}, {
-			    "id": 2,
-			    "amount": "39 467",
-			    "date": "03-31-2015",
-			    "description": "Suspendisse ac metus vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec"
+				"id": 2,
+				"amount": "39 467",
+				"date": "03-31-2015",
+				"description": "Suspendisse ac metus vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec"
 			}, {
-			    "id": 3,
-			    "amount": "19 932",
-			    "date": "07-01-2015",
-			    "description": "non, dapibus rutrum, justo. Praesent luctus. Curabitur egestas nunc sed libero. Proin sed turpis nec mauris blandit mattis. Cras eget nisi"
+				"id": 3,
+				"amount": "19 932",
+				"date": "07-01-2015",
+				"description": "non, dapibus rutrum, justo. Praesent luctus. Curabitur egestas nunc sed libero. Proin sed turpis nec mauris blandit mattis. Cras eget nisi"
 			}, {
-			    "id": 4,
-			    "amount": "64 077",
-			    "date": "10-20-2015",
-			    "description": "pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget"
+				"id": 4,
+				"amount": "64 077",
+				"date": "10-20-2015",
+				"description": "pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget"
 			}, {
-			    "id": 5,
-			    "amount": "56 845",
-			    "date": "11-01-2015",
-			    "description": "volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et"
+				"id": 5,
+				"amount": "56 845",
+				"date": "11-01-2015",
+				"description": "volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et"
 			}, {
-			    "id": 6,
-			    "amount": "94 624",
-			    "date": "03-06-2015",
-			    "description": "lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames"
+				"id": 6,
+				"amount": "94 624",
+				"date": "03-06-2015",
+				"description": "lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames"
 			}, {
-			    "id": 7,
-			    "amount": "9 758",
-			    "date": "10-12-2015",
-			    "description": "Phasellus at augue id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae"
+				"id": 7,
+				"amount": "9 758",
+				"date": "10-12-2015",
+				"description": "Phasellus at augue id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae"
 			}, {
-			    "id": 8,
-			    "amount": "91 228",
-			    "date": "11-26-2015",
-			    "description": "sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt"
+				"id": 8,
+				"amount": "91 228",
+				"date": "11-26-2015",
+				"description": "sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt"
 			}, {
-			    "id": 9,
-			    "amount": "49 978",
-			    "date": "04-30-2015",
-			    "description": "diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit"
+				"id": 9,
+				"amount": "49 978",
+				"date": "04-30-2015",
+				"description": "diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit"
 			}, {
-			    "id": 10,
-			    "amount": "61 396",
-			    "date": "10-08-2014",
-			    "description": "blandit congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit egestas lacinia."
+				"id": 10,
+				"amount": "61 396",
+				"date": "10-08-2014",
+				"description": "blandit congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit egestas lacinia."
 			}, {
-			    "id": 11,
-			    "amount": "73 303",
-			    "date": "07-03-2015",
-			    "description": "ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod urna. Nullam lobortis quam a felis"
+				"id": 11,
+				"amount": "73 303",
+				"date": "07-03-2015",
+				"description": "ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod urna. Nullam lobortis quam a felis"
 			}, {
-			    "id": 12,
-			    "amount": "89 901",
-			    "date": "05-11-2015",
-			    "description": "sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris"
+				"id": 12,
+				"amount": "89 901",
+				"date": "05-11-2015",
+				"description": "sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris"
 			}, {
-			    "id": 13,
-			    "amount": "48 481",
-			    "date": "01-04-2016",
-			    "description": "tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque"
+				"id": 13,
+				"amount": "48 481",
+				"date": "01-04-2016",
+				"description": "tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque"
 			}
 		];
 		$scope.newDebit = function () {
@@ -2423,70 +2422,70 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.curCredit = {};
 		$scope.cashcredits = [
 			{
-			    "id": 1,
-			    "amount": "87 259",
-			    "date": "11-30-2014",
-			    "description": "at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare,"
+				"id": 1,
+				"amount": "87 259",
+				"date": "11-30-2014",
+				"description": "at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare,"
 			}, {
-			    "id": 2,
-			    "amount": "39 467",
-			    "date": "03-31-2015",
-			    "description": "Suspendisse ac metus vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec"
+				"id": 2,
+				"amount": "39 467",
+				"date": "03-31-2015",
+				"description": "Suspendisse ac metus vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec"
 			}, {
-			    "id": 3,
-			    "amount": "19 932",
-			    "date": "07-01-2015",
-			    "description": "non, dapibus rutrum, justo. Praesent luctus. Curabitur egestas nunc sed libero. Proin sed turpis nec mauris blandit mattis. Cras eget nisi"
+				"id": 3,
+				"amount": "19 932",
+				"date": "07-01-2015",
+				"description": "non, dapibus rutrum, justo. Praesent luctus. Curabitur egestas nunc sed libero. Proin sed turpis nec mauris blandit mattis. Cras eget nisi"
 			}, {
-			    "id": 4,
-			    "amount": "64 077",
-			    "date": "10-20-2015",
-			    "description": "pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget"
+				"id": 4,
+				"amount": "64 077",
+				"date": "10-20-2015",
+				"description": "pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget"
 			}, {
-			    "id": 5,
-			    "amount": "56 845",
-			    "date": "11-01-2015",
-			    "description": "volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et"
+				"id": 5,
+				"amount": "56 845",
+				"date": "11-01-2015",
+				"description": "volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et"
 			}, {
-			    "id": 6,
-			    "amount": "94 624",
-			    "date": "03-06-2015",
-			    "description": "lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames"
+				"id": 6,
+				"amount": "94 624",
+				"date": "03-06-2015",
+				"description": "lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames"
 			}, {
-			    "id": 7,
-			    "amount": "9 758",
-			    "date": "10-12-2015",
-			    "description": "Phasellus at augue id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae"
+				"id": 7,
+				"amount": "9 758",
+				"date": "10-12-2015",
+				"description": "Phasellus at augue id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae"
 			}, {
-			    "id": 8,
-			    "amount": "91 228",
-			    "date": "11-26-2015",
-			    "description": "sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt"
+				"id": 8,
+				"amount": "91 228",
+				"date": "11-26-2015",
+				"description": "sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt"
 			}, {
-			    "id": 9,
-			    "amount": "49 978",
-			    "date": "04-30-2015",
-			    "description": "diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit"
+				"id": 9,
+				"amount": "49 978",
+				"date": "04-30-2015",
+				"description": "diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit"
 			}, {
-			    "id": 10,
-			    "amount": "61 396",
-			    "date": "10-08-2014",
-			    "description": "blandit congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit egestas lacinia."
+				"id": 10,
+				"amount": "61 396",
+				"date": "10-08-2014",
+				"description": "blandit congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit egestas lacinia."
 			}, {
-			    "id": 11,
-			    "amount": "73 303",
-			    "date": "07-03-2015",
-			    "description": "ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod urna. Nullam lobortis quam a felis"
+				"id": 11,
+				"amount": "73 303",
+				"date": "07-03-2015",
+				"description": "ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod urna. Nullam lobortis quam a felis"
 			}, {
-			    "id": 12,
-			    "amount": "89 901",
-			    "date": "05-11-2015",
-			    "description": "sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris"
+				"id": 12,
+				"amount": "89 901",
+				"date": "05-11-2015",
+				"description": "sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris"
 			}, {
-			    "id": 13,
-			    "amount": "48 481",
-			    "date": "01-04-2016",
-			    "description": "tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque"
+				"id": 13,
+				"amount": "48 481",
+				"date": "01-04-2016",
+				"description": "tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque"
 			}
 		];
 		$scope.newCredit = function () {
@@ -2526,95 +2525,95 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.curRent = {};
 		$scope.rents = [
 			{
-			    "id": 1,
-			    "name": "Eve Dotson",
-			    "amount": "48 197",
-			    "date": "12-30-2014",
-			    "description": "ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis eget varius ultrices, mauris ipsum porta elit, a feugiat tellus lorem eu metus. In lorem. Donec elementum, lorem ut"
+				"id": 1,
+				"name": "Eve Dotson",
+				"amount": "48 197",
+				"date": "12-30-2014",
+				"description": "ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis eget varius ultrices, mauris ipsum porta elit, a feugiat tellus lorem eu metus. In lorem. Donec elementum, lorem ut"
 			}, {
-			    "id": 2,
-			    "name": "Daquan Pennington",
-			    "amount": "43 200",
-			    "date": "11-04-2014",
-			    "description": "Duis dignissim tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim."
+				"id": 2,
+				"name": "Daquan Pennington",
+				"amount": "43 200",
+				"date": "11-04-2014",
+				"description": "Duis dignissim tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim."
 			}, {
-			    "id": 3,
-			    "name": "Tatiana Rivas",
-			    "amount": "40 613",
-			    "date": "08-24-2015",
-			    "description": "Donec nibh. Quisque nonummy ipsum non arcu. Vivamus sit amet risus. Donec egestas. Aliquam nec enim. Nunc ut erat. Sed nunc est, mollis non, cursus non, egestas a, dui. Cras pellentesque. Sed dictum. Proin"
+				"id": 3,
+				"name": "Tatiana Rivas",
+				"amount": "40 613",
+				"date": "08-24-2015",
+				"description": "Donec nibh. Quisque nonummy ipsum non arcu. Vivamus sit amet risus. Donec egestas. Aliquam nec enim. Nunc ut erat. Sed nunc est, mollis non, cursus non, egestas a, dui. Cras pellentesque. Sed dictum. Proin"
 			}, {
-			    "id": 4,
-			    "name": "Raymond Hays",
-			    "amount": "22 171",
-			    "date": "02-22-2016",
-			    "description": "eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan"
+				"id": 4,
+				"name": "Raymond Hays",
+				"amount": "22 171",
+				"date": "02-22-2016",
+				"description": "eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan"
 			}, {
-			    "id": 5,
-			    "name": "Rafael Oneill",
-			    "amount": "27 770",
-			    "date": "11-12-2015",
-			    "description": "dictum eu, placerat"
+				"id": 5,
+				"name": "Rafael Oneill",
+				"amount": "27 770",
+				"date": "11-12-2015",
+				"description": "dictum eu, placerat"
 			}, {
-			    "id": 6,
-			    "name": "Kevyn Bauer",
-			    "amount": "46 764",
-			    "date": "06-12-2015",
-			    "description": "Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar arcu et pede. Nunc sed orci lobortis augue scelerisque mollis. Phasellus libero mauris, aliquam eu, accumsan sed, facilisis vitae, orci. Phasellus dapibus quam quis diam. Pellentesque habitant morbi tristique senectus et netus et malesuada"
+				"id": 6,
+				"name": "Kevyn Bauer",
+				"amount": "46 764",
+				"date": "06-12-2015",
+				"description": "Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar arcu et pede. Nunc sed orci lobortis augue scelerisque mollis. Phasellus libero mauris, aliquam eu, accumsan sed, facilisis vitae, orci. Phasellus dapibus quam quis diam. Pellentesque habitant morbi tristique senectus et netus et malesuada"
 			}, {
-			    "id": 7,
-			    "name": "Gail Rosa",
-			    "amount": "87 456",
-			    "date": "11-06-2014",
-			    "description": "semper cursus. Integer mollis. Integer tincidunt aliquam arcu. Aliquam ultrices iaculis odio. Nam interdum enim non nisi. Aenean eget metus. In nec orci. Donec nibh. Quisque nonummy ipsum non arcu. Vivamus sit amet risus. Donec egestas. Aliquam nec enim. Nunc ut erat. Sed nunc est, mollis non,"
+				"id": 7,
+				"name": "Gail Rosa",
+				"amount": "87 456",
+				"date": "11-06-2014",
+				"description": "semper cursus. Integer mollis. Integer tincidunt aliquam arcu. Aliquam ultrices iaculis odio. Nam interdum enim non nisi. Aenean eget metus. In nec orci. Donec nibh. Quisque nonummy ipsum non arcu. Vivamus sit amet risus. Donec egestas. Aliquam nec enim. Nunc ut erat. Sed nunc est, mollis non,"
 			}, {
-			    "id": 8,
-			    "name": "Dominic Shannon",
-			    "amount": "77 159",
-			    "date": "09-21-2015",
-			    "description": "nunc. Quisque ornare tortor at risus."
+				"id": 8,
+				"name": "Dominic Shannon",
+				"amount": "77 159",
+				"date": "09-21-2015",
+				"description": "nunc. Quisque ornare tortor at risus."
 			}, {
-			    "id": 9,
-			    "name": "Gillian Erickson",
-			    "amount": "56 839",
-			    "date": "03-02-2016",
-			    "description": "placerat eget, venenatis a, magna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque,"
+				"id": 9,
+				"name": "Gillian Erickson",
+				"amount": "56 839",
+				"date": "03-02-2016",
+				"description": "placerat eget, venenatis a, magna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque,"
 			}, {
-			    "id": 10,
-			    "name": "Jillian Good",
-			    "amount": "29 181",
-			    "date": "01-07-2016",
-			    "description": "dui. Suspendisse ac metus vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum"
+				"id": 10,
+				"name": "Jillian Good",
+				"amount": "29 181",
+				"date": "01-07-2016",
+				"description": "dui. Suspendisse ac metus vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum"
 			}, {
-			    "id": 11,
-			    "name": "Hiram Mathis",
-			    "amount": "34 233",
-			    "date": "08-27-2015",
-			    "description": "in, hendrerit consectetuer, cursus et, magna."
+				"id": 11,
+				"name": "Hiram Mathis",
+				"amount": "34 233",
+				"date": "08-27-2015",
+				"description": "in, hendrerit consectetuer, cursus et, magna."
 			}, {
-			    "id": 12,
-			    "name": "Carl Dillon",
-			    "amount": "88 811",
-			    "date": "09-19-2014",
-			    "description": "quam dignissim pharetra. Nam ac nulla. In tincidunt congue turpis. In condimentum. Donec at arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit"
+				"id": 12,
+				"name": "Carl Dillon",
+				"amount": "88 811",
+				"date": "09-19-2014",
+				"description": "quam dignissim pharetra. Nam ac nulla. In tincidunt congue turpis. In condimentum. Donec at arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit"
 			}, {
-			    "id": 13,
-			    "name": "Ciaran Cohen",
-			    "amount": "24 056",
-			    "date": "01-25-2015",
-			    "description": "ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet nec, imperdiet nec, leo. Morbi neque tellus, imperdiet non, vestibulum nec, euismod in, dolor. Fusce feugiat. Lorem ipsum dolor sit amet, consectetuer adipiscing"
+				"id": 13,
+				"name": "Ciaran Cohen",
+				"amount": "24 056",
+				"date": "01-25-2015",
+				"description": "ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet nec, imperdiet nec, leo. Morbi neque tellus, imperdiet non, vestibulum nec, euismod in, dolor. Fusce feugiat. Lorem ipsum dolor sit amet, consectetuer adipiscing"
 			}, {
-			    "id": 14,
-			    "name": "Destiny Wade",
-			    "amount": "87 401",
-			    "date": "01-26-2015",
-			    "description": "eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus. Donec est. Nunc ullamcorper, velit in aliquet lobortis, nisi nibh lacinia orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna. Nunc quis arcu vel quam dignissim pharetra. Nam ac"
+				"id": 14,
+				"name": "Destiny Wade",
+				"amount": "87 401",
+				"date": "01-26-2015",
+				"description": "eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus. Donec est. Nunc ullamcorper, velit in aliquet lobortis, nisi nibh lacinia orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna. Nunc quis arcu vel quam dignissim pharetra. Nam ac"
 			}, {
-			    "id": 15,
-			    "name": "Charde England",
-			    "amount": "60 786",
-			    "date": "08-14-2014",
-			    "description": "non, feugiat nec, diam. Duis"
+				"id": 15,
+				"name": "Charde England",
+				"amount": "60 786",
+				"date": "08-14-2014",
+				"description": "non, feugiat nec, diam. Duis"
 			}
 		];
 		$scope.newRent = function () {
@@ -2655,140 +2654,140 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.curUser = {};
 		$scope.users = [
 			{
-			    "id": 1,
-			    "name": "George",
-			    "username": "Raya",
-			    "password": "Elijah",
-			    "email": "dis@Cum.net",
-			    "last_login": "02-20-2016",
-			    "type": "Dr.",
-			    "permission": "Payroll"
+				"id": 1,
+				"name": "George",
+				"username": "Raya",
+				"password": "Elijah",
+				"email": "dis@Cum.net",
+				"last_login": "02-20-2016",
+				"type": "Dr.",
+				"permission": "Payroll"
 			}, {
-			    "id": 2,
-			    "name": "Deirdre",
-			    "username": "Bernard",
-			    "password": "Garrison",
-			    "email": "a.tortor@faucibusidlibero.co.uk",
-			    "last_login": "08-10-2014",
-			    "type": "",
-			    "permission": "Tech Support"
+				"id": 2,
+				"name": "Deirdre",
+				"username": "Bernard",
+				"password": "Garrison",
+				"email": "a.tortor@faucibusidlibero.co.uk",
+				"last_login": "08-10-2014",
+				"type": "",
+				"permission": "Tech Support"
 			}, {
-			    "id": 3,
-			    "name": "Rigel",
-			    "username": "Demetria",
-			    "password": "Wade",
-			    "email": "Nunc.mauris.Morbi@arcuSed.edu",
-			    "last_login": "12-31-2014",
-			    "type": "Ms.",
-			    "permission": "Finances"
+				"id": 3,
+				"name": "Rigel",
+				"username": "Demetria",
+				"password": "Wade",
+				"email": "Nunc.mauris.Morbi@arcuSed.edu",
+				"last_login": "12-31-2014",
+				"type": "Ms.",
+				"permission": "Finances"
 			}, {
-			    "id": 4,
-			    "name": "Lacota",
-			    "username": "Alana",
-			    "password": "Octavius",
-			    "email": "magnis.dis@egettincidunt.co.uk",
-			    "last_login": "11-23-2014",
-			    "type": "Ms.",
-			    "permission": "Public Relations"
+				"id": 4,
+				"name": "Lacota",
+				"username": "Alana",
+				"password": "Octavius",
+				"email": "magnis.dis@egettincidunt.co.uk",
+				"last_login": "11-23-2014",
+				"type": "Ms.",
+				"permission": "Public Relations"
 			}, {
-			    "id": 5,
-			    "name": "Shay",
-			    "username": "Alyssa",
-			    "password": "Veda",
-			    "email": "purus.in@faucibusutnulla.co.uk",
-			    "last_login": "11-13-2015",
-			    "type": "Mr.",
-			    "permission": "Media Relations"
+				"id": 5,
+				"name": "Shay",
+				"username": "Alyssa",
+				"password": "Veda",
+				"email": "purus.in@faucibusutnulla.co.uk",
+				"last_login": "11-13-2015",
+				"type": "Mr.",
+				"permission": "Media Relations"
 			}, {
-			    "id": 6,
-			    "name": "Colt",
-			    "username": "Odysseus",
-			    "password": "Oscar",
-			    "email": "velit.Aliquam@Maecenasmi.org",
-			    "last_login": "11-02-2014",
-			    "type": "Mrs.",
-			    "permission": "Customer Relations"
+				"id": 6,
+				"name": "Colt",
+				"username": "Odysseus",
+				"password": "Oscar",
+				"email": "velit.Aliquam@Maecenasmi.org",
+				"last_login": "11-02-2014",
+				"type": "Mrs.",
+				"permission": "Customer Relations"
 			}, {
-			    "id": 7,
-			    "name": "Ethan",
-			    "username": "Blossom",
-			    "password": "Colette",
-			    "email": "ac@nisidictumaugue.com",
-			    "last_login": "05-16-2016",
-			    "type": "Ms.",
-			    "permission": "Advertising"
+				"id": 7,
+				"name": "Ethan",
+				"username": "Blossom",
+				"password": "Colette",
+				"email": "ac@nisidictumaugue.com",
+				"last_login": "05-16-2016",
+				"type": "Ms.",
+				"permission": "Advertising"
 			}, {
-			    "id": 8,
-			    "name": "Melissa",
-			    "username": "Susan",
-			    "password": "Jeanette",
-			    "email": "nec.quam@laoreet.co.uk",
-			    "last_login": "12-10-2015",
-			    "type": "Ms.",
-			    "permission": "Payroll"
+				"id": 8,
+				"name": "Melissa",
+				"username": "Susan",
+				"password": "Jeanette",
+				"email": "nec.quam@laoreet.co.uk",
+				"last_login": "12-10-2015",
+				"type": "Ms.",
+				"permission": "Payroll"
 			}, {
-			    "id": 9,
-			    "name": "Yardley",
-			    "username": "Nehru",
-			    "password": "Desiree",
-			    "email": "blandit.congue@IntegermollisInteger.edu",
-			    "last_login": "06-05-2015",
-			    "type": "Ms.",
-			    "permission": "Accounting"
+				"id": 9,
+				"name": "Yardley",
+				"username": "Nehru",
+				"password": "Desiree",
+				"email": "blandit.congue@IntegermollisInteger.edu",
+				"last_login": "06-05-2015",
+				"type": "Ms.",
+				"permission": "Accounting"
 			}, {
-			    "id": 10,
-			    "name": "Bethany",
-			    "username": "Cedric",
-			    "password": "Emma",
-			    "email": "dapibus.gravida@nullaDonec.com",
-			    "last_login": "06-16-2016",
-			    "type": "Dr.",
-			    "permission": "Accounting"
+				"id": 10,
+				"name": "Bethany",
+				"username": "Cedric",
+				"password": "Emma",
+				"email": "dapibus.gravida@nullaDonec.com",
+				"last_login": "06-16-2016",
+				"type": "Dr.",
+				"permission": "Accounting"
 			}, {
-			    "id": 11,
-			    "name": "Latifah",
-			    "username": "Camden",
-			    "password": "April",
-			    "email": "hendrerit.consectetuer@nequepellentesquemassa.org",
-			    "last_login": "04-21-2015",
-			    "type": "",
-			    "permission": "Tech Support"
+				"id": 11,
+				"name": "Latifah",
+				"username": "Camden",
+				"password": "April",
+				"email": "hendrerit.consectetuer@nequepellentesquemassa.org",
+				"last_login": "04-21-2015",
+				"type": "",
+				"permission": "Tech Support"
 			}, {
-			    "id": 12,
-			    "name": "Amaya",
-			    "username": "Orla",
-			    "password": "Carla",
-			    "email": "dolor.sit.amet@Donecegestas.co.uk",
-			    "last_login": "08-09-2015",
-			    "type": "Dr.",
-			    "permission": "Accounting"
+				"id": 12,
+				"name": "Amaya",
+				"username": "Orla",
+				"password": "Carla",
+				"email": "dolor.sit.amet@Donecegestas.co.uk",
+				"last_login": "08-09-2015",
+				"type": "Dr.",
+				"permission": "Accounting"
 			}, {
-			    "id": 13,
-			    "name": "Kelly",
-			    "username": "Charlotte",
-			    "password": "Gretchen",
-			    "email": "cursus@netus.co.uk",
-			    "last_login": "10-04-2014",
-			    "type": "Mrs.",
-			    "permission": "Finances"
+				"id": 13,
+				"name": "Kelly",
+				"username": "Charlotte",
+				"password": "Gretchen",
+				"email": "cursus@netus.co.uk",
+				"last_login": "10-04-2014",
+				"type": "Mrs.",
+				"permission": "Finances"
 			}, {
-			    "id": 14,
-			    "name": "Omar",
-			    "username": "Roary",
-			    "password": "Dale",
-			    "email": "tellus@erat.net",
-			    "last_login": "02-02-2015",
-			    "type": "Mrs.",
-			    "permission": "Accounting"
+				"id": 14,
+				"name": "Omar",
+				"username": "Roary",
+				"password": "Dale",
+				"email": "tellus@erat.net",
+				"last_login": "02-02-2015",
+				"type": "Mrs.",
+				"permission": "Accounting"
 			}, {
-			    "id": 15,
-			    "name": "Warren",
-			    "username": "Forrest",
-			    "password": "Cyrus",
-			    "email": "velit.egestas.lacinia@penatibusetmagnis.edu",
-			    "last_login": "05-09-2016",
-			    "type": "Ms.",
-			    "permission": "Research and Development"
+				"id": 15,
+				"name": "Warren",
+				"username": "Forrest",
+				"password": "Cyrus",
+				"email": "velit.egestas.lacinia@penatibusetmagnis.edu",
+				"last_login": "05-09-2016",
+				"type": "Ms.",
+				"permission": "Research and Development"
 			}
 		];
 		$scope.newUser = function (argument) {
