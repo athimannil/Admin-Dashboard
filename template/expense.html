@@ -20,7 +20,12 @@
           </div>
           <label for="" class="col-sm-1 control-label">Date</label>
           <div class="col-sm-3">
-            <input type="text" class="form-control" ng-model="newexpense.date" placeholder="Date">
+            <div class="input-group">
+              <input type="date" class="form-control" ng-model="newexpense.date" datepicker-popup is-open="expensepicker" readonly>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="expensepicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
           </div>
         </div>
         <div class="form-group">

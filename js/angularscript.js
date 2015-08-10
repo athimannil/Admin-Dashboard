@@ -107,7 +107,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		};
 
 
-console.log(localStorage.itemPerPage);
+		console.log(localStorage.itemPerPage);
 		$scope.numsForPage = [5, 10, 25, 50, 100];
 		$scope.currentPage = 1;
 		$scope.numPerPage = getPerPage();
@@ -115,6 +115,23 @@ console.log(localStorage.itemPerPage);
 
 
 
+  $scope.today = function() {
+    $scope.dt = new Date();
+  };
+  $scope.today();
+  $scope.clear = function () {
+    $scope.dt = null;
+  };
+  $scope.open = function($event) {
+    $scope.status.opened = true;
+  };
+  $scope.status = {
+    opened: false
+  };
+
+		/*$scope.settings = [
+			date: {};
+		];*/
 
 		/* Nav menu */
 		$scope.user = {
