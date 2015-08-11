@@ -21,7 +21,7 @@
           <label for="" class="col-sm-1 control-label">Date</label>
           <div class="col-sm-3">
             <div class="input-group">
-              <input type="text" class="form-control" datepicker-popup ng-model="newexpense.date" is-open="expensepicker" show-button-bar="false" show-weeks="false" readonly>
+              <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newexpense.date" is-open="expensepicker" show-button-bar="false" show-weeks="false" required readonly>
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="expensepicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
@@ -68,10 +68,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="expense in listCount = (expenses | filter:filterlist) | pagination: currentPage : numPerPage">
+          <tr ng-repeat="expense in listCount = (expenses | filter:filterlist) | pagination: currentPage : numPerPage | orderBy:'date'">
             <td>{{expense.name}}</td>
             <td>{{expense.amount}}</td>
-            <td>{{expense.date}}</td>
+            <td>{{expense.date | date:'dd-MMMM-yyyy'}}</td>
             <td><p class="description" popover="{{expense.description}}" popover-trigger="mouseenter">{{expense.description}}</p></td>
             <td>
               <div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">

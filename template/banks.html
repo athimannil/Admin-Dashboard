@@ -247,7 +247,12 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Date</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" ng-model="newparticular.date" placeholder="Date">
+		            <div class="input-group">
+		              <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newparticular.date" is-open="expensepicker" show-button-bar="false" show-weeks="false" placeholder="Date" readonly>
+		              <span class="input-group-btn">
+		                <button type="button" class="btn btn-default" ng-click="expensepicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
+		              </span>
+		            </div>
 							</div>
 							<label class="col-sm-2 control-label">Cheque No</label>
 							<div class="col-sm-3">
@@ -310,8 +315,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="particular in listCount = (particulars | filter:filterlist) | pagination: currentPage : numPerPage">
-								<td>{{particular.date}}</td>
+							<tr ng-repeat="particular in listCount = (particulars | filter:filterlist) | pagination: currentPage : numPerPage | orderBy:'-date'">
+								<td>{{particular.date | date:'dd-MMMM-yyyy'}}</td>
 								<td><p class="description" popover="{{particular.particuler}}" popover-trigger="mouseenter">{{particular.particuler}}</p></td>
 								<td>{{particular.cheque_no}}</td>
 								<td><i class="fa fa-inr"></i> {{particular.withdraw}}</td>
