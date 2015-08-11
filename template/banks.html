@@ -143,7 +143,12 @@
 					</div>
 					<label class="col-sm-1 control-label">Issue date</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" ng-model="newaccount.issuedate" placeholder="Isues date">
+						<div class="input-group">
+							<input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newaccount.issuedate" is-open="issuepicker" show-button-bar="false" show-weeks="false" readonly>
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="issuepicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
+							</span>
+						</div>
 					</div>
 					<label class="col-sm-1 control-label">Balance</label>
 					<div class="col-sm-2">
@@ -200,12 +205,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="account in listCount = (accounts | filter:filterlist) | pagination: currentPage : numPerPage">
+					<tr ng-repeat="account in listCount = (accounts | filter:filterlist) | pagination: currentPage : numPerPage | orderBy:'-issuedate'">
 						<td><a href ng-click="openStatement(account);">{{account.name}}</a></td>
 						<td>{{account.acnumber}}</td>
 						<td>{{account.type}}</td>
 						<td>{{account.iban}}</td>
-						<td>{{account.issuedate}}</td>
+						<td>{{account.issuedate | date:'dd-MMMM-yyyy'}}</td>
 						<td><i class="fa fa-inr"></i> {{account.balance}}</td>
 						<td>
 							<div class="btn-group btn-group-xs" role="group">
@@ -241,18 +246,18 @@
 			<tab>
 				<tab-heading><i class="fa fa-newspaper-o"></i> Statement</a></tab-heading>
 				<div class="box">
-					<button type="button" class="btn btn-primary pull-right" ng-hide="status.particularedit" ng-click="status.particularedit = true; newParticular();"><i class="fa fa-plus"></i> Add payment</button>
+					<button type="button" class="btn btn-primary pull-right" ng-hide="status.particularedit" ng-click="newParticular();"><i class="fa fa-plus"></i> Add payment</button>
 					<form class="form-horizontal" ng-submit="addParticular()" ng-show="status.particularedit">
 						<h3>New Account Particular</h3><br>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Date</label>
 							<div class="col-sm-3">
-		            <div class="input-group">
-		              <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newparticular.date" is-open="expensepicker" show-button-bar="false" show-weeks="false" placeholder="Date" readonly>
-		              <span class="input-group-btn">
-		                <button type="button" class="btn btn-default" ng-click="expensepicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
-		              </span>
-		            </div>
+								<div class="input-group">
+									<input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newparticular.date" is-open="particularpicker" show-button-bar="false" show-weeks="false" readonly>
+									<span class="input-group-btn">
+										<button type="button" class="btn btn-default" ng-click="particularpicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
+									</span>
+								</div>
 							</div>
 							<label class="col-sm-2 control-label">Cheque No</label>
 							<div class="col-sm-3">

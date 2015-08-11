@@ -526,8 +526,10 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.newAccount = function(){
 			$scope.status.accountedit = true;
 			$scope.newaccount = {};
+			$scope.newaccount.issuedate = new Date();
 		};
 		$scope.addAccount = function(){
+			$scope.newaccount.issuedate = $scope.newaccount.issuedate.toISOString();
 			if ($scope.curAccount.id) {
 				angular.extend($scope.curAccount,$scope.curAccount,$scope.newaccount);
 				$scope.curAccount = {};
@@ -1032,6 +1034,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			}
 		];
 		$scope.addParticular = function(){
+			$scope.newparticular.date = $scope.newparticular.date.toISOString();
 			if ($scope.curParticular.id) {
 				angular.extend($scope.curParticular,$scope.curParticular,$scope.newparticular);
 				$scope.curParticular = {};
@@ -1041,6 +1044,11 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			}
 			$scope.curParticular = {};
 			$scope.status.particularedit = false;
+		};
+		$scope.newParticular = function (argument) {
+			$scope.status.particularedit = true;
+			$scope.newparticular = {};
+			$scope.newparticular.date = new Date();
 		};
 		$scope.editParticular = function(thisParticular){
 			$scope.status.particularedit = true;
