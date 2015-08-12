@@ -1162,13 +1162,15 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.newLoan = function(){
 			$scope.loanedit = true;
 			$scope.newloan = {};
+			$scope.newloan.date = new Date();
 		};
 		$scope.editLoan = function (thisloan) {
-		$scope.loanedit = true;
-		$scope.curloan = thisloan;
-	  $scope.newloan = angular.copy(thisloan);
+			$scope.loanedit = true;
+			$scope.curloan = thisloan;
+			$scope.newloan = angular.copy(thisloan);
 		};
 		$scope.addLoan = function(){
+			$scope.newloan.date = $scope.newloan.date.toISOString();
 			if ($scope.curloan.id) {
 				angular.extend($scope.curloan,$scope.curloan,$scope.newloan);
 				$scope.curloan = {};
@@ -1348,6 +1350,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.newEmi = function(){
 			$scope.emiedit = true;
 			$scope.newemi = {};
+			$scope.newemi.date = new Date();
 		};
 		$scope.editEmi = function (thisemi) {
 		$scope.emiedit = true;
@@ -1355,6 +1358,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 	  $scope.newemi = angular.copy(thisemi);
 		};
 		$scope.addEmi = function(){
+			$scope.newemi.date = $scope.newemi.date.toISOString();
 			if ($scope.curemi.id) {
 				angular.extend($scope.curemi,$scope.curemi,$scope.newemi);
 				$scope.curemi = {};

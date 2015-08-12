@@ -18,81 +18,91 @@
 			<form class="form-horizontal" ng-submit="addLoan()" ng-show="loanedit">
 				<h3>New Loan</h3><br>
 				<div class="form-group">
-				  <label class="col-sm-2 control-label">Loan name</label>
-				  <div class="col-sm-10">
-				    <input type="text" class="form-control" ng-model="newloan.name" placeholder="Loan name" required>
-				  </div>
+					<label class="col-sm-2 control-label">Loan name</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" ng-model="newloan.name" placeholder="Loan name" required>
+					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Bank</label>
 					<div class="col-sm-2">
 						<select ng-model="newloan.bank_id" ng-options="bank.id as bank.name for bank in banks" class="form-control" required></select>
 					</div>
-				  <label class="col-sm-1 control-label">Account</label>
-				  <div class="col-sm-3">
-				    <input type="text" class="form-control" ng-model="newloan.account.number" placeholder="Account Number">
-				  </div>
-				  <label class="col-sm-1 control-label">IBAN</label>
-				  <div class="col-sm-3">
-				    <input type="text" class="form-control" ng-model="newloan.account.iban" placeholder="IBAN Number">
-				  </div>
+					<label class="col-sm-1 control-label">Account</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" ng-model="newloan.account.number" placeholder="Account Number">
+					</div>
+					<label class="col-sm-1 control-label">IBAN</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" ng-model="newloan.account.iban" placeholder="IBAN Number">
+					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Amount</label>
 					<div class="col-sm-2">
-					  <input type="text" class="form-control" ng-model="newloan.amount" placeholder="Amount" required>
+						<input type="text" class="form-control" ng-model="newloan.amount" placeholder="Amount" required>
 					</div>
-				  <label class="col-sm-1 control-label">Paid</label>
-				  <div class="col-sm-3">
-				    <input type="text" class="form-control" ng-model="newloan.paid" placeholder="Paid">
-				  </div>
-				  <label class="col-sm-1 control-label">Due</label>
-				  <div class="col-sm-3">
-				    <input type="text" class="form-control" ng-model="newloan.balance" placeholder="Due">
-				  </div>
+					<label class="col-sm-1 control-label">Paid</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" ng-model="newloan.paid" placeholder="Paid">
+					</div>
+					<label class="col-sm-1 control-label">Due</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" ng-model="newloan.balance" placeholder="Due">
+					</div>
 				</div>
 				<div class="form-group">
-				  <label class="col-sm-2 control-label">Interest</label>
-				  <div class="col-sm-2">
+					<label class="col-sm-2 control-label">Interest</label>
+					<div class="col-sm-2">
 						<input type="text" ng-model="newloan.interest" class="form-control" placeholder="%">
-				  </div>
+					</div>
 					<label class="col-sm-1 control-label">Date</label>
 					<div class="col-sm-3">
-					  <input type="text" class="form-control" ng-model="newloan.date" placeholder="Close date">
+						<div class="input-group">
+							<input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newloan.date" is-open="datepicker" show-button-bar="false" show-weeks="false" readonly>
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="datepicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
+							</span>
+						</div>
 					</div>
 					<label class="col-sm-1 control-label">Close date</label>
 					<div class="col-sm-3">
-					  <input type="text" class="form-control" ng-model="newloan.closedate" placeholder="Close date">
+						<div class="input-group">
+							<input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newloan.closedate" is-open="closedatepicker" show-button-bar="false" show-weeks="false" placeholder="Close date" readonly>
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="closedatepicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
+							</span>
+						</div>
 					</div>
-			  </div>
-			  <div class="form-group">
+				</div>
+				<div class="form-group">
 					<label class="col-sm-2 control-label">Description</label>
 					<div class="col-sm-10">
 						<textarea class="form-control" ng-model="newloan.description" placeholder="Description"></textarea>
 					</div>
 				</div>
 				<div class="form-group">
-				  <div class="col-md-12 text-right">
-				  	<button type="button" class="btn btn-default" ng-click="cancelLoan();">Cancel</button>
-					  <button type="submit" class="btn btn-primary">Save</button>
-				  </div>
+					<div class="col-md-12 text-right">
+						<button type="button" class="btn btn-default" ng-click="cancelLoan();">Cancel</button>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
 				</div>
 				<hr>
 			</form>
 			<h3>Loans and details</h3>
 			<div class="row">
-			  <div class="col-md-6">
-			    <label for="">Show 
-			      <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
-			      entries
-			    </label>
-			  </div>
-	        <div class="col-md-6 text-right">
-	          <div class="form-inline form-group">
-	            <label for="filter-list">Search </label>
-	            <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
-	          </div>
-	        </div>
+				<div class="col-md-6">
+					<label for="">Show 
+						<select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
+						entries
+					</label>
+				</div>
+					<div class="col-md-6 text-right">
+						<div class="form-inline form-group">
+							<label for="filter-list">Search </label>
+							<input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
+						</div>
+					</div>
 			</div>
 			<table class="table table-hover table-responsive">
 				<thead>
@@ -110,7 +120,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="loan in  listCount = (loans | filter:filterlist) | pagination: currentPage : numPerPage">
+					<tr ng-repeat="loan in  listCount = (loans | filter:filterlist) | pagination: currentPage : numPerPage | orderBy:'-date'">
 						<td><a href ng-click="openEmi(loan);">{{loan.name}}</a></td>
 						<td><p class="description" popover="{{loan.description}}" popover-trigger="mouseenter">{{loan.description}}</p></td>
 						<td>{{loan.account.number}}</td>
@@ -118,8 +128,8 @@
 						<td>{{loan.interest}}</td>
 						<td><i class="fa fa-inr"></i> {{loan.paid}}</td>
 						<td><i class="fa fa-inr"></i> {{loan.balance}}</td>
-						<td>{{loan.date}}</td>
-						<td>{{loan.closedate}}</td>
+						<td>{{loan.date | date:'dd-MMMM-yyyy'}}</td>
+						<td>{{loan.closedate | date:'dd-MMMM-yyyy'}}</td>
 						<td>
 							<div class="btn-group btn-group-xs" role="group">
 								<button type="button" class="btn btn-default" ng-hide="editmode" ng-click="editLoan(loan);">
@@ -157,48 +167,53 @@
 			<form class="form-horizontal" ng-submit="addEmi()" ng-show="emiedit">
 				<h3>New EMI</h3>
 				<div class="form-group">
-				  <label class="col-sm-2 control-label">Loan name</label>
-				  <div class="col-sm-4">
-				    <input type="text" class="form-control" ng-model="newemi.amount" placeholder="Amount" required>
-				  </div>
-				  <label class="col-sm-1 control-label">Loan</label>
-				  <div class="col-sm-2">
-				  	<p class="form-control-static">{{myLoan.name}}</p>
-				  </div>
-				  <label class="col-sm-1 control-label">Date</label>
-				  <div class="col-sm-2">
-						<input type="text" ng-model="newemi.date" class="form-control">
-				  </div>
+					<label class="col-sm-2 control-label">Loan</label>
+					<div class="col-sm-1">
+						<p class="form-control-static">{{myLoan.name}}</p>
+					</div>
+					<label class="col-sm-2 control-label">Loan name</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" ng-model="newemi.amount" placeholder="Amount" required>
+					</div>
+					<label class="col-sm-1 control-label">Date</label>
+					<div class="col-sm-3">
+						<div class="input-group">
+							<input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newemi.date" is-open="emipicker" show-button-bar="false" show-weeks="false" readonly>
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="emipicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
+							</span>
+						</div>
+					</div>
 				</div>
-			  <div class="form-group">
+				<div class="form-group">
 					<label class="col-sm-2 control-label">Description</label>
 					<div class="col-sm-10">
 						<textarea class="form-control" ng-model="newemi.description" placeholder="Description"></textarea>
 					</div>
-			  </div>
+				</div>
 				<div class="form-group">
-				  <div class="col-md-12 text-right">
-				  	<button type="button" class="btn btn-default" ng-click="cancelEmi();">Cancel</button>
-					  <button type="submit" class="btn btn-primary">Save</button>
-				  </div>
+					<div class="col-md-12 text-right">
+						<button type="button" class="btn btn-default" ng-click="cancelEmi();">Cancel</button>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
 				</div>
 				<hr>
 			</form>
 			<h3>Loan EMI</h3>
-      <div class="row">
-        <div class="col-md-6">
-          <label for="">Show 
-            <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
-            entries
-          </label>
-        </div>
-        <div class="col-md-6 text-right">
-          <div class="form-inline form-group">
-            <label for="filter-list">Search </label>
-            <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
-          </div>
-        </div>
-      </div>
+			<div class="row">
+				<div class="col-md-6">
+					<label for="">Show 
+						<select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
+						entries
+					</label>
+				</div>
+				<div class="col-md-6 text-right">
+					<div class="form-inline form-group">
+						<label for="filter-list">Search </label>
+						<input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
+					</div>
+				</div>
+			</div>
 			<table class="table table-hover table-responsive">
 				<thead>
 					<tr>
@@ -209,8 +224,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="emi in listCount = (emis | filter:filterlist) | pagination: currentPage : numPerPage">
-						<td>{{emi.date}}</td>
+					<tr ng-repeat="emi in listCount = (emis | filter:filterlist) | pagination: currentPage : numPerPage | orderBy:'-date'">
+						<td>{{emi.date | date:'dd-MMMM-yyyy'}}</td>
 						<td>
 							<p class="description" popover="{{emi.description}}" popover-trigger="mouseenter">{{emi.description}}</p>
 						</td>
@@ -232,8 +247,8 @@
 				<pagination
 					ng-model="currentPage"
 					total-items="listCount.length" 
-			        max-size="maxSize" 
-			        items-per-page="numPerPage"
+					max-size="maxSize" 
+					items-per-page="numPerPage"
 					boundary-links="true"
 					class="pagination-sm pull-right"
 					previous-text="&lsaquo;"
