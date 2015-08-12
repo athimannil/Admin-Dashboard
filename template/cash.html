@@ -1,208 +1,218 @@
 <div class="row">
-  <div class="col-md-12">
-    <h2><i class="fa fa-money"> </i>  Cash Debit</h2>
-  </div>
+	<div class="col-md-12">
+		<h2><i class="fa fa-money"> </i>  Cash Debit</h2>
+	</div>
 </div>
 <div class="row">
-  <div class="col-md-12">
-    <div class="box">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum ipsa corporis ullam. Veritatis explicabo, sequi deleniti? Explicabo quod unde eius omnis maiores, libero iste, dicta voluptatum animi obcaecati ex odio.</p>
-      <div class="form-inline form-group">
-        <label for="exampleInputName2">Show Month: </label>
-        <select class="form-control" ng-model="curCashoverview" ng-options="cashoverview.month for cashoverview in cashoverviews"></select>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="box">
-            <h4>Total Debit</h4>
-            <h1><i class="fa fa-inr"></i> {{curCashoverview.totaldebit}}</h1>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="box">
-            <h4>Total Credit</h4>
-            <h1><i class="fa fa-inr"></i> {{curCashoverview.totalcredit}}</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <tabset class="col-md-12">
-    <tab>
-      <tab-heading>Cash Debit</tab-heading>
-      <div class="box">
-        <button ng-click="newDebit();" class="btn btn-primary pull-right" type="button"><i class="fa fa-plus"></i> Add Debit</button>
-        <form class="form-horizontal" ng-show="debitedit" ng-submit="addDebit();">
-          <h3>New Debit</h3><br>
-          <div class="form-group">
-            <label for="" class="col-sm-2 control-label">Amount</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" ng-model="newdebit.amount" placeholder="Amount">
-            </div>
-            <label for="" class="col-sm-2 control-label">Date</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" ng-model="newdebit.date" placeholder="Date">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Description</label>
-            <div class="col-sm-10">
-              <textarea class="form-control" ng-model="newdebit.description" placeholder="Description"></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-12 text-right">
-              <button type="button" class="btn btn-default" ng-click="cancelDebit();">Cancel</button>
-              <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-          </div>
-          <hr>
-        </form>
-        <h3 ng-hide="debitedit"> Cash Debit and details</h3>
-        <div class="row">
-          <div class="col-md-6">
-            <label for="">Show 
-              <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
-              entries
-            </label>
-          </div>
-          <div class="col-md-6 text-right">
-            <div class="form-inline form-group">
-              <label for="filter-list">Search </label>
-              <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="debitfilter">
-            </div>
-          </div>
-        </div>
-        <table class="table table-hover table-responsive">
-          <thead>
-            <tr>
-              <th>Amount</th>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Edit</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="debit in listCount = (cashdebits | filter:debitfilter) | pagination: currentPage : numPerPage">
-              <td><i class="fa fa-inr"></i> {{debit.amount}}</td>
-              <td>{{debit.date}}</td>
-              <td><p class="description" popover="{{debit.description}}" popover-trigger="mouseenter">{{debit.description}}</p></td>
-              <td>
-                <div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-                  <button type="button" class="btn btn-default" ng-click="editDebit(debit);">
-                    <i class="fa fa-pencil"></i>
-                  </button>
-                  <button type="button" class="btn btn-default" ng-click="deleteDebit(debit); editmode = !editmode">
-                    <i class="fa fa-trash-o"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="clearfix" ng-show="cashdebits.length > numPerPage">
-          <pagination 
-            ng-model="currentPage" 
-            total-items="listCount.length" 
-            max-size="maxSize" 
-            items-per-page="numPerPage"
-            boundary-links="true" 
-            class="pagination-sm pull-right" 
-            previous-text="&lsaquo;" 
-            next-text="&rsaquo;" 
-            first-text="&laquo;" 
-            last-text="&raquo;"
-          ></pagination>
-        </div>
-      </div>
-    </tab>
-    <tab>
-      <tab-heading>Cash Credit</tab-heading>
-      <div class="box">
-        <button ng-click="newCredit();" class="btn btn-primary pull-right" type="button"><i class="fa fa-plus"></i> Add Credit</button>
-        <form class="form-horizontal" ng-show="creditedit" ng-submit="addCredit();">
-          <h3>New Credit</h3><br>
-          <div class="form-group">
-            <label for="" class="col-sm-2 control-label">Amount</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" ng-model="newcredit.amount" placeholder="Amount">
-            </div>
-            <label for="" class="col-sm-2 control-label">Date</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" ng-model="newcredit.date" placeholder="Date">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Description</label>
-            <div class="col-sm-10">
-              <textarea class="form-control" ng-model="newcredit.description" placeholder="Description"></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-12 text-right">
-              <button type="button" class="btn btn-default" ng-click="cancelCredit();">Cancel</button>
-              <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-          </div>
-          <hr>
-        </form>
-        <h3 ng-hide="creditedit">Cash Credit and details</h3>
-        <div class="row">
-          <div class="col-md-6">
-            <label for="">Show 
-              <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
-              entries
-            </label>
-          </div>
-          <div class="col-md-6 text-right">
-            <div class="form-inline form-group">
-              <label for="filter-list">Search </label>
-              <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="creditfilter">
-            </div>
-          </div>
-        </div>
-        <table class="table table-hover table-responsive">
-          <thead>
-            <tr>
-              <th>Amount</th>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Edit</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="credit in listCount = (cashcredits|filter:creditfilter) | pagination: currentPage : numPerPage">
-              <td><i class="fa fa-inr"></i> {{credit.amount}}</td>
-              <td>{{credit.date}}</td>
-              <td><p class="description" popover="{{credit.description}}" popover-trigger="mouseenter">{{credit.description}}</p></td>
-              <td>
-                <div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-                  <button type="button" class="btn btn-default" ng-click="editCredit(credit);">
-                    <i class="fa fa-pencil"></i>
-                  </button>
-                  <button type="button" class="btn btn-default" ng-click="deleteCredit(credit); editmode = !editmode">
-                    <i class="fa fa-trash-o"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="clearfix" ng-show="cashcredits.length > numPerPage">
-          <pagination 
-            ng-model="currentPage" 
-            total-items="listCount.length" 
-            max-size="maxSize" 
-            items-per-page="numPerPage"
-            boundary-links="true" 
-            class="pagination-sm pull-right" 
-            previous-text="&lsaquo;" 
-            next-text="&rsaquo;" 
-            first-text="&laquo;" 
-            last-text="&raquo;"
-          ></pagination>
-        </div>
-      </div>
-    </tab>
-  </tabset>
+	<div class="col-md-12">
+		<div class="box">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum ipsa corporis ullam. Veritatis explicabo, sequi deleniti? Explicabo quod unde eius omnis maiores, libero iste, dicta voluptatum animi obcaecati ex odio.</p>
+			<div class="form-inline form-group">
+				<label for="exampleInputName2">Show Month: </label>
+				<select class="form-control" ng-model="curCashoverview" ng-options="cashoverview.month for cashoverview in cashoverviews"></select>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="box">
+						<h4>Total Debit</h4>
+						<h1><i class="fa fa-inr"></i> {{curCashoverview.totaldebit}}</h1>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="box">
+						<h4>Total Credit</h4>
+						<h1><i class="fa fa-inr"></i> {{curCashoverview.totalcredit}}</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<tabset class="col-md-12">
+		<tab>
+			<tab-heading>Cash Debit</tab-heading>
+			<div class="box">
+				<button ng-click="newDebit();" class="btn btn-primary pull-right" type="button"><i class="fa fa-plus"></i> Add Debit</button>
+				<form class="form-horizontal" ng-show="debitedit" ng-submit="addDebit();">
+					<h3>New Debit</h3><br>
+					<div class="form-group">
+						<label for="" class="col-sm-2 control-label">Amount</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" ng-model="newdebit.amount" placeholder="Amount">
+						</div>
+						<label for="" class="col-sm-2 control-label">Date</label>
+						<div class="col-sm-4">
+							<div class="input-group">
+								<input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newdebit.date" is-open="debutpicker" show-button-bar="false" show-weeks="false" readonly>
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-default" ng-click="debutpicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Description</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" ng-model="newdebit.description" placeholder="Description"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12 text-right">
+							<button type="button" class="btn btn-default" ng-click="cancelDebit();">Cancel</button>
+							<button type="submit" class="btn btn-primary">Save</button>
+						</div>
+					</div>
+					<hr>
+				</form>
+				<h3 ng-hide="debitedit"> Cash Debit and details</h3>
+				<div class="row">
+					<div class="col-md-6">
+						<label for="">Show 
+							<select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
+							entries
+						</label>
+					</div>
+					<div class="col-md-6 text-right">
+						<div class="form-inline form-group">
+							<label for="filter-list">Search </label>
+							<input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="debitfilter">
+						</div>
+					</div>
+				</div>
+				<table class="table table-hover table-responsive">
+					<thead>
+						<tr>
+							<th>Amount</th>
+							<th>Date</th>
+							<th>Description</th>
+							<th>Edit</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="debit in listCount = (cashdebits | filter:debitfilter) | pagination: currentPage : numPerPage | orderBy:'-date'">
+							<td><i class="fa fa-inr"></i> {{debit.amount}}</td>
+							<td>{{debit.date | date:'dd-MMMM-yyyy'}}</td>
+							<td><p class="description" popover="{{debit.description}}" popover-trigger="mouseenter">{{debit.description}}</p></td>
+							<td>
+								<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+									<button type="button" class="btn btn-default" ng-click="editDebit(debit);">
+										<i class="fa fa-pencil"></i>
+									</button>
+									<button type="button" class="btn btn-default" ng-click="deleteDebit(debit); editmode = !editmode">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="clearfix" ng-show="cashdebits.length > numPerPage">
+					<pagination 
+						ng-model="currentPage" 
+						total-items="listCount.length" 
+						max-size="maxSize" 
+						items-per-page="numPerPage"
+						boundary-links="true" 
+						class="pagination-sm pull-right" 
+						previous-text="&lsaquo;" 
+						next-text="&rsaquo;" 
+						first-text="&laquo;" 
+						last-text="&raquo;"
+					></pagination>
+				</div>
+			</div>
+		</tab>
+		<tab>
+			<tab-heading>Cash Credit</tab-heading>
+			<div class="box">
+				<button ng-click="newCredit();" class="btn btn-primary pull-right" type="button"><i class="fa fa-plus"></i> Add Credit</button>
+				<form class="form-horizontal" ng-show="creditedit" ng-submit="addCredit();">
+					<h3>New Credit</h3><br>
+					<div class="form-group">
+						<label for="" class="col-sm-2 control-label">Amount</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" ng-model="newcredit.amount" placeholder="Amount">
+						</div>
+						<label for="" class="col-sm-2 control-label">Date</label>
+						<div class="col-sm-4">
+							<div class="input-group">
+								<input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newcredit.date" is-open="creditpicker" show-button-bar="false" show-weeks="false" readonly>
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-default" ng-click="creditpicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Description</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" ng-model="newcredit.description" placeholder="Description"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12 text-right">
+							<button type="button" class="btn btn-default" ng-click="cancelCredit();">Cancel</button>
+							<button type="submit" class="btn btn-primary">Save</button>
+						</div>
+					</div>
+					<hr>
+				</form>
+				<h3 ng-hide="creditedit">Cash Credit and details</h3>
+				<div class="row">
+					<div class="col-md-6">
+						<label for="">Show 
+							<select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
+							entries
+						</label>
+					</div>
+					<div class="col-md-6 text-right">
+						<div class="form-inline form-group">
+							<label for="filter-list">Search </label>
+							<input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="creditfilter">
+						</div>
+					</div>
+				</div>
+				<table class="table table-hover table-responsive">
+					<thead>
+						<tr>
+							<th>Amount</th>
+							<th>Date</th>
+							<th>Description</th>
+							<th>Edit</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="credit in listCount = (cashcredits|filter:creditfilter) | pagination: currentPage : numPerPage | orderBy:'-date'">
+							<td><i class="fa fa-inr"></i> {{credit.amount}}</td>
+							<td>{{credit.date | date:'dd-MMMM-yyyy'}}</td>
+							<td><p class="description" popover="{{credit.description}}" popover-trigger="mouseenter">{{credit.description}}</p></td>
+							<td>
+								<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+									<button type="button" class="btn btn-default" ng-click="editCredit(credit);">
+										<i class="fa fa-pencil"></i>
+									</button>
+									<button type="button" class="btn btn-default" ng-click="deleteCredit(credit); editmode = !editmode">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="clearfix" ng-show="cashcredits.length > numPerPage">
+					<pagination 
+						ng-model="currentPage" 
+						total-items="listCount.length" 
+						max-size="maxSize" 
+						items-per-page="numPerPage"
+						boundary-links="true" 
+						class="pagination-sm pull-right" 
+						previous-text="&lsaquo;" 
+						next-text="&rsaquo;" 
+						first-text="&laquo;" 
+						last-text="&raquo;"
+					></pagination>
+				</div>
+			</div>
+		</tab>
+	</tabset>
 </div>

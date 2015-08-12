@@ -2398,6 +2398,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.newDebit = function () {
 			$scope.debitedit = true;
 			$scope.newdebit = {};
+			$scope.newdebit.date = new Date();
 		};
 		$scope.editDebit = function (thisDebit) {
 			$scope.debitedit = true;
@@ -2405,6 +2406,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newdebit = angular.copy(thisDebit);
 		};
 		$scope.addDebit = function () {
+			$scope.newdebit.date = $scope.newdebit.date.toISOString();
 			if ($scope.curDebit.id) {
 				angular.extend($scope.curDebit, $scope.curDebit, $scope.newdebit);
 			} else{
@@ -2500,6 +2502,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.newCredit = function () {
 			$scope.creditedit = true;
 			$scope.newcredit = {};
+			$scope.newcredit.date = new Date();
 		};
 		$scope.editCredit = function (thisCredit) {
 			$scope.creditedit = true;
@@ -2507,6 +2510,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newcredit = angular.copy(thisCredit);
 		};
 		$scope.addCredit = function () {
+			$scope.newcredit.date = $scope.newcredit.date.toISOString();
 			if ($scope.curCredit.id) {
 				angular.extend($scope.curCredit, $scope.curCredit, $scope.newcredit);
 			} else{
