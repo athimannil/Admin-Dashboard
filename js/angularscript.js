@@ -1163,6 +1163,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.loanedit = true;
 			$scope.newloan = {};
 			$scope.newloan.date = new Date();
+			$scope.newloan.closedate = new Date();
 		};
 		$scope.editLoan = function (thisloan) {
 			$scope.loanedit = true;
@@ -2266,6 +2267,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.newIncome = function (argument) {
 			$scope.incomeedit = true;
 			$scope.newincome = {};
+			$scope.newincome.date = new Date();
 		};
 		$scope.editIncome = function (thisIncome) {
 			$scope.incomeedit = true;
@@ -2273,6 +2275,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newincome = angular.copy(thisIncome);
 		};
 		$scope.addIncome = function () {
+			$scope.newincome.date = $scope.newincome.date.toISOString();
 			if ($scope.curIncome.id) {
 				angular.extend($scope.curIncome, $scope.curIncome, $scope.newincome);
 			} else{
