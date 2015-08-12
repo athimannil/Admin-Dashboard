@@ -18,12 +18,12 @@
 			<div class="clearfix"></div>
 		</div>
 		<ul class="list-group project-list">
-		  <li class="list-group-item" ng-repeat="project in projects" ng-class="{active: project.id == curProject.id}">
+		  <li class="list-group-item" ng-repeat="project in projects | orderBy:'-enddate'" ng-class="{active: project.id == curProject.id}">
 			  <button class="pull-right btn btn-primary btn-xs" ng-click="openProject(project)"><i class="fa fa-arrow-right"></i></button>
 		  	<p><strong>{{project.name}}</strong></p>
 		  	<ul class="list-unstyled">
 			  	<li>Budget: <i class="fa fa-inr"></i> {{project.approxamount}}</li>
-			  	<li>Close Date: {{project.enddate}}</li>
+			  	<li>Close Date: {{project.enddate | date:'dd-MMM-yyyy'}}</li>
 		  	</ul>
 		  </li>
 		</ul>
@@ -34,22 +34,32 @@
 				<h3>New Project</h3>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Project Name</label>
-					<div class="col-sm-10">
+					<div class="col-sm-6">
 						<input type="text" class="form-control" ng-model="newproject.name" placeholder="Project Name">
 					</div>
-				</div>
-				<div class="form-group">
 					<label class="col-sm-2 control-label">Approximate Amount</label>
 					<div class="col-sm-2">
 						<input type="text" class="form-control" ng-model="newproject.approxamount" placeholder="Amount">
 					</div>
+				</div>
+				<div class="form-group">
 					<label class="col-sm-2 control-label">Start Date</label>
-					<div class="col-sm-2">
-						<input type="text" class="form-control" ng-model="newproject.startdate" placeholder="Start Date">
+					<div class="col-sm-4">
+						<div class="input-group">
+							<input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newproject.startdate" is-open="startdatepicker" show-button-bar="false" show-weeks="false" readonly>
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="startdatepicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
+							</span>
+						</div>
 					</div>
 					<label class="col-sm-2 control-label">End Date</label>
-					<div class="col-sm-2">
-						<input type="text" class="form-control" ng-model="newproject.enddate" placeholder="End Date">
+					<div class="col-sm-4">
+						<div class="input-group">
+							<input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newproject.enddate" is-open="enddatepicker" show-button-bar="false" show-weeks="false" readonly>
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="enddatepicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
+							</span>
+						</div>
 					</div>
 				</div>
 				<div class="form-group">
@@ -81,7 +91,7 @@
 					</div>
 					<h3>{{curProject.name}}</h3>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-5">
 					<table class="table table-striped table-responsive">
 						<tbody>
 							<tr>
@@ -90,16 +100,16 @@
 							</tr>
 							<tr>
 								<td class="text-muted">Start Date</td>
-								<td>{{curProject.startdate}}</td>
+								<td>{{curProject.startdate | date:'dd-MMMM-yyyy'}}</td>
 							</tr>
 							<tr>
 								<td class="text-muted">End Date</td>
-								<td>{{curProject.startdate}}</td>
+								<td>{{curProject.enddate | date:'dd-MMMM-yyyy'}}</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-7">
 					<dl>
 					  <dt>Description</dt>
 					  <dd><p>{{curProject.description}}</p></dd>
@@ -130,7 +140,12 @@
 								</div>
 								<label for="" class="col-sm-1 control-label">Date</label>
 								<div class="col-sm-3">
-									<input type="text" class="form-control" ng-model="newwage.date" placeholder="Date">
+									<div class="input-group">
+										<input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newwage.date" is-open="wagepicker" show-button-bar="false" show-weeks="false" readonly>
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default" ng-click="wagepicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
+										</span>
+									</div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -174,11 +189,11 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="wage in listCount = (curProject.wages | filter:wagefilter) | pagination: currentPage : numPerPage">
+								<tr ng-repeat="wage in listCount = (curProject.wages | filter:wagefilter) | pagination: currentPage : numPerPage | orderBy:'-date' ">
 									<td>{{wage.name}}</td>
 									<td><p class="description" popover="{{wage.description}}" popover-trigger="mouseenter">{{wage.description}}</p></td>
 									<td><i class="fa fa-inr"></i> {{wage.amount}}</td>
-									<td>{{wage.date}}</td>
+									<td>{{wage.date | date:'dd-MMMM-yyyy'}}</td>
 									<td>
 										<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
 											<button type="button" class="btn btn-default" ng-click="editWage(wage);">
@@ -225,7 +240,12 @@
 								</div>
 								<label for="" class="col-sm-1 control-label">Date</label>
 								<div class="col-sm-3">
-									<input type="text" class="form-control" ng-model="newexpense.date" placeholder="Date">
+								<div class="input-group">
+									<input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newexpense.date" is-open="expensepicker" show-button-bar="false" show-weeks="false" readonly>
+									<span class="input-group-btn">
+										<button type="button" class="btn btn-default" ng-click="expensepicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
+									</span>
+								</div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -268,10 +288,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="expense in listCount = (expenses | filter:expensefilter) | pagination: currentPage : numPerPage">
+								<tr ng-repeat="expense in listCount = (expenses | filter:expensefilter) | pagination: currentPage : numPerPage | orderBy:'-date' ">
 									<td>{{expense.name}}</td>
 									<td>{{expense.amount}}</td>
-									<td>{{expense.date}}</td>
+									<td>{{expense.date | date:'dd-MMMM-yyyy'}}</td>
 									<td><p class="description" popover="{{expense.description}}" popover-trigger="mouseenter">{{expense.description}}</p></td>
 									<td>
 										<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">

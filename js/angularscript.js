@@ -1627,6 +1627,8 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.projectedit = true;
 			$scope.curProject = {};
 			$scope.newproject = {};
+			$scope.newproject.startdate = new Date();
+			$scope.newproject.enddate = new Date();
 		};
 		$scope.editProject = function (thisproject) {
 			$scope.projectedit = true;
@@ -1634,6 +1636,8 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newproject = angular.copy(thisproject);
 		};
 		$scope.addProject = function () {
+			$scope.newproject.startdate = $scope.newproject.startdate.toISOString();
+			$scope.newproject.enddate = $scope.newproject.enddate.toISOString();
 			if ($scope.curProject.id) {
 				angular.extend($scope.curProject,$scope.curProject,$scope.newproject);
 				$scope.initialProject($scope.projects.indexOf($scope.curProject));
@@ -1664,6 +1668,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.newWage = function (argument) {
 			$scope.wageedit = true;
 			$scope.newwage = {};
+			$scope.newwage.date = new Date();
 		};
 		$scope.editWage = function (thiswage) {
 			$scope.wageedit = true;
@@ -1671,6 +1676,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newwage = angular.copy(thiswage);
 		};
 		$scope.addWage = function () {
+			$scope.newwage.date = $scope.newwage.date.toISOString();
 			var curIndex = $scope.projects.indexOf($scope.curProject);
 			if ($scope.curwage.id) {
 				angular.extend($scope.curwage,$scope.curwage,$scope.newwage);
@@ -1794,6 +1800,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.newExpense = function (argument) {
 			$scope.expenseedit = true;
 			$scope.newexpense = {};
+			$scope.newexpense.date = new Date();
 		};
 		$scope.editExpense = function (thisExpense) {
 				$scope.expenseedit = true;
@@ -1801,6 +1808,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 				$scope.newexpense = angular.copy(thisExpense);
 		};
 		$scope.addExpense = function () {
+			$scope.newexpense.date = $scope.newexpense.date.toISOString();
 			if ($scope.curExpense.id) {
 				angular.extend($scope.curExpense, $scope.curExpense, $scope.newexpense);
 			} else{
