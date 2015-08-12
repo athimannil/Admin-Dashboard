@@ -2020,6 +2020,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.newInsure = function () {
 			$scope.insureedit = true;
 			$scope.newinsure = {};
+			$scope.newinsure.date = new Date();
 		};
 		$scope.editInsure = function (thisInsure) {
 			$scope.insureedit = true;
@@ -2027,10 +2028,15 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newinsure = angular.copy($scope.curinsure);
 		};
 		$scope.addInsure = function () {
+			$scope.newinsure.date = $scope.newinsure.date.toISOString();
 			if ($scope.newinsure.id) {
 				angular.extend($scope.curinsure, $scope.curinsure, $scope.newinsure);
 				$scope.curinsure = {};
+			} else{
+				$scope.newinsure.id = $scope.newinsure.length + 1;
+				$scope.insures.push($scope.newinsure);
 			}
+			$scope.newinsure = {};
 			$scope.insureedit = false;
 		};
 		$scope.cancelInsure = function () {

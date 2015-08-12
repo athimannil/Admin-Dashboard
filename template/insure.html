@@ -34,7 +34,12 @@
 					</div>
 					<label class="col-sm-1 control-label">Date</label>
 					<div class="col-sm-3">
-						<input type="text" class="form-control" ng-model="newinsure.date">
+						<div class="input-group">
+							<input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newinsure.date" is-open="expensepicker" show-button-bar="false" show-weeks="false" readonly>
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="expensepicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
+							</span>
+						</div>
 					</div>
 				</div>
 				<div class="form-group">
@@ -93,14 +98,14 @@
 				</thead>
 				<tbody>
 					<!-- <tr ng-repeat="expense in listCount = ( expenses | filter:filterlist) | pagination: currentPage : numPerPage"> -->
-					<tr ng-repeat="insure in listCount = ( insures | filter:filterlist) | pagination: currentPage : numPerPage">
+					<tr ng-repeat="insure in listCount = ( insures | filter:filterlist) | pagination: currentPage : numPerPage | orderBy:'-date'">
 						<td>{{insure.name}}</td>
 						<td><p class="description" popover="{{insure.term}}" popover-trigger="mouseenter">{{insure.term}}</p></td>
 						<td><p class="description" popover="{{insure.description}}" popover-trigger="mouseenter">{{insure.description}}</p></td>
 						<td><i class="fa fa-inr"></i> {{insure.amount}}</td>
 						<td>{{insure.nominee}}</td>
 						<td><i class="fa fa-inr"></i> {{insure.premiumamount}}</td>
-						<td>{{insure.date}}</td>
+						<td>{{insure.date | date:'dd-MMMM-yyyy'}}</td>
 						<td>{{insure.agentname}}</td>
 						<td>{{insure.agentphone}}</td>
 						<td>
