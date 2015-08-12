@@ -20,7 +20,12 @@
           </div>
           <label for="" class="col-sm-1 control-label">Date</label>
           <div class="col-sm-2">
-            <input type="text" class="form-control" ng-model="newrent.date" placeholder="Date">
+            <div class="input-group">
+              <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newrent.date" is-open="rentpicker" show-button-bar="false" show-weeks="false" readonly>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="rentpicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -63,10 +68,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="rent in listCount  = (rents | filter:filterlist)| pagination: currentPage : numPerPage">
+          <tr ng-repeat="rent in listCount  = (rents | filter:filterlist)| pagination: currentPage : numPerPage | orderBy:'-date'">
             <td>{{rent.name}}</td>
             <td><i class="fa fa-inr"></i> {{rent.amount}}</td>
-            <td>{{rent.date}}</td>
+            <td>{{rent.date | date:'dd-MMMM-yyyy'}}</td>
             <td><p class="description" popover="{{rent.description}}" popover-trigger="mouseenter">{{rent.description}}</p></td>
             <td>
               <div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">

@@ -2632,6 +2632,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		$scope.newRent = function () {
 			$scope.rentedit = true;
 			$scope.newrent = {};
+			$scope.newrent.date = new Date();
 		};
 		$scope.editRent = function (thisRent) {
 			$scope.rentedit = true;
@@ -2639,6 +2640,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			$scope.newrent = angular.copy(thisRent);
 		};
 		$scope.addRent = function () {
+			$scope.newrent.date = $scope.newrent.date.toISOString();
 			if ($scope.curRent.id) {
 				angular.extend($scope.curRent, $scope.curRent, $scope.newrent);
 			} else{
