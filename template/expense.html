@@ -1,105 +1,105 @@
 <div class="row">
-  <div class="col-md-12">
-    <h2><i class="fa fa-credit-card"> </i>  Expenses</h2>
-  </div>
+	<div class="col-md-12">
+		<h2><i class="fa fa-credit-card"> </i>  Expenses</h2>
+	</div>
 </div>
 <div class="row">
-  <div class="col-md-12">
-    <div class="box">
-      <button ng-click="newExpense();" class="btn btn-primary pull-right" type="button"><i class="fa fa-plus"></i> Add Expense</button>
-      <form class="form-horizontal" ng-show="expenseedit" ng-submit="addExpense();">
-        <h3>New Expense</h3><br>
-        <div class="form-group">
-          <label for="" class="col-sm-2 control-label">Name</label>
-          <div class="col-sm-3">
-            <input type="text" class="form-control" ng-model="newexpense.name" placeholder="Name">
-          </div>
-          <label for="" class="col-sm-1 control-label">Amount</label>
-          <div class="col-sm-2">
-            <input type="text" class="form-control" ng-model="newexpense.amount" placeholder="Amount">
-          </div>
-          <label for="" class="col-sm-1 control-label">Date</label>
-          <div class="col-sm-3">
-            <div class="input-group">
-              <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newexpense.date" is-open="expensepicker" show-button-bar="false" show-weeks="false" readonly>
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="expensepicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Description</label>
-          <div class="col-sm-10">
-            <textarea class="form-control" ng-model="newexpense.description" placeholder="Description"></textarea>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-12 text-right">
-            <button type="button" class="btn btn-default" ng-click="cancelExpense();">Cancel</button>
-            <button type="submit" class="btn btn-primary">Save</button>
-          </div>
-        </div>
-        <hr>
-      </form>
-      <h3 ng-hide="expenseedit">Expense and details</h3>
-      <div class="row">
-        <div class="col-md-6">
-          <label for="">Search:  
-            <select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
-            entries
-          </label>
-        </div>
-        <div class="col-md-6 text-right">
-          <div class="form-inline form-group">
-            <label for="filter-list">Search </label>
-            <input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
-          </div>
-        </div>
-      </div>
-      <table class="table table-hover table-responsive">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Edit</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="expense in listCount = (expenses | filter:filterlist) | pagination: currentPage : numPerPage | orderBy:'-date'">
-            <td>{{expense.name}}</td>
-            <td>{{expense.amount}}</td>
-            <td>{{expense.date | date:'dd-MMMM-yyyy'}}</td>
-            <td><p class="description" popover="{{expense.description}}" popover-trigger="mouseenter">{{expense.description}}</p></td>
-            <td>
-              <div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
-                <button type="button" class="btn btn-default" ng-click="editExpense(expense);">
-                  <i class="fa fa-pencil"></i>
-                </button>
-                <button type="button" class="btn btn-default" ng-click="deleteExpense(expense); editmode = !editmode">
-                  <i class="fa fa-trash-o"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="clearfix">
-        <pagination 
-          ng-model="currentPage" 
-          total-items="listCount.length" 
-          max-size="maxSize" 
-          items-per-page="numPerPage"
-          boundary-links="true" 
-          class="pagination-sm pull-right" 
-          previous-text="&lsaquo;" 
-          next-text="&rsaquo;" 
-          first-text="&laquo;" 
-          last-text="&raquo;"
-        ></pagination>
-      </div>
-    </div>
-  </div>
+	<div class="col-md-12">
+		<div class="box">
+			<button ng-click="newExpense();" class="btn btn-primary pull-right" type="button"><i class="fa fa-plus"></i> Add Expense</button>
+			<form class="form-horizontal" ng-show="expenseedit" ng-submit="addExpense();">
+				<h3>New Expense</h3><br>
+				<div class="form-group">
+					<label for="" class="col-sm-2 control-label">Name</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" ng-model="newexpense.name" placeholder="Name">
+					</div>
+					<label for="" class="col-sm-1 control-label">Amount</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" ng-model="newexpense.amount" placeholder="Amount">
+					</div>
+					<label for="" class="col-sm-1 control-label">Date</label>
+					<div class="col-sm-3">
+						<div class="input-group">
+							<input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newexpense.date" is-open="expensepicker" show-button-bar="false" show-weeks="false" readonly>
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="expensepicker=true"><i class="glyphicon glyphicon-calendar"></i></button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Description</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" ng-model="newexpense.description" placeholder="Description"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-12 text-right">
+						<button type="button" class="btn btn-default" ng-click="cancelExpense();">Cancel</button>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</div>
+				<hr>
+			</form>
+			<h3 ng-hide="expenseedit">Expense and details</h3>
+			<div class="row">
+				<div class="col-md-6">
+					<label for="">Search:  
+						<select class="form-control pagiantion" ng-model="numPerPage" ng-options="numPage for numPage in numsForPage" ng-change="changeNum(numPerPage);"></select>
+						entries
+					</label>
+				</div>
+				<div class="col-md-6 text-right">
+					<div class="form-inline form-group">
+						<label for="filter-list">Search </label>
+						<input type="text" class="form-control" id="filter-list" placeholder="Search" ng-model="filterlist">
+					</div>
+				</div>
+			</div>
+			<table class="table table-hover table-responsive">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Amount</th>
+						<th>Date</th>
+						<th>Description</th>
+						<th>Edit</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="expense in listCount = (expenses | filter:filterlist) | pagination: currentPage : numPerPage | orderBy:'-date'">
+						<td>{{expense.name}}</td>
+						<td>{{expense.amount}}</td>
+						<td>{{expense.date | date:'dd-MMMM-yyyy'}}</td>
+						<td><p class="description" popover="{{expense.description}}" popover-trigger="mouseenter">{{expense.description}}</p></td>
+						<td>
+							<div class="btn-group btn-group-xs" role="group" ng-init="editmode=false">
+								<button type="button" class="btn btn-default" ng-click="editExpense(expense);">
+									<i class="fa fa-pencil"></i>
+								</button>
+								<button type="button" class="btn btn-default" ng-click="deleteExpense(expense); editmode = !editmode">
+									<i class="fa fa-trash-o"></i>
+								</button>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="clearfix">
+				<pagination 
+					ng-model="currentPage" 
+					total-items="listCount.length" 
+					max-size="maxSize" 
+					items-per-page="numPerPage"
+					boundary-links="true" 
+					class="pagination-sm pull-right" 
+					previous-text="&lsaquo;" 
+					next-text="&rsaquo;" 
+					first-text="&laquo;" 
+					last-text="&raquo;"
+				></pagination>
+			</div>
+		</div>
+	</div>
 </div>
