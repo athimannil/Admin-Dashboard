@@ -92,7 +92,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="bank in listCount  = ( banks | filter:filterlist) | pagination: currentPage : numPerPage">
+					<tr ng-repeat="bank in listCount  = ( banks | filter:filterlist) | pagination: currentPage : numPerPage | orderBy:'name'">
 						<td>
 							<a href title="{{bank.name}}" ng-click="openAccount(bank);">{{bank.name}}</a>
 						</td>
@@ -250,8 +250,12 @@
 					<form class="form-horizontal" ng-submit="addParticular()" ng-show="status.particularedit">
 						<h3>New Account Particular</h3><br>
 						<div class="form-group">
+							<label class="col-sm-2 control-label">Account</label>
+							<div class="col-sm-2">
+								<p class="form-control-static">{{myAccount.number}}</p>
+							</div>
 							<label class="col-sm-2 control-label">Date</label>
-							<div class="col-sm-3">
+							<div class="col-sm-2">
 								<div class="input-group">
 									<input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newparticular.date" is-open="particularpicker" show-button-bar="false" show-weeks="false" readonly>
 									<span class="input-group-btn">
@@ -260,7 +264,7 @@
 								</div>
 							</div>
 							<label class="col-sm-2 control-label">Cheque No</label>
-							<div class="col-sm-3">
+							<div class="col-sm-2">
 								<input type="text" class="form-control" ng-model="newparticular.cheque_no" placeholder="Cheque Number">
 							</div>
 						</div>
@@ -311,7 +315,7 @@
 						<thead>
 							<tr class="bg-primary">
 								<th>Date</th>
-								<th>Particulars</th>
+								<th>Description</th>
 								<th>Cheque No</th>
 								<th>Withdrawals</th>
 								<th>Deposits</th>
