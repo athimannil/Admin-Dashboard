@@ -65,6 +65,78 @@
     </div>
   </div>
   <div class="row">
+    <tabset justified="true" class="col-md-4">
+      <tab>
+        <tab-heading>
+          <strong><i class="fa fa-hand-o-left fa-lg"></i> Last month</strong>
+        </tab-heading>
+        <div class="box">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="project-name" class="col-sm-2 control-label">Project</label>
+              <div class="col-sm-10" id="project-name">
+                <select class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="filter-date" class="col-sm-2 control-label">Date</label>
+              <div class="col-sm-10">
+                <div class="input-group">
+                  <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newexpense.date" is-open="projectpicker" show-button-bar="false" show-weeks="false" readonly>
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="projectpicker=true"><i class="fa fa-calendar"></i></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </form>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus ratione facere, pariatur excepturi mollitia velit doloribus et fuga quo quos? Neque voluptate eum temporibus esse porro, voluptates illum quas.</p>
+        </div>
+      </tab>
+      <tab>
+        <tab-heading>
+          <strong><i class="fa fa-clock-o fa-lg"></i> Project status</strong>
+        </tab-heading>
+        <ul id="last-pay" class="list-group">
+          <li class="list-group-item" ng-repeat="project in project_status">
+            <span class="badge progress-bar-warning">{{project.percentage}}%</span>
+            <!-- <img ng-src="{{user.image}}" alt="{{user.firstname}} {{user.lastname}}" height="40" width="40" class="img-circle pull-left"> -->
+            {{project.name}}
+            <div class="progress">
+              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{project.percentag}}" aria-valuemin="0" aria-valuemax="100" style="width: {{project.percentage}}%">
+                <span class="sr-only">{{project.percentag}}% Complete</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </tab>
+    </tabset>
+    <div class="col-md-4">
+      <div class="list-group">
+        <div class="list-group-item active"> 
+          <i class="fa fa-lg fa-tasks"> </i> Tasks 
+        </div>
+        <div class="list-group-item" ng-repeat="task in tasks | orderBy: '-date'">
+        <!-- <div class="list-group-item" ng-repeat="task in tasks"> -->
+          <a href class="delete-task" ng-click="deleteTastk($index)">
+            <span class="fa  fa-trash-o"></span>
+          </a>
+          <label>
+            <input type="checkbox" class="hide task-checkbox" ng-model="task.done">
+            <i class="fa fa-lg" ng-class="task.done ? 'fa-check-square-o  text-muted' : 'fa-square-o'"></i> 
+          </label>
+          <a href class="complete-{{task.done}}" ng-init="readItem = false" ng-click="readItem = !readItem;">{{task.name}}</a>
+          <div class="task-date text-muted"><i class="fa fa-calendar"></i> <span class="complete-{{task.done}}">{{task.date | date : 'fullDate'}}</span></div>
+          <p class="task-detail complete-{{task.done}}" ng-show="readItem">{{task.detail}}</p>
+        </div>
+      </div>
+    </div>
     <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading"> 
@@ -101,76 +173,5 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="list-group">
-        <div class="list-group-item active"> 
-          <i class="fa fa-lg fa-tasks"> </i> Tasks 
-        </div>
-        <div class="list-group-item" ng-repeat="task in tasks | orderBy: '-date'">
-        <!-- <div class="list-group-item" ng-repeat="task in tasks"> -->
-          <a href class="delete-task" ng-click="deleteTastk($index)">
-            <span class="fa  fa-trash-o"></span>
-          </a>
-          <label>
-            <input type="checkbox" class="hide task-checkbox" ng-model="task.done">
-            <i class="fa fa-lg" ng-class="task.done ? 'fa-check-square-o  text-muted' : 'fa-square-o'"></i> 
-          </label>
-          <a href class="complete-{{task.done}}" ng-init="readItem = false" ng-click="readItem = !readItem;">{{task.name}}</a>
-          <div class="task-date text-muted"><i class="fa fa-calendar"></i> <span class="complete-{{task.done}}">{{task.date | date : 'fullDate'}}</span></div>
-          <p class="task-detail complete-{{task.done}}" ng-show="readItem">{{task.detail}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 hide">
-      <ul id="to-do" class="list-group checkbox-list">
-        <a class="list-group-item active"><i class="fa fa-lg fa-list-alt"></i> Remainders</a>
-        <li class="list-group-item checkbox" ng-repeat=" todo in todolist">
-          <label>
-            <input type="checkbox" class="hide" ng-model="todo.done">
-            <i class="fa fa-lg" ng-class="{true:'fa-check-square-o', false:'fa-square-o'}[todo.done]"></i>
-            <span class="todo-task">{{todo.task}}</span>
-          </label>
-          <span class="label label-default pull-right" ng-repeat="info in users" ng-if="info.id === todo.asignedto">{{info.firstname}}</span>
-        </li>
-        <li class="list-group-item" style="border:none; padding:0;">
-          <form ng-submit="addtodo(newtodo)" class="input-group">
-            <input type="text" class="form-control" ng-model="newtodo" placeholder="What needs to be done?">
-            <span class="input-group-btn">
-              <button class="btn btn-primary" type="submit">
-                <i class="fa fa-plus"></i>
-              </button>
-            </span>
-          </form>
-        </li>
-      </ul>
-    </div>
-    <tabset justified="true" class="col-md-4">
-      <tab>
-        <tab-heading>
-          <strong><i class="fa fa-clock-o fa-lg"></i> This month</strong>
-        </tab-heading>
-        <ul id="last-pay" class="list-group">
-          <li class="list-group-item" ng-repeat="user in users">
-            <span class="badge progress-bar-warning">{{percentage(user.spent, totalamount)}}%</span>
-            <!-- <img src="img/me.jpg" alt="member" height="40" width="40" class="img-circle pull-left"> -->
-            <img ng-src="{{user.image}}" alt="{{user.firstname}} {{user.lastname}}" height="40" width="40" class="img-circle pull-left">
-            {{user.firstname}} {{user.lastname}}
-            <div class="progress">
-              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{percentage(user.spent, totalamount)}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percentage(user.spent, totalamount)}}%">
-                <span class="sr-only">{{percentage(user.spent, totalamount)}}% Complete (warning)</span>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </tab>
-      <tab>
-        <tab-heading>
-          <strong><i class="fa fa-hand-o-left fa-lg"></i> Last month</strong>
-        </tab-heading>
-        <div class="box">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum vitae omnis enim culpa, eaque quam totam magni officiis atque, laudantium molestiae voluptates tempore error quisquam est placeat corrupti qui sequi!</p>
-        </div>
-      </tab>
-    </tabset>
   </div>
 </div>

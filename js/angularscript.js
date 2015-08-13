@@ -114,6 +114,31 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 			date: {};
 		];*/
 
+		$scope.project_status = [
+			{
+				"name": "Lorem PC",
+				"percentage": 184
+			},{
+				"name": "Ligula Nullam Feugiat Company",
+				"percentage": 65
+			},{
+				"name": "Mauris Aliquam Eu Inc.",
+				"percentage": 47
+			},{
+				"name": "Class Aptent Inc.",
+				"percentage": 52
+			},{
+				"name": "Vitae Diam PC",
+				"percentage": 18
+			},{
+				"name": "Semper Company",
+				"percentage": 89
+			},{
+				"name": "Dui Cras Foundation",
+				"percentage": 54
+			}
+		];
+
 		/* Nav menu */
 		$scope.user = {
 			firstname: "Basheer",
