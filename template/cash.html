@@ -88,7 +88,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="debit in listCount = (cashdebits | filter:debitfilter) | pagination: currentPage : numPerPage | orderBy:'-date'">
+						<tr ng-repeat="debit in listCount = (cashdebits | filter:debitfilter) | orderBy:'-date' | pagination: currentPage : numPerPage">
 							<td><i class="fa fa-inr"></i> {{debit.amount}}</td>
 							<td>{{debit.date | date:'dd-MMMM-yyyy'}}</td>
 							<td><p class="description" popover="{{debit.description}}" popover-trigger="mouseenter">{{debit.description}}</p></td>
@@ -181,7 +181,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="credit in listCount = (cashcredits|filter:creditfilter) | pagination: currentPage : numPerPage | orderBy:'-date'">
+						<tr ng-repeat="credit in listCount = (cashcredits|filter:creditfilter) | orderBy:'-date' | pagination: currentPage : numPerPage">
 							<td><i class="fa fa-inr"></i> {{credit.amount}}</td>
 							<td>{{credit.date | date:'dd-MMMM-yyyy'}}</td>
 							<td><p class="description" popover="{{credit.description}}" popover-trigger="mouseenter">{{credit.description}}</p></td>

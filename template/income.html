@@ -68,7 +68,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="income in listCount = (incomes | filter:filterlist) | pagination: currentPage : numPerPage | orderBy:'-date'">
+          <tr ng-repeat="income in listCount = (incomes | filter:filterlist) | orderBy:'-date' | pagination: currentPage : numPerPage">
             <td>{{income.name}}</td>
             <td>{{income.amount}}</td>
             <td>{{income.date | date:'dd-MMMM-yyyy'}}</td>

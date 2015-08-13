@@ -68,7 +68,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="rent in listCount  = (rents | filter:filterlist)| pagination: currentPage : numPerPage | orderBy:'-date'">
+          <tr ng-repeat="rent in listCount  = (rents | filter:filterlist) | orderBy:'-date' | pagination: currentPage : numPerPage">
             <td>{{rent.name}}</td>
             <td><i class="fa fa-inr"></i> {{rent.amount}}</td>
             <td>{{rent.date | date:'dd-MMMM-yyyy'}}</td>

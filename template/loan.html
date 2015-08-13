@@ -120,7 +120,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="loan in  listCount = (loans | filter:filterlist) | pagination: currentPage : numPerPage | orderBy:'-date'">
+					<tr ng-repeat="loan in  listCount = (loans | filter:filterlist) | orderBy:'-date' | pagination: currentPage : numPerPage">
 						<td><a href ng-click="openEmi(loan);">{{loan.name}}</a></td>
 						<td><p class="description" popover="{{loan.description}}" popover-trigger="mouseenter">{{loan.description}}</p></td>
 						<td>{{loan.account.number}}</td>
@@ -224,7 +224,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="emi in listCount = (emis | filter:filterlist) | pagination: currentPage : numPerPage | orderBy:'-date'">
+					<tr ng-repeat="emi in listCount = (emis | filter:filterlist) | orderBy:'-date' | pagination: currentPage : numPerPage">
 						<td>{{emi.date | date:'dd-MMMM-yyyy'}}</td>
 						<td>
 							<p class="description" popover="{{emi.description}}" popover-trigger="mouseenter">{{emi.description}}</p>

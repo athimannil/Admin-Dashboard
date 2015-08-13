@@ -188,7 +188,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="wage in listCount = (curProject.wages | filter:wagefilter) | pagination: currentPage : numPerPage | orderBy:'-date' ">
+								<tr ng-repeat="wage in listCount = (curProject.wages | filter:wagefilter) | orderBy:'-date' | pagination: currentPage : numPerPage ">
 									<td>{{wage.name}}</td>
 									<td><p class="description" popover="{{wage.description}}" popover-trigger="mouseenter">{{wage.description}}</p></td>
 									<td><i class="fa fa-inr"></i> {{wage.amount}}</td>
@@ -287,7 +287,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="expense in listCount = (expenses | filter:expensefilter) | pagination: currentPage : numPerPage | orderBy:'-date' ">
+								<tr ng-repeat="expense in listCount = (expenses | filter:expensefilter) | orderBy:'-date' | pagination: currentPage : numPerPage ">
 									<td>{{expense.name}}</td>
 									<td>{{expense.amount}}</td>
 									<td>{{expense.date | date:'dd-MMMM-yyyy'}}</td>

@@ -106,7 +106,7 @@
         <div class="list-group-item active"> 
           <i class="fa fa-lg fa-tasks"> </i> Tasks 
         </div>
-        <div class="list-group-item" ng-repeat="task in tasks | orderBy: date">
+        <div class="list-group-item" ng-repeat="task in tasks | orderBy: '-date'">
         <!-- <div class="list-group-item" ng-repeat="task in tasks"> -->
           <a href class="delete-task" ng-click="deleteTastk($index)">
             <span class="fa  fa-trash-o"></span>

@@ -92,7 +92,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="bank in listCount  = ( banks | filter:filterlist) | pagination: currentPage : numPerPage | orderBy:'name'">
+					<tr ng-repeat="bank in listCount  = ( banks | filter:filterlist) | orderBy:'name' | pagination: currentPage : numPerPage">
 						<td>
 							<a href title="{{bank.name}}" ng-click="openAccount(bank);">{{bank.name}}</a>
 						</td>
@@ -205,7 +205,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="account in listCount = (accounts | filter:filterlist) | pagination: currentPage : numPerPage | orderBy:'-issuedate'">
+					<tr ng-repeat="account in listCount = (accounts | filter:filterlist) | orderBy:'-issuedate' | pagination: currentPage : numPerPage ">
 						<td><a href ng-click="openStatement(account);">{{account.name}}</a></td>
 						<td>{{account.acnumber}}</td>
 						<td>{{account.type}}</td>
@@ -324,7 +324,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="particular in listCount = (particulars | filter:filterlist) | pagination: currentPage : numPerPage | orderBy:'-date'">
+							<tr ng-repeat="particular in listCount = (particulars | filter:filterlist) | orderBy:'-date' | pagination: currentPage : numPerPage">
 								<td>{{particular.date | date:'dd-MMMM-yyyy'}}</td>
 								<td><p class="description" popover="{{particular.particuler}}" popover-trigger="mouseenter">{{particular.particuler}}</p></td>
 								<td>{{particular.cheque_no}}</td>

@@ -98,7 +98,7 @@
 				</thead>
 				<tbody>
 					<!-- <tr ng-repeat="expense in listCount = ( expenses | filter:filterlist) | pagination: currentPage : numPerPage"> -->
-					<tr ng-repeat="insure in listCount = ( insures | filter:filterlist) | pagination: currentPage : numPerPage | orderBy:'-date'">
+					<tr ng-repeat="insure in listCount = ( insures | filter:filterlist) | orderBy:'-date' | pagination: currentPage : numPerPage">
 						<td>{{insure.name}}</td>
 						<td><p class="description" popover="{{insure.term}}" popover-trigger="mouseenter">{{insure.term}}</p></td>
 						<td><p class="description" popover="{{insure.description}}" popover-trigger="mouseenter">{{insure.description}}</p></td>
