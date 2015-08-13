@@ -68,39 +68,6 @@
     <tabset justified="true" class="col-md-4">
       <tab>
         <tab-heading>
-          <strong><i class="fa fa-hand-o-left fa-lg"></i> Last month</strong>
-        </tab-heading>
-        <div class="box">
-          <form class="form-horizontal">
-            <div class="form-group">
-              <label for="project-name" class="col-sm-2 control-label">Project</label>
-              <div class="col-sm-10" id="project-name">
-                <select class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="filter-date" class="col-sm-2 control-label">Date</label>
-              <div class="col-sm-10">
-                <div class="input-group">
-                  <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="newexpense.date" is-open="projectpicker" show-button-bar="false" show-weeks="false" readonly>
-                  <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="projectpicker=true"><i class="fa fa-calendar"></i></button>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </form>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus ratione facere, pariatur excepturi mollitia velit doloribus et fuga quo quos? Neque voluptate eum temporibus esse porro, voluptates illum quas.</p>
-        </div>
-      </tab>
-      <tab>
-        <tab-heading>
           <strong><i class="fa fa-clock-o fa-lg"></i> Project status</strong>
         </tab-heading>
         <ul id="last-pay" class="list-group">
@@ -115,6 +82,33 @@
             </div>
           </li>
         </ul>
+      </tab>
+      <tab>
+        <tab-heading>
+          <strong><i class="fa fa-hand-o-left fa-lg"></i> Project details</strong>
+        </tab-heading>
+        <div class="box">
+          <form class="form-horizontal" ng-submit="projectReport()">
+            <div class="form-group">
+              <label for="project-name" class="col-sm-2 control-label">Project</label>
+              <div class="col-sm-10" id="project-name">
+                <select class="form-control" ng-model="projectName" ng-options="project.name as project.name for project in project_status"></select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="filter-date" class="col-sm-2 control-label">Date</label>
+              <div class="col-sm-10">
+                <div class="input-group">
+                  <input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="projectMonth" is-open="projectpicker" show-button-bar="false" show-weeks="false" readonly>
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="projectpicker=true"><i class="fa fa-calendar"></i></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </form>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus ratione facere, pariatur excepturi mollitia velit doloribus et fuga quo quos? Neque voluptate eum temporibus esse porro, voluptates illum quas.</p>
+        </div>
       </tab>
     </tabset>
     <div class="col-md-4">

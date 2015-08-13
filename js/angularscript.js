@@ -113,7 +113,7 @@ var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 		/*$scope.settings = [
 			date: {};
 		];*/
-
+		$scope.projectMonth = new Date();
 		$scope.project_status = [
 			{
 				"name": "Lorem PC",
